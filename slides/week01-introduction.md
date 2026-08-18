@@ -17,8 +17,8 @@ Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · �
 </div>
 
 <!--
-notes: Ask who has ever tried to double a recipe and had it come out
-wrong anyway. That familiar frustration is today's hook.
+notes: Ask: "Has anyone ever doubled a recipe and it came out wrong?"
+That feeling is today's hook.
 -->
 
 ---
@@ -45,7 +45,30 @@ wrong anyway. That familiar frustration is today's hook.
 <div class="wk review"><div class="n">Wk 15</div><div class="t">Final Exam</div></div>
 </div>
 
-<!-- notes: Point out the arc: solve, represent, transform, compute, measure, approximate. Fifteen weeks, one growing toolkit. -->
+<!-- notes: One sentence: solve, represent, transform, compute, measure, approximate. 15 weeks, one growing toolkit. -->
+
+---
+
+<!-- NEW: warm-up, right after the roadmap (Simplification Rule 3) -->
+
+# Before We Start
+
+<div class="thread">A quick warm-up. This checks one math skill this course needs.</div>
+
+Solve this equation. Find `x`.
+
+## 3x = 12
+
+Work alone for 1 minute. Then check your answer with a classmate.
+
+<!--
+notes: Give students 60 seconds of silence to solve 3x = 12 (answer: x = 4).
+Then ask the class aloud, one question at a time:
+1. "What number is x?"
+2. "What operation did you use — divide or multiply?"
+3. "Now try 5x = 20 in your head. What is x?"
+Confirm most hands are up before moving on.
+-->
 
 ---
 
@@ -53,15 +76,15 @@ wrong anyway. That familiar frustration is today's hook.
 
 # What You Already Bring
 
-No formal prerequisite is required for this course, but you are not
-starting from zero:
+No formal prerequisite is required for this course. But you already
+know useful things:
 
-- **High school algebra**: you have solved two equations in two unknowns before, usually by substitution
-- **Computer Programming**: you already think in terms of variables holding values and operations applied to them, the same habit of mind this course formalizes
-- **Basic arithmetic with fractions and negatives**: the only computational tool this course truly assumes
+- **High school algebra:** you have solved two equations with two unknowns before
+- **Programming:** you already think in variables and operations; this course makes that idea formal
+- **Basic arithmetic:** fractions and negative numbers, the only math skill this course assumes
 
-We are not teaching new arithmetic. We are teaching a systematic way to
-handle many equations at once, exactly, without guessing.
+This course does not teach new arithmetic. It teaches an exact way to
+solve many equations at once, without guessing.
 
 ---
 
@@ -70,7 +93,7 @@ handle many equations at once, exactly, without guessing.
 <!-- _class: section -->
 
 # Course Logistics
-<div class="driving-q">Read once now, referenced all semester.</div>
+<div class="driving-q">Read once now. Use all semester.</div>
 
 ---
 
@@ -84,7 +107,7 @@ handle many equations at once, exactly, without guessing.
 | Assignments | 10% |
 | In-class items | 20% |
 
-<!-- notes: Assignment 1 due Week 4 (Matrix Algebra). Assignment 2 due Week 11 (Diagonalization). Quiz 1 Week 7 (Vector Spaces), Quiz 2 Week 14 (Least Squares). -->
+<!-- notes: Assignment 1 due Week 4. Assignment 2 due Week 11. Quiz 1 Week 7. Quiz 2 Week 14. -->
 
 ---
 
@@ -92,36 +115,36 @@ handle many equations at once, exactly, without guessing.
 
 - **Textbook:** Lay, Lay & McDonald, *Linear Algebra and Its Applications*, 6th ed., Pearson, 2020
 - **References:** Hefferon, *Linear Algebra*, 4th ed. (open textbook); Cherney, Denton, Thomas & Waldron, *Linear Algebra*, UC Davis, 2013
-- **Policy:** attend and participate every class; late assignments are penalized; plagiarism and cheating lead to disciplinary action
+- **Policy:** attend and take part every class; late assignments lose points; plagiarism and cheating lead to discipline
 - **Contact:** yushintia@deu.ac.kr, office hours by email appointment
 
 ---
 
 <!-- SLOT 4: The pain (Act 1 / MOTIVATE), zero jargon -->
 
-# A Recipe That Doubles Badly
+# A Recipe That Goes Wrong
 
 <div class="pain">
 
-The Campus Café's signature drink uses three ingredients in a fixed
-balance: espresso, milk, and syrup. It tastes right for one cup. A
-professor books the café to cater a 200-person department event, same
-drink, same taste, just more of it.
+The Campus Café has one drink recipe: espresso, milk, and syrup. It
+tastes right for one cup.
 
-The barista does what feels natural: multiply everything by 200. Batch
-after batch comes out wrong: too sweet, not sweet enough, and once
-noticeably too strong. Different staff members "eyeball" the scale-up
-differently, and none of their guesses agree. By the end of the shift,
-three large batches are poured down the drain, and the department event
-still doesn't have enough of the drink it ordered.
+A professor books the café for a 200-person event. Same drink, same
+taste, just more of it.
+
+The barista multiplies every ingredient by 200. It does not work. One
+batch is too sweet. One is too weak. One is too strong.
+
+By the end of the shift, three large batches are poured down the
+drain. The event still does not have enough of its drink.
 
 </div>
 
-<!-- notes: Do not use the word "equation" or "matrix" yet. Let the wasted batches sit uncomfortably first. -->
+<!-- notes: Do not say "equation" or "matrix" yet. Let the wasted batches sit uncomfortably first. -->
 
 ---
 
-# Guessing Gets Worse, Not Better, at Scale
+# Guessing Gets Worse as Numbers Grow
 
 <div class="barchart">
 <div class="bar-row">
@@ -132,17 +155,16 @@ still doesn't have enough of the drink it ordered.
 <div class="bar-row">
   <div class="bar-label">10 cups, "just multiply"</div>
   <div class="bar-track"><div class="bar-fill risk-med" style="width: 45%"></div></div>
-  <div class="bar-value">taste starts drifting</div>
+  <div class="bar-value">taste starts to drift</div>
 </div>
 <div class="bar-row">
-  <div class="bar-label">200 cups, department order</div>
+  <div class="bar-label">200 cups, real order</div>
   <div class="bar-track"><div class="bar-fill long" style="width: 100%"></div></div>
-  <div class="bar-value">three batches, wasted</div>
+  <div class="bar-value">three batches wasted</div>
 </div>
 </div>
 
-Guessing does not scale linearly with the problem. This course teaches
-the exact method that does.
+Guessing does not scale. This course teaches a method that does.
 
 <!-- notes: Let the widening bars sit for a second before moving on. -->
 
@@ -150,18 +172,17 @@ the exact method that does.
 
 <!-- SLOT 5: Cost of not knowing -->
 
-# What Else This Actually Costs
+# What This Actually Costs
 
-- Wasted ingredients are wasted money, every single time a batch is poured out
-- A structural engineer who cannot solve linked load equations exactly risks a design that looks fine on paper and fails in practice
-- A navigation app that cannot solve its positioning equations exactly gives you the wrong street, not an approximately right one
+- Wasted ingredients waste money, every single time
+- An engineer who cannot solve linked equations exactly may design something unsafe
+- A map app that solves its position equations wrong sends you to the wrong street
 
 <div class="why">
-<strong>In industry:</strong> "set up and solve this system" underlies
-GPS positioning, computer graphics transformations, economic models, and
-the training of every machine learning model you will meet later in this
-major. It is one of the most common building blocks in technical
-interviews across engineering and data science.
+<strong>In industry:</strong> "set up and solve this system" sits behind
+GPS, computer graphics, economic models, and every machine learning
+model you meet later in this major. It is a common question in
+technical job interviews.
 </div>
 
 ---
@@ -172,23 +193,23 @@ interviews across engineering and data science.
 <div class="bar-row">
   <div class="bar-label">3 ingredients, 1 recipe</div>
   <div class="bar-track"><div class="bar-fill risk-low" style="width: 20%"></div></div>
-  <div class="bar-value">solvable by hand, carefully</div>
+  <div class="bar-value">solvable by hand</div>
 </div>
 <div class="bar-row">
-  <div class="bar-label">GPS: 4 satellites, 4 unknowns</div>
+  <div class="bar-label">GPS: 4 satellites</div>
   <div class="bar-track"><div class="bar-fill risk-med" style="width: 55%"></div></div>
   <div class="bar-value">solved by your phone, every second</div>
 </div>
 <div class="bar-row">
-  <div class="bar-label">ML model: millions of parameters</div>
+  <div class="bar-label">ML model: millions of unknowns</div>
   <div class="bar-track"><div class="bar-fill risk-high" style="width: 92%"></div></div>
-  <div class="bar-value">impossible without a systematic method</div>
+  <div class="bar-value">needs a systematic method</div>
 </div>
 </div>
-<div class="bar-note">illustrative, not measured data: the point is the trend, not the exact numbers</div>
+<div class="bar-note">illustrative, not measured data</div>
 
-You have already lived the small end of this scale. This course builds
-the exact method that survives all the way to the large end.
+You already met the small end of this problem. This course builds the
+method for the large end too.
 
 ---
 
@@ -202,38 +223,77 @@ the exact method that survives all the way to the large end.
 
 ---
 
+<!-- NEW: Key Words for 차시 1 (Simplification Rule 2) -->
+
+# Key Words Today
+
+<div class="thread">5 words you will hear all class. Learn them now.</div>
+
+- **Equation:** a math sentence with an equal sign, like `2x = 8`
+- **Unknown (variable):** the letter we do not know yet, like `x`
+- **Linear:** every unknown stands alone, never squared, never multiplied by another unknown
+- **System:** two or more equations, solved together
+- **Solution:** the value(s) that make every equation true at the same time
+
+---
+
 <!-- SLOT 7: Learning outcomes -->
 
 # By the End of This Week, You Can
 
-1. Translate a real scaling problem into a system of linear equations
-2. Use row operations to reduce a system to echelon form
-3. Classify a system's solution set as exactly one solution, infinitely many, or none
-4. State this course's four official objectives and where each is covered
+1. Turn a real scaling problem into a system of equations
+2. Use row operations to simplify a system
+3. Tell whether a system has one solution, many, or none
+4. Name this course's four main objectives
 
 ---
 
 # This Course's Four Objectives
 
-<div class="thread">Not just this week's goals. This is what the syllabus commits this whole course to.</div>
+<div class="thread">Not just this week's goal. This is the whole course's promise.</div>
 
 | # | Objective (from the syllabus) | Where |
 |---|---|---|
-| 1 | Solve linear systems and perform matrix algebra, including inverses and factorizations | Weeks 1-2, 4-5 |
-| 2 | Compute and interpret determinants and apply their properties | Week 6 |
-| 3 | Verify vector space properties and determine bases, dimension, rank, coordinates | Weeks 7, 9 |
-| 4 | Compute eigenvalues and eigenvectors and diagonalize matrices | Weeks 10-11 |
+| 1 | Solve linear systems; find matrix inverses and factorizations | Weeks 1-2, 4-5 |
+| 2 | Compute and use determinants | Week 6 |
+| 3 | Find vector space properties, bases, and dimension | Weeks 7, 9 |
+| 4 | Compute eigenvalues and diagonalize matrices | Weeks 10-11 |
 
-Weeks 12-14 (orthogonality, projections, least squares) apply all four
-objectives together to the course's final, most practical payoff:
-fitting a line to real, noisy data.
+Weeks 12-14 combine all four objectives: fitting a line to real, noisy
+data, the final payoff of this course.
+
+---
+
+<!-- NEW: preview hook, ends 차시 1 (Simplification Rule 3 shape) -->
+
+# Coming Up: Worksheet Part A
+
+Next session, you solve a real Campus Café problem in pairs.
+
+Two drinks. Two shared ingredients. You guess first, then use this
+week's method.
+
+<div class="why">Bring a pencil. No calculator needed.</div>
 
 ---
 
 <!-- _class: section -->
 
 # End of 차시 1
-<div class="driving-q">Short break. 차시 2 starts with: who solved this exact problem, centuries ago?</div>
+<div class="driving-q">Short break. 차시 2 starts with: who solved this exact problem, long ago?</div>
+
+---
+
+<!-- NEW: Key Words for 차시 2 -->
+
+# Key Words Today
+
+<div class="thread">4 more words for this session.</div>
+
+- **Row operation:** one of 3 legal moves that never changes the answer
+- **Augmented matrix:** the equations written as a grid of numbers
+- **Elimination:** removing one unknown at a time until you can solve directly
+- **Solution set:** the full list of every correct answer
 
 ---
 
@@ -241,16 +301,14 @@ fitting a line to real, noisy data.
 
 # This Problem Is Not New
 
-<div class="thread">You just felt the pain. Now: who else felt it, and what did they do about it?</div>
+<div class="thread">You just felt this pain. Others felt it too, long before you.</div>
 
-- **~200 BCE:** the Chinese mathematical text *The Nine Chapters on the Mathematical Art* already describes a systematic elimination method for solving several linked equations at once, arranged in a grid of numbers, centuries before algebra as we write it today existed
-- **Early 1800s:** Carl Friedrich Gauss formalizes and popularizes the same elimination idea in the West while solving a very different real problem: predicting the orbit of the newly discovered dwarf planet Ceres from a handful of noisy telescope observations
+- **~200 BCE, China:** *The Nine Chapters on the Mathematical Art* already solves linked equations, using a grid of numbers
+- **1809, Germany:** Carl Friedrich Gauss uses the same idea to predict a dwarf planet's orbit from a few noisy measurements
 
 <div class="why">
-Gauss's astronomy problem is, underneath the telescope, the exact same
-shape as the barista's recipe problem: several linked unknowns, several
-observed constraints, one systematic method to solve them together
-instead of guessing one at a time.
+Different problem, same shape: several unknowns, several known facts,
+one systematic method instead of guessing one at a time.
 </div>
 
 ---
@@ -264,8 +322,7 @@ instead of guessing one at a time.
 <div class="pt"><div class="dot"></div><div class="y">Today</div><div class="d">GPS, graphics, machine learning<br>the same method, at massive scale</div></div>
 </div>
 
-The method survived two thousand years and a change from stone tablets
-to supercomputers because the underlying problem, several linked
+This method survived 2,000 years because the problem, many linked
 unknowns, never went away.
 
 ---
@@ -274,17 +331,17 @@ unknowns, never went away.
 
 # Linear Equation & System: Definition
 
-<div class="thread">Two thousand years of practice point at one precise definition. Here it is.</div>
+<div class="thread">Now the exact, formal definition.</div>
 
-> A **linear equation** in variables x₁, x₂, ..., xₙ can be written
-> a₁x₁ + a₂x₂ + ... + aₙxₙ = b, where every variable appears only to the
-> first power, never multiplied together, never inside a function.
+> A **linear equation** in x₁, x₂, ..., xₙ has the form
+> a₁x₁ + a₂x₂ + ... + aₙxₙ = b. Every unknown appears only once, to the
+> first power.
 >
-> A **system of linear equations** is a collection of such equations,
-> considered together, sharing the same variables.
+> A **system of linear equations** is a group of such equations,
+> sharing the same unknowns.
 
-- A **solution** is an assignment of values to every variable that makes every equation in the system true at once
-- The **solution set** is the collection of all such solutions, which this week's method finds exactly
+- A **solution** gives a value to every unknown that makes all equations true together
+- The **solution set** is every possible solution; this week's method finds it exactly
 
 ---
 
@@ -292,147 +349,174 @@ unknowns, never went away.
 
 # What Makes an Equation Linear
 
-<div class="thread">The definition just given draws a sharp line. Here is exactly where it falls.</div>
+<div class="thread">The definition just given draws a sharp line. Here it is.</div>
 
 | Linear | Not linear |
 |---|---|
 | 2x + 3y = 5 | x² + y = 5 (x is squared) |
-| x - y + z = 0 | xy = 4 (variables multiplied together) |
-| 0.5a + 2b - c = 10 | sin(x) + y = 1 (variable inside a function) |
+| x - y + z = 0 | xy = 4 (unknowns multiplied together) |
+| 0.5a + 2b - c = 10 | sin(x) + y = 1 (unknown inside a function) |
 
-Only linear equations are covered this semester. The "linear" in the
-course's name is exactly this restriction, and it is precisely what
-makes elimination always work the same predictable way.
+Only linear equations are in this course. The word "linear" in the
+course's name is exactly this rule.
 
 ---
 
 # The Three Moves That Never Change a Solution
 
-<div class="thread">One tool does all the work this week: three legal moves, applied one at a time.</div>
+<div class="thread">One tool does all the work this week: three legal moves, one at a time.</div>
 
-1. **Swap** two equations (their order never mattered)
-2. **Scale** one equation by a nonzero number (both sides equally)
+1. **Swap** two equations
+2. **Scale** one equation by a nonzero number
 3. **Add** a multiple of one equation to another
 
-These three "row operations" are the entire method. Applied carefully
-and repeatedly, they turn a tangled system into one that can be read off
-directly, top to bottom.
+These three "row operations" are the whole method. Used carefully,
+they turn a messy system into one you can read directly, top to
+bottom.
 
 ---
 
 # From Equations to a Grid of Numbers
 
-<div class="thread">Writing every variable name, every time, is slow. Here is the shortcut Gauss and the Nine Chapters both landed on.</div>
+<div class="thread">Writing every unknown, every time, is slow. Here is a faster way.</div>
 
-The system on the left and the augmented matrix on the right carry
-exactly the same information, one written in words, one in position:
+The system on the left and the augmented matrix on the right hold the
+same information, one in words, one in position:
 
 | System | Augmented matrix |
 |---|---|
-| 2x + y = 8 | `[ 2  1 | 8 ]` |
-| x - y = 1 | `[ 1 -1 | 1 ]` |
+| 2x + y = 8 | `[ 2  1 \| 8 ]` |
+| x - y = 1 | `[ 1 -1 \| 1 ]` |
 
-Row operations on the grid are exactly the moves from the previous
-slide, just faster to write and easier to automate on a computer.
-
----
-
-# Demo, Step by Step: Solving the Café's Recipe
-
-<div class="thread">Four steps, the exact system behind the wasted batches, solved for real.</div>
-
-**Step 1 of 4: Write the recipe as equations.**
-
-One cup uses `e` shots of espresso, `m` units of milk, `s` units of
-syrup. Three known facts, from the original one-cup recipe and two
-trial batches that tasted right: `e + m + s = 4`, `2e - m = 1`,
-`m - s = -1`.
+A row operation on the grid is the same move as before, just faster
+to write and easier for a computer.
 
 ---
 
-# Demo, Step by Step: Solving the Café's Recipe
+# Demo, Step by Step: Solving the Café's Recipe (Part 1)
 
-**Step 2 of 4: Eliminate one variable at a time.**
+<div class="thread">The exact system behind the wasted batches. Let's solve it for real.</div>
 
-From `2e - m = 1`: `m = 2e - 1`. Substitute into the other two
-equations, leaving two equations in `e` and `s` only. This is row
-reduction, done by substitution instead of the grid, same three moves
-underneath.
+**Step 1: Write the recipe as equations.**
 
----
+One cup uses `e` shots espresso, `m` units milk, `s` units syrup:
+`e + m + s = 4`, `2e - m = 1`, `m - s = -1`.
 
-# Demo, Step by Step: Solving the Café's Recipe
+**Step 2: Remove one unknown.**
 
-**Step 3 of 4: Solve the reduced system.**
-
-The two-variable system reduces further to a single equation in one
-unknown. Solving it gives `e = 1`, then back-substituting gives
-`m = 1` and `s = 2`.
+From `2e - m = 1`: `m = 2e - 1`. Put this into the other two
+equations. Now only `e` and `s` remain, in two equations.
 
 ---
 
-# Demo, Step by Step: Solving the Café's Recipe
+# Demo, Step by Step: Solving the Café's Recipe (Part 2)
 
-**Step 4 of 4: Check, then scale exactly.**
+**Step 3: Solve what is left.**
 
-Check: `1 + 1 + 2 = 4`. Correct. For 200 cups, multiply every one of
-`e = 1, m = 1, s = 2` by 200: exactly `200, 200, 400`, no guessing, no
-wasted batch. The barista's whole shift of trial and error collapses
-into four lines of arithmetic.
+The system reduces to one equation in one unknown. Solving it gives
+`e = 1`. Then `m = 1` and `s = 2`.
+
+**Step 4: Check your answer.**
+
+`1 + 1 + 2 = 4`. Correct. For 200 cups, multiply each number by 200:
+exactly `200, 200, 400`. No guessing, no waste.
+
+---
+
+<!-- NEW: Try It, hands off to Worksheet Part A (Simplification Rule 4) -->
+
+# Try It: Worksheet Part A
+
+<div class="why">Pair up. Open Worksheet Part A.</div>
+
+Two drinks. Two shared ingredients. Two unknown prices.
+
+First guess. Then use this week's row operations to solve exactly.
+
+You have about 15 minutes.
+
+<!-- notes: Circulate while pairs work. If a pair finishes early, ask them to check their answer by putting it back into both original equations. -->
+
+---
+
+<!-- _class: section -->
+
+# End of 차시 2
+<div class="driving-q">Short break. 차시 3: check your Worksheet A answer, then go further.</div>
+
+---
+
+<!-- NEW: Key Words for 차시 3 -->
+
+# Key Words Today
+
+<div class="thread">3 words for the last part of this week.</div>
+
+- **Unique solution:** exactly one correct answer
+- **Infinitely many solutions:** more than one correct answer, a whole family of them
+- **No solution:** the equations contradict each other; nothing satisfies all of them
 
 ---
 
 # Three Possible Outcomes, Not Just One
 
-<div class="thread">The café's system happened to have exactly one answer. That is not guaranteed.</div>
+<div class="thread">The café's system had exactly one answer. That will not always happen.</div>
 
-| Outcome | What it looks like (2 variables) | Meaning |
+| Outcome | What it looks like (2 unknowns) | Meaning |
 |---|---|---|
 | **Unique solution** | Two lines cross at one point | Exactly one answer, like the café's recipe |
 | **Infinitely many** | The two equations describe the same line | Any point on that line works |
-| **No solution** | Two parallel lines, never touching | The constraints contradict each other |
+| **No solution** | Two parallel lines, never touching | The equations contradict each other |
 
-Row reduction always reveals which of these three cases you are in,
-without needing to guess in advance.
+Row reduction always tells you which case you are in. You never have
+to guess.
 
 ---
 
-# Where This Shows Up Around You
+<!-- NEW: Try It, hands off to Worksheet Part B -->
 
-<div class="thread">One recipe, solved. Here is the same shape of problem in systems you already use.</div>
+# Try It: Worksheet Part B
 
-<div class="appgrid">
-<div class="app"><div class="name">GPS navigation</div><div class="desc">your position solved from satellite signal equations</div></div>
-<div class="app"><div class="name">Computer graphics</div><div class="desc">rotating and scaling images: Week 3's linear transformations</div></div>
-<div class="app"><div class="name">Economics models</div><div class="desc">input-output tables balancing an entire economy</div></div>
-<div class="app"><div class="name">Traffic and network flow</div><div class="desc">balancing flow in and out of every junction</div></div>
-<div class="app"><div class="name">Machine learning</div><div class="desc">every model you train later starts as a linear system</div></div>
-</div>
+<div class="why">Same pairs. Open Worksheet Part B.</div>
 
-None of these apps show you "a system of equations." Every one of them
-solves one, constantly, underneath.
+Check your Part A answer using the augmented matrix.
+
+Then classify 3 small systems: one solution, many, or none.
+
+You have about 15 minutes.
 
 ---
 
 # Common Mistakes
 
-- **Applying a row operation to only part of a row:** every number in the row must be updated, not just the one you are trying to zero out
-- **Assuming every system has exactly one solution:** always check for the other two outcomes before reporting an answer
-- **Losing track of a sign while eliminating:** the single most common source of a wrong final answer; recheck by substituting your solution back into the original equations, as the café demo just did
+- **Changing only part of a row:** every number in the row must change, not just the one you are zeroing out
+- **Assuming one answer always exists:** always check for the other two cases first
+- **Losing a sign while eliminating:** the most common cause of a wrong answer; always check by substituting back into the original equations
 
 ---
 
 # Check Yourself
 
-1. Is `x² + 2y = 7` a linear equation? Why or why not?
-2. A system reduces to the equation `0 = 5`. What does that tell you about its solution set?
+1. Is `x² + 2y = 7` linear? Why or why not?
+2. A system reduces to `0 = 5`. What does that tell you about its solution set?
 
 ---
 
 # Answers
 
-1. **No.** `x` is squared, which violates the definition: every variable must appear only to the first power.
-2. **No solution exists.** `0 = 5` is never true, so the constraints contradict each other, exactly the "parallel lines" case.
+1. **No.** `x` is squared. Every unknown must stay to the first power.
+2. **No solution.** `0 = 5` is never true, so the equations contradict each other.
+
+---
+
+<!-- NEW: Try It, hands off to the self-check quiz -->
+
+# Self-Check Quiz
+
+<div class="why">Open the Week 1 quiz. Answer alone, no notes.</div>
+
+8 short questions, about 10 minutes. This quiz is not graded. It only
+shows you what you already know.
 
 ---
 
@@ -441,12 +525,12 @@ solves one, constantly, underneath.
 # What Today's Method Cannot Do Yet
 
 <div class="limits">
-Row reduction solves any system exactly, by hand, for a small number of
-variables. But writing out full equations, or even the augmented-matrix
-grid, becomes unmanageable once a system has dozens or hundreds of
-variables, which is the normal size for GPS, graphics, or machine
-learning problems. We have a method. We do not yet have a compact way
-to write it, or a way to hand it to a computer efficiently.
+Row reduction solves any system exactly, by hand. But it only works
+well for a small number of unknowns. GPS, graphics, and machine
+learning need dozens or hundreds of unknowns. Writing full equations,
+or even the matrix grid, becomes too slow at that size. We have a
+method. We do not yet have a compact way to write it, or hand it to a
+computer.
 </div>
 
 ---
@@ -455,10 +539,10 @@ to write it, or a way to hand it to a computer efficiently.
 
 # Next Week
 
-Week 1 leaves **a compact, computable way to represent a linear system**
-unsolved. **Week 2, Vector and Matrix**, addresses it: writing any
-system as `Ax = b`, the notation every later week and every real
-application in this course builds on.
+Week 1 leaves one thing unsolved: **a compact, computable way to
+write a linear system.** **Week 2, Vector and Matrix**, solves this.
+It writes any system as `Ax = b`, the notation every later week
+builds on.
 
 ---
 
@@ -466,9 +550,9 @@ application in this course builds on.
 
 # Summary
 
-- A linear equation restricts every variable to the first power; a linear system is a collection of them sharing variables
-- Three row operations, swap, scale, add, reduce any system to a form you can read off directly, without guessing
-- A system has exactly one solution, infinitely many, or none, and row reduction always reveals which
+- A linear equation keeps every unknown to the first power. A system is a group of them, sharing unknowns
+- Three row operations, swap, scale, add, solve any system, without guessing
+- A system has exactly one solution, infinitely many, or none. Row reduction always reveals which
 - **Reading:** Lay, Lay & McDonald, 6th ed., Chapter 1
 - **Prepare:** find one real situation (not the café) where you scaled something by guessing, and bring it to Week 2
 
