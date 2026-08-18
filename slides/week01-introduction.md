@@ -393,20 +393,22 @@ to write and easier for a computer.
 
 ---
 
-# Demo, Step by Step: Solving the Café's Recipe (Part 1)
+# Demo, Step by Step: The Café's Recipe (1/6)
 
-<div class="thread">The exact system behind the wasted batches. Let's solve it for real.</div>
+<div class="thread">The exact system behind the wasted batches. Let's solve it for real, one step at a time.</div>
 
-**Step 1: Turn the café's own rules into equations.**
+One cup uses `e` shots espresso, `m` units milk, `s` units syrup. The
+café's three rules become three equations:
 
-One cup uses `e` shots espresso, `m` units milk, `s` units syrup:
-`e + m + s = 4` (total liquid), `e + m - s = 0` (syrup = espresso +
-milk), `e - m = 0` (equal espresso and milk).
+```
+e + m + s = 4      ...(1)
+e + m - s = 0      ...(2)
+e - m     = 0      ...(3)
+```
 
-**Step 2: Remove one unknown.**
-
-From `e - m = 0`: `m = e`. Put this into the other two equations. Now
-only `e` and `s` remain, in two equations.
+- (1): one cup holds 4 units of liquid in total
+- (2): the syrup must equal the espresso plus the milk
+- (3): use equal amounts of espresso and milk
 
 <!-- notes: The Campus Café is invented; its numbers are picked to come
 out even. Tell students this out loud here: the story is fictional,
@@ -415,18 +417,79 @@ system, all semester. -->
 
 ---
 
-# Demo, Step by Step: Solving the Café's Recipe (Part 2)
+# Demo, Step by Step: The Café's Recipe (2/6)
 
-**Step 3: Solve what is left.**
+**Isolate one unknown.** Equation (3) already has only two unknowns.
+Solve it for `m`:
 
-Substituting `m = e` gives `2e - s = 0` and `2e + s = 4`. Adding them
-cancels `s`: `4e = 4`, so `e = 1`. Then `m = 1` and `s = 2`.
+```
+e - m = 0
+    m = e
+```
 
-**Step 4: Check your answer.**
+Now replace every `m` with `e` in equations (1) and (2).
 
-`1 + 1 + 2 = 4` ✓. `1 + 1 - 2 = 0` ✓. `1 - 1 = 0` ✓. All three café
-rules hold. For 200 cups, multiply each number by 200: exactly
-`200, 200, 400`. No guessing, no waste.
+---
+
+# Demo, Step by Step: The Café's Recipe (3/6)
+
+**Substitute.** Put `m = e` into equations (1) and (2):
+
+```
+(1): e + e + s = 4   →   2e + s = 4   ...(4)
+(2): e + e - s = 0   →   2e - s = 0   ...(5)
+```
+
+Now there are two equations, two unknowns: `e` and `s`.
+
+---
+
+# Demo, Step by Step: The Café's Recipe (4/6)
+
+**Eliminate the second unknown.** Add equations (4) and (5); the `s`
+terms cancel:
+
+```
+  2e + s = 4
++ 2e - s = 0
+-----------
+  4e     = 4
+```
+
+So `4e = 4`, which gives `e = 1`.
+
+---
+
+# Demo, Step by Step: The Café's Recipe (5/6)
+
+**Back-substitute.** Put `e = 1` into equation (5), then into `m = e`:
+
+```
+2(1) - s = 0   →   s = 2
+       m = e   →   m = 1
+```
+
+Answer: `e = 1`, `m = 1`, `s = 2`.
+
+---
+
+# Demo, Step by Step: The Café's Recipe (6/6)
+
+**Check.** Put all three values back into the original equations:
+
+```
+1 + 1 + 2 = 4    ✓
+1 + 1 - 2 = 0    ✓
+1 - 1     = 0    ✓
+```
+
+All three café rules hold. For 200 cups, multiply every value by 200:
+
+```
+e = 200, m = 200, s = 400
+```
+
+No guessing, no waste.
 
 ---
 
@@ -434,7 +497,7 @@ rules hold. For 200 cups, multiply each number by 200: exactly
 
 # Try It: Worksheet Part A
 
-<div class="why">Pair up. Open Worksheet Part A.</div>
+<div class="why">Pair up. Open <a href="materials/week01/worksheet.html">Worksheet Part A</a>.</div>
 
 Two drinks. Two shared ingredients. Two unknown prices.
 
@@ -484,7 +547,7 @@ to guess.
 
 # Try It: Worksheet Part B
 
-<div class="why">Same pairs. Open Worksheet Part B.</div>
+<div class="why">Same pairs. Open <a href="materials/week01/worksheet.html">Worksheet Part B</a>.</div>
 
 Check your Part A answer using the augmented matrix.
 
@@ -520,7 +583,7 @@ You have about 15 minutes.
 
 # Self-Check Quiz
 
-<div class="why">Open the Week 1 quiz. Answer alone, no notes.</div>
+<div class="why">Open the <a href="materials/week01/quiz.html">Week 1 quiz</a>. Answer alone, no notes.</div>
 
 8 short questions, about 10 minutes. This quiz is not graded. It only
 shows you what you already know.
@@ -561,6 +624,7 @@ builds on.
 - Three row operations, swap, scale, add, solve any system, without guessing
 - A system has exactly one solution, infinitely many, or none. Row reduction always reveals which
 - **Reading:** Lay, Lay & McDonald, 6th ed., Chapter 1
+- **Handout:** [materials/week01/handout.md](materials/week01/handout.html), glossary and the full café walkthrough
 - **Prepare:** find one real situation (not the café) where you scaled something by guessing, and bring it to Week 2
 
 ---
