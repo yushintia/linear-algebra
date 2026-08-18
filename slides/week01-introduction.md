@@ -397,15 +397,21 @@ to write and easier for a computer.
 
 <div class="thread">The exact system behind the wasted batches. Let's solve it for real.</div>
 
-**Step 1: Write the recipe as equations.**
+**Step 1: Turn the café's own rules into equations.**
 
 One cup uses `e` shots espresso, `m` units milk, `s` units syrup:
-`e + m + s = 4`, `2e - m = 1`, `m - s = -1`.
+`e + m + s = 4` (total liquid), `e + m - s = 0` (syrup = espresso +
+milk), `e - m = 0` (equal espresso and milk).
 
 **Step 2: Remove one unknown.**
 
-From `2e - m = 1`: `m = 2e - 1`. Put this into the other two
-equations. Now only `e` and `s` remain, in two equations.
+From `e - m = 0`: `m = e`. Put this into the other two equations. Now
+only `e` and `s` remain, in two equations.
+
+<!-- notes: The Campus Café is invented; its numbers are picked to come
+out even. Tell students this out loud here: the story is fictional,
+the method is the real, general one they will use on any linear
+system, all semester. -->
 
 ---
 
@@ -413,13 +419,14 @@ equations. Now only `e` and `s` remain, in two equations.
 
 **Step 3: Solve what is left.**
 
-The system reduces to one equation in one unknown. Solving it gives
-`e = 1`. Then `m = 1` and `s = 2`.
+Substituting `m = e` gives `2e - s = 0` and `2e + s = 4`. Adding them
+cancels `s`: `4e = 4`, so `e = 1`. Then `m = 1` and `s = 2`.
 
 **Step 4: Check your answer.**
 
-`1 + 1 + 2 = 4`. Correct. For 200 cups, multiply each number by 200:
-exactly `200, 200, 400`. No guessing, no waste.
+`1 + 1 + 2 = 4` ✓. `1 + 1 - 2 = 0` ✓. `1 - 1 = 0` ✓. All three café
+rules hold. For 200 cups, multiply each number by 200: exactly
+`200, 200, 400`. No guessing, no waste.
 
 ---
 

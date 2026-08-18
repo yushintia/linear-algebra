@@ -33,35 +33,41 @@ This is the full version of the in-class demo. Read it slowly, one
 step at a time.
 
 **The story.** The Campus Café's drink uses three ingredients:
-espresso (`e`), milk (`m`), and syrup (`s`). Nobody wrote down the
-exact recipe. Three test batches, mixed until they tasted right, gave
-the barista three facts:
+espresso (`e`), milk (`m`), and syrup (`s`). The café has three fixed
+house rules for this drink:
 
-- One batch: `e + m + s = 4` (four units of ingredients total)
-- Another batch: `2e - m = 1`
-- Another batch: `m - s = -1`
+- One cup holds 4 units of liquid in total.
+- House taste rule: the syrup must equal the espresso plus the milk.
+- House taste rule: use equal amounts of espresso and milk.
+
+**Where does the café come from?** The Campus Café is not a real
+place — it is a running example invented for this course, and its
+numbers are chosen to work out evenly. What is real is the method:
+every step below is the general procedure you will use all semester
+on any system of linear equations, following Lay, Lay & McDonald,
+Ch. 1.
 
 **Step 1 — Write the system.**
 
 ```
-e + m + s = 4      ... (1)
-2e - m     = 1      ... (2)
-    m - s = -1      ... (3)
+e + m + s = 4      ... (1)   total liquid
+e + m - s = 0      ... (2)   syrup = espresso + milk
+e - m     = 0      ... (3)   equal espresso and milk
 ```
 
 Three equations, three unknowns.
 
 **Step 2 — Remove one unknown using elimination.**
 
-From equation (2): `2e - m = 1`, so `m = 2e - 1`.
+From equation (3): `e - m = 0`, so `m = e`.
 
-Now put `m = 2e - 1` into equations (1) and (3). Every place `m`
-appeared, we write `2e - 1` instead. This is legal because both sides
-of (2) are equal — we are not changing anything, only rewriting it.
+Now put `m = e` into equations (1) and (2). Every place `m`
+appeared, we write `e` instead. This is legal because both sides
+of (3) are equal — we are not changing anything, only rewriting it.
 
-Equation (1) becomes: `e + (2e - 1) + s = 4` → `3e + s = 5` ... (4)
+Equation (1) becomes: `e + e + s = 4` → `2e + s = 4` ... (4)
 
-Equation (3) becomes: `(2e - 1) - s = -1` → `2e - s = 0` ... (5)
+Equation (2) becomes: `e + e - s = 0` → `2e - s = 0` ... (5)
 
 Now we have two equations, two unknowns (`e` and `s`).
 
@@ -70,19 +76,19 @@ Now we have two equations, two unknowns (`e` and `s`).
 Add equation (4) and equation (5):
 
 ```
-  3e + s = 5
+  2e + s = 4
 + 2e - s = 0
 -----------
-  5e     = 5
+  4e     = 4
 ```
 
-So `5e = 5`, which gives `e = 1`.
+So `4e = 4`, which gives `e = 1`.
 
 **Step 4 — Back-substitute.**
 
 Put `e = 1` into equation (5): `2(1) - s = 0` → `s = 2`.
 
-Put `e = 1` into `m = 2e - 1`: `m = 2(1) - 1 = 1`.
+Put `e = 1` into `m = e`: `m = 1`.
 
 So: `e = 1`, `m = 1`, `s = 2`.
 
@@ -90,8 +96,8 @@ So: `e = 1`, `m = 1`, `s = 2`.
 three equations:
 
 - `1 + 1 + 2 = 4` ✓
-- `2(1) - 1 = 1` ✓
-- `1 - 2 = -1` ✓
+- `1 + 1 - 2 = 0` ✓
+- `1 - 1 = 0` ✓
 
 All three are true. This is the solution, and it is the *only*
 solution (Week 1's method always tells us this, see the "Three
