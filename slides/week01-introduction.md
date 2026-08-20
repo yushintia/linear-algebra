@@ -17,8 +17,8 @@ Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · �
 </div>
 
 <!--
-notes: Ask: "Has anyone ever doubled a recipe and it came out wrong?"
-That feeling is today's hook.
+notes: Ask: "Has anyone ever guessed a recipe's amounts and gotten it
+wrong?" That feeling is today's hook.
 -->
 
 ---
@@ -122,21 +122,24 @@ solve many equations at once, without guessing.
 
 <!-- SLOT 4: The pain (Act 1 / MOTIVATE), zero jargon -->
 
-# A Recipe That Goes Wrong
+# A Recipe Nobody Wrote Down
 
 <div class="pain">
 
-The Campus Café has one drink recipe: espresso, milk, and syrup. It
-tastes right for one cup.
+The Campus Café's drink uses three ingredients: espresso, milk, and
+syrup. Nobody ever wrote down the exact amounts. The barista just
+eyeballs it, and it usually tastes right.
 
-A professor books the café for a 200-person event. Same drink, same
-taste, just more of it.
+A regular customer asks for a new version: the same drink, plus a
+fourth ingredient, vanilla syrup.
 
-The barista multiplies every ingredient by 200. It does not work. One
-batch is too sweet. One is too weak. One is too strong.
+Multiplying the old recipe does not help. There is no old vanilla
+amount to scale up, and even the original three amounts were never
+pinned down exactly.
 
-By the end of the shift, three large batches are poured down the
-drain. The event still does not have enough of its drink.
+The barista guesses all four amounts by feel. Three trial batches come
+out wrong: too much vanilla, milk overpowering, or the classic taste
+thrown off entirely.
 
 </div>
 
@@ -144,27 +147,28 @@ drain. The event still does not have enough of its drink.
 
 ---
 
-# Guessing Gets Worse as Numbers Grow
+# Guessing Gets Worse With Every Unknown
 
 <div class="barchart">
 <div class="bar-row">
-  <div class="bar-label">1 cup, by feel</div>
+  <div class="bar-label">1 ingredient amount, by feel</div>
   <div class="bar-track"><div class="bar-fill short" style="width: 15%"></div></div>
   <div class="bar-value">usually fine</div>
 </div>
 <div class="bar-row">
-  <div class="bar-label">10 cups, "just multiply"</div>
-  <div class="bar-track"><div class="bar-fill risk-med" style="width: 45%"></div></div>
-  <div class="bar-value">taste starts to drift</div>
+  <div class="bar-label">3 ingredients, today's recipe</div>
+  <div class="bar-track"><div class="bar-fill risk-med" style="width: 55%"></div></div>
+  <div class="bar-value">guessing rarely matches</div>
 </div>
 <div class="bar-row">
-  <div class="bar-label">200 cups, real order</div>
+  <div class="bar-label">4 ingredients, add the new one</div>
   <div class="bar-track"><div class="bar-fill long" style="width: 100%"></div></div>
-  <div class="bar-value">three batches wasted</div>
+  <div class="bar-value">guessing almost never works</div>
 </div>
 </div>
 
-Guessing does not scale. This course teaches a method that does.
+Guessing does not scale to more unknowns. This course teaches a method
+that does.
 
 <!-- notes: Let the widening bars sit for a second before moving on. -->
 

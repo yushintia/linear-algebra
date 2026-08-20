@@ -35,11 +35,12 @@ approximate what real, noisy data cannot solve exactly.
 
 ## Running case study
 
-"Campus Café" scaling a drink recipe by trial and error, wasting
-ingredients on a large catering order. Week 1 poses the problem in
-plain arithmetic; Week 2 represents it as `Ax = b`; later weeks reuse
-the same recipe data for transformations, factorization, eigen-analysis,
-and a final least-squares fit to real (noisy) customer taste-test data.
+"Campus Café" working out unknown per-cup ingredient amounts by trial
+and error, made worse when a new ingredient is added. Week 1 poses the
+problem in plain arithmetic; Week 2 represents it as `Ax = b`; later
+weeks reuse the same recipe data for transformations, factorization,
+eigen-analysis, and a final least-squares fit to real (noisy) customer
+taste-test data.
 Industry grounding threads through in parallel: image transforms
 (Week 3), Google's PageRank as an eigenvector problem (Week 10), and
 trend-line fitting in data science (Week 14).
