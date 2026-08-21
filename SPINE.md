@@ -69,7 +69,7 @@ the pain slide (4) is too abstract, so fix it instead of breaking the rule.
 
 | Wk | Topic | Limit (leads to next pain) |
 |---|---|---|
-| 1 | Linear Systems | Guess-and-check works for two ingredients; it collapses once a system has many variables and equations -> **W2** |
+| 1 | Linear Systems | Row reduction solves any system exactly by hand, but there is no compact, computable way to write or scale it to dozens or hundreds of unknowns -> **W2** |
 | 2 | Vector & Matrix | Ax=b organizes any system compactly, but nothing yet says whether a solution even exists, or is unique -> **W3** |
 | 3 | Linear Transformation | We can describe one transformation as a matrix, but not yet combine or reverse them -> **W4** |
 | 4 | Matrix Algebra | We can multiply and invert matrices, but for large systems this is still just slow arithmetic -> **W5** |
