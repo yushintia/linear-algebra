@@ -148,10 +148,12 @@ robotics interviews.
 
 # By the End of This Week, You Can
 
-1. Explain what a matrix does to an input vector
-2. Build a transformation matrix from a plain-English rule
-3. Recognize scaling, rotation, reflection, and shear from their matrices
-4. Tell whether a given rule is a linear transformation or not
+<div class="cardlist">
+<div class="card"><div class="h">Matrices as Functions</div><div class="d">Explain what a matrix does to an input vector</div></div>
+<div class="card"><div class="h">Build a Transformation</div><div class="d">Build a transformation matrix from a plain-English rule</div></div>
+<div class="card"><div class="h">Recognize Transformations</div><div class="d">Recognize scaling, rotation, reflection, and shear from their matrices</div></div>
+<div class="card"><div class="h">Linearity Test</div><div class="d">Tell whether a given rule is a linear transformation or not</div></div>
+</div>
 
 ---
 

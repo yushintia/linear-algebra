@@ -170,10 +170,12 @@ this data" is a common data science interview question.
 
 # By the End of This Week, You Can
 
-1. Explain why noisy data has no exact linear solution
-2. Set up the normal equations for a best-fit line
-3. Solve the normal equations for a slope and an intercept
-4. Fit a line to real, noisy Campus Café taste-test data
+<div class="cardlist">
+<div class="card"><div class="h">No Exact Solution</div><div class="d">Explain why noisy data has no exact linear solution</div></div>
+<div class="card"><div class="h">Normal Equations</div><div class="d">Set up the normal equations for a best-fit line</div></div>
+<div class="card"><div class="h">Solve for Slope &amp; Intercept</div><div class="d">Solve the normal equations for a slope and an intercept</div></div>
+<div class="card"><div class="h">Fit a Line</div><div class="d">Fit a line to real, noisy Campus Café taste-test data</div></div>
+</div>
 
 ---
 

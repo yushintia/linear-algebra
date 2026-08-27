@@ -167,10 +167,12 @@ restarting, is a common systems-design interview question.
 
 # By the End of This Week, You Can
 
-1. Factor a square grid of numbers into two triangular pieces
-2. Solve a triangular system quickly, top to bottom or bottom to top
-3. Reuse one factoring to solve many systems that share the same left side
-4. Explain why factoring once beats solving from scratch every time
+<div class="cardlist">
+<div class="card"><div class="h">LU Factorization</div><div class="d">Factor a square grid of numbers into two triangular pieces</div></div>
+<div class="card"><div class="h">Solve Triangular Systems</div><div class="d">Solve a triangular system quickly, top to bottom or bottom to top</div></div>
+<div class="card"><div class="h">Reuse a Factorization</div><div class="d">Reuse one factoring to solve many systems that share the same left side</div></div>
+<div class="card"><div class="h">Why Factor First</div><div class="d">Explain why factoring once beats solving from scratch every time</div></div>
+</div>
 
 ---
 

@@ -163,10 +163,12 @@ a whole solution space, not just find one answer.
 
 # By the End of This Week, You Can
 
-1. Check whether a set of objects forms a vector space
-2. Test whether a subset is a subspace
-3. Find the span of a small set of vectors
-4. Describe the whole solution set of `Ax = 0` as a subspace
+<div class="cardlist">
+<div class="card"><div class="h">Vector Space Check</div><div class="d">Check whether a set of objects forms a vector space</div></div>
+<div class="card"><div class="h">Subspace Test</div><div class="d">Test whether a subset is a subspace</div></div>
+<div class="card"><div class="h">Span</div><div class="d">Find the span of a small set of vectors</div></div>
+<div class="card"><div class="h">Solution Set as Subspace</div><div class="d">Describe the whole solution set of <code>Ax = 0</code> as a subspace</div></div>
+</div>
 
 ---
 

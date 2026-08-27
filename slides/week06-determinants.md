@@ -184,10 +184,12 @@ every scale.
 
 # By the End of This Week, You Can
 
-1. Compute the determinant of a 2x2 matrix
-2. Compute the determinant of a 3x3 matrix by cofactor expansion
-3. Use a determinant to decide if a system has exactly one solution
-4. Explain what a zero determinant does, and does not, tell you
+<div class="cardlist">
+<div class="card"><div class="h">2x2 Determinants</div><div class="d">Compute the determinant of a 2x2 matrix</div></div>
+<div class="card"><div class="h">3x3 Determinants</div><div class="d">Compute the determinant of a 3x3 matrix by cofactor expansion</div></div>
+<div class="card"><div class="h">Determinants &amp; Solvability</div><div class="d">Use a determinant to decide if a system has exactly one solution</div></div>
+<div class="card"><div class="h">Zero Determinant</div><div class="d">Explain what a zero determinant does, and does not, tell you</div></div>
+</div>
 
 ---
 

@@ -170,11 +170,13 @@ engineering interviews.
 
 # By the End of This Week, You Can
 
-1. Find a matrix's eigenvalues using its characteristic equation
-2. Find the eigenvector that matches each eigenvalue
-3. Explain why an eigenvector's direction never rotates under its own matrix
-4. Check a guessed vector against `Av = λv`, by hand, in seconds
-5. Connect eigenvectors to a real system, like PageRank's page ranking
+<div class="cardlist">
+<div class="card"><div class="h">Characteristic Equation</div><div class="d">Find a matrix's eigenvalues using its characteristic equation</div></div>
+<div class="card"><div class="h">Find Eigenvectors</div><div class="d">Find the eigenvector that matches each eigenvalue</div></div>
+<div class="card"><div class="h">Eigenvector Direction</div><div class="d">Explain why an eigenvector's direction never rotates under its own matrix</div></div>
+<div class="card"><div class="h">Verify <code>Av = λv</code></div><div class="d">Check a guessed vector against <code>Av = λv</code>, by hand, in seconds</div></div>
+<div class="card"><div class="h">Eigenvectors in PageRank</div><div class="d">Connect eigenvectors to a real system, like PageRank's page ranking</div></div>
+</div>
 
 ---
 

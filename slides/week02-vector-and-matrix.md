@@ -147,11 +147,13 @@ Compact notation stays short. Full equations do not.
 
 # By the End of This Week, You Can
 
-1. Write any linear system as a vector, a matrix, and `Ax = b`
-2. Multiply a matrix by a vector, by hand
-3. Verify a candidate solution using `Ax = b`
-4. Read `Ax` as separate rows, or as a mix of columns
-5. Tell whether a matrix and vector are even compatible for multiplication
+<div class="cardlist">
+<div class="card"><div class="h">Systems as <code>Ax = b</code></div><div class="d">Write any linear system as a vector, a matrix, and <code>Ax = b</code></div></div>
+<div class="card"><div class="h">Matrix-Vector Multiplication</div><div class="d">Multiply a matrix by a vector, by hand</div></div>
+<div class="card"><div class="h">Verify Solutions</div><div class="d">Verify a candidate solution using <code>Ax = b</code></div></div>
+<div class="card"><div class="h">Row vs Column View</div><div class="d">Read <code>Ax</code> as separate rows, or as a mix of columns</div></div>
+<div class="card"><div class="h">Compatibility Check</div><div class="d">Tell whether a matrix and vector are even compatible for multiplication</div></div>
+</div>
 
 ---
 

@@ -167,10 +167,12 @@ fitting, a common data-science interview topic.
 
 # By the End of This Week, You Can
 
-1. Project a vector onto a line through the origin
-2. Project a vector onto a subspace using an orthogonal basis
-3. Split a vector into an in-subspace part and a leftover part
-4. Explain why the projection is the closest point in the subspace
+<div class="cardlist">
+<div class="card"><div class="h">Project onto a Line</div><div class="d">Project a vector onto a line through the origin</div></div>
+<div class="card"><div class="h">Project onto a Subspace</div><div class="d">Project a vector onto a subspace using an orthogonal basis</div></div>
+<div class="card"><div class="h">Split into Components</div><div class="d">Split a vector into an in-subspace part and a leftover part</div></div>
+<div class="card"><div class="h">Closest Point Property</div><div class="d">Explain why the projection is the closest point in the subspace</div></div>
+</div>
 
 ---
 

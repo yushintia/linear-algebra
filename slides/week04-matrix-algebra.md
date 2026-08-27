@@ -168,10 +168,12 @@ transformations efficiently" is a common technical interview question.
 
 # By the End of This Week, You Can
 
-1. Multiply two matrices to combine two changes into one
-2. Explain why the order of multiplication changes the result
-3. Find a matrix's inverse and use it to undo a change exactly
-4. Recognize when a matrix has no inverse
+<div class="cardlist">
+<div class="card"><div class="h">Matrix Multiplication</div><div class="d">Multiply two matrices to combine two changes into one</div></div>
+<div class="card"><div class="h">Non-Commutativity</div><div class="d">Explain why the order of multiplication changes the result</div></div>
+<div class="card"><div class="h">Matrix Inverses</div><div class="d">Find a matrix's inverse and use it to undo a change exactly</div></div>
+<div class="card"><div class="h">Singular Matrices</div><div class="d">Recognize when a matrix has no inverse</div></div>
+</div>
 
 ---
 

@@ -169,10 +169,12 @@ question, often phrased as "how many dimensions does this data need?"
 
 # By the End of This Week, You Can
 
-1. Test whether a set of vectors is independent or redundant
-2. Find a basis for a vector space or subspace
-3. State the dimension of a space, and explain why it is one fixed number
-4. Find the rank of a matrix, and connect it to independent directions
+<div class="cardlist">
+<div class="card"><div class="h">Independence Test</div><div class="d">Test whether a set of vectors is independent or redundant</div></div>
+<div class="card"><div class="h">Find a Basis</div><div class="d">Find a basis for a vector space or subspace</div></div>
+<div class="card"><div class="h">Dimension</div><div class="d">State the dimension of a space, and explain why it is one fixed number</div></div>
+<div class="card"><div class="h">Rank</div><div class="d">Find the rank of a matrix, and connect it to independent directions</div></div>
+</div>
 
 ---
 

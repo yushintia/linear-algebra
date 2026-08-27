@@ -167,10 +167,12 @@ data science interviews.
 
 # By the End of This Week, You Can
 
-1. Compute the dot product and length of a vector
-2. Compute the exact angle between two vectors
-3. Test whether two vectors are orthogonal
-4. Build a unit vector and recognize an orthogonal set
+<div class="cardlist">
+<div class="card"><div class="h">Dot Product &amp; Length</div><div class="d">Compute the dot product and length of a vector</div></div>
+<div class="card"><div class="h">Angle Between Vectors</div><div class="d">Compute the exact angle between two vectors</div></div>
+<div class="card"><div class="h">Orthogonality Test</div><div class="d">Test whether two vectors are orthogonal</div></div>
+<div class="card"><div class="h">Unit Vectors</div><div class="d">Build a unit vector and recognize an orthogonal set</div></div>
+</div>
 
 ---
 

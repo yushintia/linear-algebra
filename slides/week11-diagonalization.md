@@ -150,10 +150,12 @@ quickly.
 
 # By the End of This Week, You Can
 
-1. Explain why a diagonal matrix is easy to raise to a power
-2. Build a diagonalizing matrix from a set of eigenvectors
-3. Diagonalize a matrix and use it to compute a fast matrix power
-4. Tell whether a matrix can be diagonalized at all
+<div class="cardlist">
+<div class="card"><div class="h">Diagonal Matrix Powers</div><div class="d">Explain why a diagonal matrix is easy to raise to a power</div></div>
+<div class="card"><div class="h">Build P</div><div class="d">Build a diagonalizing matrix from a set of eigenvectors</div></div>
+<div class="card"><div class="h">Diagonalize &amp; Compute Powers</div><div class="d">Diagonalize a matrix and use it to compute a fast matrix power</div></div>
+<div class="card"><div class="h">Diagonalizability</div><div class="d">Tell whether a matrix can be diagonalized at all</div></div>
+</div>
 
 ---
 
@@ -378,11 +380,13 @@ the fastest way to build a wrong `P`.
 
 <div class="thread">Five steps turn any diagonalizable matrix into fast powers.</div>
 
-1. Find every eigenvalue of `A`
-2. Find one eigenvector for each eigenvalue
-3. Check there are enough independent eigenvectors
-4. Build `P` from the eigenvectors, `D` from the eigenvalues, in matching order
-5. Compute `P⁻¹`; now `A = PDP⁻¹`, and `Aⁿ = PDⁿP⁻¹` for any `n`
+<div class="cardlist">
+<div class="card"><div class="h">Find Eigenvalues</div><div class="d">Find every eigenvalue of <code>A</code></div></div>
+<div class="card"><div class="h">Find Eigenvectors</div><div class="d">Find one eigenvector for each eigenvalue</div></div>
+<div class="card"><div class="h">Check Independence</div><div class="d">Check there are enough independent eigenvectors</div></div>
+<div class="card"><div class="h">Build P and D</div><div class="d">Build <code>P</code> from the eigenvectors, <code>D</code> from the eigenvalues, in matching order</div></div>
+<div class="card"><div class="h">Compute P⁻¹</div><div class="d">Compute <code>P⁻¹</code>; now <code>A = PDP⁻¹</code>, and <code>Aⁿ = PDⁿP⁻¹</code> for any <code>n</code></div></div>
+</div>
 
 ---
 
