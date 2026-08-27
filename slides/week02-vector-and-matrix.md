@@ -53,23 +53,23 @@ scaled something by guessing?" Take two quick answers before starting.
 
 # Last Week, This Week
 
-- **Last week delivered:** row reduction solves any linear system exactly, using three simple moves
-- **Last week left broken:** there is still no compact way to write down a large system
+- **Last week delivered:** how this course runs, how you're graded, and what's expected of you
+- **Last week left broken:** there is still no way to find unknown amounts, like the café's fourth ingredient, without guessing
 
 ---
 
 <!-- SLOT 4: The pain (Act 1 / MOTIVATE), restates Week 1's Limit almost verbatim -->
 
-# A Method With No Compact Way to Write It
+# No Way to Write Unknowns Down Yet
 
 <div class="pain">
 
-Row reduction solves any system exactly, by hand. But it only works
-well for a small number of unknowns. GPS, graphics, and machine
-learning need dozens or hundreds of unknowns. Writing full equations,
-or even the matrix grid, becomes too slow at that size. We have a
-method. We do not yet have a compact way to write it, or hand it to a
-computer.
+We still do not have a way to find unknown amounts, like the café's
+fourth ingredient, without guessing. And even once we can, GPS,
+graphics, and machine learning need dozens or hundreds of unknowns at
+once. Writing out full equations, one symbol at a time, becomes too
+slow at that size. We have no method yet, and no compact way to write
+one down, or hand it to a computer.
 
 </div>
 

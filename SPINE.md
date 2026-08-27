@@ -69,7 +69,7 @@ the pain slide (4) is too abstract, so fix it instead of breaking the rule.
 
 | Wk | Topic | Limit (leads to next pain) |
 |---|---|---|
-| 1 | Linear Systems | Row reduction solves any system exactly by hand, but there is no compact, computable way to write or scale it to dozens or hundreds of unknowns -> **W2** |
+| 1 | Linear Systems (orientation variant) | You know how this course runs, how you're graded, and what's expected of you, but you still have no way to find unknown amounts, like the café's fourth ingredient, without guessing -> **W2** |
 | 2 | Vector & Matrix | Ax=b organizes any system compactly, but nothing yet says whether a solution even exists, or is unique -> **W3** |
 | 3 | Linear Transformation | We can describe one transformation as a matrix, but not yet combine or reverse them -> **W4** |
 | 4 | Matrix Algebra | We can multiply and invert matrices, but for large systems this is still just slow arithmetic -> **W5** |
@@ -90,6 +90,16 @@ slot "Check yourself" (expanded into full review questions) + Act 4 (slots
 N+1..N+4, "Limits" replaced by "What to focus on next"). No Pain or Ground
 acts: there is no new concept to motivate. Weeks 7 and 14 carry an embedded
 quiz but keep the full spine: new content is still taught that day.
+
+Week 1 uses the **orientation variant**: course roadmap and motivation, then
+the course contract (description, objectives, prerequisites, textbooks,
+schedule, grading, policies, contact), closed with the standard Limits ->
+Next Week -> Summary -> Thank You. No Ground or Build acts, no technical
+content, and no worksheet or quiz - only a handout (course handbook). The
+technical content that previously lived in Week 1 (linear equations,
+systems, row reduction) was dropped, not moved; it is not covered
+elsewhere in the current spine, so Week 2's recap slot opens from this
+orientation gap instead of a solved-system recap.
 
 ## Enforcement
 

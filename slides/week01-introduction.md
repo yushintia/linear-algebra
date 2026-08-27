@@ -8,7 +8,7 @@ footer: 'Department of Intelligent Computing'
 <!-- SLOT 1: Title -->
 <!-- _class: title -->
 
-# Week 1: Linear Systems
+# Week 1: Introduction
 
 <span class="subtitle">Linear Algebra (501976-001)</span>
 
@@ -17,8 +17,9 @@ Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · �
 </div>
 
 <!--
-notes: Ask: "Has anyone ever guessed a recipe's amounts and gotten it
-wrong?" That feeling is today's hook.
+notes: Welcome the class. This session is the course contract: what this
+course covers, how it's graded, what's expected of you, and how the
+semester runs. No equations yet - that starts next week.
 -->
 
 ---
@@ -45,175 +46,64 @@ wrong?" That feeling is today's hook.
 <div class="wk review"><div class="n">Wk 15</div><div class="t">Final Exam</div></div>
 </div>
 
-<!-- notes: One sentence: solve, represent, transform, compute, measure, approximate. 15 weeks, one growing toolkit. -->
+<!-- notes: Point at the row. Say: "Fifteen weeks, one growing toolkit. Today is the odd one out - it's about how this course works, not a technique. Weeks 8 and 15 are exams; the other twelve each add one new piece of the toolkit." -->
 
 ---
 
-<!-- NEW: warm-up, right after the roadmap (Simplification Rule 3) -->
+<!-- Course intro: why this course, briefly, before the contract -->
 
-# Before We Start
+# Why This Course
 
-<div class="thread">A quick warm-up. This checks one math skill this course needs.</div>
+<div class="thread">One shared problem, everywhere you look.</div>
 
-Solve this equation. Find `x`.
+Every technique this semester solves the same kind of problem: several
+unknown amounts, several known facts about them, and one exact answer
+- found without guessing.
 
-## 3x = 12
+Linear algebra sits behind GPS positioning, computer graphics,
+economic models, and nearly every machine learning method you will
+meet later in this major. It is also a common topic in technical
+interviews and in later courses that assume you already know it.
 
-Work alone for 1 minute. Then check your answer with a classmate.
+---
+
+# This Semester's Running Example
+
+<div class="thread">Not software you build. A story every worked example borrows from.</div>
+
+Throughout the semester, examples are drawn from the **Campus Café**:
+a made-up café whose drink recipes give every technique a concrete,
+familiar shape.
+
+The café's drink uses three ingredients: espresso, milk, and syrup. A
+regular customer asks for a new version: the same drink, plus a
+fourth ingredient, vanilla syrup. Simple multiplication does not help
+- there is no old vanilla amount to scale up, and the original three
+amounts were never exact either.
+
+This is the shape of problem this course solves: several unknowns,
+several known facts, found exactly - not by guessing.
+
+<!-- notes: The Campus Café is invented; the numbers come later. Today,
+just let the class sit with the shape of the problem. -->
+
+---
+
+# A Question for Later
+
+<div class="thread">One question, then straight into the course contract.</div>
+
+If doubling a recipe is not just "multiply by 2" once a new
+ingredient joins it, how do you find the right amounts?
+
+- Could you find them by trial and error alone?
+- Would two people, each guessing carefully, land on the same answer?
 
 <!--
-notes: Give students 60 seconds of silence to solve 3x = 12 (answer: x = 4).
-Then ask the class aloud, one question at a time:
-1. "What number is x?"
-2. "What operation did you use — divide or multiply?"
-3. "Now try 5x = 20 in your head. What is x?"
-Confirm most hands are up before moving on.
+notes: A discussion prompt, not a lesson - do not answer it today.
+Just let the class sit with the question for a moment. A later week
+opens with exactly this scenario and answers it properly.
 -->
-
----
-
-<!-- SLOT 3: What you already bring -->
-
-# What You Already Bring
-
-No formal prerequisite is required for this course. But you already
-know useful things:
-
-- **High school algebra:** you have solved two equations with two unknowns before
-- **Programming:** you already think in variables and operations; this course makes that idea formal
-- **Basic arithmetic:** fractions and negative numbers, the only math skill this course assumes
-
-This course does not teach new arithmetic. It teaches an exact way to
-solve many equations at once, without guessing.
-
----
-
-<!-- Course logistics appendix -->
-
-<!-- _class: section -->
-
-# Course Logistics
-<div class="driving-q">Read once now. Use all semester.</div>
-
----
-
-# Grading & Materials
-
-| Item | Weight |
-|---|---|
-| Attendance | 10% |
-| Midterm | 30% |
-| Final | 30% |
-| Assignments | 10% |
-| In-class items | 20% |
-
-<!-- notes: Assignment 1 due Week 4. Assignment 2 due Week 11. Quiz 1 Week 7. Quiz 2 Week 14. -->
-
----
-
-# Textbook, Policy & Contact
-
-- **Textbook:** Lay, Lay & McDonald, *Linear Algebra and Its Applications*, 6th ed., Pearson, 2020
-- **References:** Hefferon, *Linear Algebra*, 4th ed. (open textbook); Cherney, Denton, Thomas & Waldron, *Linear Algebra*, UC Davis, 2013
-- **Policy:** attend and take part every class; late assignments lose points; plagiarism and cheating lead to discipline
-- **Contact:** yushintia@deu.ac.kr, office hours by email appointment
-
----
-
-<!-- SLOT 4: The pain (Act 1 / MOTIVATE), zero jargon -->
-
-# A Recipe Nobody Wrote Down
-
-<div class="pain">
-
-The Campus Café's drink uses three ingredients: espresso, milk, and
-syrup. Nobody ever wrote down the exact amounts. The barista just
-eyeballs it, and it usually tastes right.
-
-A regular customer asks for a new version: the same drink, plus a
-fourth ingredient, vanilla syrup.
-
-Multiplying the old recipe does not help. There is no old vanilla
-amount to scale up, and even the original three amounts were never
-pinned down exactly.
-
-The barista guesses all four amounts by feel. Three trial batches come
-out wrong: too much vanilla, milk overpowering, or the classic taste
-thrown off entirely.
-
-</div>
-
-<!-- notes: Do not say "equation" or "matrix" yet. Let the wasted batches sit uncomfortably first. -->
-
----
-
-# Guessing Gets Worse With Every Unknown
-
-<div class="barchart">
-<div class="bar-row">
-  <div class="bar-label">1 ingredient amount, by feel</div>
-  <div class="bar-track"><div class="bar-fill short" style="width: 15%"></div></div>
-  <div class="bar-value">usually fine</div>
-</div>
-<div class="bar-row">
-  <div class="bar-label">3 ingredients, today's recipe</div>
-  <div class="bar-track"><div class="bar-fill risk-med" style="width: 55%"></div></div>
-  <div class="bar-value">guessing rarely matches</div>
-</div>
-<div class="bar-row">
-  <div class="bar-label">4 ingredients, add the new one</div>
-  <div class="bar-track"><div class="bar-fill long" style="width: 100%"></div></div>
-  <div class="bar-value">guessing almost never works</div>
-</div>
-</div>
-
-Guessing does not scale to more unknowns. This course teaches a method
-that does.
-
-<!-- notes: Let the widening bars sit for a second before moving on. -->
-
----
-
-<!-- SLOT 5: Cost of not knowing -->
-
-# What This Actually Costs
-
-- Wasted ingredients waste money, every single time
-- An engineer who cannot solve linked equations exactly may design something unsafe
-- A map app that solves its position equations wrong sends you to the wrong street
-
-<div class="why">
-<strong>In industry:</strong> "set up and solve this system" sits behind
-GPS, computer graphics, economic models, and every machine learning
-model you meet later in this major. It is a common question in
-technical job interviews.
-</div>
-
----
-
-# The Same Problem, Bigger Every Time
-
-<div class="barchart">
-<div class="bar-row">
-  <div class="bar-label">3 ingredients, 1 recipe</div>
-  <div class="bar-track"><div class="bar-fill risk-low" style="width: 20%"></div></div>
-  <div class="bar-value">solvable by hand</div>
-</div>
-<div class="bar-row">
-  <div class="bar-label">GPS: 4 satellites</div>
-  <div class="bar-track"><div class="bar-fill risk-med" style="width: 55%"></div></div>
-  <div class="bar-value">solved by your phone, every second</div>
-</div>
-<div class="bar-row">
-  <div class="bar-label">ML model: millions of unknowns</div>
-  <div class="bar-track"><div class="bar-fill risk-high" style="width: 92%"></div></div>
-  <div class="bar-value">needs a systematic method</div>
-</div>
-</div>
-<div class="bar-note">illustrative, not measured data</div>
-
-You already met the small end of this problem. This course builds the
-method for the large end too.
 
 ---
 
@@ -221,419 +111,279 @@ method for the large end too.
 
 <!-- _class: section -->
 
-# This Week's Question
+# This Course's Question
 
-<div class="driving-q">"How do we solve many linked equations at once, exactly, without guessing?"</div>
-
----
-
-<!-- NEW: Key Words for 차시 1 (Simplification Rule 2) -->
-
-# Key Words Today
-
-<div class="thread">5 words you will hear all class. Learn them now.</div>
-
-- **Equation:** a math sentence with an equal sign, like `2x = 8`
-- **Unknown (variable):** the letter we do not know yet, like `x`
-- **Linear:** every unknown stands alone, never squared, never multiplied by another unknown
-- **System:** two or more equations, solved together
-- **Solution:** the value(s) that make every equation true at the same time
+<div class="driving-q">"How do we find exact answers when there are several unknowns and several facts about them, without guessing?"</div>
 
 ---
 
-<!-- SLOT 7: Learning outcomes -->
+# This Course's Four Goals
 
-# By the End of This Week, You Can
+<div class="thread">Not just today's goal. This is the whole course, in four lines.</div>
 
-1. Turn a real scaling problem into a system of equations
-2. Use row operations to simplify a system
-3. Tell whether a system has one solution, many, or none
-4. Name this course's four main objectives
-
----
-
-# This Course's Four Objectives
-
-<div class="thread">Not just this week's goal. This is the whole course's promise.</div>
-
-| # | Objective (from the syllabus) | Where |
+| # | Goal (from the syllabus) | Where |
 |---|---|---|
 | 1 | Solve linear systems; find matrix inverses and factorizations | Weeks 1-2, 4-5 |
 | 2 | Compute and use determinants | Week 6 |
 | 3 | Find vector space properties, bases, and dimension | Weeks 7, 9 |
 | 4 | Compute eigenvalues and diagonalize matrices | Weeks 10-11 |
 
-Weeks 12-14 combine all four objectives: fitting a line to real, noisy
+Weeks 12-14 combine all four goals: fitting a line to real, noisy
 data, the final payoff of this course.
-
----
-
-<!-- NEW: preview hook, ends 차시 1 (Simplification Rule 3 shape) -->
-
-# Coming Up: Worksheet Part A
-
-Next session, you solve a real Campus Café problem in pairs.
-
-Two drinks. Two shared ingredients. You guess first, then use this
-week's method.
-
-<div class="why">Bring a pencil. No calculator needed.</div>
 
 ---
 
 <!-- _class: section -->
 
 # End of 차시 1
-<div class="driving-q">Short break. 차시 2 starts with: who solved this exact problem, long ago?</div>
+<div class="driving-q">Short break. Next: the course contract - what's covered, how you're graded, and what's expected of you.</div>
 
 ---
 
-<!-- NEW: Key Words for 차시 2 -->
+# Course Description
 
-# Key Words Today
+<div class="thread">From the official syllabus.</div>
 
-<div class="thread">4 more words for this session.</div>
-
-- **Row operation:** one of 3 legal moves that never changes the answer
-- **Augmented matrix:** the equations written as a grid of numbers
-- **Elimination:** removing one unknown at a time until you can solve directly
-- **Solution set:** the full list of every correct answer
-
----
-
-<!-- SLOT 8: Origin -->
-
-# This Problem Is Not New
-
-<div class="thread">You just felt this pain. Others felt it too, long before you.</div>
-
-- **~200 BCE, China:** *The Nine Chapters on the Mathematical Art* already solves linked equations, using a grid of numbers
-- **1809, Germany:** Carl Friedrich Gauss uses the same idea to predict a dwarf planet's orbit from a few noisy measurements
-
-<div class="why">
-Different problem, same shape: several unknowns, several known facts,
-one systematic method instead of guessing one at a time.
-</div>
+This course introduces the fundamentals of linear algebra: systems of
+linear equations, vectors and matrices, linear transformations, matrix
+algebra and factorization, determinants, vector spaces, eigenvalues,
+orthogonality, and least-squares approximation. Throughout, the
+emphasis is on solving problems exactly, not by guesswork, with
+applications in computer graphics, data science, and machine learning.
 
 ---
 
-# Two Thousand Years, One Method
+# Learning Objectives
 
-<div class="timeline">
-<div class="pt"><div class="dot"></div><div class="y">~200 BCE</div><div class="d">The Nine Chapters<br>elimination by grid of numbers</div></div>
-<div class="pt"><div class="dot"></div><div class="y">1809</div><div class="d">Gauss, Ceres' orbit<br>elimination formalized</div></div>
-<div class="pt"><div class="dot"></div><div class="y">1950s</div><div class="d">Digital computers<br>elimination, automated</div></div>
-<div class="pt"><div class="dot"></div><div class="y">Today</div><div class="d">GPS, graphics, machine learning<br>the same method, at massive scale</div></div>
-</div>
+<div class="thread">The official course objectives, from the syllabus - what you'll be able to do by Week 15.</div>
 
-This method survived 2,000 years because the problem, many linked
-unknowns, never went away.
+By the end of this course, you can:
 
----
-
-<!-- SLOT 9: Core concept -->
-
-# Linear Equation & System: Definition
-
-<div class="thread">Now the exact, formal definition.</div>
-
-> A **linear equation** in x₁, x₂, ..., xₙ has the form
-> a₁x₁ + a₂x₂ + ... + aₙxₙ = b. Every unknown appears only once, to the
-> first power.
->
-> A **system of linear equations** is a group of such equations,
-> sharing the same unknowns.
-
-- A **solution** gives a value to every unknown that makes all equations true together
-- The **solution set** is every possible solution; this week's method finds it exactly
+1. Solve systems of linear equations exactly, using row reduction.
+2. Represent linear systems and transformations using vectors and matrices.
+3. Compute matrix operations: multiplication, inverses, and factorizations.
+4. Compute and interpret determinants.
+5. Describe vector spaces, bases, and dimension.
+6. Compute eigenvalues and eigenvectors, and diagonalize matrices.
+7. Apply orthogonality and least-squares methods to fit real, noisy data.
 
 ---
 
-<!-- Act 3 / BUILD -->
+# Prerequisites
 
-# What Makes an Equation Linear
+<div class="thread">What this course assumes you already have.</div>
 
-<div class="thread">The definition just given draws a sharp line. Here it is.</div>
+No formal prerequisite is required for this course. But you already
+know useful things:
 
-| Linear | Not linear |
-|---|---|
-| 2x + 3y = 5 | x² + y = 5 (x is squared) |
-| x - y + z = 0 | xy = 4 (unknowns multiplied together) |
-| 0.5a + 2b - c = 10 | sin(x) + y = 1 (unknown inside a function) |
+- **High school algebra:** you have solved two equations with two unknowns before
+- **Programming, if you've taken it:** you already think in variables and operations; this course makes that idea formal
+- **Basic arithmetic:** fractions and negative numbers, the only math skill this course strictly assumes
 
-Only linear equations are in this course. The word "linear" in the
-course's name is exactly this rule.
-
----
-
-# The Three Moves That Never Change a Solution
-
-<div class="thread">One tool does all the work this week: three legal moves, one at a time.</div>
-
-1. **Swap** two equations
-2. **Scale** one equation by a nonzero number
-3. **Add** a multiple of one equation to another
-
-These three "row operations" are the whole method. Used carefully,
-they turn a messy system into one you can read directly, top to
-bottom.
+This course does not teach new arithmetic. It teaches an exact way to
+solve many equations at once, without guessing.
 
 ---
 
-# From Equations to a Grid of Numbers
+# Textbooks
 
-<div class="thread">Writing every unknown, every time, is slow. Here is a faster way.</div>
+<div class="thread">One primary text. Everything else is optional support.</div>
 
-The system on the left and the augmented matrix on the right hold the
-same information, one in words, one in position:
-
-| System | Augmented matrix |
-|---|---|
-| 2x + y = 8 | `[ 2  1 \| 8 ]` |
-| x - y = 1 | `[ 1 -1 \| 1 ]` |
-
-A row operation on the grid is the same move as before, just faster
-to write and easier for a computer.
+- **Primary:** Lay, Lay & McDonald, *Linear Algebra and Its
+  Applications*, 6th ed., Pearson, 2020 (every week's reading points here)
+- **References:** Hefferon, *Linear Algebra*, 4th ed. (open textbook);
+  Cherney, Denton, Thomas & Waldron, *Linear Algebra*, UC Davis, 2013
+- **Also:** these lecture slides themselves are a listed course reference
 
 ---
 
-# Demo, Step by Step: The Café's Recipe (1/6)
+# How This Course Runs
 
-<div class="thread">The exact system behind the wasted batches. Let's solve it for real, one step at a time.</div>
+<div class="thread">What to expect from a 3×50-minute block, every week.</div>
 
-One cup uses `e` shots espresso, `m` units milk, `s` units syrup. The
-café's three rules become three equations:
+Each session mixes short lecture with:
 
-```
-e + m + s = 4      ...(1)
-e + m - s = 0      ...(2)
-e - m     = 0      ...(3)
-```
+- **A warm-up** - a short, concrete question to start, before any jargon
+- **A recap** - what last week delivered, and what it left unsolved
+- **Pair activities** - solve a piece of that week's running example,
+  with the answer discussed right after
+- **A self-check quiz** - ungraded, just for you, at the end
 
-- (1): one cup holds 4 units of liquid in total
-- (2): the syrup must equal the espresso plus the milk
-- (3): use equal amounts of espresso and milk
-
-<!-- notes: The Campus Café is invented; its numbers are picked to come
-out even. Tell students this out loud here: the story is fictional,
-the method is the real, general one they will use on any linear
-system, all semester. -->
+You will talk in this class, not just listen.
 
 ---
 
-# Demo, Step by Step: The Café's Recipe (2/6)
+# Weekly Schedule
 
-**Isolate one unknown.** Equation (3) already has only two unknowns.
-Solve it for `m`:
+<div class="thread">One line per week - the full walkthrough.</div>
 
-```
-e - m = 0
-    m = e
-```
-
-Now replace every `m` with `e` in equations (1) and (2).
-
----
-
-# Demo, Step by Step: The Café's Recipe (3/6)
-
-**Substitute.** Put `m = e` into equations (1) and (2):
-
-```
-(1): e + e + s = 4   →   2e + s = 4   ...(4)
-(2): e + e - s = 0   →   2e - s = 0   ...(5)
-```
-
-Now there are two equations, two unknowns: `e` and `s`.
-
----
-
-# Demo, Step by Step: The Café's Recipe (4/6)
-
-**Eliminate the second unknown.** Add equations (4) and (5); the `s`
-terms cancel:
-
-```
-  2e + s = 4
-+ 2e - s = 0
------------
-  4e     = 4
-```
-
-So `4e = 4`, which gives `e = 1`.
-
----
-
-# Demo, Step by Step: The Café's Recipe (5/6)
-
-**Back-substitute.** Put `e = 1` into equation (5), then into `m = e`:
-
-```
-2(1) - s = 0   →   s = 2
-       m = e   →   m = 1
-```
-
-Answer: `e = 1`, `m = 1`, `s = 2`.
-
----
-
-# Demo, Step by Step: The Café's Recipe (6/6)
-
-**Check.** Put all three values back into the original equations:
-
-```
-1 + 1 + 2 = 4    ✓
-1 + 1 - 2 = 0    ✓
-1 - 1     = 0    ✓
-```
-
-All three café rules hold. For 200 cups, multiply every value by 200:
-
-```
-e = 200, m = 200, s = 400
-```
-
-No guessing, no waste.
-
----
-
-<!-- NEW: Try It, hands off to Worksheet Part A (Simplification Rule 4) -->
-
-# Try It: Worksheet Part A
-
-<div class="why">Pair up. Open <a href="materials/week01/worksheet.html">Worksheet Part A</a>.</div>
-
-Two drinks. Two shared ingredients. Two unknown prices.
-
-First guess. Then use this week's row operations to solve exactly.
-
-You have about 15 minutes.
-
-<!-- notes: Circulate while pairs work. If a pair finishes early, ask them to check their answer by putting it back into both original equations. -->
+| Wk | Topic | Wk | Topic |
+|---|---|---|---|
+| 1 | Introduction (today) | 9 | Bases, Dimension |
+| 2 | Vector & Matrix | 10 | Eigenvalues |
+| 3 | Linear Transformation | 11 | Diagonalization - **Assignment 2** |
+| 4 | Matrix Algebra - **Assignment 1** | 12 | Orthogonality |
+| 5 | Factorization | 13 | Projections |
+| 6 | Determinants | 14 | Least Squares - **Quiz 2** |
+| 7 | Vector Spaces - **Quiz 1** | 15 | **Final Exam** (Wks 9-14) |
+| 8 | **Midterm Exam** (Wks 1-7) | | |
 
 ---
 
 <!-- _class: section -->
 
 # End of 차시 2
-<div class="driving-q">Short break. 차시 3: check your Worksheet A answer, then go further.</div>
+<div class="driving-q">Short break. Next: grading, assignments, and policy.</div>
 
 ---
 
-<!-- NEW: Key Words for 차시 3 -->
+<!-- Course logistics: grading, assignments, and policy (outside spine numbering) -->
 
-# Key Words Today
+# Grading
 
-<div class="thread">3 words for the last part of this week.</div>
+<div class="thread">Five components, 100% total.</div>
 
-- **Unique solution:** exactly one correct answer
-- **Infinitely many solutions:** more than one correct answer, a whole family of them
-- **No solution:** the equations contradict each other; nothing satisfies all of them
+| Component | Weight |
+|---|---|
+| Attendance | 10% |
+| Midterm | 30% |
+| Final | 30% |
+| Assignments (×2) | 10% |
+| In-class items | 20% |
 
----
+<div class="why">
+<strong>Grade distribution guideline:</strong> A ≤30%, B ≤40%, C-F ≤30%
+of the class. This may shift after the add/drop period, based on final
+enrollment.
+</div>
 
-# Three Possible Outcomes, Not Just One
-
-<div class="thread">The café's system had exactly one answer. That will not always happen.</div>
-
-| Outcome | What it looks like (2 unknowns) | Meaning |
-|---|---|---|
-| **Unique solution** | Two lines cross at one point | Exactly one answer, like the café's recipe |
-| **Infinitely many** | The two equations describe the same line | Any point on that line works |
-| **No solution** | Two parallel lines, never touching | The equations contradict each other |
-
-Row reduction always tells you which case you are in. You never have
-to guess.
+<!-- notes: Assignment 1 due Week 4. Assignment 2 due Week 11. Quiz 1 Week 7. Quiz 2 Week 14. -->
 
 ---
 
-<!-- NEW: Try It, hands off to Worksheet Part B -->
+# Assignments
 
-# Try It: Worksheet Part B
+<div class="thread">Two assignments, spaced across the semester.</div>
 
-<div class="why">Same pairs. Open <a href="materials/week01/worksheet.html">Worksheet Part B</a>.</div>
-
-Check your Part A answer using the augmented matrix.
-
-Then classify 3 small systems: one solution, many, or none.
-
-You have about 15 minutes.
+| # | Released | Due | Topics |
+|---|---|---|---|
+| 1 | Wk 2 | Wk 4 | Linear systems, vectors, matrices, matrix algebra |
+| 2 | Wk 9 | Wk 11 | Bases, dimension, eigenvalues, diagonalization |
 
 ---
 
-# Common Mistakes
+# Feedback Policy
 
-- **Changing only part of a row:** every number in the row must change, not just the one you are zeroing out
-- **Assuming one answer always exists:** always check for the other two cases first
-- **Losing a sign while eliminating:** the most common cause of a wrong answer; always check by substituting back into the original equations
+<div class="thread">From the syllabus, verbatim.</div>
 
----
+> Assignments graded within one week with rubric and model answers;
+> exam item-analysis shared with weak-topic guidance and individual
+> review on request.
 
-# Check Yourself
-
-1. Is `x² + 2y = 7` linear? Why or why not?
-2. A system reduces to `0 = 5`. What does that tell you about its solution set?
+In plain terms: you will know what you got wrong, and why, quickly
+enough for it to still matter for the next assignment or exam.
 
 ---
 
-# Answers
+# Attendance & Late Work
 
-1. **No.** `x` is squared. Every unknown must stay to the first power.
-2. **No solution.** `0 = 5` is never true, so the equations contradict each other.
+<div class="thread">Concrete rules, stated once, so nobody is surprised later.</div>
 
----
-
-<!-- NEW: Try It, hands off to the self-check quiz -->
-
-# Self-Check Quiz
-
-<div class="why">Open the <a href="materials/week01/quiz.html">Week 1 quiz</a>. Answer alone, no notes.</div>
-
-8 short questions, about 10 minutes. This quiz is not graded. It only
-shows you what you already know.
+- **Attendance** is 10% of your grade and is recorded every session.
+- **Late arrival:** arriving within 15 minutes of the start is on-time;
+  after that, you're marked late. Three lates equal one absence.
+- **Can't attend?** Email the instructor *before* the session to be
+  marked excused - unexcused absences aren't eligible for makeup credit.
+- **Late work:** loses 10% of that assignment's grade per day late, up
+  to 3 days. No credit after 3 days, unless arranged with the
+  instructor in advance.
 
 ---
 
-<!-- SLOT 14: Limits (Act 4 / CLOSE), becomes Week 2 slot 4 -->
+# Academic Integrity
 
-# What Today's Method Cannot Do Yet
+<div class="thread">Same principle as attendance: stated once, plainly.</div>
+
+- **Academic integrity:** submit your own work. Copying another
+  student's work, having someone else complete it for you, or
+  submitting unattributed AI-generated work as your own is a
+  violation.
+- **First violation:** zero credit on that assignment or exam, plus a
+  formal report. **Repeat violation:** may result in failing the
+  course, per university policy.
+- If anything here is unclear, ask - now is the cheapest time to ask.
+
+---
+
+# Support for Students with Disabilities
+
+<div class="thread">From the syllabus's accommodations section.</div>
+
+- **Hearing-impaired:** front-row seating, lecture material files
+  provided where possible, urgent notices given in writing
+- **Mobility-impaired:** extended exam time
+- **Other documented conditions:** extended exam time, materials
+  provided in advance, enlarged exam copies, or other reasonable
+  accommodation based on need
+
+Contact the instructor early, and the Disability Student Support
+Center or Academic Affairs Team, so accommodations are ready before
+you need them.
+
+---
+
+# Contact
+
+<div class="thread">How to reach the instructor.</div>
+
+- **Email:** yushintia@deu.ac.kr
+- **Office hours:** by email appointment
+- Email is the fastest way to reach the instructor outside of class.
+
+---
+
+<!-- SLOT N+1: Limits (Act 4 / CLOSE), reused as Week 2's slot 3 recap gap -->
+
+# What Today Doesn't Give You Yet
 
 <div class="limits">
-Row reduction solves any system exactly, by hand. But it only works
-well for a small number of unknowns. GPS, graphics, and machine
-learning need dozens or hundreds of unknowns. Writing full equations,
-or even the matrix grid, becomes too slow at that size. We have a
-method. We do not yet have a compact way to write it, or hand it to a
-computer.
+You now know how this course runs, how you're graded, and what's
+expected of you. You still do not have a way to find the café's
+fourth ingredient amount - or any set of unknowns - without guessing.
+Knowing the rules of the course is not the same as knowing how to
+solve for unknowns when the numbers get complicated.
 </div>
 
 ---
 
-<!-- SLOT 15: Bridge -->
+<!-- SLOT N+2: Bridge -->
 
 # Next Week
 
-Week 1 leaves one thing unsolved: **a compact, computable way to
-write a linear system.** **Week 2, Vector and Matrix**, solves this.
-It writes any system as `Ax = b`, the notation every later week
-builds on.
+Week 1 leaves one thing unsolved: **how to find unknown amounts, like
+the café's fourth ingredient, without guessing.** **Week 2, Vector and
+Matrix**, begins building the tools for this: a compact way to write
+down many linked unknowns at once.
 
 ---
 
-<!-- SLOT 16: Summary -->
+<!-- SLOT N+3: Summary -->
 
 # Summary
 
-- A linear equation keeps every unknown to the first power. A system is a group of them, sharing unknowns
-- Three row operations, swap, scale, add, solve any system, without guessing
-- A system has exactly one solution, infinitely many, or none. Row reduction always reveals which
-- **Reading:** Lay, Lay & McDonald, 6th ed., Chapter 1
-- **Handout:** [materials/week01/handout.md](materials/week01/handout.html), glossary and the full café walkthrough
-- **Prepare:** find one real situation (not the café) where you scaled something by guessing, and bring it to Week 2
+- This course: solving linear systems exactly, representing and
+  transforming them with matrices, and applying that toolkit to real,
+  noisy data - grounded in one running example, the Campus Café.
+- Grading: Attendance 10%, Midterm 30%, Final 30%, Assignments 10%,
+  In-class items 20%.
+- Assignments due Weeks 4 and 11. Graded within one week, with a
+  rubric and model answers.
+- Primary text: Lay, Lay & McDonald, 6th ed. Contact: yushintia@deu.ac.kr.
+- **Prepare:** skim Chapter 1 before Week 2. No exercises due.
 
 ---
 
-<!-- SLOT 17: Thank You -->
+<!-- SLOT N+4: Thank You -->
 <!-- _class: end -->
 
 # Thank You

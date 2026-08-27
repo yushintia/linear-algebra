@@ -1,167 +1,179 @@
-# Week 1 Handout: Linear Systems
+# Week 1 Handout: Course Handbook
 
 Linear Algebra (501976-001) · Dept. of Intelligent Computing
 
-This handout goes with the Week 1 slides. Keep it. You will use the
-glossary and the worked example again in later weeks.
+This handout is your course contract, in writing. Keep it all
+semester. It repeats everything from today's slides — course
+description, objectives, schedule, grading, and policies — so you
+always have a written copy to check.
 
 ---
 
-## 1. Glossary (all key words from this week)
+## 1. Course Description
 
-| Word | Plain meaning |
+This course introduces the fundamentals of linear algebra: systems of
+linear equations, vectors and matrices, linear transformations, matrix
+algebra and factorization, determinants, vector spaces, eigenvalues,
+orthogonality, and least-squares approximation. Throughout, the
+emphasis is on solving problems exactly, not by guesswork, with
+applications in computer graphics, data science, and machine learning.
+
+---
+
+## 2. Learning Objectives
+
+By the end of this course, you can:
+
+1. Solve systems of linear equations exactly, using row reduction.
+2. Represent linear systems and transformations using vectors and matrices.
+3. Compute matrix operations: multiplication, inverses, and factorizations.
+4. Compute and interpret determinants.
+5. Describe vector spaces, bases, and dimension.
+6. Compute eigenvalues and eigenvectors, and diagonalize matrices.
+7. Apply orthogonality and least-squares methods to fit real, noisy data.
+
+---
+
+## 3. Prerequisites
+
+No formal prerequisite is required for this course. But you already
+know useful things:
+
+- **High school algebra:** you have solved two equations with two unknowns before.
+- **Programming, if you've taken it:** you already think in variables and operations; this course makes that idea formal.
+- **Basic arithmetic:** fractions and negative numbers, the only math skill this course strictly assumes.
+
+This course does not teach new arithmetic. It teaches an exact way to
+solve many equations at once, without guessing.
+
+---
+
+## 4. Textbooks
+
+- **Primary:** Lay, Lay & McDonald, *Linear Algebra and Its
+  Applications*, 6th ed., Pearson, 2020 (every week's reading points here).
+- **References:** Hefferon, *Linear Algebra*, 4th ed. (open textbook);
+  Cherney, Denton, Thomas & Waldron, *Linear Algebra*, UC Davis, 2013.
+- **Also:** the lecture slides themselves are a listed course reference.
+
+---
+
+## 5. How This Course Runs
+
+Each 3×50-minute session mixes short lecture with:
+
+- **A warm-up** — a short, concrete question to start, before any jargon.
+- **A recap** — what last week delivered, and what it left unsolved.
+- **Pair activities** — solve a piece of that week's running example, with the answer discussed right after.
+- **A self-check quiz** — ungraded, just for you, at the end.
+
+You will talk in this class, not just listen.
+
+---
+
+## 6. Weekly Schedule
+
+| Wk | Topic | Notes |
+|---|---|---|
+| 1 | Introduction | Course contract (today) |
+| 2 | Vector & Matrix | |
+| 3 | Linear Transformation | |
+| 4 | Matrix Algebra | **Assignment 1 due** |
+| 5 | Factorization | |
+| 6 | Determinants | |
+| 7 | Vector Spaces | **Quiz 1** |
+| 8 | Midterm Exam | Covers Weeks 1-7 |
+| 9 | Bases, Dimension | |
+| 10 | Eigenvalues | |
+| 11 | Diagonalization | **Assignment 2 due** |
+| 12 | Orthogonality | |
+| 13 | Projections | |
+| 14 | Least Squares | **Quiz 2** |
+| 15 | Final Exam | Covers Weeks 9-14 |
+
+---
+
+## 7. Grading
+
+| Component | Weight |
 |---|---|
-| **Equation** | A math sentence with an equal sign, like `2x = 8`. |
-| **Unknown (variable)** | A letter that stands for a number we do not know yet, like `x`. |
-| **Linear** | Every unknown appears alone: not squared, not multiplied by another unknown, not inside a function like `sin(x)`. |
-| **System (of linear equations)** | Two or more linear equations, considered together, sharing the same unknowns. |
-| **Solution** | A value for every unknown that makes *all* equations in the system true at the same time. |
-| **Solution set** | The complete list of every solution a system has. |
-| **Row operation** | One of 3 legal moves on a system (or its matrix) that never changes the solution set: swap, scale, add. |
-| **Augmented matrix** | The same system written as a grid of numbers, with a line marking where the "equals" sign was. |
-| **Elimination** | The process of using row operations to remove one unknown at a time, until the system is easy to solve. |
-| **Unique solution** | The system has exactly one correct answer. |
-| **Infinitely many solutions** | The system has more than one correct answer — a whole family of them. |
-| **No solution** | The equations contradict each other. Nothing satisfies all of them at once. |
-| **Coefficient** | The known number multiplied by an unknown, like the `2` in `2x`. |
+| Attendance | 10% |
+| Midterm | 30% |
+| Final | 30% |
+| Assignments (×2) | 10% |
+| In-class items | 20% |
+
+**Grade distribution guideline:** A ≤30%, B ≤40%, C-F ≤30% of the
+class. This may shift after the add/drop period, based on final
+enrollment.
 
 ---
 
-## 2. The Campus Café Recipe, Solved Step by Step
+## 8. Assignments
 
-This is the full version of the in-class demo. Read it slowly, one
-step at a time.
-
-**The story.** The Campus Café's drink uses three ingredients:
-espresso (`e`), milk (`m`), and syrup (`s`). The café has three fixed
-house rules for this drink:
-
-- One cup holds 4 units of liquid in total.
-- House taste rule: the syrup must equal the espresso plus the milk.
-- House taste rule: use equal amounts of espresso and milk.
-
-**Where does the café come from?** The Campus Café is not a real
-place — it is a running example invented for this course, and its
-numbers are chosen to work out evenly. What is real is the method:
-every step below is the general procedure you will use all semester
-on any system of linear equations, following Lay, Lay & McDonald,
-Ch. 1.
-
-**Step 1 — Write the system.**
-
-```
-e + m + s = 4      ... (1)   total liquid
-e + m - s = 0      ... (2)   syrup = espresso + milk
-e - m     = 0      ... (3)   equal espresso and milk
-```
-
-Three equations, three unknowns.
-
-**Step 2 — Remove one unknown using elimination.**
-
-From equation (3): `e - m = 0`, so `m = e`.
-
-Now put `m = e` into equations (1) and (2). Every place `m`
-appeared, we write `e` instead. This is legal because both sides
-of (3) are equal — we are not changing anything, only rewriting it.
-
-Equation (1) becomes: `e + e + s = 4` → `2e + s = 4` ... (4)
-
-Equation (2) becomes: `e + e - s = 0` → `2e - s = 0` ... (5)
-
-Now we have two equations, two unknowns (`e` and `s`).
-
-**Step 3 — Remove the second unknown.**
-
-Add equation (4) and equation (5):
-
-```
-  2e + s = 4
-+ 2e - s = 0
------------
-  4e     = 4
-```
-
-So `4e = 4`, which gives `e = 1`.
-
-**Step 4 — Back-substitute.**
-
-Put `e = 1` into equation (5): `2(1) - s = 0` → `s = 2`.
-
-Put `e = 1` into `m = e`: `m = 1`.
-
-So: `e = 1`, `m = 1`, `s = 2`.
-
-**Step 5 — Check.** Put all three values back into the *original*
-three equations:
-
-- `1 + 1 + 2 = 4` ✓
-- `1 + 1 - 2 = 0` ✓
-- `1 - 1 = 0` ✓
-
-All three are true. This is the solution, and it is the *only*
-solution (Week 1's method always tells us this, see the "Three
-Possible Outcomes" idea from the slides).
-
-**Step 6 — Scale exactly, no guessing.** For 200 cups, multiply each
-value by 200: `e = 200`, `m = 200`, `s = 400`. No trial batches, no
-waste.
+| # | Released | Due | Topics |
+|---|---|---|---|
+| 1 | Wk 2 | Wk 4 | Linear systems, vectors, matrices, matrix algebra |
+| 2 | Wk 9 | Wk 11 | Bases, dimension, eigenvalues, diagonalization |
 
 ---
 
-## 3. Optional Reading (not required, not on the quiz)
+## 9. Feedback Policy
 
-### 3.1 More history
+> Assignments graded within one week with rubric and model answers;
+> exam item-analysis shared with weak-topic guidance and individual
+> review on request.
 
-*The Nine Chapters on the Mathematical Art* (China, roughly 200 BCE)
-is one of the oldest surviving mathematics texts. Chapter 8, "Fangcheng"
-(方程), lays out a method for solving several linked equations by
-arranging their coefficients in a grid and combining rows — exactly
-the row-operation idea from this week, roughly 2,000 years before
-matrices were named. Chinese scholars used it for practical problems:
-taxes, grain measures, and shared farm output.
-
-Carl Friedrich Gauss rediscovered and formalized the same elimination
-idea in 1809, while trying to solve a real astronomy problem: the
-dwarf planet Ceres had been observed briefly in 1801, then lost behind
-the sun. Gauss used a handful of noisy telescope readings to predict
-where it would reappear — a system of equations with more facts than
-unknowns, solved by the same kind of elimination this week teaches.
-Astronomers found Ceres almost exactly where he predicted.
-
-By the 1950s, the same method was one of the first things programmed
-onto digital computers, because it is simple, exact, and mechanical:
-perfect for a machine that never gets tired of repeating three moves.
-
-### 3.2 Where this shows up in real jobs
-
-- **GPS navigation:** your phone solves a small system of equations (signal timing from several satellites) to find your position, every second.
-- **Computer graphics:** rotating, scaling, and moving objects on screen (Week 3's topic) is built on linear systems.
-- **Economics:** input-output models balance an entire economy's production and demand using large linear systems.
-- **Traffic and network flow:** engineers balance flow in and out of every intersection or network node the same way.
-- **Machine learning:** almost every model you will train later in this major starts life as a linear system, before it grows more complex.
-
-None of these show you "a system of equations" on the surface. All of
-them are solving one, constantly, underneath.
+In plain terms: you will know what you got wrong, and why, quickly
+enough for it to still matter for the next assignment or exam.
 
 ---
 
-## 4. Practice Problems (with answers)
+## 10. Attendance & Late Work
 
-Try these on your own before checking the answers at the end.
+- **Attendance** is 10% of your grade and is recorded every session.
+- **Late arrival:** arriving within 15 minutes of the start is
+  on-time; after that, you're marked late. Three lates equal one
+  absence.
+- **Can't attend?** Email the instructor *before* the session to be
+  marked excused — unexcused absences aren't eligible for makeup
+  credit.
+- **Late work:** loses 10% of that assignment's grade per day late,
+  up to 3 days. No credit after 3 days, unless arranged with the
+  instructor in advance.
 
-1. Is `3x - 4y + z = 0` a linear equation? Why or why not?
-2. Is `x/y = 5` a linear equation? Why or why not?
-3. Solve: `x + y = 7` and `x - y = 1`. Find `x` and `y`.
-4. Solve: `2a + b = 11` and `a - b = 1`. Find `a` and `b`.
-5. A system reduces to `0 = 0`. What does this tell you about the number of solutions?
-6. Solve the 3-unknown system: `p + q + r = 6`, `p - q = 0`, `q + r = 5`. Find `p`, `q`, `r`.
+---
 
-### Answers
+## 11. Academic Integrity
 
-1. **Yes.** Every unknown (`x`, `y`, `z`) appears only once, to the first power, never multiplied together.
-2. **No.** `x` is divided by `y`, an unknown. Dividing by an unknown is not allowed in a linear equation.
-3. `x = 4`, `y = 3`. (Add the two equations: `2x = 8`, so `x = 4`; then `y = 7 - 4 = 3`.)
-4. `a = 4`, `b = 3`. (From the second equation, `a = b + 1`. Substitute: `2(b+1) + b = 11` → `3b = 9` → `b = 3`, so `a = 4`.)
-5. **Infinitely many solutions.** `0 = 0` is always true, so one equation gave no new information — some freedom remains in choosing the unknowns.
-6. `p = 1`, `q = 1`, `r = 4`. (From equation 2, `p = q`. From equation 3, `r = 5 - q`. Substitute both into equation 1: `q + q + (5 - q) = 6` → `q + 5 = 6` → `q = 1`. Then `p = 1` and `r = 4`. Check: `1+1+4=6` ✓, `1-1=0` ✓, `1+4=5` ✓.)
+- **Academic integrity:** submit your own work. Copying another
+  student's work, having someone else complete it for you, or
+  submitting unattributed AI-generated work as your own is a
+  violation.
+- **First violation:** zero credit on that assignment or exam, plus a
+  formal report. **Repeat violation:** may result in failing the
+  course, per university policy.
+- If anything here is unclear, ask — now is the cheapest time to ask.
+
+---
+
+## 12. Support for Students with Disabilities
+
+- **Hearing-impaired:** front-row seating, lecture material files
+  provided where possible, urgent notices given in writing.
+- **Mobility-impaired:** extended exam time.
+- **Other documented conditions:** extended exam time, materials
+  provided in advance, enlarged exam copies, or other reasonable
+  accommodation based on need.
+
+Contact the instructor early, and the Disability Student Support
+Center or Academic Affairs Team, so accommodations are ready before
+you need them.
+
+---
+
+## 13. Contact
+
+- **Email:** yushintia@deu.ac.kr
+- **Office hours:** by email appointment
+- Email is the fastest way to reach the instructor outside of class.
