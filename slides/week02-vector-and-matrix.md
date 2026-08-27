@@ -361,7 +361,7 @@ add.
 
 # Case Study: Verify the Café's Solution (1/4)
 
-<div class="thread">Week 1 found e = 1, m = 1, s = 2 by row reduction. Check it with Ax = b.</div>
+<div class="thread">The café's solution is e = 1, m = 1, s = 2. Check it with Ax = b.</div>
 
 Multiply row 1 of `A` by `x`, then compare to row 1 of `b`:
 
@@ -502,7 +502,7 @@ You have about 15 minutes.
 - **Wrong multiplication order:** row times column, not column times row; order changes the answer's size
 - **Ignoring size mismatch:** `A`'s column count must equal `x`'s entry count, or the product is undefined
 - **Writing `b` as a row:** `b` must match `x`'s shape, a column vector
-- **Forgetting a sign when multiplying:** double-check each product before adding, the same habit as Week 1's row reduction
+- **Forgetting a sign when multiplying:** double-check each product before adding
 
 ---
 
