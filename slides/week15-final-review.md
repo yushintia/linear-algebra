@@ -418,11 +418,13 @@ Least squares finds the closest fit instead.
 
 <div class="limits">
 
-- **Weeks 1-2:** rewrite one messy system as `Ax = b`, then solve it by row reduction, no notes
-- **Weeks 3-5:** build a transformation matrix, invert it, then factor it into `LU`, all from scratch
-- **Weeks 6-7, 9:** compute one determinant, describe a null space, then find a basis and its dimension
-- **Weeks 10-11:** find eigenvalues and eigenvectors, then diagonalize, then check `A = PDP⁻¹` by hand
-- **Weeks 12-14:** compute an angle, project a vector, then set up one least-squares fit end-to-end
+<div class="cardlist">
+<div class="card"><div class="h">Weeks 1-2</div><div class="d">rewrite one messy system as `Ax = b`, then solve it by row reduction, no notes</div></div>
+<div class="card"><div class="h">Weeks 3-5</div><div class="d">build a transformation matrix, invert it, then factor it into `LU`, all from scratch</div></div>
+<div class="card"><div class="h">Weeks 6-7, 9</div><div class="d">compute one determinant, describe a null space, then find a basis and its dimension</div></div>
+<div class="card"><div class="h">Weeks 10-11</div><div class="d">find eigenvalues and eigenvectors, then diagonalize, then check `A = PDP⁻¹` by hand</div></div>
+<div class="card"><div class="h">Weeks 12-14</div><div class="d">compute an angle, project a vector, then set up one least-squares fit end-to-end</div></div>
+</div>
 
 </div>
 

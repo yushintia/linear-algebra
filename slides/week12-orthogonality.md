@@ -552,10 +552,12 @@ You have about 15 minutes.
 
 # Common Mistakes
 
-- **Skipping the square root:** the dot product of a vector with itself gives length squared, not length
-- **Assuming a negative dot product means "opposite":** it only means the angle is greater than 90°, not exactly 180°
-- **Judging orthogonality by eye:** in three or more dimensions you cannot see a right angle. Always check the dot product instead
-- **Forgetting to normalize both vectors:** an orthonormal set needs every vector at length 1, not just some of them
+<div class="cardlist">
+<div class="card"><div class="h">Skipping the square root</div><div class="d">the dot product of a vector with itself gives length squared, not length</div></div>
+<div class="card"><div class="h">Assuming a negative dot product means "opposite"</div><div class="d">it only means the angle is greater than 90°, not exactly 180°</div></div>
+<div class="card"><div class="h">Judging orthogonality by eye</div><div class="d">in three or more dimensions you cannot see a right angle. Always check the dot product instead</div></div>
+<div class="card"><div class="h">Forgetting to normalize both vectors</div><div class="d">an orthonormal set needs every vector at length 1, not just some of them</div></div>
+</div>
 
 ---
 

@@ -501,10 +501,12 @@ You have about 15 minutes.
 
 # Common Mistakes
 
-- **Forgetting to check `v ≠ 0`:** `v = 0` always solves `Av = λv`; it is never a valid eigenvector
-- **Subtracting `λ` from every entry:** `λ` only subtracts from the diagonal entries of `A`, not every entry
-- **Stopping after finding `λ`:** finding eigenvalues is half the job; each one still needs its own eigenvector
-- **Skipping the final check:** always confirm `Av = λv` for each pair before trusting the answer
+<div class="cardlist">
+<div class="card"><div class="h">Forgetting to check `v ≠ 0`</div><div class="d">`v = 0` always solves `Av = λv`; it is never a valid eigenvector</div></div>
+<div class="card"><div class="h">Subtracting `λ` from every entry</div><div class="d">`λ` only subtracts from the diagonal entries of `A`, not every entry</div></div>
+<div class="card"><div class="h">Stopping after finding `λ`</div><div class="d">finding eigenvalues is half the job; each one still needs its own eigenvector</div></div>
+<div class="card"><div class="h">Skipping the final check</div><div class="d">always confirm `Av = λv` for each pair before trusting the answer</div></div>
+</div>
 
 ---
 

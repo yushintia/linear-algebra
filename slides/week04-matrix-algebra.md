@@ -540,10 +540,12 @@ A = [ 2  4 ]      ad - bc = 2×2 - 4×1 = 0
 
 # Common Mistakes
 
-- **Assuming AB = BA:** matrix order changes the answer; check the café's discount and surcharge example again
-- **Multiplying entry-by-entry:** matrix multiplication is row-by-column, not lining up matching spots
-- **Ignoring a size mismatch:** columns of the first matrix must match rows of the second; always check first
-- **Assuming every matrix has an inverse:** always check `ad - bc ≠ 0` before trusting `A⁻¹`
+<div class="cardlist">
+<div class="card"><div class="h">Assuming AB = BA</div><div class="d">matrix order changes the answer; check the café's discount and surcharge example again</div></div>
+<div class="card"><div class="h">Multiplying entry-by-entry</div><div class="d">matrix multiplication is row-by-column, not lining up matching spots</div></div>
+<div class="card"><div class="h">Ignoring a size mismatch</div><div class="d">columns of the first matrix must match rows of the second; always check first</div></div>
+<div class="card"><div class="h">Assuming every matrix has an inverse</div><div class="d">always check `ad - bc ≠ 0` before trusting `A⁻¹`</div></div>
+</div>
 
 ---
 

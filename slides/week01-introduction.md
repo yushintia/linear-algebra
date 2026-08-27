@@ -203,11 +203,12 @@ solve many equations at once, without guessing.
 
 Each session mixes short lecture with:
 
-- **A warm-up** - a short, concrete question to start, before any jargon
-- **A recap** - what last week delivered, and what it left unsolved
-- **Pair activities** - solve a piece of that week's running example,
-  with the answer discussed right after
-- **A self-check quiz** - ungraded, just for you, at the end
+<div class="cardlist">
+<div class="card"><div class="h">A warm-up</div><div class="d">a short, concrete question to start, before any jargon</div></div>
+<div class="card"><div class="h">A recap</div><div class="d">what last week delivered, and what it left unsolved</div></div>
+<div class="card"><div class="h">Pair activities</div><div class="d">solve a piece of that week's running example, with the answer discussed right after</div></div>
+<div class="card"><div class="h">A self-check quiz</div><div class="d">ungraded, just for you, at the end</div></div>
+</div>
 
 You will talk in this class, not just listen.
 

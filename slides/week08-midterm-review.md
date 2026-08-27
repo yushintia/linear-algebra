@@ -351,11 +351,13 @@ and `s` gives one working recipe ratio.
 
 <div class="limits">
 
-- **Weeks 1-2:** practice row reduction and writing a system as `Ax = b`, until it feels automatic
-- **Weeks 3-4:** rebuild a transformation matrix from a rule, and check `AB ≠ BA` with your own example
-- **Week 5:** walk through one forward, then back, substitution from scratch, no notes
-- **Week 6:** compute one 3x3 determinant by cofactor expansion, fully by hand
-- **Week 7:** run the three-part subspace check on a set you have not seen before
+<div class="cardlist">
+<div class="card"><div class="h">Weeks 1-2</div><div class="d">practice row reduction and writing a system as `Ax = b`, until it feels automatic</div></div>
+<div class="card"><div class="h">Weeks 3-4</div><div class="d">rebuild a transformation matrix from a rule, and check `AB ≠ BA` with your own example</div></div>
+<div class="card"><div class="h">Week 5</div><div class="d">walk through one forward, then back, substitution from scratch, no notes</div></div>
+<div class="card"><div class="h">Week 6</div><div class="d">compute one 3x3 determinant by cofactor expansion, fully by hand</div></div>
+<div class="card"><div class="h">Week 7</div><div class="d">run the three-part subspace check on a set you have not seen before</div></div>
+</div>
 
 </div>
 

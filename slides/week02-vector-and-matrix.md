@@ -499,10 +499,12 @@ You have about 15 minutes.
 
 # Common Mistakes
 
-- **Wrong multiplication order:** row times column, not column times row; order changes the answer's size
-- **Ignoring size mismatch:** `A`'s column count must equal `x`'s entry count, or the product is undefined
-- **Writing `b` as a row:** `b` must match `x`'s shape, a column vector
-- **Forgetting a sign when multiplying:** double-check each product before adding
+<div class="cardlist">
+<div class="card"><div class="h">Wrong multiplication order</div><div class="d">row times column, not column times row; order changes the answer's size</div></div>
+<div class="card"><div class="h">Ignoring size mismatch</div><div class="d">`A`'s column count must equal `x`'s entry count, or the product is undefined</div></div>
+<div class="card"><div class="h">Writing `b` as a row</div><div class="d">`b` must match `x`'s shape, a column vector</div></div>
+<div class="card"><div class="h">Forgetting a sign when multiplying</div><div class="d">double-check each product before adding</div></div>
+</div>
 
 ---
 
