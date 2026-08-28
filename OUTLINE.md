@@ -1,7 +1,7 @@
 # Outline: Linear Algebra (501976-001)
 
 DEU 2026-2, Tue 1-3교시 (3x50 min), 정보 610, 2nd-year, 지능형컴퓨팅학과.
-Instructor: Yushintia Pramitarini. No formal prerequisite listed. Texts:
+Professor: Yushintia Pramitarini. No formal prerequisite listed. Texts:
 Lay, Lay & McDonald; Hefferon; Cherney, Denton, Thomas & Waldron.
 
 Full pedagogical rules (chain-linking, slot structure) live in
