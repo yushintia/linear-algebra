@@ -209,6 +209,43 @@ changing its core rule.
 
 ---
 
+# Testing Linearity: The Two-Part Check
+
+<div class="thread">Turn the definition into a checklist you can run on any rule.</div>
+
+To confirm a rule `T` is a linear transformation, check both parts:
+
+- **Additivity:** does `T(u + v) = T(u) + T(v)`, for any `u`, `v`?
+- **Scaling:** does `T(cu) = c · T(u)`, for any number `c`?
+
+Fail either part, and the rule is not a linear transformation - no
+matter how simple it looks.
+
+---
+
+# Verifying Linearity by the Definition, Directly
+
+<div class="thread">Run the checklist on one concrete rule.</div>
+
+Rule: `T(x, y) = (2x, x + y)`. Check additivity with `u = (1, 2)`,
+`v = (3, 1)`:
+
+```
+T(u) + T(v) = (2, 3) + (6, 4) = (8, 7)
+T(u + v)    = T(4, 3) = (8, 7)
+```
+
+Check scaling with `c = 3`:
+
+```
+3 · T(u) = 3 · (2, 3) = (6, 9)
+T(3u)    = T(3, 6) = (6, 9)
+```
+
+Both parts match. This rule is a linear transformation.
+
+---
+
 # What Makes a Transformation Linear
 
 <div class="thread">The definition just given draws a sharp line. Here it is.</div>
@@ -221,6 +258,21 @@ changing its core rule.
 
 Only linear transformations are in this course. Every one of them can
 be written as a single matrix.
+
+---
+
+# The Origin Test, Applied to Three More Rules
+
+<div class="thread">The fastest first check: where does the origin land?</div>
+
+| Rule | `T(0, 0)` | Linear? |
+|---|---|---|
+| Shift every point right by 1 | `(1, 0)` | No - fails immediately |
+| Rotate every point 90° | `(0, 0)` | Passes this check |
+| Square the x-coordinate | `(0, 0)` | Passes this check, but fails additivity |
+
+Passing the origin test is necessary, but not enough by itself -
+"square the x-coordinate" still needs the full two-part check.
 
 ---
 
@@ -265,7 +317,19 @@ one exact output.
 
 ---
 
-# Matrix Times Vector, Step by Step
+# The Machine Is Consistent: Same Input, Same Output
+
+<div class="thread">One property makes "machine" the right word to use.</div>
+
+Feed the same matrix `A` the same input `x` twice, on two different
+days. It returns the exact same output both times. Nothing about `A`
+changes between uses - only the input you choose to feed it.
+
+This is what separates a matrix from a guess: consistency, not luck.
+
+---
+
+# Matrix Times Vector: The General Rule
 
 <div class="thread">One mechanic runs every example this week.</div>
 
@@ -279,12 +343,19 @@ For any 2x2 matrix and any input vector:
 Each output number comes from one row of the matrix, matched term by
 term with the input vector.
 
-Example, applying `[ 2 1 ; 3 0 ]` to `(4, 1)`:
+---
+
+# Matrix Times Vector: A Worked Example
+
+Applying `[ 2 1 ; 3 0 ]` to `(4, 1)`:
 
 ```
 [ 2  1 ]   [ 4 ]   [ 9  ]
 [ 3  0 ] × [ 1 ] = [ 12 ]
 ```
+
+Row 1 gives `2(4) + 1(1) = 9`. Row 2 gives `3(4) + 0(1) = 12`. Same
+rule, every time.
 
 ---
 
@@ -313,6 +384,27 @@ always where `(0, 1)` lands.
 
 ---
 
+# A Non-Uniform Scaling Example
+
+<div class="thread">Same method again, so the pattern sticks before moving to new shapes.</div>
+
+Rule: "Halve the x-coordinate. Double the y-coordinate."
+
+```
+T(1, 0) = (0.5, 0)
+T(0, 1) = (0,   2)
+```
+
+```
+    [ 0.5  0 ]
+A = [  0   2 ]
+```
+
+Each factor scales its own axis independently - nothing forces both
+coordinates to change by the same amount.
+
+---
+
 # A Second Example: Building a Rotation Matrix
 
 <div class="thread">Same method, a different rule.</div>
@@ -338,6 +430,64 @@ test the two basis vectors, then read off the columns.
 
 ---
 
+# A Third Example: Building a Reflection Matrix
+
+<div class="thread">Same method, a mirror this time.</div>
+
+Rule: "Flip every point over the x-axis."
+
+Feed in the two standard basis vectors:
+
+```
+T(1, 0) = (1,  0)
+T(0, 1) = (0, -1)
+```
+
+Each result becomes one column:
+
+```
+    [ 1   0 ]
+A = [ 0  -1 ]
+```
+
+---
+
+# A Fourth Example: Building a Shear Matrix
+
+<div class="thread">Same method, one more time - the last of the four.</div>
+
+Rule: "Slide each point sideways, more the higher up it is."
+
+Feed in the two standard basis vectors:
+
+```
+T(1, 0) = (1, 0)
+T(0, 1) = (1, 1)
+```
+
+Each result becomes one column:
+
+```
+    [ 1  1 ]
+A = [ 0  1 ]
+```
+
+---
+
+# Quick Recap: Four Transformations, Four Matrices
+
+| Transformation | Rule tested | Matrix |
+|---|---|---|
+| Scaling | double x, triple y | `[ 2 0 ; 0 3 ]` |
+| Rotation | quarter turn | `[ 0 -1 ; 1 0 ]` |
+| Reflection | flip over x-axis | `[ 1 0 ; 0 -1 ]` |
+| Shear | tilt the top | `[ 1 1 ; 0 1 ]` |
+
+Four different rules, one identical method: test the two basis
+vectors, read off the columns.
+
+---
+
 # Common Geometric Transformations
 
 <div class="thread">Four everyday moves, each just one matrix.</div>
@@ -355,6 +505,16 @@ test the two basis vectors, then read off the columns.
 
 ---
 
+# Common Geometric Transformations: Reading the Table
+
+<div class="thread">Every row above came from the same two-step method.</div>
+
+For each transformation: feed in `(1, 0)`, and the result becomes
+column 1. Feed in `(0, 1)`, and the result becomes column 2. The
+table is nothing but four applications of this one rule.
+
+---
+
 <!-- Try It, hands off to Worksheet Part A -->
 
 # Try It: Worksheet Part A
@@ -368,6 +528,16 @@ Then apply your matrix to two sample points by hand.
 You have about 15 minutes.
 
 <!-- notes: Circulate while pairs work. If a pair finishes early, ask them to check their matrix on the origin: it must map to (0, 0). -->
+
+---
+
+# Try It: Quick Check
+
+<div class="why">Same pairs, two minutes, no worksheet needed.</div>
+
+Pick any one of the four transformation matrices from the recap
+table. Apply it to the point `(2, 1)` by hand. Swap results with your
+partner and check you agree.
 
 ---
 
@@ -410,6 +580,43 @@ parallelogram, and stretches the rest of the plane to match.
 
 ---
 
+# The Unit Square Under Rotation
+
+<div class="thread">Same square, the rotation matrix this time.</div>
+
+Apply the rotation matrix `[ 0 -1 ; 1 0 ]` to the unit square's
+corners:
+
+```
+(0, 0) -> (0, 0)
+(1, 0) -> (0, 1)
+(0, 1) -> (-1, 0)
+(1, 1) -> (-1, 1)
+```
+
+The square turns a quarter turn in place. Its shape and area do not
+change - only its orientation does.
+
+---
+
+# The Unit Square Under Reflection
+
+<div class="thread">Same square, the reflection matrix this time.</div>
+
+Apply the reflection matrix `[ 1 0 ; 0 -1 ]` to the unit square's
+corners:
+
+```
+(0, 0) -> (0,  0)
+(1, 0) -> (1,  0)
+(0, 1) -> (0, -1)
+(1, 1) -> (1, -1)
+```
+
+The square flips below the x-axis, like a mirror image of itself.
+
+---
+
 # The Identity Transformation
 
 <div class="thread">The transformation that changes nothing.</div>
@@ -424,6 +631,24 @@ I = [ 0  1 ]
 
 Check: `I(3, 5) = (1·3 + 0·5, 0·3 + 1·5) = (3, 5)`. The identity
 matrix is a linear transformation too, just a very boring one.
+
+---
+
+# A Second Worked Example: Straightening a Photo
+
+<div class="thread">The same matrix idea, outside the café and the logo.</div>
+
+A scanned page's top edge tilts right by 0.3 units for every unit of
+height. The shear matrix `[ 1 -0.3 ; 0 1 ]` pushes it back straight.
+Apply it to a tilted corner at `(0.3, 1)`:
+
+```
+[ 1  -0.3 ]   [ 0.3 ]   [ 0 ]
+[ 0   1   ] × [ 1   ] = [ 1 ]
+```
+
+The corner lands exactly on `(0, 1)` - straight up, no tilt. Photo and
+document scanning apps use exactly this kind of matrix.
 
 ---
 
@@ -463,6 +688,41 @@ the rotation matrix to corner A:
 
 The same matrix moves B to `(-1, 0)`, and C to `(-1, 1)`. Same
 process, different matrix, different result.
+
+---
+
+# Case Study: Reflecting the Logo
+
+<div class="thread">A third transform, same triangle.</div>
+
+For a display case where the logo shows through the glass backward,
+apply the reflection matrix to corner A:
+
+```
+[ 1   0 ]   [ 1 ]   [ 1 ]
+[ 0  -1 ] × [ 0 ] = [ 0 ]    (corner A)
+```
+
+The same matrix moves B to `(0, -1)`, and C to `(1, -1)`. Corner A
+does not move at all here - it already sits on the axis of reflection.
+
+---
+
+# Case Study: Shearing the Logo
+
+<div class="thread">A fourth transform, the same triangle as the Unit Square Under Shear slide.</div>
+
+For a banner that needs a tilted, italic-style logo, apply the shear
+matrix to corner A:
+
+```
+[ 1  1 ]   [ 1 ]   [ 1 ]
+[ 0  1 ] × [ 0 ] = [ 0 ]    (corner A)
+```
+
+The same matrix moves B to `(1, 1)`, and C to `(2, 1)` - the exact
+numbers from the earlier unit square demo, since the logo's corners
+are the unit square's corners.
 
 ---
 
@@ -514,6 +774,21 @@ definition, proven on a real recipe.
 
 ---
 
+# Case Study: Scaling the Recipe Order
+
+<div class="thread">Now check the recipe matrix's scaling rule, `T(cu) = c · T(u)`.</div>
+
+Double the earlier order of 5 Regular, 3 Large to 10 Regular, 6 Large:
+
+```
+A(10, 6) = (2·10+3·6, 1·10+2·6) = (38, 22)
+```
+
+Compare to doubling the original result directly: `2 · (19, 11) =
+(38, 22)`. Same answer, either way - the scaling rule holds here too.
+
+---
+
 <!-- Try It, hands off to Worksheet Part B -->
 
 # Try It: Worksheet Part B
@@ -529,6 +804,16 @@ You have about 15 minutes.
 
 ---
 
+# Try It: Sketch Check
+
+<div class="why">Same pairs, five minutes.</div>
+
+Sketch the unit square and its image under the shear matrix, from
+memory, without looking back at the earlier slide. Compare sketches
+with your partner before checking the answer.
+
+---
+
 <!-- SLOT N-1: Common mistakes -->
 
 # Common Mistakes
@@ -539,6 +824,38 @@ You have about 15 minutes.
   `(1, 0)` lands, not the numbers in its first row
 - **Multiplying on the wrong side:** always write the matrix first,
   the input vector second, as `Ax`, not `xA`
+
+---
+
+# Common Mistake, Worked: Testing a Shift for Linearity
+
+<div class="thread">Seeing the failure numerically, not just as a rule.</div>
+
+Rule: `T(x, y) = (x + 1, y)`. Test the origin directly:
+
+```
+T(0, 0) = (0 + 1, 0) = (1, 0)
+```
+
+`(1, 0)` is not `(0, 0)`. The origin moved, so this rule fails the
+linearity test on its very first check - no need to test anything else.
+
+---
+
+# Common Mistake, Worked: Column Order Mixup
+
+<div class="thread">A quiet mistake: writing rows where columns belong.</div>
+
+Rule: `T(1, 0) = (3, 1)`, `T(0, 1) = (2, 5)`. The correct matrix reads
+each result as a **column**:
+
+```
+Correct: A = [ 3  2 ]      Wrong: A' = [ 3  1 ]
+             [ 1  5 ]                  [ 2  5 ]
+```
+
+Applying both to `(1, 1)`: `A(1,1) = (5, 6)`, but `A'(1,1) = (4, 7)`.
+The mixup gives a different, wrong answer.
 
 ---
 
@@ -562,6 +879,23 @@ You have about 15 minutes.
    `(1, 0)`. A shift is not a linear transformation.
 3. **`(7, 3)`.** Row 1 gives `0·3 + 1·7 = 7`; row 2 gives
    `1·3 + 0·7 = 3`.
+
+---
+
+# Check Yourself: Round 2
+
+4. Build the 2x2 matrix for "reflect every point over the x-axis."
+5. Apply the shear matrix `[ 1 1 ; 0 1 ]` to the point `(2, 3)`. What
+   is the image?
+
+---
+
+# Answers: Round 2
+
+4. **`[ 1 0 ; 0 -1 ]`.** `T(1,0) = (1,0)` is column 1; `T(0,1) =
+   (0,-1)` is column 2.
+5. **`(5, 3)`.** Row 1 gives `1(2) + 1(3) = 5`; row 2 gives
+   `0(2) + 1(3) = 3`.
 
 ---
 

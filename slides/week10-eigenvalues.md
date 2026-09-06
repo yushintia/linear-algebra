@@ -285,6 +285,31 @@ Only the last two rows are eigenvectors. The first row shows what
 
 ---
 
+# Guess and Check: Is This Vector an Eigenvector?
+
+<div class="thread">Before solving from scratch, a fast test for any guess.</div>
+
+For `A = [[2,1],[1,2]]`, is `v = (1,1)` an eigenvector?
+
+```
+Av = ( 2(1)+1(1), 1(1)+2(1) ) = (3, 3) = 3(1,1)
+```
+
+`Av` is a scalar multiple of `v`. **Yes**, eigenvalue `3`. This check
+takes seconds, once you have a candidate to test.
+
+---
+
+# Try It: Quick Eigenvector Check
+
+<div class="why">In pairs, 5 minutes, no worksheet needed yet.</div>
+
+For `A = [[3,0],[0,-1]]`, check whether `(1,0)` and `(1,1)` are
+eigenvectors. Use `Av = λv` directly, no characteristic equation
+needed.
+
+---
+
 # The Characteristic Equation
 
 <div class="thread">One algebra move turns the definition into something we can solve.</div>
@@ -306,6 +331,19 @@ det(A - λI) = 0
 
 ---
 
+# Eigenvalues Are Roots of a Polynomial
+
+<div class="thread">One more way to see why there is more than one eigenvalue, usually.</div>
+
+Expanding `det(A - λI)` for an `n x n` matrix always produces a
+polynomial in `λ`, of degree exactly `n`. This is the **characteristic
+polynomial**.
+
+- A degree-`n` polynomial has at most `n` roots
+- Each root is one eigenvalue; a 2x2 matrix has at most 2, a 3x3 at most 3
+
+---
+
 # Bigger Matrices, Same Idea
 
 <div class="thread">The café's machine is 2x2. The same recipe scales up, in theory.</div>
@@ -315,6 +353,63 @@ det(A - λI) = 0
 - By hand, a 4x4 or larger characteristic equation gets slow fast; a computer runs it instantly
 
 <div class="why">Some matrices have complex-number eigenvalues, a topic outside this course. Every eigenvalue in this week's examples is a plain real number.</div>
+
+---
+
+# Eigenvalues of a Diagonal Matrix
+
+<div class="thread">The easiest possible case, no algebra required.</div>
+
+```
+D = [ 5   0 ]
+    [ 0  -2 ]
+```
+
+The eigenvalues are just the diagonal entries themselves: `λ = 5` and
+`λ = -2`. Each standard-basis vector, `(1,0)` and `(0,1)`, is already
+an eigenvector.
+
+---
+
+# Eigenvalues of a Triangular Matrix
+
+<div class="thread">Week 6's shortcut returns: the diagonal still does the work.</div>
+
+```
+U = [ 3  4  1 ]
+    [ 0  2  5 ]
+    [ 0  0 -1 ]
+```
+
+For any triangular matrix, the eigenvalues are exactly its diagonal
+entries: `λ = 3, 2, -1`. No characteristic-equation expansion needed.
+
+---
+
+# Negative Eigenvalues: Flipping Direction
+
+<div class="thread">What a negative eigenvalue actually does to a vector.</div>
+
+`Av = -2v` scales `v` by `-2`: twice as long, and pointing the
+opposite way along the same line.
+
+The direction itself, ignoring which way it points, still never
+rotates off its original line. A negative eigenvalue is still a
+perfectly valid eigenvalue.
+
+---
+
+# Common Eigenvalue Patterns
+
+<div class="thread">Three shortcuts that connect eigenvalues to tools from earlier weeks.</div>
+
+| Pattern | What it means |
+|---|---|
+| Any eigenvalue is `0` | `A` is singular; `det(A) = 0` |
+| Sum of all eigenvalues | Equals the **trace** of `A` (sum of diagonal entries) |
+| Product of all eigenvalues | Equals `det(A)` |
+
+These hold for every square matrix, not only the café's example.
 
 ---
 
@@ -401,6 +496,51 @@ general one they use on any square matrix, all semester. -->
 
 ---
 
+# 3x3 Eigenvalues, Worked (1/3)
+
+<div class="thread">The café's machine was 2x2. Here is the same method, one size up.</div>
+
+For a triangular-friendly example, `A = [[2,1,0],[0,3,0],[0,0,4]]`:
+
+```
+A - λI = [ 2-λ   1    0  ]
+         [  0   3-λ   0  ]
+         [  0    0   4-λ ]
+```
+
+`A` is already triangular, so `det(A - λI) = (2-λ)(3-λ)(4-λ)`.
+
+---
+
+# 3x3 Eigenvalues, Worked (2/3)
+
+Set the product to zero:
+
+```
+(2-λ)(3-λ)(4-λ) = 0
+```
+
+Three eigenvalues, one per factor: `λ = 2`, `λ = 3`, `λ = 4`. A
+triangular matrix's eigenvalues really are just its diagonal, exactly
+as the earlier shortcut slide claimed.
+
+---
+
+# 3x3 Eigenvalues, Worked (3/3)
+
+**Find the eigenvector for `λ = 2`.** Solve `(A - 2I)v = 0`:
+
+```
+[ 0  1  0 ] [x]   [0]
+[ 0  1  0 ] [y] = [0]
+[ 0  0  2 ] [z]   [0]
+```
+
+Rows say `y = 0` and `z = 0`; `x` is free. Eigenvector: `(1, 0, 0)`.
+Same method as 2x2, just one more row and column to track.
+
+---
+
 <!-- NEW: Try It, hands off to Worksheet Part A -->
 
 # Try It: Worksheet Part A
@@ -459,6 +599,69 @@ over. Eventually the split of importance stops changing.
 
 ---
 
+# PageRank as a Matrix Equation
+
+<div class="thread">Turn "importance passes around the link pattern" into `Av = λv`.</div>
+
+Build a matrix `M` where column `j` splits page `j`'s importance
+evenly across the pages it links to. The stable importance vector `r`
+satisfies:
+
+```
+Mr = r    =    Mr = 1*r
+```
+
+The stable ranking is exactly an eigenvector of `M`, with eigenvalue
+`1`.
+
+---
+
+# PageRank, Worked: A Tiny 2-Page Web (1/2)
+
+<div class="thread">Two pages, A and B. Page A links only to B; page B links only to A.</div>
+
+```
+M = [ 0   1 ]
+    [ 1   0 ]
+```
+
+Each page sends all of its importance to the other. Solve
+`det(M - λI) = 0`:
+
+```
+(0-λ)(0-λ) - 1(1) = 0   ->   λ² - 1 = 0   ->   λ = 1 or λ = -1
+```
+
+---
+
+# PageRank, Worked: A Tiny 2-Page Web (2/2)
+
+**Find the eigenvector for `λ = 1`.** Solve `(M - I)v = 0`:
+
+```
+[ -1   1 ] [a]   [0]
+[  1  -1 ] [b] = [0]
+```
+
+Both rows say `a = b`. Eigenvector: `(1, 1)`, meaning **equal
+importance**. With only two pages linking to each other, that is
+exactly the fair result.
+
+---
+
+# Verify PageRank's Eigenvector
+
+<div class="thread">The same check from earlier, applied to the ranking itself.</div>
+
+```
+Mv = ( 0(1)+1(1), 1(1)+0(1) ) = (1, 1) = 1*(1, 1)
+```
+
+`Mv = v` holds exactly. Normalized, `(1,1)` means 50% importance to
+each page, the stable split Google's algorithm settles on.
+
+---
+
 # When One Eigenvalue Repeats
 
 <div class="thread">The café's machine gave two clean, different directions. That will not always happen.</div>
@@ -469,6 +672,18 @@ twice: its **multiplicity** is 2.
 
 - A repeated eigenvalue can still have just one independent eigenvector direction, not two
 - The café's machine avoided this: eigenvalues 3 and 1 are different, each with its own clean direction
+
+---
+
+# Multiplicity: Geometric vs Algebraic
+
+<div class="thread">Two different counts, both called "multiplicity."</div>
+
+- **Algebraic multiplicity:** how many times a root repeats in the characteristic polynomial, `λ = 3` twice for `E` on the last slide
+- **Geometric multiplicity:** how many independent eigenvectors that eigenvalue actually has
+
+For `E = [[3,1],[0,3]]`, algebraic multiplicity is 2, but geometric
+multiplicity is only 1: one repeated root, one direction.
 
 ---
 
@@ -512,6 +727,16 @@ You have about 15 minutes.
 
 ---
 
+# More Common Mistakes
+
+<div class="cardlist">
+<div class="card"><div class="h">Assuming diagonal-only shortcuts work on any matrix</div><div class="d">the "eigenvalues are the diagonal" shortcut only applies to diagonal or triangular matrices</div></div>
+<div class="card"><div class="h">Mixing up algebraic and geometric multiplicity</div><div class="d">a repeated root does not guarantee a matching number of independent eigenvectors</div></div>
+<div class="card"><div class="h">Forgetting trace and determinant checks</div><div class="d">eigenvalues should always sum to the trace and multiply to the determinant; use this to catch arithmetic mistakes</div></div>
+</div>
+
+---
+
 # Check Yourself
 
 1. Is `v = (2, 2)` an eigenvector of the café's matrix `A = [[2,1],[1,2]]`? Which eigenvalue?
@@ -528,6 +753,47 @@ You have about 15 minutes.
 3. **It carries no information.** `v = 0` solves the equation for
    every possible `λ`, so it never points to a genuine special
    direction. It is the trivial solution, excluded by definition.
+
+---
+
+# Check Yourself: Round 2
+
+1. `A = [[4,0,0],[0,-1,0],[0,0,2]]`. What are its eigenvalues, and why can you read them off directly?
+2. A 2x2 matrix has eigenvalues `2` and `5`. What is its trace? Its determinant?
+
+---
+
+# Answers
+
+1. **`λ = 4, -1, 2`.** `A` is diagonal, so its eigenvalues are exactly its diagonal entries.
+2. **Trace = 7, determinant = 10.** Eigenvalues always sum to the trace and multiply to the determinant.
+
+---
+
+# Check Yourself: Round 3
+
+1. A 3x3 matrix's characteristic polynomial has degree 3. At most how many eigenvalues can it have?
+2. In the 2-page PageRank example, why did the stable ranking come out as equal importance, `(1,1)`?
+
+---
+
+# Answers
+
+1. **At most 3.** A degree-`n` characteristic polynomial has at most `n` roots.
+2. **Symmetry.** Each page links only to the other, so nothing favors either page; the eigenvector for `λ = 1` is `(1,1)`, equal shares.
+
+---
+
+# Quick Reference: Eigenvalue Toolkit
+
+| Step | Formula |
+|---|---|
+| Find eigenvalues | `det(A - λI) = 0` |
+| Find each eigenvector | `(A - λI)v = 0`, solve for `v` |
+| Sanity check | eigenvalues sum to trace, multiply to `det(A)` |
+| Final verification | confirm `Av = λv` directly |
+
+Four steps, the same four steps, on any square matrix.
 
 ---
 

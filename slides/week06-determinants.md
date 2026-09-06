@@ -293,6 +293,35 @@ Example: for `[[3, 2], [1, 4]]`, `det = 3(4) - 2(1) = 10`.
 
 ---
 
+# Geometric Meaning: Determinant as Area
+
+<div class="thread">A 2x2 determinant is not just an abstract number.</div>
+
+Treat a matrix's two rows (or columns) as two vectors drawn from the
+origin. The determinant's size equals the area of the parallelogram
+they form.
+
+```
+A = [ 3  0 ]     rows (3,0) and (0,4)
+    [ 0  4 ]     form a 3x4 rectangle
+
+det(A) = 3(4) - 0(0) = 12    <-  matches the rectangle's area
+```
+
+---
+
+# Geometric Meaning: Negative Determinant Flips Orientation
+
+<div class="thread">A negative determinant is not an error. It is information.</div>
+
+- **Positive determinant:** the two row vectors keep their natural, counter-clockwise order
+- **Negative determinant:** the two row vectors have been flipped, clockwise instead
+
+The *size* (absolute value) still gives the parallelogram's area
+either way.
+
+---
+
 # One Number, Two Outcomes
 
 <div class="thread">Why bother computing this number at all? Here is the payoff.</div>
@@ -305,6 +334,21 @@ longer.
 
 ---
 
+# Determinant and Invertibility: Tying It Together
+
+<div class="thread">Same fact, three different words for it.</div>
+
+For a square matrix `A`, these three statements always agree:
+
+- `det(A)` is nonzero
+- `A` is **invertible** (Week 4's word for "has an inverse")
+- `Ax = b` has exactly one solution, for any `b`
+
+If any one of the three holds, all three hold. If any one fails, all
+three fail.
+
+---
+
 # Cramer's Rule: A Formula, Not Always Practical
 
 <div class="thread">The Swiss mathematician from the timeline left us more than a name.</div>
@@ -314,6 +358,22 @@ another. It needs a nonzero determinant to work at all.
 
 For a small system, it is a quick shortcut. For a large system, full
 elimination is still faster in practice.
+
+---
+
+# Cramer's Rule: Explicit 2x2 Formula
+
+<div class="thread">The formula behind last slide's claim, written out.</div>
+
+For `Ax = b` with `A = [[a,b],[c,d]]`, replace one column of `A` with
+`b` at a time:
+
+```
+x = det([ b  b ]) / det(A)      y = det([ a  b ]) / det(A)
+        ([ d  d ])                       ([ c  d ])
+```
+
+Each unknown is its own determinant, divided by `det(A)`.
 
 ---
 
@@ -334,6 +394,61 @@ det = 2(3) - 1(1) = 5
 
 `5` is nonzero. One exact price for milk and syrup exists, before we
 even solve for it.
+
+---
+
+# Determinant Property: Row Swap Flips the Sign
+
+<div class="thread">Three properties, before we scale up to 3x3. First: order matters.</div>
+
+Swap the Latte and Mocha rows from the last slide:
+
+```
+[ 1  3 ]
+[ 2  1 ]
+
+det = 1(1) - 3(2) = -5
+```
+
+Same numbers, one row swap, and the sign flips: `5` becomes `-5`. The
+size, `5`, stays the same either way.
+
+---
+
+# Determinant Property: Scaling a Row Scales the Determinant
+
+<div class="thread">Second property: stretching one rule stretches the answer to match.</div>
+
+Double the Latte row only:
+
+```
+[ 4  2 ]
+[ 1  3 ]
+
+det = 4(3) - 2(1) = 10
+```
+
+Doubling one row exactly doubles the determinant: `5` becomes `10`.
+Scale a row by `k`, and the determinant scales by `k` too.
+
+---
+
+# Determinant Property: Adding a Multiple of a Row Changes Nothing
+
+<div class="thread">Third property: this is why row reduction is safe.</div>
+
+Add 2 times the Mocha row to the Latte row:
+
+```
+[ 4  7 ]     (row1 + 2*row2)
+[ 1  3 ]
+
+det = 4(3) - 7(1) = 5
+```
+
+Still `5`, unchanged. This is exactly the row operation elimination
+uses, which is why row-reducing a matrix never changes its
+determinant.
 
 ---
 
@@ -387,6 +502,58 @@ entry's row and column. Signs alternate: plus, minus, plus.
 
 ---
 
+# Cofactor Sign Pattern, Visualized
+
+<div class="thread">The plus/minus checkerboard, laid out fully for 3x3.</div>
+
+```
+[ +  -  + ]
+[ -  +  - ]
+[ +  -  + ]
+```
+
+The sign for entry `(row, column)` is `+` when `row + column` is even,
+`-` when it is odd. This checkerboard extends to any size matrix.
+
+---
+
+# Rule of Sarrus: A Shortcut for 3x3
+
+<div class="thread">A second method, only for 3x3, no minors required.</div>
+
+Copy the first two columns to the right of the matrix, then sum three
+down-right diagonals and subtract three down-left diagonals:
+
+```
+[ a  b  c | a  b ]
+[ d  e  f | d  e ]
+[ g  h  i | g  h ]
+
+det = (aei + bfg + cdh) - (ceg + afh + bdi)
+```
+
+Faster to write for 3x3, but it does **not** generalize to 4x4 or
+larger. Cofactor expansion always does.
+
+---
+
+# Expanding Along a Different Row: Same Answer
+
+<div class="thread">Cofactor expansion does not require the top row. Any row or column works.</div>
+
+Expand the café's recipe matrix along row 2 instead of row 1:
+
+```
+[ 1   1   1 ]
+[ 1   1  -1 ]
+[ 1  -1   0 ]
+```
+
+Row 2's signs are `-, +, -` (checkerboard). The expansion still
+produces `det = -4`, the same answer as expanding along row 1.
+
+---
+
 # Determinants Scale With the System
 
 <div class="thread">3x3 is not the end. The same idea just keeps going.</div>
@@ -396,6 +563,39 @@ into 3x3 minors, and so on, one size smaller each time.
 
 By hand, this gets slow fast. In practice, a computer runs this
 expansion automatically, even for systems with hundreds of unknowns.
+
+---
+
+# Triangular Matrices: Determinant Is the Diagonal Product
+
+<div class="thread">Week 5's `L` and `U` factors were triangular for a reason. Here it pays off again.</div>
+
+For an upper or lower **triangular** matrix, one entry above or below
+the diagonal does not matter. The determinant is just the product of
+the diagonal entries:
+
+```
+[ 2  1  4 ]
+[ 0  3  5 ]   ->   det = 2 * 3 * 1 = 6
+[ 0  0  1 ]
+```
+
+No cofactor expansion needed. This is why Week 5's `LU` factorization
+gives a fast way to compute a determinant, too: `det(A) = det(L) * det(U)`.
+
+---
+
+# Try It: Quick Property Check
+
+<div class="why">In pairs, no full computation.</div>
+
+For each pair below, decide the second determinant using only a
+property from this session, not full recomputation:
+
+1. `det([[2,1],[1,3]]) = 5`. What is `det([[1,3],[2,1]])`?
+2. A 3x3 triangular matrix has diagonal entries `2, -1, 4`. What is its determinant?
+
+You have about 5 minutes.
 
 ---
 
@@ -447,6 +647,51 @@ This confirms what Week 1 found by full elimination: the recipe has
 exactly one exact answer, `e = 1`, `m = 1`, `s = 2`.
 
 The determinant told us this was coming, before we solved anything.
+
+---
+
+# Case Study: Row-Reduce the Café's Recipe First (1/3)
+
+<div class="thread">A second, faster way to reach `det = -4`: row reduction instead of cofactor expansion.</div>
+
+Start from the same recipe matrix. Add `-1` times row 1 to row 2, and
+`-1` times row 1 to row 3 (no swap, no scaling, so the determinant is
+unchanged):
+
+```
+[ 1   1   1 ]        [ 1   1   1 ]
+[ 1   1  -1 ]   ->    [ 0   0  -2 ]
+[ 1  -1   0 ]        [ 0  -2  -1 ]
+```
+
+---
+
+# Case Study: Row-Reduce the Café's Recipe First (2/3)
+
+The matrix is not yet triangular: row 2 and row 3 both have a nonzero
+entry off the diagonal in an awkward spot. Swap rows 2 and 3 to fix
+this (one swap, so the sign flips):
+
+```
+[ 1   1   1 ]
+[ 0  -2  -1 ]     one row swap -> sign flips
+[ 0   0  -2 ]
+```
+
+---
+
+# Case Study: Row-Reduce the Café's Recipe First (3/3)
+
+Now the matrix is triangular. Multiply the diagonal, then flip the
+sign once, for the one row swap used:
+
+```
+diagonal product = 1 * (-2) * (-2) = 4
+one row swap  ->  det = -4
+```
+
+Same answer as cofactor expansion: `det = -4`. Row reduction and
+cofactor expansion always agree, on any matrix.
 
 ---
 
@@ -510,6 +755,16 @@ You have about 15 minutes.
 
 ---
 
+# More Common Mistakes
+
+<div class="cardlist">
+<div class="card"><div class="h">Forgetting a row swap's sign flip</div><div class="d">when row-reducing to compute a determinant, every swap flips the sign once</div></div>
+<div class="card"><div class="h">det(A + B) ≠ det(A) + det(B)</div><div class="d">determinants do not distribute over addition; there is no shortcut here</div></div>
+<div class="card"><div class="h">Using Sarrus on a 4x4 matrix</div><div class="d">the diagonal-copy trick only works for 3x3; larger matrices need cofactor expansion</div></div>
+</div>
+
+---
+
 <!-- SLOT N: Check yourself -->
 
 # Check Yourself
@@ -523,6 +778,34 @@ You have about 15 minutes.
 
 1. `det = 3(4) - 2(1) = 10`
 2. **Tells you:** the system does not have exactly one solution. **Does not tell you:** whether it has none, or infinitely many; that needs more work to find out.
+
+---
+
+# Check Yourself: Properties
+
+1. `det([[5,2],[3,1]]) = -1`. Without recomputing, what is `det([[3,1],[5,2]])`?
+2. A row of a 3x3 matrix is scaled by `-2`. Its determinant was `6`. What is it now?
+
+---
+
+# Answers
+
+1. **`1`.** Swapping the two rows flips the sign of `-1`.
+2. **`-12`.** Scaling one row by `k` scales the whole determinant by `k`, and `6 * (-2) = -12`.
+
+---
+
+# Check Yourself: Triangular Shortcut
+
+1. A lower triangular matrix has diagonal entries `3, 0, 5`. What is its determinant, and what does that tell you about solving `Ax = b`?
+2. Is `det(A) = det(A)` after adding 3 times row 1 to row 3? Why or why not?
+
+---
+
+# Answers
+
+1. **`det = 3 * 0 * 5 = 0`.** The matrix is singular; `Ax = b` does not have exactly one solution.
+2. **Yes, unchanged.** Adding a multiple of one row to another never changes a determinant; this is the row operation elimination relies on.
 
 ---
 

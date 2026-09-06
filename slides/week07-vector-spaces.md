@@ -282,6 +282,57 @@ Most sets fail on closure first. Check that rule first, always.
 
 ---
 
+# Testing Closure: Step by Step
+
+<div class="thread">The failing row from the last table, worked out in full.</div>
+
+Take the set of all `(x, y)` with `x ≥ 0`. Test closure under scaling:
+
+```
+(1, 0) is in the set (x = 1 ≥ 0)
+-1 * (1, 0) = (-1, 0)
+-1 < 0, so (-1, 0) is NOT in the set
+```
+
+One scaled element already leaves the set. Closure fails, so the set
+cannot be a vector space. No other rule needs checking.
+
+---
+
+# Testing the Zero Element
+
+<div class="thread">A quick, separate check, before testing anything harder.</div>
+
+Take the set of points on the line `y = 2x + 1`.
+
+```
+Does (0, 0) satisfy y = 2x + 1?
+2(0) + 1 = 1, not 0
+```
+
+`(0, 0)` is not on this line. No zero element exists in the set, so it
+fails immediately, before checking closure at all.
+
+---
+
+# Testing Additive Inverses
+
+<div class="thread">One more rule, checked directly on a small set.</div>
+
+Take the set of all `(x, y)` with `x ≥ 0` and `y ≥ 0`. It has a zero
+element, `(0, 0)`, so check inverses directly:
+
+```
+(1, 0) is in the set
+Its opposite is (-1, 0)
+-1 < 0, so (-1, 0) is NOT in the set
+```
+
+`(1, 0)` has no additive inverse inside the set. Even a set that
+passes the zero-element check can still fail on inverses.
+
+---
+
 # Real Vector Spaces You Already Use
 
 <div class="appgrid">
@@ -292,6 +343,22 @@ Most sets fail on closure first. Check that rule first, always.
 
 All three follow the exact same ten rules, even though they look
 nothing alike.
+
+---
+
+# Vector Space Examples: Functions
+
+<div class="thread">A fourth example, less obviously "list of numbers."</div>
+
+The set of all continuous functions on `[0, 1]` is also a vector
+space:
+
+- **Add** two functions: `(f + g)(x) = f(x) + g(x)`
+- **Scale** a function: `(3f)(x) = 3 * f(x)`
+- A zero function, `f(x) = 0` for every `x`, exists
+
+Same ten rules, applied to functions instead of number lists. Later
+courses build entire theories, like Fourier series, on this fact.
 
 ---
 
@@ -307,6 +374,46 @@ space. Check only three things:
 3. Scaling any of its elements stays inside it
 
 If all three hold, every other rule holds automatically.
+
+---
+
+# Subspace Test, Applied: A Worked Example
+
+<div class="thread">Run the three-part test on a concrete set.</div>
+
+Is the set of all `(x, y, z)` with `x = y` a subspace of R³?
+
+```
+1. Zero element: (0, 0, 0) has x = y = 0.        Pass
+2. Closed under addition: (a,a,c) + (b,b,d) = (a+b, a+b, c+d).   Pass
+3. Closed under scaling: k(a,a,c) = (ka, ka, kc).                Pass
+```
+
+All three hold. It is a subspace, a plane through the origin.
+
+---
+
+# Subspace Test: A Non-Example
+
+<div class="thread">One failing check is enough to rule a set out.</div>
+
+Is the set of all `(x, y, z)` with `x = y + 1` a subspace of R³?
+
+```
+1. Zero element: does (0, 0, 0) satisfy 0 = 0 + 1?   No
+```
+
+The very first check already fails. No need to test addition or
+scaling; this set cannot be a subspace.
+
+---
+
+# Try It: Quick Subspace Check
+
+<div class="why">In pairs, 5 minutes, no worksheet needed yet.</div>
+
+Test whether the set of all `(x, y)` with `xy = 0` is a subspace of
+R². Use all three parts of the test before deciding.
 
 ---
 
@@ -326,6 +433,33 @@ A span is always a subspace, no matter which vectors you start from.
 
 ---
 
+# Span: Worked Example With Numbers
+
+<div class="thread">Two vectors in R³. What shape does their span form?</div>
+
+```
+span{(1, 0, 0), (0, 1, 0)} = every point (a, b, 0)
+```
+
+Every combination `a(1,0,0) + b(0,1,0)` has a zero third entry. The
+span is the entire xy-plane, sitting inside R³.
+
+---
+
+# Span of Three Vectors Can Still Be a Plane
+
+<div class="thread">More starting vectors do not always mean a bigger space.</div>
+
+```
+span{(1,0,0), (0,1,0), (1,1,0)}
+```
+
+The third vector, `(1,1,0)`, is already reachable: `1(1,0,0) +
+1(0,1,0) = (1,1,0)`. Adding it changes nothing; the span is still the
+same xy-plane as the last slide.
+
+---
+
 # The Null Space: All Solutions to `Ax = 0`
 
 <div class="thread">This is exactly last week's open question, answered.</div>
@@ -336,6 +470,21 @@ collected into one set. It is always a subspace.
 Last week, the determinant only told us whether that set held one
 point, just zero, or many. This week describes the whole set
 directly.
+
+---
+
+# The Null Space, Mechanically: Finding It
+
+<div class="thread">Before the café example, the general recipe, on a plain matrix.</div>
+
+For `A = [1  2  3]`, solve `Ax = 0`:
+
+```
+x + 2y + 3z = 0   ->   x = -2y - 3z
+```
+
+Every solution has the form `(x,y,z) = y(-2,1,0) + z(-3,0,1)`. The
+null space is the span of those two vectors.
 
 ---
 
@@ -378,6 +527,23 @@ now gets a description of the whole space, not a growing list. -->
 
 ---
 
+# Case Study: Checking the Café's Space Is a Subspace
+
+<div class="thread">One last check: is this actually a valid space, not just a convenient description?</div>
+
+Run the three-part subspace test on the café's solution set:
+
+```
+1. Zero element: (e,m,s) = (0,0,0) works, since m=0, s=0.   Pass
+2. Closed under addition: two working recipes, added, still satisfy 2e+4m-2s=0.   Pass
+3. Closed under scaling: any scaled recipe still satisfies the rule.             Pass
+```
+
+Confirmed: the café's whole solution set is a genuine subspace, not
+just a convenient list.
+
+---
+
 # The Column Space: What `Ax` Can Reach
 
 <div class="thread">One more space, this time about outputs, not inputs.</div>
@@ -391,6 +557,47 @@ Ax = b has a solution   <=>   b is inside the column space of A
 
 Null space describes inputs that reach zero. Column space describes
 which outputs are reachable at all.
+
+---
+
+# Column Space, Mechanically: Finding It
+
+<div class="thread">The column space is just each column, spanned.</div>
+
+For `A = [[1,2],[3,6]]`, the column space is:
+
+```
+span{(1,3), (2,6)}
+```
+
+`(2,6) = 2*(1,3)`, so the second column adds nothing new. The column
+space is only the line through `(1,3)`, not the whole plane.
+
+---
+
+# Case Study: The Café's Column Space
+
+<div class="thread">Which totals can the café's rules ever actually produce?</div>
+
+For the café's 3x3 recipe matrix from Week 2, the column space is the
+span of its three columns. Since the recipe matrix has a nonzero
+determinant (Week 6), those columns span all of R³.
+
+Any total `b` is reachable. Every possible espresso/milk/syrup total
+has some matching recipe.
+
+---
+
+# Row Space: A Third Space Worth Knowing
+
+<div class="thread">Column space uses columns. The rows have their own space too.</div>
+
+The **row space** of `A` is the span of its rows, instead of its
+columns. For the café's system, each row space vector represents one
+combined version of the three original rules.
+
+Null space, column space, and row space: three different subspaces,
+all built from the same matrix `A`.
 
 ---
 
@@ -445,6 +652,34 @@ driving question.
 
 ---
 
+# Case Study: General Solution for a Modified Café Rule
+
+<div class="thread">The same method, when the rule no longer equals zero.</div>
+
+Suppose the rule is now `2e + 4m - 2s = 6`, not `0`. One particular
+solution is `(e,m,s) = (3,0,0)`. Every solution is:
+
+```
+(e,m,s) = (3,0,0) + m(-2,1,0) + s(1,0,1)
+```
+
+The particular solution shifts the whole answer; the null space still
+describes every direction it can move in.
+
+---
+
+# Quick Recap: Three Spaces, Side by Side
+
+| Space | Built from | Answers |
+|---|---|---|
+| Null space | Solutions to `Ax = 0` | Which inputs reach zero? |
+| Column space | `A`'s columns, spanned | Which outputs are reachable? |
+| Row space | `A`'s rows, spanned | Which combined rules exist? |
+
+Three different subspaces, one shared matrix `A`.
+
+---
+
 <!-- NEW: Try It, hands off to Worksheet Part B -->
 
 # Try It: Worksheet Part B
@@ -468,6 +703,16 @@ You have about 15 minutes.
 
 ---
 
+# More Common Mistakes
+
+<div class="cardlist">
+<div class="card"><div class="h">Testing addition and scaling separately, then stopping</div><div class="d">both must hold, and the zero-element check still needs to be run too</div></div>
+<div class="card"><div class="h">Assuming a bigger span needs more vectors</div><div class="d">a redundant vector adds nothing; check whether it is already reachable first</div></div>
+<div class="card"><div class="h">Mixing up null space and column space</div><div class="d">null space describes inputs that vanish; column space describes reachable outputs</div></div>
+</div>
+
+---
+
 <!-- SLOT N: Check yourself -->
 
 # Check Yourself
@@ -481,6 +726,34 @@ You have about 15 minutes.
 
 1. **Yes.** It contains `(0, 0)`, and adding or scaling any point on that line stays on the line.
 2. **The x-axis.** Every scalar multiple of `(2, 0)` is a point `(a, 0)`.
+
+---
+
+# Check Yourself: Round 2
+
+1. Is the set of all 2×2 matrices with determinant `0` a subspace of all 2×2 matrices?
+2. What is the null space of `A = [2  0]`?
+
+---
+
+# Answers
+
+1. **No.** `[[1,0],[0,0]]` and `[[0,0],[0,1]]` both have determinant `0`, but their sum, the identity matrix, has determinant `1`. Not closed under addition.
+2. **The y-axis.** `2x = 0` forces `x = 0`; `y` is free, so the null space is `{(0, y)}`.
+
+---
+
+# Check Yourself: Round 3
+
+1. Give one vector whose span is a line through the origin at a 45-degree angle.
+2. Why is `{(1,0), (2,0), (0,1)}` a spanning set for R², even though it has 3 vectors for a 2-dimensional space?
+
+---
+
+# Answers
+
+1. **`(1, 1)`.** `span{(1,1)}` is every point `(a, a)`, a line at 45 degrees.
+2. **A spanning set can have redundant vectors.** `(2,0)` is already `2*(1,0)`; dropping it still spans all of R².
 
 ---
 

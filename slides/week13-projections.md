@@ -276,6 +276,24 @@ The closest point on that line to `(4, 1)` is `(2.5, 2.5)`.
 
 ---
 
+# A Second Example: Projecting Onto an Axis
+
+<div class="thread">A special case worth seeing early: projecting onto a plain axis.</div>
+
+Project `y = (2, 5)` onto the line spanned by `u = (3, 0)`, the
+horizontal axis:
+
+```
+y · u = 2(3) + 5(0) = 6
+u · u = 3(3) + 0(0) = 9
+proj_u(y) = (6/9)(3, 0) = (2, 0)
+```
+
+Projecting onto an axis simply keeps that axis's own coordinate, and
+drops the rest. `(2, 0)` keeps `y`'s first entry, discards the second.
+
+---
+
 # Why This Point Is the Closest
 
 <div class="thread">The formula is not a guess. A right angle proves it.</div>
@@ -310,6 +328,21 @@ distance from y to proj_u(y)  = 2.12
 
 The projection wins both checks. Any other point on the line loses at
 least one.
+
+---
+
+# The Projection Formula, Rewritten With a Unit Vector
+
+<div class="thread">Last week's normalizing skill simplifies this week's formula.</div>
+
+If `û` is `u` normalized to length 1, the projection formula shortens:
+
+```
+proj_u(y) = (y · û) û
+```
+
+Dividing by `u · u` and normalizing do the same job. Once a direction
+is a unit vector, projecting onto it is just one dot product.
 
 ---
 
@@ -359,6 +392,36 @@ This is why last week's orthogonality check always comes first.
 
 ---
 
+# The Projection Matrix
+
+<div class="thread">Projection onto a fixed line can also be written as one matrix.</div>
+
+For a unit vector `û`, the matrix `M = ûûᵀ` projects any vector onto
+that line in one multiply:
+
+```
+proj_u(y) = M y
+```
+
+Once `M` is built, projecting any number of new vectors onto the same
+line costs one matrix-vector product each, no formula to redo.
+
+---
+
+# The Projection Matrix: A Worked Example
+
+<div class="thread">Build `M` for `û = (0.6, 0.8)`, from an earlier normalized vector.</div>
+
+```
+M = ûûᵀ = [ 0.6 ] [ 0.6  0.8 ]  =  [ 0.36  0.48 ]
+          [ 0.8 ]                  [ 0.48  0.64 ]
+```
+
+For any new `y`, `My` gives its projection onto that line directly,
+without recomputing `(y·u)/(u·u)` each time.
+
+---
+
 # Splitting a Vector in Two
 
 <div class="thread">Every projection also produces a leftover. Together, they rebuild the original vector.</div>
@@ -387,6 +450,49 @@ in-subspace part and a leftover part, at a right angle to it.
 
 The customer's drink sits off that plane. The projection finds the
 nearest point still on it.
+
+---
+
+# Extending to Three or More Orthogonal Directions
+
+<div class="thread">Two directions were just the start. The formula keeps working.</div>
+
+If `u1, u2, ..., uk` are all mutually orthogonal, the projection onto
+their span still adds each line's share:
+
+```
+proj_W(y) = Σ ((y·uᵢ)/(uᵢ·uᵢ)) uᵢ
+```
+
+Every extra orthogonal direction adds one more term, never disturbing
+the ones already found.
+
+---
+
+# What If the Directions Aren't Orthogonal?
+
+<div class="thread">A caution before moving on: this week's shortcut has one requirement.</div>
+
+If `u1` and `u2` are not orthogonal, simply adding their two
+projections over-counts the overlap between them. A correct answer
+still exists, but it needs the Gram-Schmidt process to first build an
+orthogonal basis, a topic for a later course.
+
+This week always starts from directions already checked orthogonal.
+
+---
+
+# Orthogonal Bases: A Quick Recap
+
+<div class="thread">Last week's test, reused as this week's starting requirement.</div>
+
+Before projecting onto any subspace with more than one direction,
+confirm every pair of basis vectors has a dot product of zero. Skip
+this check, and the whole projection formula silently breaks.
+
+```
+u1 · u2 = 0 ?   Yes -> proceed.   No -> stop, orthogonalize first.
+```
 
 ---
 
@@ -446,6 +552,39 @@ barista now has the provably closest drink, not a guess. -->
 
 ---
 
+# Case Study: Verifying the Result by Distance
+
+<div class="thread">One more check, before trusting `(2, 2, 4)` as the answer.</div>
+
+Compare the distance from `y` to the computed projection, versus a
+nearby guess like `(2, 2, 3)`:
+
+```
+||y - (2,2,4)|| = ||(1,-1,0)|| = √2 ≈ 1.41
+||y - (2,2,3)|| = ||(1,-1,1)|| = √3 ≈ 1.73
+```
+
+The computed projection wins. Any nearby guess loses.
+
+---
+
+# Case Study: A Second Customer Order
+
+<div class="thread">The same machine, a different order, no new formula needed.</div>
+
+A second customer orders `y = (0, 0, 5)`, pure syrup taste with no
+espresso or milk requested:
+
+```
+(y·P)/(P·P) = (0+0+0)/2 = 0
+(y·Q)/(Q·Q) = (0+0+5)/1 = 5
+proj_W(y) = 0·P + 5·Q = (0, 0, 5)
+```
+
+This order was already achievable exactly: the leftover `z = 0`.
+
+---
+
 # Where Else the Leftover Matters
 
 - A leftover of zero means the point was already achievable; no approximation was needed
@@ -456,6 +595,58 @@ barista now has the provably closest drink, not a guess. -->
 Keeping the leftover, not just the closest point, is what makes this
 method useful for judging how good a fit really is.
 </div>
+
+---
+
+# Distance From a Point to a Subspace
+
+<div class="thread">The leftover's length has one more exact meaning.</div>
+
+The length of the leftover, `||z||`, is exactly the distance from `y`
+to the subspace `W`, the shortest possible gap to any point in `W`:
+
+```
+distance(y, W) = ||y - proj_W(y)|| = ||z||
+```
+
+No point in `W`, other than the projection itself, sits any closer.
+
+---
+
+# Worked Example: Projecting Onto a Subspace, From Scratch (1/3)
+
+<div class="thread">A fresh matrix, not the café, showing the whole method again.</div>
+
+Project `y = (1, 2, 3)` onto the subspace spanned by the orthogonal
+vectors `u1 = (1, 0, 0)` and `u2 = (0, 1, 1)`.
+
+Confirm orthogonality first: `u1 · u2 = 0 + 0 + 0 = 0`. Cleared to
+proceed.
+
+---
+
+# Worked Example: Projecting Onto a Subspace, From Scratch (2/3)
+
+Compute each direction's share:
+
+```
+(y·u1)/(u1·u1) = 1/1 = 1
+(y·u2)/(u2·u2) = (0+2+3)/2 = 2.5
+proj_W(y) = 1(1,0,0) + 2.5(0,1,1) = (1, 2.5, 2.5)
+```
+
+---
+
+# Worked Example: Projecting Onto a Subspace, From Scratch (3/3)
+
+Find the leftover, and confirm it is orthogonal to both directions:
+
+```
+z = (1,2,3) - (1,2.5,2.5) = (0, -0.5, 0.5)
+z · u1 = 0        z · u2 = -0.5 + 0.5 = 0
+```
+
+Both checks pass. `(1, 2.5, 2.5)` is the closest point in `W` to `y`.
 
 ---
 
@@ -524,6 +715,18 @@ You have about 15 minutes.
 
 ---
 
+# Try It: One More Projection Matrix
+
+<div class="why">Same pairs. Quick pencil check, no new worksheet.</div>
+
+Build the projection matrix `M = ûûᵀ` for your Worksheet Part A
+direction, normalized to a unit vector. Use it to project one new
+point.
+
+You have about 5 minutes.
+
+---
+
 <!-- SLOT N-1: Common mistakes -->
 
 # Common Mistakes
@@ -531,6 +734,26 @@ You have about 15 minutes.
 - **Adding projections without checking orthogonality:** the two-direction formula only works when `u1 · u2 = 0`; check this first
 - **Dividing by the wrong length:** always divide by `u · u`, the squared length, never by `u` alone
 - **Expecting the leftover to be zero:** a zero leftover only happens when `y` was already inside the subspace
+
+---
+
+# More Common Mistakes
+
+<div class="cardlist">
+<div class="card"><div class="h">Building the projection matrix from a non-unit vector</div><div class="d"><code>M = ûûᵀ</code> needs a normalized <code>û</code>; skipping normalization gives the wrong matrix</div></div>
+<div class="card"><div class="h">Forgetting the distance shortcut</div><div class="d">the leftover's length, <code>||z||</code>, already is the distance to the subspace; no extra computation needed</div></div>
+</div>
+
+---
+
+# Projection Matrices in Practice
+
+<div class="thread">One more place this week's idea shows up outside the café.</div>
+
+Computer graphics engines use projection matrices exactly like
+today's `M = ûûᵀ` to draw shadows and mirror reflections: every point
+of a 3D object is multiplied by one fixed matrix to flatten it onto a
+surface.
 
 ---
 
@@ -547,6 +770,20 @@ You have about 15 minutes.
 
 1. `proj_u(y) = ((6+0)/(4+0))(2, 0) = 1.5(2, 0) = (3, 0)`.
 2. **True.** That right angle is exactly what makes the projection the closest point.
+
+---
+
+# Check Yourself: Round 2
+
+1. What does `||z||`, the leftover's length, tell you about `y` and the subspace `W`?
+2. Directions `u1 = (1,1)` and `u2 = (1,-1)` are given. Can you use the two-direction projection formula directly? Why?
+
+---
+
+# Answers: Round 2
+
+1. **It is the distance from `y` to `W`**, the shortest possible gap to any point in that subspace.
+2. **Yes.** `u1 · u2 = 1 - 1 = 0`, so they are orthogonal, exactly what the formula requires.
 
 ---
 

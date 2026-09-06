@@ -345,6 +345,214 @@ and `s` gives one working recipe ratio.
 
 ---
 
+<!-- _class: section -->
+
+# More Practice: Weeks 1-7
+
+<div class="driving-q">Twelve more questions, one topic per slide, answers immediately after each. Same rule as the midterm: work it out before you look.</div>
+
+---
+
+<!-- Q11: Week 1, full elimination -->
+
+# Question 11 (Week 1)
+
+Solve by elimination: `2x + y = 7`, `x - y = 2`.
+
+---
+
+# Answer 11
+
+Add the two equations: `3x = 9`, so `x = 3`. Then `y = x - 2 = 1`.
+
+```
+x = 3, y = 1
+```
+
+---
+
+<!-- Q12: Week 2, verify Ax -->
+
+# Question 12 (Week 2)
+
+`A = [[1,2],[3,1]]`, `x = (2,1)`. Compute `Ax`. Does it match `b = (4,7)`?
+
+---
+
+# Answer 12
+
+```
+Ax = ( 1(2)+2(1), 3(2)+1(1) ) = (4, 7)
+```
+
+Yes, `Ax` matches `b` exactly.
+
+---
+
+<!-- Q13: Week 3, identify transformation -->
+
+# Question 13 (Week 3)
+
+Matrix `A = [[0,-1],[1,0]]`. What transformation does it represent?
+
+---
+
+# Answer 13
+
+**A 90-degree counter-clockwise rotation.** `T(1,0) = (0,1)` is column
+1, `T(0,1) = (-1,0)` is column 2, both quarter-turns from the original
+axes.
+
+---
+
+<!-- Q14: Week 4, non-commutativity -->
+
+# Question 14 (Week 4)
+
+`A = [[1,1],[0,1]]`, `B = [[1,0],[1,1]]`. Compute `AB` and `BA`. Are they equal?
+
+---
+
+# Answer 14
+
+```
+AB = [ 2  1 ]        BA = [ 1  1 ]
+     [ 1  1 ]              [ 1  2 ]
+```
+
+**No.** `AB ≠ BA`. Matrix multiplication does not commute in general.
+
+---
+
+<!-- Q15: Week 4, solve via inverse -->
+
+# Question 15 (Week 4)
+
+`A = [[2,0],[0,2]]`, `b = (10, 20)`. Use `A⁻¹` to solve `Ax = b`.
+
+---
+
+# Answer 15
+
+```
+A⁻¹ = [ 0.5   0  ]        x = A⁻¹b = (5, 10)
+      [  0   0.5 ]
+```
+
+---
+
+<!-- Q16: Week 5, build LU -->
+
+# Question 16 (Week 5)
+
+Factor `A = [[4,2],[2,3]]` into `L` and `U`.
+
+---
+
+# Answer 16
+
+```
+L = [  1   0 ]        U = [ 4  2 ]
+    [ 0.5  1 ]            [ 0  2 ]
+```
+
+Check: `L` times `U` reproduces `A` exactly.
+
+---
+
+<!-- Q17: Week 6, 3x3 determinant -->
+
+# Question 17 (Week 6)
+
+Compute the determinant of `A = [[1,2,0],[0,1,3],[2,0,1]]` by cofactor
+expansion along row 1.
+
+---
+
+# Answer 17
+
+```
+det = 1*det([1,3;0,1]) - 2*det([0,3;2,1]) + 0
+    = 1(1) - 2(-6) + 0 = 13
+```
+
+---
+
+<!-- Q18: Week 6, determinant property -->
+
+# Question 18 (Week 6)
+
+`det([[3,1],[2,4]]) = 10`. Without recomputing, what is `det([[2,4],[3,1]])`?
+
+---
+
+# Answer 18
+
+**`-10`.** Swapping the two rows flips the determinant's sign; the
+size stays the same.
+
+---
+
+<!-- Q19: Week 7, vector space check -->
+
+# Question 19 (Week 7)
+
+Is the set of all polynomials of **degree exactly 2** a vector space?
+
+---
+
+# Answer 19
+
+**No.** `(x² + x) + (-x² + 1) = x + 1`, degree 1, which leaves the
+set. It fails closure under addition.
+
+---
+
+<!-- Q20: Week 7, span -->
+
+# Question 20 (Week 7)
+
+What is the span of `{(1, 2), (2, 4)}`?
+
+---
+
+# Answer 20
+
+**The line `{(a, 2a)}`.** `(2,4) = 2*(1,2)` is redundant; the span is
+just the line through `(1, 2)`.
+
+---
+
+<!-- Q21: Week 1, inconsistent system -->
+
+# Question 21 (Week 1)
+
+Solve `x + y = 3`, `2x + 2y = 10`. What happens?
+
+---
+
+# Answer 21
+
+Doubling the first equation gives `2x + 2y = 6`, contradicting
+`2x + 2y = 10`. This reduces to `0 = 4`, false. **No solution.**
+
+---
+
+<!-- Q22: Week 3, linearity check -->
+
+# Question 22 (Week 3)
+
+Is `T(x, y) = (x + 1, y)` a linear transformation?
+
+---
+
+# Answer 22
+
+**No.** Every linear transformation must send the zero vector to the
+zero vector, but `T(0, 0) = (1, 0) ≠ (0, 0)`.
+
+---
+
 <!-- SLOT N+1: "Limits" replaced by "What to focus on next" -->
 
 # What to Focus On Next

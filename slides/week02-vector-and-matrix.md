@@ -238,11 +238,11 @@ unknowns.
 
 <!-- Act 3 / BUILD -->
 
-# Vector Operations: Add and Scale
+# Vector Operations: Scalar Multiply
 
 <div class="thread">Two small operations vectors need, before we combine them with a matrix.</div>
 
-**Scalar multiply:** multiply every entry by the same number.
+Multiply every entry by the same number.
 
 ```
     [1]      [3]
@@ -250,13 +250,32 @@ unknowns.
     [4]      [12]
 ```
 
-**Add:** add matching entries together.
+---
+
+# Vector Operations: Add
+
+Add matching entries together.
 
 ```
 [1]   [5]   [6]
 [2] + [0] = [2]
 [4]   [1]   [5]
 ```
+
+---
+
+# Vector Operations: Subtract
+
+<div class="thread">Subtraction is nothing new: scale by -1, then add.</div>
+
+```
+[5]   [1]   [4]
+[0] - [2] = [-2]
+[1]   [4]   [-3]
+```
+
+Subtracting two vectors compares them, entry by entry - useful later
+for checking how far a candidate answer is from the right one.
 
 ---
 
@@ -349,6 +368,24 @@ add.
 
 ---
 
+# Reading A's Columns: What Each One Means
+
+<div class="thread">Rows are not the only structure worth reading.</div>
+
+In the café's matrix, each **column** belongs to one ingredient:
+
+```
+    [ 1  1  1 ]
+A = [ 1  1 -1 ]
+    [ 1 -1  0 ]
+```
+
+Column 1 is espresso's coefficients across all three rules; column 2
+is milk's; column 3 is syrup's. Row view reads rules. Column view
+reads ingredients.
+
+---
+
 # Not Every Matrix Is Square
 
 <div class="thread">The café's `A` happens to be 3×3. That will not always be true.</div>
@@ -356,6 +393,94 @@ add.
 - The café's system has 3 rules and 3 unknowns: a **square** matrix, same number of rows and columns
 - Other systems have more rules than unknowns, or fewer
 - A non-square `A` still fits `Ax = b`; whether it has a solution is next week's question
+
+---
+
+# Building Ax = b From a Word Problem
+
+<div class="thread">The café is one example. The method works on any word problem.</div>
+
+A fruit stand sells apples and bananas. Two apples and one banana
+cost 2400 원. One apple and three bananas cost 2700 원.
+
+```
+A = [ 2  1 ]      x = [ a ]      b = [ 2400 ]
+    [ 1  3 ]          [ b ]          [ 2700 ]
+```
+
+Same three steps every time: name the unknowns, read off each rule's
+coefficients into a row of `A`, and read off each rule's total into `b`.
+
+---
+
+# A Fourth Ingredient: Setting Up the Vector
+
+<div class="thread">Week 1 left this unsolved: a regular drink, plus vanilla syrup.</div>
+
+Add a fourth unknown, `v`, for vanilla syrup. The unknown vector grows
+from three entries to four:
+
+```
+    [ e ]
+x = [ m ]
+    [ s ]
+    [ v ]
+```
+
+Same idea as this week's three-ingredient vector. One more entry, no
+new rule needed to write it down.
+
+---
+
+# A Fourth Ingredient: Building the Matrix
+
+The café adds one new rule for vanilla syrup, alongside its original
+three. Each row still holds one rule's coefficients, now with four
+entries:
+
+```
+    [ 1  1  1  1 ]
+A = [ 1  1 -1  0 ]
+    [ 1 -1  0  0 ]
+    [ 0  0  1 -1 ]
+```
+
+Rows 1-3 are the original three rules, extended with a zero for
+vanilla where it does not appear. Row 4 is the new vanilla rule: the
+syrup amount is one unit more than the vanilla amount.
+
+---
+
+# A Fourth Ingredient: The Totals Vector
+
+`b` grows to four entries too, one total per rule, in the same order:
+
+```
+    [ 5 ]
+b = [ 0 ]
+    [ 0 ]
+    [ 1 ]
+```
+
+The total liquid rule's target grows from 4 to 5, to make room for
+the new ingredient. The other totals stay as before.
+
+---
+
+# A Fourth Ingredient: Ax = b, Assembled & Verified
+
+<div class="thread">Verify a candidate answer, the same skill from this week's outcomes - just at a bigger size.</div>
+
+Candidate answer: `e = 1, m = 1, s = 2, v = 1`. Multiply each row of
+the 4×4 `A` by `x`, and compare to `b`:
+
+```
+Row 1: 1+1+2+1 = 5      Row 2: 1+1-2   = 0
+Row 3: 1-1       = 0      Row 4: 2-1     = 1
+```
+
+All four rows match `b` exactly. Four unknowns, one compact equation,
+verified the same way as three - this is Week 1's cliffhanger, closed.
 
 ---
 
@@ -416,6 +541,45 @@ checks.
 
 ---
 
+# Case Study: A Wrong Candidate Solution
+
+<div class="thread">Verification also catches a wrong answer - that's the whole point of doing it.</div>
+
+Try `e = 1, m = 2, s = 1` instead. Multiply row 1 of `A` by this `x`:
+
+```
+Row 1: 1(1) + 1(2) + 1(1) = 4
+```
+
+Row 1 still matches `b`'s first entry, 4. But check row 3:
+
+```
+Row 3: 1(1) - 1(2) + 0(1) = -1
+```
+
+`b`'s third entry is `0`, not `-1`. Row 3 fails. This candidate is not
+a solution - one failing row is enough to reject it.
+
+---
+
+# Multiplying by the Zero Vector
+
+<div class="thread">One special input worth knowing, before moving on.</div>
+
+Multiply the café's matrix `A` by the zero vector:
+
+```
+[ 1  1  1 ]   [ 0 ]   [ 0 ]
+[ 1  1 -1 ] × [ 0 ] = [ 0 ]
+[ 1 -1  0 ]   [ 0 ]   [ 0 ]
+```
+
+Any matrix times the zero vector gives the zero vector. This is why
+`x = 0` is never an interesting candidate solution unless `b` is also
+all zeros.
+
+---
+
 <!-- Try It, hands off to Worksheet Part A -->
 
 # Try It: Worksheet Part A
@@ -469,6 +633,23 @@ Same answer either way. Column view returns in Week 3.
 
 ---
 
+# Row View vs Column View: Café Recheck
+
+<div class="thread">Apply the column view to the café's own numbers, and check it lands on the same answer as the row view.</div>
+
+Using `e = 1, m = 1, s = 2`, scale each column of `A` and add:
+
+```
+    [1]        [ 1]        [ 1]     [ 4]
+1 × [1]   +  1 [ 1]   +  2 [-1]  =  [ 0]
+    [1]        [-1]        [ 0]     [ 0]
+```
+
+Same result as multiplying row by row. Row view and column view are
+two roads to the same `Ax`.
+
+---
+
 # Compatible Sizes: When Ax Makes Sense
 
 <div class="thread">One more rule before common mistakes.</div>
@@ -482,6 +663,21 @@ A is 2 x 3      x has 3 entries      Ax has 2 entries
 
 If the vector's entry count does not match `A`'s column count, the
 product is undefined.
+
+---
+
+# Compatible Sizes: A Worked Example
+
+<div class="thread">See the size rule fail, on purpose, so you recognize it later.</div>
+
+`A` is 2×3. Try to multiply it by a vector with only 2 entries:
+
+```
+A is 2 x 3      x has 2 entries      undefined
+```
+
+`A` has 3 columns, but `x` has only 2 entries - they do not match, so
+`Ax` does not exist. Adding a third entry to `x` fixes it.
 
 ---
 
@@ -499,6 +695,28 @@ You have about 15 minutes.
 
 ---
 
+# Try It: Quick Pair Check
+
+<div class="why">Same pairs, no worksheet needed. Two minutes.</div>
+
+Write down any 2×2 matrix and any 2-entry vector of your own. Swap
+with your partner and compute their `Ax`, while they compute yours.
+
+Compare answers. If you disagree, find the row that does not match.
+
+---
+
+# Quick Recap: Row vs Column View
+
+| View | Reads `A` as | This week's example |
+|---|---|---|
+| Row view | one rule per row, matched to `x` | verifying the café's solution |
+| Column view | one ingredient per column, scaled by `x` | the café recheck, a few slides back |
+
+Same multiplication, same answer, two ways to picture it.
+
+---
+
 # Common Mistakes
 
 <div class="cardlist">
@@ -507,6 +725,43 @@ You have about 15 minutes.
 <div class="card"><div class="h">Writing `b` as a row</div><div class="d">`b` must match `x`'s shape, a column vector</div></div>
 <div class="card"><div class="h">Forgetting a sign when multiplying</div><div class="d">double-check each product before adding</div></div>
 </div>
+
+---
+
+# Common Mistake: Wrong Order, Worked
+
+<div class="thread">Seeing the mistake fail numerically sticks better than a rule alone.</div>
+
+`A` is 2×3, `x` has 3 entries. `Ax` is defined and gives a 2-entry
+result. Now try it backwards, `xA`: a 3-entry vector does not have 2
+entries to match against `A`'s 2 rows. `xA` is not even defined here.
+
+Always check which side the matrix sits on before multiplying.
+
+---
+
+# Common Mistake: Sign Errors, Worked
+
+A row of `[1, -1, 0]` times `x = (1, 1, 2)` is easy to rush:
+
+```
+Wrong: 1 + 1 + 0 = 2
+Right: 1(1) + (-1)(1) + 0(2) = 0
+```
+
+The minus sign belongs to the matrix entry, not the vector entry.
+Carry every sign from `A` into the product, term by term.
+
+---
+
+# Common Mistake: Recomputing Habits
+
+Recomputing `Ax` from scratch for every new candidate answer works,
+but it hides a habit worth naming now: nothing about `A` changes
+between candidates, only `x` does.
+
+Week 5 turns this observation into a real shortcut. For now, just
+notice it.
 
 ---
 
@@ -526,6 +781,24 @@ You have about 15 minutes.
 
 2. **Yes.** A 2×3 matrix times a 3-entry vector gives a 2-entry
    vector, one entry per row of `A`.
+
+---
+
+# Check Yourself: Round 2
+
+3. The café adds a fourth ingredient, vanilla syrup, with `A` now
+   4×4. Candidate answer `e=1, m=1, s=2, v=1`. Does row 4,
+   `[0, 0, 1, -1]`, check out against `b`'s fourth entry, `1`?
+4. Is `x = 0` ever a valid solution to `Ax = b`? When?
+
+---
+
+# Answers: Round 2
+
+3. **Yes.** `0(1) + 0(1) + 1(2) - 1(1) = 1`, matching `b`'s fourth
+   entry exactly.
+4. **Only when `b` is also the zero vector.** Any matrix times the
+   zero vector gives the zero vector, so it can never match a nonzero `b`.
 
 ---
 

@@ -280,6 +280,33 @@ pair, then add every result together.
 
 ---
 
+# The Dot Product in Three Dimensions
+
+<div class="thread">The same rule, one more entry.</div>
+
+For u = (1, 2, 2) and v = (3, 0, 4):
+
+```
+u · v = (1)(3) + (2)(0) + (2)(4) = 3 + 0 + 8 = 11
+```
+
+Nothing changes except the entry count. The dot product works exactly
+the same way in 3, 10, or 100 dimensions.
+
+---
+
+# A Compatibility Rule for the Dot Product
+
+<div class="thread">One check before computing, same spirit as Week 2's matrix sizes.</div>
+
+The dot product only makes sense between two vectors with the same
+number of entries. `u · v` for a 2-entry `u` and a 3-entry `v` is
+undefined, not zero.
+
+Always count entries first, the same habit Week 2 taught for `Ax`.
+
+---
+
 # Properties of the Dot Product
 
 <div class="thread">Two rules make the dot product easy to reuse.</div>
@@ -329,6 +356,38 @@ u - v = (1 - 4, 2 - 6) = (-3, -4)
 
 The **distance** between two vectors is the length of one minus the
 other, no matter how many entries they have.
+
+---
+
+# The Cauchy-Schwarz Inequality
+
+<div class="thread">One rule guarantees the angle formula, coming up next, always makes sense.</div>
+
+For any two vectors `u` and `v`:
+
+```
+|u · v| ≤ ||u|| · ||v||
+```
+
+The dot product can never outgrow the product of the two lengths.
+This is exactly what keeps `cos(angle)`, computed later this week,
+between -1 and 1.
+
+---
+
+# The Triangle Inequality
+
+<div class="thread">A second guarantee, from the same idea as Cauchy-Schwarz.</div>
+
+For any two vectors `u` and `v`:
+
+```
+||u + v|| ≤ ||u|| + ||v||
+```
+
+Combining two vectors never produces something longer than their
+lengths added separately. The direct path is never longer than a
+detour through two legs.
 
 ---
 
@@ -405,6 +464,22 @@ related." This is exactly how recommendation engines rank matches.
 
 ---
 
+# Cosine Similarity: The Industry Name
+
+<div class="thread">Same formula, a name you will see again outside this class.</div>
+
+Data science and machine learning call `cos(angle)` **cosine
+similarity**. It compares two items, customers, or documents by
+direction alone, ignoring their raw size.
+
+```
+cosine similarity = (u · v) / (||u|| ||v||)
+```
+
+Exactly today's angle formula, under its industry name.
+
+---
+
 # Orthogonal Vectors
 
 <div class="thread">One special angle needs no calculator at all: exactly 90°.</div>
@@ -454,6 +529,36 @@ throws away only the size.
 
 ---
 
+# Normalizing in Three Dimensions
+
+<div class="thread">Same rule, one more entry, same as the earlier dot-product example.</div>
+
+For `u = (1, 2, 2)`, first find the length:
+
+```
+||u|| = √(1 + 4 + 4) = √9 = 3
+unit vector = (1/3, 2/3, 2/3)
+```
+
+Check: `(1/3)² + (2/3)² + (2/3)² = 1/9 + 4/9 + 4/9 = 9/9 = 1`. Length 1,
+confirmed.
+
+---
+
+# The Standard Basis Vectors Are Orthonormal
+
+<div class="thread">The simplest orthonormal set of all, hiding in plain sight.</div>
+
+```
+e1 = (1, 0, 0)     e2 = (0, 1, 0)     e3 = (0, 0, 1)
+```
+
+Every pair has dot product 0, and every vector already has length 1.
+These three vectors are the orthonormal set you have used since
+Week 2, without ever naming it.
+
+---
+
 # Orthogonal Sets
 
 <div class="thread">The two ideas combine: orthogonal, and length 1, at once.</div>
@@ -483,6 +588,37 @@ simple.
 
 ---
 
+# The Pythagorean Theorem, Generalized
+
+<div class="thread">Euclid's own theorem, back from the Origin slide, in vector form.</div>
+
+When `u` and `v` are orthogonal:
+
+```
+||u + v||² = ||u||² + ||v||²
+```
+
+This is exactly the Pythagorean theorem: two perpendicular legs
+combine into a hypotenuse, but written for vectors of any length,
+not just triangle sides.
+
+---
+
+# Checking Orthogonality in Three Dimensions
+
+<div class="thread">The same test, one dimension harder.</div>
+
+For u = (1, 2, -1) and v = (3, 1, 5):
+
+```
+u · v = (1)(3) + (2)(1) + (-1)(5) = 3 + 2 - 5 = 0
+```
+
+The dot product is zero, so `u` and `v` are orthogonal, even though no
+picture can show a clean right angle in three dimensions on paper.
+
+---
+
 # Length, Distance, and Angle: What Each One Answers
 
 <div class="thread">Three tools, three different questions.</div>
@@ -496,6 +632,24 @@ simple.
 Two recipes can sit far apart in raw amounts, yet still point in
 nearly the same direction. Angle and distance measure different
 things.
+
+---
+
+# Distance vs Length: A Worked Comparison
+
+<div class="thread">A concrete pair shows why the three tools rarely agree.</div>
+
+For u = (10, 0) and v = (11, 1):
+
+```
+||u|| = 10             length of u alone
+||v|| = √122 ≈ 11.05    length of v alone
+||u - v|| = √2 ≈ 1.41   distance between them, small
+cos(angle) ≈ 0.995      angle ≈ 6°, nearly identical direction
+```
+
+Both length and distance differ; the angle shows what raw numbers
+hide: these two vectors point almost exactly the same way.
 
 ---
 
@@ -537,6 +691,39 @@ answer to "how similar are these two drinks," with no extra tasting. -->
 
 ---
 
+# Case Study: A Third Recipe Joins the Menu
+
+<div class="thread">The menu keeps growing. The same method scales without new tasting.</div>
+
+A new Americano recipe is `(3, 0)`, in (milk, syrup):
+
+```
+Latte · Americano = (2)(3) + (1)(0) = 6
+||Latte|| = √5   ||Americano|| = √9 = 3
+cos(angle) = 6 / (√5 · 3) = 6 / (3√5) ≈ 0.894
+angle ≈ 27°
+```
+
+The Latte and Americano lean closer together, 27°, than the Latte and
+Mocha did, 45°.
+
+---
+
+# Case Study: Ranking the Whole Menu by Similarity
+
+<div class="thread">One table replaces every pairwise taste test.</div>
+
+| Pair | Angle | Reading |
+|---|---|---|
+| Latte vs Mocha | 45° | partly similar |
+| Latte vs Americano | 27° | closer match |
+| Mocha vs Americano | not yet computed | left for Worksheet B |
+
+Staff can now rank menu similarity by angle alone, the same idea a
+recommendation engine uses on thousands of items at once.
+
+---
+
 <!-- NEW: Try It, hands off to Worksheet Part B -->
 
 # Try It: Worksheet Part B
@@ -550,6 +737,18 @@ You have about 15 minutes.
 
 ---
 
+# Try It: Rank a Fourth Drink
+
+<div class="why">Same pairs. Quick pencil check, no new worksheet.</div>
+
+Pick any fourth (milk, syrup) pair of your own. Compute its angle
+against the Latte, `(2, 1)`. Decide whether it belongs closer to the
+Latte or the Mocha on the similarity ranking.
+
+You have about 5 minutes.
+
+---
+
 <!-- SLOT N-1: Common mistakes -->
 
 # Common Mistakes
@@ -559,6 +758,15 @@ You have about 15 minutes.
 <div class="card"><div class="h">Assuming a negative dot product means "opposite"</div><div class="d">it only means the angle is greater than 90°, not exactly 180°</div></div>
 <div class="card"><div class="h">Judging orthogonality by eye</div><div class="d">in three or more dimensions you cannot see a right angle. Always check the dot product instead</div></div>
 <div class="card"><div class="h">Forgetting to normalize both vectors</div><div class="d">an orthonormal set needs every vector at length 1, not just some of them</div></div>
+</div>
+
+---
+
+# More Common Mistakes
+
+<div class="cardlist">
+<div class="card"><div class="h">Comparing dot products across different vectors</div><div class="d">a bigger dot product does not mean "more similar" unless the lengths are also equal; use the angle formula instead</div></div>
+<div class="card"><div class="h">Mixing up distance and angle</div><div class="d">two vectors can sit far apart in raw distance yet point in nearly the same direction</div></div>
 </div>
 
 ---
@@ -578,6 +786,20 @@ You have about 15 minutes.
 1. `||u|| = √(36 + 64) = √100 = 10`.
 2. `v · w = (1)(2) + (2)(-1) = 2 - 2 = 0`. **Yes, orthogonal.**
 3. Length of u is `5`, so the unit vector is `(0/5, 5/5) = (0, 1)`.
+
+---
+
+# Check Yourself: Round 2
+
+1. Compute the distance between u = (1, 1) and v = (4, 5).
+2. `u · v = -6`, `||u|| = 2`, `||v|| = 3`. Find `cos(angle)`. Is the angle more or less than 90°?
+
+---
+
+# Answers: Round 2
+
+1. `u - v = (-3, -4)`, so `||u - v|| = √(9+16) = √25 = 5`.
+2. `cos(angle) = -6 / (2·3) = -1`. **More than 90°** (in fact exactly 180°, since `cos(angle) = -1` means opposite directions).
 
 ---
 

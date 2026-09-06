@@ -376,6 +376,32 @@ the fastest way to build a wrong `P`.
 
 ---
 
+# Algebraic vs Geometric Multiplicity
+
+<div class="thread">The quick-check table hides one more precise idea, worth naming.</div>
+
+- **Algebraic multiplicity:** how many times an eigenvalue repeats as a root of the characteristic equation
+- **Geometric multiplicity:** how many independent eigenvectors that eigenvalue actually has
+- A matrix is diagonalizable exactly when these two numbers match, for every eigenvalue
+
+---
+
+# Example: A Repeated Eigenvalue That Still Diagonalizes
+
+<div class="thread">A repeated eigenvalue is a warning sign, not always a dead end.</div>
+
+```
+A = [ 3  0 ]
+    [ 0  3 ]
+```
+
+Eigenvalue `3` has algebraic multiplicity 2. Every nonzero vector here
+is already an eigenvector, so its geometric multiplicity is also 2.
+The two multiplicities match: this matrix is diagonalizable (it is
+already diagonal).
+
+---
+
 # Diagonalizing a Matrix: The Checklist
 
 <div class="thread">Five steps turn any diagonalizable matrix into fast powers.</div>
@@ -387,6 +413,142 @@ the fastest way to build a wrong `P`.
 <div class="card"><div class="h">Build P and D</div><div class="d">Build <code>P</code> from the eigenvectors, <code>D</code> from the eigenvalues, in matching order</div></div>
 <div class="card"><div class="h">Compute P⁻¹</div><div class="d">Compute <code>P⁻¹</code>; now <code>A = PDP⁻¹</code>, and <code>Aⁿ = PDⁿP⁻¹</code> for any <code>n</code></div></div>
 </div>
+
+---
+
+# Worked Example: Diagonalizing From Scratch (1/4)
+
+<div class="thread">A brand-new matrix, not the café. Same five-step checklist, in full.</div>
+
+Take:
+
+```
+A = [ 5  4 ]
+    [ 1  2 ]
+```
+
+Set up the characteristic equation:
+
+```
+det(A - λI) = (5-λ)(2-λ) - 4(1) = λ² - 7λ + 6 = 0
+```
+
+---
+
+# Worked Example: Diagonalizing From Scratch (2/4)
+
+Solve the characteristic equation:
+
+```
+λ² - 7λ + 6 = 0
+(λ - 6)(λ - 1) = 0
+```
+
+Two eigenvalues: `λ = 6` and `λ = 1`. Different from each other, so
+this matrix is guaranteed diagonalizable, no multiplicity check needed.
+
+---
+
+# Worked Example: Diagonalizing From Scratch (3/4)
+
+Find each eigenvector. For `λ = 6`, solve `(A - 6I)v = 0`:
+
+```
+-v1 + 4v2 = 0   ->   eigenvector (4, 1)
+```
+
+For `λ = 1`, solve `(A - 1I)v = 0`:
+
+```
+4v1 + 4v2 = 0   ->   eigenvector (1, -1)
+```
+
+---
+
+# Worked Example: Diagonalizing From Scratch (4/4)
+
+Build `P` and `D` from these results:
+
+```
+P = [ 4   1 ]     D = [ 6  0 ]
+    [ 1  -1 ]         [ 0  1 ]
+```
+
+`A = PDP⁻¹`, so `Aⁿ = PDⁿP⁻¹` only ever needs `6ⁿ` and `1ⁿ`, never a
+repeated full matrix multiplication.
+
+---
+
+# A Quick Sanity Check: Trace and Determinant
+
+<div class="thread">Before trusting P and D, one fast check catches most arithmetic slips.</div>
+
+- The sum of a matrix's eigenvalues always equals its **trace** (the sum of its diagonal entries)
+- The product of a matrix's eigenvalues always equals its **determinant**
+
+A mismatch does not fix a wrong answer, but it always catches one.
+
+---
+
+# Checking the Worked Example
+
+Apply the sanity check to `A = [[5,4],[1,2]]`:
+
+```
+trace(A) = 5 + 2 = 7        eigenvalues sum: 6 + 1 = 7   ✓
+det(A)   = 5(2) - 4(1) = 6  eigenvalues product: 6(1) = 6 ✓
+```
+
+Both match. The eigenvalues found are consistent with `A` itself.
+
+---
+
+# Similar Matrices: Same Transformation, Different View
+
+<div class="thread">The word "similar" is not casual here. It has one exact meaning.</div>
+
+Two matrices `A` and `B` are **similar** if `B = P⁻¹AP` for some
+invertible `P`. Diagonalization is a special case: `A` is similar to
+the diagonal matrix `D`.
+
+Similar matrices describe the same transformation, measured from two
+different sets of directions.
+
+---
+
+# Why Similar Matrices Share Eigenvalues
+
+<div class="thread">This is exactly why diagonalizing never changes A's own eigenvalues.</div>
+
+If `B = P⁻¹AP`, then `A` and `B` always have the same eigenvalues.
+`D`'s diagonal entries are literally `A`'s own eigenvalues, unchanged,
+only rearranged into a simpler shape.
+
+---
+
+# Beyond Powers: Other Functions of a Matrix
+
+<div class="thread">The same shortcut works for more than just Aⁿ.</div>
+
+Once `A = PDP⁻¹`, other functions of `A` become just as easy:
+
+- **Matrix square root:** `√A = P√D P⁻¹`, take the square root of each diagonal entry
+- **Matrix exponential:** `e^A = Pe^D P⁻¹`, used to solve systems of differential equations
+
+Anything applied to a diagonal matrix applies entry by entry.
+
+---
+
+# Diagonalization in Practice
+
+<div class="thread">By hand today; by computer everywhere else.</div>
+
+Software libraries, like NumPy's `eig` or MATLAB's `eig`, compute
+eigenvalues, eigenvectors, `P`, and `D` directly, for matrices far too
+large to diagonalize by hand.
+
+The by-hand method you just learned is exactly what these libraries
+automate at scale.
 
 ---
 
@@ -513,6 +675,29 @@ Week 20, the slow way: twenty full rounds of matrix multiplication
 ```
 
 No staff member wants to do the slow way twenty times.
+
+---
+
+# Case Study: The Café's Loyalty Program — A Different Starting Point
+
+<div class="thread">Does the shortcut still work if the café starts with different numbers?</div>
+
+Suppose the café instead starts at `c0 = 50`, `v0 = 50`, exactly the
+`(1, -1)` eigenvector direction. Since that eigenvalue is `1`, that
+component never grows: both groups stay locked at 50, no matter how
+large `n` gets. Starting exactly on a non-dominant eigenvector is the
+only way to avoid the dominant eigenvalue taking over.
+
+---
+
+# Case Study: The Café's Loyalty Program — Reading the Long-Run Direction
+
+<div class="thread">One line captures the whole point of a dominant eigenvalue.</div>
+
+For almost any starting point, as `n` grows, `xₙ` points closer and
+closer to the direction of the dominant eigenvector, `(1, 1)` here.
+The ratio of classic-fans to vanilla-fans settles near 1:1, no matter
+the starting mix, except for the special `(1, -1)` case above.
 
 ---
 

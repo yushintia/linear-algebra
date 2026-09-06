@@ -276,6 +276,46 @@ c1*v1 + c2*v2 + ... + ck*vk = 0
 
 ---
 
+# Independence Test, Worked: Two Vectors
+
+<div class="thread">The smallest case first, before three vectors at once.</div>
+
+Test `{(1, 2), (3, 4)}`. Solve `c1(1,2) + c2(3,4) = (0,0)`:
+
+```
+c1 + 3c2 = 0
+2c1 + 4c2 = 0   ->   c1 = c2 = 0 only
+```
+
+Only the trivial solution works. **Independent.**
+
+---
+
+# Independence Test, Worked: When It Fails
+
+<div class="thread">Same test, a set that does not survive it.</div>
+
+Test `{(1, 2), (2, 4)}`. Solve `c1(1,2) + c2(2,4) = (0,0)`:
+
+```
+c1 + 2c2 = 0
+2c1 + 4c2 = 0   ->   same equation twice, c1 = -2c2
+```
+
+Pick `c2 = 1`, `c1 = -2`: a nonzero solution exists. **Dependent.**
+`(2,4) = 2(1,2)`, exactly redundant.
+
+---
+
+# Try It: Quick Independence Check
+
+<div class="why">In pairs, 5 minutes, no worksheet needed yet.</div>
+
+Test `{(1, 0, 1), (0, 1, 1), (1, 1, 2)}` for independence. Set up the
+equation, then decide.
+
+---
+
 # Testing the Café's Three Mixes
 
 <div class="thread">Back to the pain: are all three flavor mixes really new?</div>
@@ -314,6 +354,36 @@ was correct.
 
 ---
 
+# Geometric Picture: Independent vs Dependent
+
+<div class="thread">What independence and dependence actually look like.</div>
+
+| Set | Picture | Verdict |
+|---|---|---|
+| Two vectors, different directions | Span a whole plane | Independent |
+| Two vectors, same line | Span only that line | Dependent |
+| Three vectors, all in one plane | Span only the plane | At least one is dependent |
+
+A dependent vector never adds a new direction, no matter how many you
+already have.
+
+---
+
+# The Zero Vector Is Never Independent
+
+<div class="thread">One edge case, worth naming before moving on.</div>
+
+Any set that includes the zero vector is automatically dependent:
+
+```
+c(0, 0, 0) = (0, 0, 0)   for any c, even c = 5
+```
+
+A nonzero `c` still reaches zero. The trivial solution is never the
+only one, so no set containing the zero vector can be independent.
+
+---
+
 # Basis: Definition
 
 <div class="thread">Now name the smallest set that still describes everything.</div>
@@ -329,6 +399,42 @@ possible independent set, at the same time.
 
 ---
 
+# Basis, Worked Example: The Standard Basis of R³
+
+<div class="thread">The simplest possible basis, for the simplest possible space.</div>
+
+```
+e1 = (1, 0, 0)      e2 = (0, 1, 0)      e3 = (0, 0, 1)
+```
+
+Independent: no combination of two reaches the third. Spanning: any
+`(a,b,c) = a*e1 + b*e2 + c*e3`. Both conditions hold, so `{e1,e2,e3}`
+is a basis, called the **standard basis**.
+
+---
+
+# Not Every Independent Set Is a Basis
+
+<div class="thread">Independence alone is not enough.</div>
+
+`{(1, 0)}` is independent in R²: no nonzero scalar reaches `(0,0)`.
+
+But it does not span R²; `(0, 1)` is not any multiple of `(1, 0)`. One
+independent vector is not a basis for a 2-dimensional space.
+
+---
+
+# Not Every Spanning Set Is a Basis
+
+<div class="thread">Spanning alone is not enough either.</div>
+
+`{(1, 0), (0, 1), (1, 1)}` spans R²: every point is reachable.
+
+But `(1,1) = (1,0) + (0,1)` is redundant, so the set is dependent. A
+spanning set with a redundant vector is not yet a basis.
+
+---
+
 # Finding a Basis: Drop What's Redundant
 
 <div class="thread">A spanning set that is not independent still hides a basis inside it.</div>
@@ -340,6 +446,30 @@ To turn `{v1, v2, v3}` into a basis:
 3. Check `{v1, v2}` still spans every combination `v3` could reach
 
 `{v1, v2}` is a basis for the café's flavor-adjustment space.
+
+---
+
+# Finding a Basis From Scratch: Row Reduction Method
+
+<div class="thread">A general method, for when redundancy is not obvious by eye.</div>
+
+To find a basis for the span of a set of vectors, row-reduce them as a
+matrix. The nonzero rows of the reduced form are one valid basis for
+the same space, since row operations do not change what the rows
+span.
+
+---
+
+# Basis Is Not Unique
+
+<div class="thread">One space, many valid bases.</div>
+
+`{v1, v2}` is one valid basis for the café's flavor-adjustment plane.
+It is not the only one: any two independent vectors already inside
+that plane work equally well, including `{v1, v3}` or `{v2, v3}`.
+
+There is no single "correct" basis, only correct **counts**: this
+plane always needs exactly 2 vectors, no matter which basis you pick.
 
 ---
 
@@ -373,6 +503,32 @@ The reference card needs only **2** mixes, `v1` and `v2`. Every valid
 flavor mix, past or future, is some combination of those two.
 
 <!-- notes: Point out this directly answers the owner's question from the pain slide: 2 mixes, not 3, and no future test can ever need a 3rd independent one. -->
+
+---
+
+# Case Study: A Fourth Flavor Mix Arrives (1/2)
+
+<div class="thread">A new season, a new test. Does the reference card need to grow?</div>
+
+A staff member proposes a fourth mix, `v4 = (0, 1, 1)`. Test it
+against the existing basis `{v1, v2}`:
+
+```
+c1(-2,1,0) + c2(1,0,1) = (0,1,1)
+-2c1 + c2 = 0     c1 = 1     c2 = 1
+```
+
+`c1 = 1`, `c2 = 1` solves all three equations exactly.
+
+---
+
+# Case Study: A Fourth Flavor Mix Arrives (2/2)
+
+`v4 = v1 + v2`, so the "new" mix was already reachable from the
+2-mix card. The reference card still only needs `{v1, v2}`.
+
+No matter how many new mixes staff test, none can ever need a 3rd
+independent card entry, because the whole space only has dimension 2.
 
 ---
 
@@ -426,6 +582,21 @@ You have about 15 minutes.
 
 ---
 
+# Dimension of Familiar Spaces
+
+<div class="thread">Week 7's vector space examples, now with a number attached.</div>
+
+| Space | Dimension |
+|---|---|
+| Rⁿ | n |
+| All m×n matrices | m*n |
+| Polynomials of degree ≤ n | n+1 |
+
+`Rⁿ`'s standard basis, `{e1, ..., en}`, has exactly `n` vectors, one
+per coordinate.
+
+---
+
 # Every Basis, Same Count
 
 <div class="thread">Why "the" dimension is a safe, single number to trust.</div>
@@ -456,6 +627,32 @@ you always count exactly 2. Dimension never depends on the choice.
 
 ---
 
+# Rank, Worked Example: Finding It by Row Reduction
+
+<div class="thread">The fastest way to find rank in practice.</div>
+
+Row-reduce `A = [[1,2,3],[2,4,6],[1,1,1]]`:
+
+```
+[ 1  2  3 ]        [ 1  2  3 ]
+[ 2  4  6 ]   ->    [ 0  0  0 ]
+[ 1  1  1 ]        [ 0  0  -2 ]
+```
+
+Two nonzero rows survive. `rank(A) = 2`.
+
+---
+
+# Full Rank vs Rank Deficient
+
+<div class="thread">Rank connects straight back to Week 6's determinant.</div>
+
+- A square matrix has **full rank** when its rank equals its size, e.g. rank 3 for a 3x3 matrix
+- Full rank, invertible, and nonzero determinant are the same fact, in three different words
+- **Rank deficient** means less than full rank: some columns are redundant, and the determinant is exactly zero
+
+---
+
 # Rank-Nullity: All the Directions, Counted
 
 <div class="thread">One theorem ties this week's two counts together.</div>
@@ -474,6 +671,22 @@ rank(A) = 1        nullity(A) = 2        n = 3
 ```
 
 Every ingredient direction is accounted for: 1 constrained, 2 free.
+
+---
+
+# Rank-Nullity, Worked Example: A Different Matrix
+
+<div class="thread">Same theorem, a matrix with more columns than rows.</div>
+
+For a 2×4 matrix with `rank(A) = 2`:
+
+```
+rank(A) + nullity(A) = n
+2 + nullity(A) = 4
+nullity(A) = 2
+```
+
+Two constrained directions, two free directions, four unknowns total.
 
 ---
 
@@ -500,6 +713,16 @@ You have about 15 minutes.
 
 ---
 
+# More Common Mistakes
+
+<div class="cardlist">
+<div class="card"><div class="h">Assuming a basis is unique</div><div class="d">a space has many valid bases; only the count (dimension) is fixed, not the vectors themselves</div></div>
+<div class="card"><div class="h">Including the zero vector in an "independent" set</div><div class="d">any set containing the zero vector is automatically dependent</div></div>
+<div class="card"><div class="h">Confusing rank with the number of columns</div><div class="d">rank counts independent columns, not total columns; redundant columns do not add to rank</div></div>
+</div>
+
+---
+
 <!-- SLOT N: Check yourself -->
 
 # Check Yourself
@@ -513,6 +736,34 @@ You have about 15 minutes.
 
 1. **No.** `(1, 1) = (1, 0) + (0, 1)`, a nonzero combination reaching a repeat. The set is dependent.
 2. **Nullity = 2.** By rank-nullity, `rank + nullity = n = 4`, so `2 + nullity = 4`.
+
+---
+
+# Check Yourself: Round 2
+
+1. What is the dimension of the space of all 2×2 matrices?
+2. A 3x3 matrix has determinant `0`. Is it full rank?
+
+---
+
+# Answers
+
+1. **4.** A basis is `{[[1,0],[0,0]], [[0,1],[0,0]], [[0,0],[1,0]], [[0,0],[0,1]]}`, four independent matrices.
+2. **No.** A zero determinant means the matrix is rank deficient, not full rank.
+
+---
+
+# Check Yourself: Round 3
+
+1. `{v1, v2}` is a basis for a plane. Is `{v1, v2, v1+v2}` also a basis for the same plane?
+2. What is the rank of the zero matrix?
+
+---
+
+# Answers
+
+1. **No.** `v1+v2` is redundant, so the set is dependent; it is still a spanning set, but not a basis.
+2. **0.** Every row and column is already zero, so no independent direction exists at all.
 
 ---
 

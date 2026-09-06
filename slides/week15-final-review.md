@@ -412,6 +412,156 @@ Least squares finds the closest fit instead.
 
 ---
 
+<!-- Additional review pairs, one per topic from Weeks 9-14, per
+     SPINE's short-review-variant rule for Week 15 -->
+
+# Question 15 (Week 9: Bases, Dimension)
+
+Vectors `v1 = (1,2,3)`, `v2 = (2,4,6)`, `v3 = (1,0,1)` span a
+subspace. Find a basis, and its dimension.
+
+---
+
+# Answer 15
+
+`v2 = 2v1`, so `v2` is redundant. `v1` and `v3` are not parallel, so
+they are independent.
+
+**Basis:** `{v1, v3}`. **Dimension = 2.**
+
+---
+
+# Question 16 (Week 10: Eigenvalues)
+
+Find the eigenvalues of `A = [[0,1],[-2,-3]]`.
+
+---
+
+# Answer 16
+
+```
+det(A - λI) = λ(λ+3) - (1)(-2) = λ² + 3λ + 2 = 0
+            = (λ + 1)(λ + 2) = 0
+```
+
+Eigenvalues: `λ = -1` and `λ = -2`.
+
+---
+
+# Question 17 (Week 11: Diagonalization)
+
+A 3×3 matrix has eigenvalues `2, 2, 5`, with only one independent
+eigenvector for `λ = 2`. Is it diagonalizable?
+
+---
+
+# Answer 17
+
+**No.** Eigenvalue `2` has algebraic multiplicity 2, but geometric
+multiplicity only 1 (one independent eigenvector). The two
+multiplicities must match for every eigenvalue; here they do not.
+
+---
+
+# Question 18 (Week 12: Orthogonality)
+
+Find the angle between `u = (1, 0)` and `v = (1, 1)`.
+
+---
+
+# Answer 18
+
+```
+cos(angle) = (u·v)/(||u|| ||v||) = 1 / (1 · √2) = 1/√2 ≈ 0.707
+```
+
+`angle ≈ 45°`.
+
+---
+
+# Question 19 (Week 13: Projections)
+
+Project `y = (2, 3, 4)` onto the subspace spanned by the orthogonal
+vectors `u1 = (1,0,0)` and `u2 = (0,1,0)`.
+
+---
+
+# Answer 19
+
+```
+proj_W(y) = 2u1 + 3u2 = (2, 3, 0)
+z = y - proj_W(y) = (0, 0, 4)
+```
+
+The closest point in `W` is `(2, 3, 0)`; the leftover, `(0,0,4)`, is
+exactly what the plane spanned by `u1, u2` cannot reach.
+
+---
+
+# Question 20 (Week 14: Least Squares)
+
+A least-squares fit gives `R² = 0.60`. What fraction of the data's
+variation is left unexplained?
+
+---
+
+# Answer 20
+
+**40%.** `R²` is the explained fraction, so the unexplained fraction
+is `1 - 0.60 = 0.40`.
+
+---
+
+# Question 21 (Synthesis: Weeks 10-11)
+
+A 2×2 matrix has trace 7 and determinant 6. Find its eigenvalues
+without expanding `det(A - λI)` from scratch.
+
+---
+
+# Answer 21
+
+Eigenvalues sum to the trace and multiply to the determinant:
+
+```
+λ1 + λ2 = 7        λ1 · λ2 = 6
+λ² - 7λ + 6 = 0    (λ-6)(λ-1) = 0
+```
+
+Eigenvalues: `λ = 6` and `λ = 1`.
+
+---
+
+# Question 22 (Synthesis: Weeks 12-13)
+
+`u = (3,4)` and `v = (4,-3)` are orthogonal and together span all of
+`R²`. Project `y = (10, 5)` onto their span. What should you get, and
+why?
+
+---
+
+# Answer 22
+
+**`proj = (10, 5) = y` itself.** When an orthogonal set spans the
+entire space, projecting onto it changes nothing: every vector is
+already inside that "subspace," which is the whole space.
+
+---
+
+# Question 23 (Synthesis: Weeks 13-14)
+
+In one sentence, how does projection connect to least squares?
+
+---
+
+# Answer 23
+
+Least squares finds `x̂` so that `Ax̂` is exactly the **projection**
+of `b` onto the column space of `A`: the same closest-point idea from
+Week 13, applied to a system with no exact solution.
+
+---
+
 <!-- SLOT N+1: "Limits" replaced by "What to focus on next" -->
 
 # What to Focus On Next

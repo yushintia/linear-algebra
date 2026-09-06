@@ -159,7 +159,7 @@ surface. All of them are built on this week's two objects underneath.
 
 ---
 
-## 4. Practice Problems (with answers)
+## 4. Practice Problems
 
 Try these on your own before checking the answers at the end.
 
@@ -170,11 +170,4 @@ Try these on your own before checking the answers at the end.
 5. `A` is a 3×4 matrix. Can it multiply a vector with 3 entries? Why or why not?
 6. Compute `Ax` by hand: `A = [[1, 2], [3, 0]]`, `x = [2, 5]`. Multiply row by column and add.
 
-### Answers
-
-1. `x = [p, q, r]`, written top to bottom, in that order.
-2. **2×3.** Two rows, three columns (three numbers per row).
-3. `A = [[3, 1], [1, -2]]`, `x = [x, y]`, `b = [7, 0]`.
-4. **Yes.** A 3×4 matrix times a 4-entry vector gives a 3-entry vector (one entry per row of `A`).
-5. **No.** `A`'s column count (4) must match the vector's entry count. A 3-entry vector does not fit.
-6. `Ax = [1(2) + 2(5), 3(2) + 0(5)] = [12, 6]`.
+*Answers are in the instructor answer key (not distributed with this handout).*

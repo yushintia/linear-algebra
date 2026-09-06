@@ -130,7 +130,7 @@ compute one, constantly, underneath.
 
 ---
 
-## 4. Practice Problems (with answers)
+## 4. Practice Problems
 
 Try these on your own before checking the answers at the end.
 
@@ -141,11 +141,4 @@ Try these on your own before checking the answers at the end.
 5. Normalize `u = (0, 7)` into a unit vector.
 6. For `u = (1, 0)` and `v = (1, 1)`, find `cos(angle)` and the angle. (Hint: `cos(45°) ≈ 0.707`.)
 
-### Answers
-
-1. `u · v = (5)(1) + (2)(4) = 5 + 8 = 13`.
-2. `||w|| = √(5² + 12²) = √(25 + 144) = √169 = 13`.
-3. `p - q = (7 - 3, 1 - 4) = (4, -3)`; `||p - q|| = √(16 + 9) = √25 = 5`.
-4. `a · b = (3)(2) + (-2)(3) = 6 - 6 = 0`. **Yes, orthogonal.**
-5. Length of `u` is `√(0² + 7²) = 7`, so the unit vector is `(0/7, 7/7) = (0, 1)`.
-6. `u · v = (1)(1) + (0)(1) = 1`; `||u|| = 1`, `||v|| = √2`; `cos(angle) = 1 / (1 · √2) = 1/√2 ≈ 0.707`, so `angle ≈ 45°`.
+*Answers are in the instructor answer key (not distributed with this handout).*

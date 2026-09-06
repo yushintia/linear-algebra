@@ -268,6 +268,10 @@ same rule Cayley wrote down.
 Take each row of the first matrix, and each column of the second.
 Multiply matching entries, then add.
 
+---
+
+# Multiplying Two Matrices: A Worked Example
+
 ```
 A = [ 1  2 ]      B = [ 5  6 ]
     [ 3  4 ]          [ 7  8 ]
@@ -297,6 +301,22 @@ exist at all.
 
 ---
 
+# Matrix Times Matrix vs Matrix Times Vector
+
+<div class="thread">Week 3's `Ax` was never a special operation - just a preview of this week.</div>
+
+A vector is really a matrix with one column. Multiplying `A` by a
+column vector `x` follows the exact same row-by-column rule as
+multiplying two matrices - `x` just happens to be `n × 1` instead of
+`n × k`.
+
+```
+A is m x n, x is n x 1  →  Ax is m x 1, one column
+A is m x n, B is n x k  →  AB is m x k, k columns
+```
+
+---
+
 # Order Matters: AB Is Not BA
 
 <div class="thread">Numbers let you swap order freely. Matrices do not.</div>
@@ -312,6 +332,57 @@ AB = [ 7  2 ]     BA = [ 1  2 ]
 `AB` and `BA` are different matrices. For matrices, order changes the
 answer. Always multiply in the order the problem gives you. This is
 why software applies a fixed, documented order for every change.
+
+---
+
+# Order Matters: A Second Example
+
+<div class="thread">One example could be a fluke. Here is a second, different pair.</div>
+
+```
+A = [ 2  1 ]      B = [ 1  3 ]
+    [ 0  1 ]          [ 2  0 ]
+
+AB = [ 4  6 ]     BA = [ 2  4 ]
+     [ 2  0 ]          [ 4  2 ]
+```
+
+Different matrices again. `AB ≠ BA` is the rule, not the exception.
+
+---
+
+# Matrix Multiplication and the Distributive Rule
+
+<div class="thread">One property numbers and matrices do share.</div>
+
+```
+A(B + C) = AB + AC
+```
+
+For `A = [ 1 1 ; 0 1 ]`, `B = [ 1 0 ; 0 0 ]`, `C = [ 0 0 ; 0 1 ]`:
+
+```
+A(B + C) = A × I = [ 1  1 ]
+AB + AC  = [ 1 0 ; 0 0 ] + [ 0 1 ; 0 1 ] = [ 1  1 ]
+                                            [ 0  1 ]
+```
+
+Both sides match. Distributing over addition still works, even
+though swapping order does not.
+
+---
+
+# Multiplying Three Matrices: Does Grouping Matter?
+
+<div class="thread">One more property, before moving to the inverse.</div>
+
+```
+(AB)C = A(BC)
+```
+
+Grouping does not matter, only left-to-right order does. This is why
+the café can compute `M = S × D` once, store just `M`, and never
+worry about which pair was multiplied first.
 
 ---
 
@@ -336,6 +407,37 @@ diagonal.
 
 ---
 
+# The Identity Matrix for Any Size
+
+<div class="thread">The 2×2 identity is just the smallest example.</div>
+
+```
+    [ 1  0  0 ]
+I = [ 0  1  0 ]
+    [ 0  0  1 ]
+```
+
+Every square matrix, of any size, has its own identity: 1s down the
+diagonal, 0s everywhere else. The pattern never changes.
+
+---
+
+# Powers of a Matrix: A² Means A × A
+
+<div class="thread">Applying the same change twice, written compactly.</div>
+
+For the shear matrix `A = [ 1 1 ; 0 1 ]`:
+
+```
+A² = A × A = [ 1  2 ]
+             [ 0  1 ]
+```
+
+`A²` shears twice as far as `A` alone. Just like ordinary numbers,
+`A³ = A × A × A`, and so on.
+
+---
+
 # The Inverse: Undoing a Matrix
 
 <div class="thread">Now the tool this week has been missing: how to reverse a matrix.</div>
@@ -348,6 +450,15 @@ A × A⁻¹ = I       A⁻¹ × A = I
 
 - Only a square matrix, same number of rows and columns, can have an inverse
 - Not every square matrix has one; a matrix with no inverse is called **singular**
+
+---
+
+# Special Cases: Identity and Zero Matrices
+
+<div class="thread">Two matrices worth knowing by sight.</div>
+
+- `I` is its own inverse: `I × I = I`
+- A matrix of all zeros is always singular: anything times an all-zero matrix gives all zeros, and can never reach `I`
 
 ---
 
@@ -372,6 +483,40 @@ A⁻¹ = [  1  -2 ]
 ```
 
 Check by multiplying `A × A⁻¹`. The result is `I`.
+
+---
+
+# Verifying an Inverse by Multiplying Back
+
+<div class="thread">The previous slide said "check." Here is the check, in full.</div>
+
+```
+A × A⁻¹ = [ 3  2 ] × [  1  -2 ]  = [ 3(1)+2(-1)   3(-2)+2(3) ]
+          [ 1  1 ]   [ -1   3 ]    [ 1(1)+1(-1)   1(-2)+1(3) ]
+
+        = [ 1  0 ]
+          [ 0  1 ]
+```
+
+Every entry lands exactly where `I` needs it. This is the whole point
+of an inverse: multiply it in, and everything cancels back to `I`.
+
+---
+
+# A Second 2×2 Inverse Example
+
+<div class="thread">One example could be a fluke. Try the formula on a new matrix.</div>
+
+```
+A = [ 4  3 ]      ad-bc = 4×2 - 3×3 = -1
+    [ 3  2 ]
+
+A⁻¹ = 1/(-1) × [  2  -3 ]  =  [ -2   3 ]
+               [ -3   4 ]     [  3  -4 ]
+```
+
+Check: `A × A⁻¹ = I` (confirm this yourself, the same way as the
+previous slide).
 
 ---
 
@@ -444,6 +589,38 @@ order must match business order.
 
 ---
 
+# Case Study: Reusing M for Saturday's Prices
+
+<div class="thread">This is why combining into `M` was worth doing in the first place.</div>
+
+Saturday's base prices rose slightly: `p = [850, 950]`. Reuse the same
+combined matrix `M`, no re-multiplying `S` and `D`:
+
+```
+M × p = [ 0.90 × 850            ]   [ 765 ]
+        [ 0.09 × 850 + 0.95 × 950 ] = [ 979 ]
+```
+
+One stored matrix, applied to any day's prices, instantly.
+
+---
+
+# Case Study: Undoing the Combined Discount
+
+<div class="thread">Combining and reversing, together, on the same matrix.</div>
+
+Friday's discounted prices were `[720, 927]`. Find `M⁻¹` and apply it
+to recover the original prices before any change:
+
+```
+M⁻¹ ≈ [ 1.111   0    ]     M⁻¹ × [ 720 ] = [ 800 ]
+      [ -0.105  1.053 ]          [ 927 ]   [ 900 ]
+```
+
+Friday's original prices, `[800, 900]`, come back exactly.
+
+---
+
 <!-- NEW: Try It, hands off to Worksheet Part A -->
 
 # Try It: Worksheet Part A
@@ -456,6 +633,15 @@ changes into one matrix.
 You have about 15 minutes.
 
 <!-- notes: Circulate while pairs work. If a pair finishes early, ask them to check by applying the two original matrices separately and comparing. -->
+
+---
+
+# Try It: Quick Multiply Check
+
+<div class="why">Same pairs, two minutes.</div>
+
+Write down any 2×2 matrix `A` and any 2×2 matrix `B`. Compute `AB` by
+hand while your partner computes `BA`. Compare - they should differ.
 
 ---
 
@@ -500,6 +686,28 @@ Friday's correct prices are back, exactly, with no re-typing.
 
 ---
 
+# Case Study: A Second Register Glitch
+
+<div class="thread">A different mistake, the same fix.</div>
+
+This time, the register undercharged every Sunday price by half:
+
+```
+H = [ 0.5   0  ]      Sunday's wrong prices, H × p = [ 400 ]
+    [  0   0.5 ]                                       [ 450 ]
+```
+
+Find `H⁻¹` and undo it:
+
+```
+H⁻¹ = [ 2  0 ]      H⁻¹ × (H × p) = [ 800 ]
+      [ 0  2 ]                       [ 900 ]
+```
+
+Same method, different glitch, the same exact recovery.
+
+---
+
 # The Inverse Also Solves Ax = b
 
 <div class="thread">Week 1 solved this by hand. The inverse solves it in one line.</div>
@@ -538,6 +746,17 @@ A = [ 2  4 ]      ad - bc = 2×2 - 4×1 = 0
 
 ---
 
+# Quick Recap: Combine, Then Reverse
+
+| Task | Tool | This week's example |
+|---|---|---|
+| Combine several changes | multiply matrices, in order | discount, then surcharge, into `M` |
+| Reverse one change | multiply by its inverse | undoing the register glitch |
+
+Two new operations, one for each half of this week's question.
+
+---
+
 <!-- SLOT N-1: Common mistakes -->
 
 # Common Mistakes
@@ -548,6 +767,38 @@ A = [ 2  4 ]      ad - bc = 2×2 - 4×1 = 0
 <div class="card"><div class="h">Ignoring a size mismatch</div><div class="d">columns of the first matrix must match rows of the second; always check first</div></div>
 <div class="card"><div class="h">Assuming every matrix has an inverse</div><div class="d">always check `ad - bc ≠ 0` before trusting `A⁻¹`</div></div>
 </div>
+
+---
+
+# Common Mistake, Worked: Assuming AB = BA
+
+<div class="thread">Seeing the failure numerically, one more time.</div>
+
+```
+A = [ 1  2 ]      B = [ 0  1 ]
+    [ 0  1 ]          [ 1  0 ]
+
+AB = [ 2  1 ]     BA = [ 0  1 ]
+     [ 1  0 ]          [ 1  2 ]
+```
+
+Every entry differs except one. Never assume `AB = BA` without
+checking - here, it simply is not true.
+
+---
+
+# Common Mistake, Worked: Trusting the Inverse Formula Blindly
+
+<div class="thread">The formula does not warn you. You have to check first.</div>
+
+```
+A = [ 2  4 ]      ad - bc = 2×2 - 4×1 = 0
+    [ 1  2 ]
+```
+
+Plugging into `1/(ad-bc)` divides by zero - the formula breaks
+silently if you do not check `ad - bc ≠ 0` first. `A` is singular; no
+inverse exists to find.
 
 ---
 
@@ -564,6 +815,15 @@ You have about 15 minutes.
 
 ---
 
+# Try It: Predict Before You Compute
+
+<div class="why">Same pairs, five minutes.</div>
+
+Before computing anything, guess: will `AB` equal `BA` for your two
+Worksheet Part B matrices? Then compute both and check your guess.
+
+---
+
 <!-- SLOT N: Check yourself -->
 
 # Check Yourself
@@ -577,6 +837,22 @@ You have about 15 minutes.
 
 1. `AB` is 2×4. Its size is rows of `A` by columns of `B`.
 2. **No.** `AB = [[2,2],[0,3]]`, but `BA = [[2,3],[0,3]]`. The top-right entry differs, so order matters here too.
+
+---
+
+# Check Yourself: Round 2
+
+3. For the identity matrix `I` and any matrix `B` of matching size,
+   what is `IB`?
+4. Is the all-zero matrix ever invertible? Why or why not?
+
+---
+
+# Answers: Round 2
+
+3. **`IB = B`.** The identity matrix changes nothing, on either side.
+4. **No.** Multiplying the zero matrix by anything always gives the
+   zero matrix, which can never equal `I`.
 
 ---
 

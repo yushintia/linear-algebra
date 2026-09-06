@@ -152,7 +152,7 @@ them are doing it, constantly, underneath.
 
 ---
 
-## 4. Practice Problems (with answers)
+## 4. Practice Problems
 
 Try these on your own before checking the answers at the end.
 
@@ -163,11 +163,4 @@ Try these on your own before checking the answers at the end.
 5. Is `A = [[3,6],[1,2]]` invertible? Show your check.
 6. A price vector `p = (500, 600)` is doubled by mistake, giving `(1000, 1200)`. Write the mistake as a matrix `G`, then find `G⁻¹` and use it to recover `p`.
 
-### Answers
-
-1. **Yes.** Columns of `A` (2) match rows of `B` (2). The result `AB` is 3×4.
-2. `AB = [[2×1+0×0, 2×1+0×2],[1×1+3×0, 1×1+3×2]] = [[2,2],[1,7]]`.
-3. `BA = [[1×2+1×1, 1×0+1×3],[0×2+2×1, 0×0+2×3]] = [[3,3],[2,6]]`. **No**, `BA ≠ AB`; the top-left entries alone differ (3 vs 2).
-4. `ad-bc = 1×3 - 2×1 = 1`. `A⁻¹ = [[3,-2],[-1,1]]`. Check: `A × A⁻¹ = [[1×3+2×-1, 1×-2+2×1],[1×3+3×-1, 1×-2+3×1]] = [[1,0],[0,1]] = I` ✓.
-5. **No.** `ad-bc = 3×2 - 6×1 = 0`. `A` is singular; it has no inverse.
-6. `G = [[2,0],[0,2]]`. `G⁻¹ = [[0.5,0],[0,0.5]]`. `G⁻¹ × (1000,1200) = (500,600) = p` ✓.
+*Answers are in the instructor answer key (not distributed with this handout).*

@@ -293,6 +293,17 @@ Row 2 = Row 2 − 0.5 × Row 1
 
 ---
 
+# Why Multipliers Go Into L, Not U
+
+<div class="thread">A small bookkeeping choice, worth explaining once.</div>
+
+Each multiplier records what was *done to* a row, not the row's new
+content. `U` holds the simplified rows; `L` holds the history of how
+elimination got there. Keeping them separate is what makes `A = LU`
+reusable at all - `U` alone would lose the recipe for rebuilding `A`.
+
+---
+
 # Solve Once, Reuse Forever
 
 <div class="thread">This is the whole point of this week.</div>
@@ -309,6 +320,17 @@ Row 2 = Row 2 − 0.5 × Row 1
 
 Only the last two steps repeat for a new `b`. Factoring never
 repeats. This split is the entire reason LU factorization exists.
+
+---
+
+# Quick Recap: One-Time Cost vs. Repeat Cost
+
+| Term | Meaning | Café example |
+|---|---|---|
+| One-time cost | factoring `A` into `L` and `U` | done Monday, once |
+| Repeat cost | forward and back substitution | redone every new day |
+
+Everything expensive happens once. Everything repeated is cheap.
 
 ---
 
@@ -337,6 +359,23 @@ Factoring costs more, once. Every reuse after that costs far less.
 
 ---
 
+# Operation Counts, By System Size
+
+<div class="thread">The same shortcut, but now scaled up past what a café ever needs.</div>
+
+| Unknowns | Factor once (one-time) | Solve one day (repeat) |
+|---|---|---|
+| 3 | ~9 steps | ~5 steps |
+| 100 | ~330,000 steps | ~10,000 steps |
+| 1,000 | ~330,000,000 steps | ~1,000,000 steps |
+
+<div class="bar-note">illustrative, not measured data</div>
+
+The one-time cost grows fast. The repeat cost grows much slower -
+which is exactly why reuse matters most at large sizes.
+
+---
+
 # Solving a Triangular Grid, Directly
 
 <div class="thread">Before the café's numbers, watch the shortcut work on its own.</div>
@@ -359,6 +398,126 @@ x1 + x2 = 4      →   x1 = 6
 
 No elimination needed here. Just read each unknown off, one row at a
 time.
+
+---
+
+# Solving a Triangular Grid: A Second Worked Example
+
+<div class="thread">One example could be a fluke. Try a 3-unknown grid.</div>
+
+Lower triangular, top to bottom:
+
+```
+y1 = 4
+2(y1) + y2 = 10          →  y2 = 2
+y1 - y2 + y3 = 5          →  y3 = 3
+```
+
+Upper triangular, bottom to top:
+
+```
+2(x3) = 6                 →  x3 = 3
+x2 + x3 = 5               →  x2 = 2
+2(x1) + x2 - x3 = 1       →  x1 = 1
+```
+
+Bigger grid, same rule: read off one new unknown per row.
+
+---
+
+# Triangular Systems: Forward Substitution, Generalized
+
+<div class="thread">The rule behind every forward-substitution example so far.</div>
+
+For a lower triangular system `Ly = c`:
+
+```
+y1 = c1 / l11
+y2 = (c2 - l21·y1) / l22
+y3 = (c3 - l31·y1 - l32·y2) / l33
+```
+
+Each `y` only needs the ones already found - never one that comes
+later.
+
+---
+
+# Triangular Systems: Back Substitution, Generalized
+
+<div class="thread">The mirror-image rule, read from the bottom up.</div>
+
+For an upper triangular system `Ux = y`:
+
+```
+x3 = y3 / u33
+x2 = (y2 - u23·x3) / u22
+x1 = (y1 - u12·x2 - u13·x3) / u11
+```
+
+Same idea as forward substitution, just started from the last row
+instead of the first.
+
+---
+
+# Quick Recap: Forward and Back Substitution
+
+| Step | Solves | Direction |
+|---|---|---|
+| Forward substitution | `Ly = b` | top to bottom |
+| Back substitution | `Ux = y` | bottom to top |
+
+Two short solves, always in this order, replace one long elimination.
+
+---
+
+# A Second Factoring Example, Before the Café
+
+<div class="thread">One more generic example, before the full café walkthrough.</div>
+
+```
+A = [ 4  2 ]
+    [ 2  3 ]
+```
+
+Multiplier: `2 / 4 = 0.5`. Row 2 becomes `Row 2 - 0.5 × Row 1`:
+
+```
+L = [ 1    0 ]        U = [ 4  2 ]
+    [ 0.5  1 ]            [ 0  2 ]
+```
+
+Same method as the triangular examples: find the multiplier, save it
+into `L`, save the simplified row into `U`.
+
+---
+
+# What if A Is 3×3? The Same Idea, Bigger
+
+<div class="thread">The café's grid is 2×2. Larger grids follow the identical pattern.</div>
+
+```
+    [ 1     0    0 ]        [ u11  u12  u13 ]
+L = [ l21   1    0 ]    U = [  0   u22  u23 ]
+    [ l31  l32   1 ]        [  0    0   u33 ]
+```
+
+`L` still has 1s on the diagonal and multipliers below it. `U` is
+still upper triangular. Only the number of multipliers grows.
+
+---
+
+# Counting Multipliers: Where L's Entries Come From
+
+<div class="thread">One multiplier per entry below the diagonal - no more, no less.</div>
+
+| Grid size | Multipliers needed |
+|---|---|
+| 2×2 | 1 |
+| 3×3 | 3 |
+| n×n | n(n-1)/2 |
+
+The café's 2×2 recipe needed exactly one multiplier - the smallest
+nontrivial case.
 
 ---
 
@@ -408,6 +567,23 @@ L = [ 1    0 ]        U = [ 2   1  ]
 
 Check: multiplying `L` by `U` rebuilds the original recipe grid `A`.
 This factoring is done, once, forever.
+
+---
+
+# Case Study: Verifying L × U = A
+
+<div class="thread">The previous slide promised a check. Here it is, worked out.</div>
+
+```
+L × U = [ 1    0 ] × [ 2  1  ]  = [ 1(2)+0(0)     1(1)+0(2.5)   ]
+        [ 0.5  1 ]   [ 0  2.5 ]    [ 0.5(2)+1(0)   0.5(1)+1(2.5) ]
+
+      = [ 2  1 ]
+        [ 1  3 ]
+```
+
+Exactly the original recipe grid `A`. The factoring is correct, and
+never needs to be redone.
 
 ---
 
@@ -467,6 +643,24 @@ You have about 15 minutes.
 
 ---
 
+# Try It: Quick Factor Check
+
+<div class="why">Same pairs, two minutes.</div>
+
+Factor `A = [ 6 2 ; 3 4 ]` by hand: find the one multiplier, then
+write `L` and `U`. Compare with your partner.
+
+---
+
+# Try It: Predict the Multiplier
+
+<div class="why">Same pairs, two minutes.</div>
+
+Before computing, guess what the multiplier will be for `A = [ 10 2 ;
+5 6 ]`. Then compute it and check your guess.
+
+---
+
 <!-- _class: section -->
 
 # End of 차시 2
@@ -500,6 +694,28 @@ pivoted, the same forward-and-back-substitution shortcut still works.
 
 ---
 
+# Pivoting: A Worked Example
+
+<div class="thread">Seeing the zero-pivot problem, and the fix, on real numbers.</div>
+
+```
+A = [ 0  1 ]
+    [ 1  1 ]
+```
+
+The top-left entry is `0` - eliminating would divide by zero. Swap
+the two rows first:
+
+```
+A' = [ 1  1 ]
+     [ 0  1 ]
+```
+
+`A'` is already upper triangular: no elimination needed at all, and
+`L = I`.
+
+---
+
 <!-- SLOT N-2: Worked example -->
 
 # Case Study: A Third Day, Same Recipe
@@ -518,6 +734,25 @@ y1 = 900
 
 Wednesday: `m = 300`, `s = 300`. Three days, one factoring, three
 fast solves.
+
+---
+
+# Case Study: A Fourth Day, New Prices
+
+<div class="thread">The following Monday: still the same recipe grid, still no re-factoring.</div>
+
+The following Monday's receipts: Latte totaled 750 원, Mocha totaled
+1050 원. Reuse the same `L` and `U`:
+
+```
+y1 = 750
+0.5(750) + y2 = 1050   →   y2 = 675
+2.5(x2) = 675            →   x2 = 270 (s)
+2(x1) + 270 = 750         →   x1 = 240 (m)
+```
+
+Monday: `m = 240`, `s = 270`. A new week, the same factoring, still
+just two quick solves.
 
 ---
 
@@ -543,6 +778,44 @@ You have about 15 minutes.
 
 ---
 
+# Common Mistake, Worked: Re-Factoring Unnecessarily
+
+<div class="thread">Seeing the wasted work, not just being told about it.</div>
+
+Tuesday's receipts changed, so a rushed student re-eliminates `A`
+from scratch: multiplier `0.5`, row 2 becomes `[0, 2.5]` - the exact
+same `L` and `U` as Monday. All of that work reproduces numbers
+already saved. Reuse them instead.
+
+---
+
+# Common Mistake, Worked: Solving Ux = y Before Ly = b
+
+<div class="thread">Skipping forward substitution breaks the method.</div>
+
+Trying to solve `Ux = b` directly, skipping `Ly = b` first:
+
+```
+2.5(x2) = 0      →  x2 = 0   (using b's second entry, not y's)
+```
+
+This is not Monday's answer, `x2 = 200`. `U` only solves correctly
+against `y`, the output of forward substitution - never against `b`
+directly.
+
+---
+
+# Common Mistake, Worked: Forgetting to Reorder After a Pivot Swap
+
+<div class="thread">A swap in `A` must carry over to `b`, or the answer comes out wrong.</div>
+
+Swap rows 1 and 2 of `A` to avoid a zero pivot, but forget to swap the
+matching entries of `b`. The factored `L` and `U` now solve a
+different system than the one asked - the row swap must apply to
+`b` too, every time.
+
+---
+
 # Check Yourself
 
 1. True or false: once you know `L` and `U`, you can reuse them for any new right-hand side.
@@ -556,6 +829,23 @@ You have about 15 minutes.
 1. **True.** `L` and `U` depend only on the recipe grid, never on the day's receipts.
 2. **Forward substitution** (`Ly = b`), then **back substitution** (`Ux = y`).
 3. `m = 300`, `s = 400`. (`y1 = 1000`, `y2 = 1500 − 500 = 1000`, `x2 = 400`, `x1 = (1000 − 400)/2 = 300`.)
+
+---
+
+# Check Yourself: Round 2
+
+4. Why does `L` always have 1s on its diagonal, by convention?
+5. If a 3×3 grid needs 3 multipliers to factor, how many would a
+   4×4 grid need?
+
+---
+
+# Answers: Round 2
+
+4. **So `A = LU` has a unique answer.** Without fixing `L`'s diagonal
+   to 1s, many different `L, U` pairs could multiply back to the same
+   `A`.
+5. **6.** Following `n(n-1)/2`: `4 × 3 / 2 = 6`.
 
 ---
 

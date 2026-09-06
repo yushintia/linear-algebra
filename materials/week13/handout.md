@@ -153,7 +153,7 @@ finding the closest achievable point, constantly, underneath.
 
 ---
 
-## 4. Practice Problems (with answers)
+## 4. Practice Problems
 
 Try these on your own before checking the answers at the end.
 
@@ -164,11 +164,4 @@ Try these on your own before checking the answers at the end.
 5. For Problem 4, find the leftover part `z` and identify which ingredient/coordinate it isolates.
 6. True or false, with a one-sentence reason: the projection of `y` onto a subspace `W` can be farther from `y` than some other point in `W`.
 
-### Answers
-
-1. `y·u = 5(1)+0(1) = 5`, `u·u = 1+1 = 2`, so `proj_u(y) = (5/2)(1,1) = (2.5, 2.5)`.
-2. `y·u = 2(3)+6(0) = 6`, `u·u = 9+0 = 9`, so `proj_u(y) = (6/9)(3,0) = (2/3)(3,0) = (2, 0)`.
-3. `z = (5,0) - (2.5,2.5) = (2.5, -2.5)`. Check: `z·u = 2.5(1) + (-2.5)(1) = 0` ✓.
-4. `(y·u1)/(u1·u1) = 2/1 = 2`, `(y·u2)/(u2·u2) = 3/1 = 3`, so `proj_W(y) = 2(1,0,0) + 3(0,1,0) = (2, 3, 0)`.
-5. `z = (2,3,5) - (2,3,0) = (0, 0, 5)`. It isolates the third coordinate exactly, the one direction the subspace `span(u1,u2)` cannot reach.
-6. **False.** The Best Approximation Theorem guarantees `proj_W(y)` is closer to `y` than every other point in `W` — it can never be farther than some alternative.
+*Answers are in the instructor answer key (not distributed with this handout).*

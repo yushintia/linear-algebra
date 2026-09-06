@@ -318,6 +318,90 @@ system instead of the original, unsolvable one.
 
 ---
 
+# The Normal Equations in Matrix Form: A Closer Look
+
+<div class="thread">One reason this system is always solvable, unlike the original.</div>
+
+`AᵀA` is always a square matrix, `n × n` for `n` unknowns, no matter
+how many rows `A` itself has. As long as `A`'s columns are linearly
+independent, `AᵀA` is invertible, and the normal equations have
+exactly one solution.
+
+---
+
+# Worked Example: Normal Equations From Scratch (1/4)
+
+<div class="thread">A tiny 3-point data set, walked through the matrix form directly.</div>
+
+Fit a line to `(1, 2)`, `(2, 3)`, `(3, 5)`:
+
+```
+A = [ 1  1 ]        b = [ 2 ]
+    [ 1  2 ]            [ 3 ]
+    [ 1  3 ]            [ 5 ]
+```
+
+---
+
+# Worked Example: Normal Equations From Scratch (2/4)
+
+Compute `AᵀA` and `Aᵀb` directly, by matrix multiplication:
+
+```
+AᵀA = [ 3  6 ]        Aᵀb = [ 10 ]
+      [ 6  14]              [ 23 ]
+```
+
+Same numbers Week 14's summation shortcut would give: `n=3`, `Σx=6`,
+`Σx²=14`, `Σy=10`, `Σxy=23`.
+
+---
+
+# Worked Example: Normal Equations From Scratch (3/4)
+
+Solve `AᵀAx̂ = Aᵀb`:
+
+```
+[ 3   6 ] [ b ]   [ 10 ]
+[ 6  14 ] [ m ] = [ 23 ]
+```
+
+Row reduction gives `b = 0.333`, `m = 1.5`. Best-fit line:
+`y = 0.333 + 1.5x`.
+
+---
+
+# Worked Example: Normal Equations From Scratch (4/4)
+
+Check the residuals:
+
+```
+x=1: predicted 1.833, actual 2, residual  0.167
+x=2: predicted 3.333, actual 3, residual -0.333
+x=3: predicted 4.833, actual 5, residual  0.167
+```
+
+No residual is zero, but this line minimizes their squared sum, over
+every possible line.
+
+---
+
+# Why Residuals Sum to Zero (With an Intercept)
+
+<div class="thread">One elegant fact, true whenever a line includes an intercept term.</div>
+
+Add up the worked example's residuals:
+
+```
+0.167 + (-0.333) + 0.167 = 0.001 ≈ 0
+```
+
+Whenever a fitted line includes an intercept (the column of 1s), the
+residuals always sum to (almost exactly) zero. Positive and negative
+misses balance out, by construction of the normal equations.
+
+---
+
 # Setting Up the Design Matrix for a Line
 
 <div class="thread">Now apply this to fitting `rating = b + m · syrup`.</div>
@@ -350,6 +434,36 @@ n·b   + (Σx)·m = Σy
 
 `n` is the number of points, and each `Σ` sums over all data points.
 Solve this 2x2 system for `b` and `m`, exactly like Week 1's method.
+
+---
+
+# From Two Points to a Line: The Trivial Case
+
+<div class="thread">One edge case is worth naming before moving to real, messier data.</div>
+
+With exactly 2 data points, a line has exactly enough freedom to pass
+through both exactly. The normal equations still work, but every
+residual comes out zero: no approximation was needed at all.
+
+Least squares only shows its real value once there are more points
+than a line can satisfy exactly.
+
+---
+
+# Least Squares Also Works for Curves
+
+<div class="thread">The method is not limited to straight lines.</div>
+
+Adding an `x²` column to the design matrix fits a parabola instead of
+a line, using the exact same normal equations:
+
+```
+A = [ 1  x1  x1² ]      fits  y = b + m·x + c·x²
+    [ 1  x2  x2² ]
+    [    ...     ]
+```
+
+Same formula, `AᵀAx̂ = Aᵀb`. Only the design matrix's columns change.
 
 ---
 
@@ -409,6 +523,106 @@ line: no other choice makes the squared residuals add up to less.
 
 ---
 
+# Case Study: Predicting a New Cup
+
+<div class="thread">The whole point of a best-fit line: predicting a rating nobody tasted yet.</div>
+
+Using `rating = 1.9 + 1.1 · syrup`, predict cup 6, at 3.5 syrup units:
+
+```
+rating = 1.9 + 1.1(3.5) = 1.9 + 3.85 = 5.75
+```
+
+The café can now estimate any customer's rating, for any syrup amount
+within the tested range, without running a new taste test.
+
+---
+
+# Case Study: Comparing to a Flat-Rate Guess
+
+<div class="thread">Proving the fitted line actually beats a lazy guess.</div>
+
+Compare the fitted line's squared residuals to guessing the average
+rating, `5.2`, for every cup:
+
+```
+Fitted line's sum of squared residuals:   ≈ 2.70
+Flat average guess's sum of squared residuals: ≈ 12.80
+```
+
+The least-squares line cuts the squared error by more than three
+quarters, compared to ignoring syrup amount entirely.
+
+---
+
+# R²: How Good Is the Fit?
+
+<div class="thread">One number, beyond residuals, that summarizes the whole fit.</div>
+
+```
+R² = 1 - (fitted line's squared error) / (flat-guess squared error)
+```
+
+`R²` ranges from 0 (no better than guessing the average) to 1 (a
+perfect fit). It answers: "how much of the pattern does this line
+actually explain?"
+
+---
+
+# R²: Computing It for the Café
+
+Plug in the café's numbers from the last two slides:
+
+```
+R² = 1 - (2.70 / 12.80) ≈ 1 - 0.211 = 0.789
+```
+
+About 79% of the variation in ratings is explained by syrup amount
+alone. The remaining 21% is noise, or other factors the line does not
+capture.
+
+---
+
+# Checking the Fit: Plotting Residuals
+
+<div class="thread">A number is useful. A picture catches what a number can hide.</div>
+
+Plotting each residual against its `x` value should show no obvious
+pattern, just scattered noise above and below zero. A clear curve or
+trend in the residual plot is a sign the straight-line model itself is
+wrong, not just noisy.
+
+---
+
+# Multiple Regression: More Than One Input
+
+<div class="thread">The design matrix idea scales past one input variable.</div>
+
+If the café also tracked ice amount, the design matrix grows one more
+column:
+
+```
+A = [ 1  syrup1  ice1 ]      fits  rating = b + m1·syrup + m2·ice
+    [ 1  syrup2  ice2 ]
+    [       ...        ]
+```
+
+The exact same normal equations, `AᵀAx̂ = Aᵀb`, now solve for three
+unknowns instead of two.
+
+---
+
+# Multiple Regression: What Doesn't Change
+
+<div class="thread">One method, one formula, no matter how many inputs.</div>
+
+Adding inputs never changes the method: build a design matrix, form
+`AᵀA` and `Aᵀb`, solve. Only the size of the matrices grows. This is
+exactly how real-world sales, pricing, and forecasting models are
+built, often with dozens of input columns.
+
+---
+
 <!-- NEW: Try It, hands off to Worksheet Part A -->
 
 # Try It: Worksheet Part A
@@ -460,6 +674,28 @@ Always look at the data, not only the fitted line.
 
 ---
 
+# Case Study: One Outlier Changes Everything
+
+<div class="thread">A single unusual customer, added to the café's data.</div>
+
+Add a sixth cup: 5 syrup units, but a rating of `1` (a customer who
+disliked the drink for an unrelated reason). Refitting the line pulls
+the slope down noticeably, even though five of six points barely
+moved. One unusual point can outweigh several ordinary ones.
+
+---
+
+# Industry Note: From Normal Equations to Machine Learning
+
+<div class="thread">The exact formula scales down. Real datasets scale it back up.</div>
+
+For millions of data points and thousands of inputs, computing `AᵀA`
+directly gets expensive. Machine learning training instead often uses
+an iterative shortcut, gradient descent, that reaches nearly the same
+best-fit answer without ever forming the full normal equations.
+
+---
+
 <!-- NEW: Try It, hands off to Worksheet Part B -->
 
 # Try It: Worksheet Part B
@@ -473,11 +709,31 @@ You have about 15 minutes.
 
 ---
 
+# Try It: Compute R² for Your Fit
+
+<div class="why">Same pairs. Quick pencil check, no new worksheet.</div>
+
+For your Worksheet Part A line, compare its sum of squared residuals
+to the flat-average guess. Compute `R²`.
+
+You have about 5 minutes.
+
+---
+
 # Common Mistakes
 
 - **Trying to solve `Ax = b` directly:** an overdetermined system usually has no exact solution; always move to the normal equations
 - **Forgetting the column of 1s:** without it, the fitted line is forced through the origin, which is rarely correct
 - **Trusting extrapolation like interpolation:** a best-fit line is least reliable far outside the data it was built from
+
+---
+
+# More Common Mistakes
+
+<div class="cardlist">
+<div class="card"><div class="h">Reading a high R² as proof of causation</div><div class="d">a strong fit only shows correlation; it never proves syrup <em>causes</em> a higher rating</div></div>
+<div class="card"><div class="h">Ignoring one obvious outlier</div><div class="d">check the data and the residual plot, not only the fitted line's equation</div></div>
+</div>
 
 ---
 
@@ -494,6 +750,20 @@ You have about 15 minutes.
 
 1. **More equations than unknowns, and real noise.** With more data points than unknowns, `b` almost never lands exactly in the column space of `A`.
 2. **The sum of squared residuals.** `x̂` makes `Ax̂` as close to `b` as possible, in this squared-length sense.
+
+---
+
+# Check Yourself: Round 2
+
+1. A fitted line has `R² = 0.95`. What does that say about the fit?
+2. Why do the residuals of a line fit with an intercept always sum to (about) zero?
+
+---
+
+# Answers: Round 2
+
+1. **A very strong fit.** About 95% of the variation in the data is explained by the line; only 5% is left as unexplained noise.
+2. **Because the normal equations require it.** The intercept's own equation, `n·b + (Σx)·m = Σy`, forces the positive and negative misses to balance out.
 
 ---
 
