@@ -1,6 +1,6 @@
 <!-- page break for print -->
 
-## Professor Answer Key — do not hand out this section
+## Professor Answer Key (do not hand out this section)
 
 ### Part A
 
@@ -100,7 +100,7 @@ rule repeats.
 
 **Task 4 (mechanical stability):** `S` is triangular, so
 `det(S - λI) = (-1-λ)(-3-λ) = 0`, giving `λ = -1` and `λ = -3`. Both
-eigenvalues are negative, so **yes, the system is stable** — small
+eigenvalues are negative, so **yes, the system is stable**: small
 errors shrink toward zero over time.
 
 **Task 5 (weather model):**

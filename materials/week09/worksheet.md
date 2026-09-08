@@ -117,7 +117,7 @@ Independent or dependent? ___________ Why: ___________________
 These problems use the same independence, span, basis, and dimension
 ideas as Parts A and B, applied to different real-world settings.
 
-### Task 1: Robotics — Degrees of Freedom
+### Task 1: Degrees of Freedom
 
 A robot arm's end effector is tested along three motion directions
 (in cm per step, `x, y, z` coordinates):
@@ -141,7 +141,7 @@ though three directions were tested.
 
 Basis: ________________________  Dimension: ______
 
-### Task 2: Color Mixing — an RGB Basis
+### Task 2: an RGB Basis
 
 A stage-light rig mixes light from three spotlights, each an
 `(R, G, B)` vector:
@@ -165,7 +165,7 @@ Basis: ________________________  Dimension: ______
 
 _________________________________________________________________
 
-### Task 3: Audio — Does a Third Waveform Add Anything?
+### Task 3: Does a Third Waveform Add Anything?
 
 A synthesizer builds a 3-sample waveform snapshot `(s1, s2, s3)` by
 combining two basic waveforms:
@@ -186,7 +186,7 @@ already reach with just `{w1, w2}`? ___________________
 
 State the dimension of `span{w1, w2, w3}`: ______
 
-### Task 4: Physics — a Basis for Forces in a Plane
+### Task 4: a Basis for Forces in a Plane
 
 Three forces act on a bracket, each an `(x, y)` vector in newtons:
 
@@ -207,7 +207,7 @@ dimension:
 
 Basis: ________________________  Dimension: ______
 
-### Task 5: Economics — a Resource Rule's Solution Space
+### Task 5: a Resource Rule's Solution Space
 
 A factory's sustainability rule requires labor `L`, material `M`, and
 energy `E` per unit produced to satisfy:

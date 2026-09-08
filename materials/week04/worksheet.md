@@ -131,7 +131,7 @@ Classification: ___________________
 
 ## Part C: More Practice (about 25 minutes)
 
-Five more combine-and-undo problems, outside the café.
+Five more combine-and-undo problems, in five new settings.
 
 ### Task 1: A supply chain's tariff and bundling fee
 

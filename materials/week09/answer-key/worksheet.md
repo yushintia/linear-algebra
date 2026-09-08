@@ -1,6 +1,6 @@
 <!-- page break for print -->
 
-## Professor Answer Key — do not hand out this section
+## Professor Answer Key (do not hand out this section)
 
 ### Part A
 
@@ -46,7 +46,7 @@ single line). `nullity(A) = 2` (matches Task 1). Check:
 **Task 1 (robotics):** `d1 + d2 - d3 = (1+0-1, 0+1-1, 1+1-2) = (0, 0,
 0)`, so `c1 = 1`, `c2 = 1`, `c3 = -1` (not all zero). `{d1, d2, d3}`
 is **dependent**. Basis: `{d1, d2}` (`d3 = d1 + d2` is redundant).
-Dimension: **2** — the arm effectively has only 2 usable degrees of
+Dimension: **2**. The arm effectively has only 2 usable degrees of
 freedom at this instant, not 3.
 
 **Task 2 (color mixing):** `p3 = 2·p1 + 1·p2`, since
@@ -57,7 +57,7 @@ always 0), so `(0, 0, 1)` is not in `span{p1, p2, p3}`.
 
 **Task 3 (audio):** `w3 = 2·w1 + 3·w2`, since
 `2(1,0,-1) + 3(0,1,0) = (2,3,-2)`. Adding `w3` reaches **nothing
-new** — it is already a combination of `w1` and `w2`. Dimension of
+new**: it is already a combination of `w1` and `w2`. Dimension of
 `span{w1, w2, w3}` = **2**.
 
 **Task 4 (physics):**
@@ -66,8 +66,8 @@ new** — it is already a combination of `w1` and `w2`. Dimension of
 - (b) Yes, `{f1, f3}` is independent: `f3 = (1,0)` is not a scalar
   multiple of `f1 = (3,4)` (there is no `k` with `3k=1` and `4k=0`
   simultaneously).
-- (c) Basis: `{f1, f3}`. Dimension: **2** — since two independent
-  vectors already span all of `R²`, `f2` (and any other force in the
+- (c) Basis: `{f1, f3}`. Dimension: **2**, since two independent
+  vectors already span all of `R²`. `f2` (and any other force in the
   plane) is automatically reachable.
 
 **Task 5 (economics):** `L = 2M - E`.

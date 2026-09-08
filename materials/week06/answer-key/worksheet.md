@@ -1,6 +1,6 @@
 <!-- page break for print -->
 
-## Professor Answer Key — do not hand out this section
+## Professor Answer Key (do not hand out this section)
 
 ### Part A
 
@@ -70,7 +70,7 @@ a line.
 
 **Mount 2:** `det = 3(4) - 1(2) = 12 - 2 = 10`. Nonzero. **Invertible.**
 
-**Answer:** Mount 1 needs to be recalibrated — its transform matrix
+**Answer:** Mount 1 needs to be recalibrated. Its transform matrix
 is singular, so pixel positions cannot be recovered uniquely from
 that mount.
 
@@ -91,10 +91,10 @@ of loop currents for any choice of voltage sources.
 
 **Task 4 (Encoding Key Invertibility):**
 
-**Key A:** `det = 3(4) - 5(2) = 12 - 10 = 2`. Nonzero. **Usable** —
+**Key A:** `det = 3(4) - 5(2) = 12 - 10 = 2`. Nonzero. **Usable:**
 the key is invertible, so decoding is always possible.
 
-**Key B:** `det = 4(3) - 6(2) = 12 - 12 = 0`. **Not usable** — the
+**Key B:** `det = 4(3) - 6(2) = 12 - 12 = 0`. **Not usable:** the
 key is singular. Row 2 is exactly row 1 scaled by 0.5, so different
 messages could encode to the same result, and decoding would not be
 uniquely reversible.
@@ -102,13 +102,13 @@ uniquely reversible.
 **Task 5 (Input-Output Model Check):**
 
 **Model 1:** `det = 0.9(0.8) - (-0.2)(-0.3) = 0.72 - 0.06 = 0.66`.
-Nonzero. **Invertible** — this model guarantees a unique output
+Nonzero. **Invertible:** this model guarantees a unique output
 solution for any demand vector.
 
 **Model 2:** `det = 0.6(0.2) - (-0.4)(-0.3) = 0.12 - 0.12 = 0`.
 **Singular.**
 
-**Answer:** Relying on Model 2 is risky — a singular coefficient
+**Answer:** Relying on Model 2 is risky. A singular coefficient
 matrix means the model either has no consistent production plan at
 all for some demand targets, or infinitely many equally valid plans
 for others, and the determinant alone cannot say which; the economist

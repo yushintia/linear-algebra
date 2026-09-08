@@ -1,6 +1,6 @@
 <!-- page break for print -->
 
-## Professor Answer Key — do not hand out this section
+## Professor Answer Key (do not hand out this section)
 
 ### Part A
 
@@ -157,7 +157,7 @@ y1 = 100
 **Answer: `x = 20` kg, `y = 10` kg.**
 
 **Discussion question answer:** The blending ratio grid `A` is fixed
-by the reactor's design — only the target batch totals (the
+by the reactor's design. Only the target batch totals (the
 right-hand side) change, so the factored `L` and `U` stay valid for
 every batch.
 

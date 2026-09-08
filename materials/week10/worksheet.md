@@ -112,7 +112,7 @@ _________________________________________________________________
 These problems use this week's characteristic equation and eigenvector
 method in different real-world settings.
 
-### Task 1: Vibration Analysis — Natural Frequencies
+### Task 1: Natural Frequencies
 
 A two-mass spring system's coupled stiffness matrix is:
 
@@ -137,7 +137,7 @@ Eigenvector: `( ______ , ______ )`
 
 Check: _________________________________________________________________
 
-### Task 2: Population Growth — Which Group Dominates?
+### Task 2: Which Group Dominates?
 
 A population-growth model for two linked species uses matrix:
 
@@ -159,7 +159,7 @@ comes to dominate the total, the longer this growth rule runs?
 
 _________________________________________________________________
 
-### Task 3: A Tiny Link Network — Steady Importance
+### Task 3: Steady Importance
 
 Two web pages link only to each other. The "importance transfer"
 matrix is:
@@ -183,7 +183,7 @@ to that equal split as this "follow the link" rule repeats? (Use
 
 _________________________________________________________________
 
-### Task 4: Mechanical Stability — Does It Settle Down?
+### Task 4: Does It Settle Down?
 
 A control system's error-dynamics matrix is:
 
@@ -200,7 +200,7 @@ Build and solve `det(S - λI) = 0`.
 over time) if every eigenvalue is negative. Is this system stable?
 ___________________
 
-### Task 5: A Weather Model — Long-Run Ratio
+### Task 5: Long-Run Ratio
 
 A simple sunny/rainy weather model uses a day-to-day transition
 matrix:

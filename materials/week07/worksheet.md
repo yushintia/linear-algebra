@@ -110,10 +110,9 @@ _________________________________________________________________
 
 ## Part C: More Practice (about 25 minutes)
 
-Each task below is a different real-world system. None of them are
-the café.
+Each task below is a different real-world system.
 
-### Task 1: Signal Processing — Basis Waveforms
+### Task 1: Basis Waveforms
 
 An audio engineer represents a two-sample snippet of sound as a
 vector `(a1, a2)`, the amplitude at two time points. Any snippet is
@@ -129,11 +128,11 @@ span every possible two-sample snippet? Why or why not?
 
 _________________________________________________________________
 
-### Task 2: Color Space (RGB) — Grayscale Subspace and Channel Span
+### Task 2: Grayscale Subspace and Channel Span
 
 Colors in a simple 3-channel model are vectors `(R, G, B)`. For this
 exercise, allow each channel to be any real number, even negative or
-over the usual limit — we are only testing the rules.
+over the usual limit; we are only testing the rules.
 
 **Set G: all grayscale colors, where `R = G = B`**
 
@@ -153,7 +152,7 @@ make the span any bigger? Why or why not?
 
 _________________________________________________________________
 
-### Task 3: Robotics — Joint-Angle Calibration Constraint
+### Task 3: Joint-Angle Calibration Constraint
 
 A robotics engineer models a two-joint arm's calibration constraint
 as pairs `(θ1, θ2)` (joint angles, in degrees, allowed to be any real
@@ -173,7 +172,7 @@ whether each is a vector space?
 
 _________________________________________________________________
 
-### Task 4: Polynomial Space — Root Condition and Span
+### Task 4: Root Condition and Span
 
 A simple polynomial space consists of degree-≤1 polynomials
 `p(x) = a + bx`, written as the vector `(a, b)`.
@@ -193,7 +192,7 @@ Explain how you would check.
 
 _________________________________________________________________
 
-### Task 5: Physics — Cable Tension Equilibrium
+### Task 5: Cable Tension Equilibrium
 
 Three cables pull on a single support ring. For the ring to stay in
 static equilibrium along one measured direction, the tensions must

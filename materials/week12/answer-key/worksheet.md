@@ -1,6 +1,6 @@
 <!-- page break for print -->
 
-## Professor Answer Key — do not hand out this section
+## Professor Answer Key (do not hand out this section)
 
 ### Part A
 
@@ -55,7 +55,7 @@ dimensions, even when a picture is not possible.
 
 ### Part C
 
-**Problem 1 (Physics — Work Done by a Force):**
+**Problem 1 (Work Done by a Force):**
 
 ```
 F · d = (3)(4) + (4)(3) = 12 + 12 = 24 J
@@ -68,7 +68,7 @@ work (`F · d = 0`). This matches physical intuition: pushing sideways
 to the direction of travel does not move the crate any farther along
 that direction, so no energy is transferred along it.
 
-**Problem 2 (Computer Graphics — Surface Lighting):**
+**Problem 2 (Surface Lighting):**
 
 ```
 n · L = 0(0) + 0(3) + 1(4) = 4
@@ -82,7 +82,7 @@ angle = arccos(0.8) ≈ 36.9°
 lit would be `cos = 1`, angle 0°), so the surface is fairly brightly
 lit, not near a grazing/shadowed angle.
 
-**Problem 3 (Navigation — Crossing Ship Headings):**
+**Problem 3 (Crossing Ship Headings):**
 
 ```
 vA · vB = 8(6) + 6(-8) = 48 - 48 = 0
@@ -94,9 +94,9 @@ angle = 90°
 
 **Question answer:** Yes. A dot product of zero means the two
 velocity vectors are orthogonal, so the ships' headings meet at
-exactly 90° — a textbook crossing situation.
+exactly 90°, a textbook crossing situation.
 
-**Problem 4 (Signal Processing — Orthogonal Codes):**
+**Problem 4 (Orthogonal Codes):**
 
 ```
 s1 · s2 = 1(1) + 1(-1) + (-1)(1) + (-1)(-1) = 1 - 1 - 1 + 1 = 0
@@ -104,13 +104,13 @@ s1 · s2 = 1(1) + 1(-1) + (-1)(1) + (-1)(-1) = 1 - 1 - 1 + 1 = 0
 ||s2|| = √(1² + 1² + 1² + 1²) = √4 = 2
 ```
 
-**Question answer:** Yes — since `s1 · s2 = 0`, the two codes are
+**Question answer:** Yes, since `s1 · s2 = 0`, the two codes are
 orthogonal, so the engineer can recover each signal cleanly using
 dot products. If `s1 · s2` were nonzero, the two signals would
 "leak" into each other (interference/crosstalk), and neither could
 be perfectly separated back out.
 
-**Problem 5 (Sports Analytics — Comparing Playing Styles):**
+**Problem 5 (Comparing Playing Styles):**
 
 ```
 X · Z = 20(5) + 5(20) + 5(5) = 100 + 100 + 25 = 225
@@ -121,6 +121,6 @@ angle = 60°
 ```
 
 **Question answer:** Something in between. An angle of 60° is far
-from 0° (identical role) and also far from 90° (unrelated roles) —
-it shows the scorer and the playmaker have a clearly different, but
+from 0° (identical role) and also far from 90° (unrelated roles).
+It shows the scorer and the playmaker have a clearly different, but
 not entirely unrelated, statistical profile.

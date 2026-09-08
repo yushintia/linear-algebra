@@ -128,10 +128,10 @@ _________________________________________________________________
 ## Part C: More Practice (about 25 minutes)
 
 Least-squares fitting works the same way no matter what the data
-represents. Each problem below gives you a small, clean dataset —
+represents. Each problem below gives you a small, clean dataset:
 build the normal equations, solve, and interpret the fit.
 
-### Problem 1: Scientific Measurement — Plant Growth
+### Problem 1: Plant Growth
 
 A biology student measures a seedling's height (cm) once a day for
 five days.
@@ -160,7 +160,7 @@ height on day 6. Is this interpolation or extrapolation?
 
 _________________________________________________________________
 
-### Problem 2: Sports Statistics — Points Scored per Game
+### Problem 2: Points Scored per Game
 
 A basketball player's points scored over five games:
 
@@ -188,7 +188,7 @@ of (close to) zero tell you about that particular game?
 
 _________________________________________________________________
 
-### Problem 3: Economics — Quarterly Price Index
+### Problem 3: Quarterly Price Index
 
 A commodity's price index over five quarters:
 
@@ -216,7 +216,7 @@ terms (units: price-index points per quarter)?
 
 _________________________________________________________________
 
-### Problem 4: Physics — Velocity of a Rolling Cart
+### Problem 4: Velocity of a Rolling Cart
 
 A cart rolls down a ramp. Its velocity (m/s) is measured once per
 second:
@@ -245,7 +245,7 @@ acceleration. What acceleration (in m/s²) does this fit suggest?
 
 _________________________________________________________________
 
-### Problem 5: Engineering — Force Sensor Calibration
+### Problem 5: Force Sensor Calibration
 
 An engineer calibrates a force sensor by applying known reference
 forces and recording the sensor's output voltage:

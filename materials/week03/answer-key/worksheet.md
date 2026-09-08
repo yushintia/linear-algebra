@@ -1,6 +1,6 @@
 <!-- page break for print -->
 
-## Professor Answer Key — do not hand out this section
+## Professor Answer Key (do not hand out this section)
 
 ### Part A
 
@@ -111,5 +111,5 @@ A = [  0   1 ]
 Result: `(-6, -3)`.
 
 **Question:** It must map `(0, 0)` to `(0, 0)`, because every linear
-transformation fixes the origin — a ball with zero velocity has
+transformation fixes the origin. A ball with zero velocity has
 nothing for the bounce to reverse.

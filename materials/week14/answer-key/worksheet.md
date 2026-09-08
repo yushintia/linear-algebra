@@ -1,6 +1,6 @@
 <!-- page break for print -->
 
-## Professor Answer Key — do not hand out this section
+## Professor Answer Key (do not hand out this section)
 
 ### Part A
 
@@ -83,7 +83,7 @@ from producing a nonsense value once you push it far enough.
 
 ### Part C
 
-**Problem 1 (Scientific Measurement — Plant Growth):**
+**Problem 1 (Plant Growth):**
 
 ```
 Σx = 1+2+3+4+5 = 15
@@ -103,10 +103,10 @@ the second: `15(7 - 3m) + 55m = 125` → `105 - 45m + 55m = 125` →
 **Answer: `b = 1`, `m = 2`. Best-fit line: `height = 1 + 2 · day`.**
 
 **Question answer:** Predicted height on day 6: `1 + 2(6) = 13` cm.
-This is **extrapolation** — day 6 is outside the observed range of
+This is **extrapolation**: day 6 is outside the observed range of
 days 1 to 5.
 
-**Problem 2 (Sports Statistics — Points Scored per Game):**
+**Problem 2 (Points Scored per Game):**
 
 ```
 Σx = 15
@@ -127,10 +127,10 @@ From the first equation: `b = (70 - 15m)/5 = 14 - 3m`. Substitute:
 
 **Question answer:** Predicted points for Game 3: `8 + 2(3) = 14`.
 Actual points: `14`. Residual `= 14 - 14 = 0`. A residual of zero
-means the best-fit line predicted that game's score exactly — no
+means the best-fit line predicted that game's score exactly: no
 error at all for that one data point.
 
-**Problem 3 (Economics — Quarterly Price Index):**
+**Problem 3 (Quarterly Price Index):**
 
 ```
 Σx = 15
@@ -153,7 +153,7 @@ From the first equation: `b = (575 - 15m)/5 = 115 - 3m`. Substitute:
 **Question answer:** The slope `m = 5` means the commodity's price
 index rises by about 5 points, on average, each quarter.
 
-**Problem 4 (Physics — Velocity of a Rolling Cart):**
+**Problem 4 (Velocity of a Rolling Cart):**
 
 ```
 Σx = 15
@@ -177,7 +177,7 @@ From the first equation: `b = (55 - 15m)/5 = 11 - 3m`. Substitute:
 acceleration, so this fit suggests an acceleration of about
 `3 m/s²`.
 
-**Problem 5 (Engineering — Force Sensor Calibration):**
+**Problem 5 (Force Sensor Calibration):**
 
 ```
 Σx = 15

@@ -132,11 +132,10 @@ _________________________________________________________________
 
 ## Part C: More Practice (about 25 minutes)
 
-Projection is not just for the café's blending machine. The five
-problems below use the same projection formula in five different
-real-world settings.
+The five problems below use the same projection formula in five
+different real-world settings.
 
-### Problem 1: Computer Graphics — Casting a Shadow
+### Problem 1: Casting a Shadow
 
 In a 2D side-view game, sunlight casts every object's shadow
 straight down onto flat ground. The ground is the line spanned by
@@ -155,12 +154,12 @@ z · u = ______
 ```
 
 **Question:** What do the two coordinates of `proj_u(y)` represent
-for the object's shadow — and what does `z` represent about the
+for the object's shadow? What does `z` represent about the
 object's height above the ground?
 
 _________________________________________________________________
 
-### Problem 2: Data Science — The Simplest Possible Model
+### Problem 2: The Simplest Possible Model
 
 Before fitting a full line next week, consider the simplest model of
 all: predicting every reading with the same constant number. Three
@@ -183,7 +182,7 @@ z = y - proj_u(y) = ( ______ , ______ , ______ )
 
 _________________________________________________________________
 
-### Problem 3: Physics — Force Along a Ramp
+### Problem 3: Force Along a Ramp
 
 A crate sits on a frictionless ramp. The direction down the ramp's
 surface is `u = (4, 3)`. Gravity pulls straight down on the crate
@@ -209,7 +208,7 @@ satisfy the Pythagorean theorem?
 
 _________________________________________________________________
 
-### Problem 4: Navigation — Closest Point on a Flight Corridor
+### Problem 4: Closest Point on a Flight Corridor
 
 A delivery drone's flight corridor is a straight line through the
 origin in direction `u = (3, 4)` (east, north, in km). A warehouse
@@ -234,7 +233,7 @@ the warehouse itself (compute `||z||`)?
 
 _________________________________________________________________
 
-### Problem 5: Signal Processing — Approximating with Two Waveforms
+### Problem 5: Approximating with Two Waveforms
 
 A recording engineer wants to approximate a 3-sample captured signal
 `y = (4, 2, 5)` using only two reference waveforms, `r1 = (1, 1, 0)`

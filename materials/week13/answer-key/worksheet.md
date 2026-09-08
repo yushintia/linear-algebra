@@ -1,6 +1,6 @@
 <!-- page break for print -->
 
-## Professor Answer Key — do not hand out this section
+## Professor Answer Key (do not hand out this section)
 
 ### Part A
 
@@ -94,7 +94,7 @@ vector `y` and any subspace `W`, not just this example.
 
 ### Part C
 
-**Problem 1 (Computer Graphics — Casting a Shadow):**
+**Problem 1 (Casting a Shadow):**
 
 ```
 y · u = 6(1) + 4(0) = 6
@@ -106,11 +106,11 @@ z · u = 0(1) + 4(0) = 0   ✓
 
 **Question answer:** `proj_u(y) = (6, 0)` is the shadow's position on
 the ground (same horizontal position as the object, height 0). `z =
-(0, 4)` is exactly the object's height above the ground — the part
+(0, 4)` is exactly the object's height above the ground, the part
 "straight down" cannot reach, since the ground line only has room
 for the horizontal coordinate.
 
-**Problem 2 (Data Science — The Simplest Possible Model):**
+**Problem 2 (The Simplest Possible Model):**
 
 ```
 y · u = 2 + 4 + 6 = 12
@@ -125,7 +125,7 @@ coincidence: projecting onto the all-ones direction `(1,1,...,1)`
 always produces the mean of the data as the best single-number
 prediction.
 
-**Problem 3 (Physics — Force Along a Ramp):**
+**Problem 3 (Force Along a Ramp):**
 
 ```
 F · u = 0(4) + (-50)(3) = -150
@@ -140,12 +140,12 @@ z · u = 24(4) + (-32)(3) = 96 - 96 = 0   ✓
 ||proj_u(F)|| = √((-24)² + (-18)²) = √(576 + 324) = √900 = 30 N
 ||z|| = √(24² + (-32)²) = √(576 + 1024) = √1600 = 40 N
 ```
-Check: `30² + 40² = 900 + 1600 = 2500 = 50²`. Yes — the along-ramp
+Check: `30² + 40² = 900 + 1600 = 2500 = 50²`. Yes: the along-ramp
 pull (30 N), the into-ramp push (40 N), and the total weight (50 N)
 form a right triangle, exactly as the Pythagorean theorem requires
 for two orthogonal components of the same vector.
 
-**Problem 4 (Navigation — Closest Point on a Flight Corridor):**
+**Problem 4 (Closest Point on a Flight Corridor):**
 
 ```
 y · u = 10(3) + 5(4) = 30 + 20 = 50
@@ -159,7 +159,7 @@ z · u = 4(3) + (-3)(4) = 12 - 12 = 0   ✓
 km (east, north). The warehouse is `||z|| = √(4² + (-3)²) = √25 = 5`
 km off the corridor.
 
-**Problem 5 (Signal Processing — Approximating with Two Waveforms):**
+**Problem 5 (Approximating with Two Waveforms):**
 
 ```
 r1 · r2 = 1(1) + 1(-1) + 0(0) = 0   ✓ orthogonal, formula applies
@@ -179,6 +179,6 @@ z · r1 = 0   z · r2 = 0
 
 **Question answer:** The third sample (value `5`) is completely
 missed. Both reference waveforms have a `0` in the third position, so
-no combination of them can ever produce a nonzero third coordinate —
+no combination of them can ever produce a nonzero third coordinate,
 confirmed by `z = (0, 0, 5)`, which isolates exactly that sample and
 nothing else.

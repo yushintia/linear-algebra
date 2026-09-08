@@ -149,10 +149,9 @@ Determinant: ______ Classification: ___________________
 
 ## Part C: More Practice (about 25 minutes)
 
-Each task below is a different real-world system. None of them are
-the café.
+Each task below is a different real-world system.
 
-### Task 1: Geometry — Garden Plot Area via Determinant
+### Task 1: Garden Plot Area via Determinant
 
 A landscaper marks out a parallelogram-shaped flower bed using two
 edge vectors from the same corner: `u = (6, 2)` and `v = (1, 4)`
@@ -173,7 +172,7 @@ making a triangular planting area on one side.
 
 **Area of the triangular planting area:** ______________________ m²
 
-### Task 2: Robotics — Camera-to-Arm Transformation Check
+### Task 2: Camera-to-Arm Transformation Check
 
 A robot's vision system converts camera pixel coordinates to arm
 coordinates using a 2x2 transform matrix. The system was just
@@ -201,7 +200,7 @@ can safely use it?
 
 _________________________________________________________________
 
-### Task 3: Circuit Analysis — Three-Loop Mesh Determinant
+### Task 3: Three-Loop Mesh Determinant
 
 A circuit with three current loops has this resistor coefficient
 matrix (from Kirchhoff's Voltage Law):
@@ -226,11 +225,11 @@ _________________________________________________________________
 **Does this circuit have exactly one set of loop currents, for any
 choice of voltage sources?** ______________________
 
-### Task 4: Cryptography — Encoding Key Invertibility
+### Task 4: Encoding Key Invertibility
 
 A simple message-encoding scheme multiplies pairs of letter values by
 a fixed 2x2 key matrix. Decoding only works if the key matrix is
-invertible — otherwise, two different messages could encode to the
+invertible. Otherwise, two different messages could encode to the
 same result, and decoding would be impossible. Check both candidate
 keys.
 
@@ -248,7 +247,7 @@ Determinant: ______ Usable as an encoding key? ___________________
 ```
 Determinant: ______ Usable as an encoding key? ___________________
 
-### Task 5: Economics — Input-Output Model Check
+### Task 5: Input-Output Model Check
 
 A simplified two-sector economy (agriculture, manufacturing) relates
 total output to demand through a coefficient matrix. Two candidate

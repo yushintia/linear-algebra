@@ -93,10 +93,9 @@ _________________________________________________________________
 
 ## Part C: More Practice (about 25 minutes)
 
-These five problems leave the café behind. Same tools — writing a
-system as `Ax = b`, verifying by matrix-vector multiplication, and
-checking that sizes are compatible — applied to different real-world
-settings.
+The same tools apply here: writing a system as `Ax = b`, verifying by
+matrix-vector multiplication, and checking that sizes are compatible,
+applied to five different real-world settings.
 
 ### Task 1: A circuit's two currents
 
@@ -126,7 +125,7 @@ Does `Ax` equal `b`? _____________________________________________
 
 ### Task 2: Scaling a candle recipe
 
-Northside Candle Co. (no relation to the café) sells two candle
+Northside Candle Co. sells two candle
 sizes, each a blend of soy wax and fragrance oil:
 
 | Candle | Recipe (per candle) | Total ingredient cost |

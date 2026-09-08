@@ -1,6 +1,6 @@
 <!-- page break for print -->
 
-## Professor Answer Key — do not hand out this section
+## Professor Answer Key (do not hand out this section)
 
 ### Part A
 
@@ -135,8 +135,8 @@ K⁻¹ = [  1  -2 ]
 
 **Question:** No. Since `T` is singular, `T⁻¹` does not exist, so
 there is no way to invert the model and recover last year's exact
-populations from this year's alone — different starting populations
-could (in principle) produce the same result, or none might.
+populations from this year's alone. Different starting populations
+could, in principle, produce the same result, or none might.
 
 **Task 4:**
 

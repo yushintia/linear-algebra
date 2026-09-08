@@ -135,7 +135,7 @@ These problems use this week's `A = PDP⁻¹` shortcut in different
 real-world settings. Each matrix's eigenvalues and eigenvectors are
 given, so you can go straight to building `P`, `D`, and `P⁻¹`.
 
-### Task 1: Wildlife Population — Projecting Years Ahead
+### Task 1: Projecting Years Ahead
 
 A wildlife biologist tracks young (`Y`) and adult (`A`) rabbits using
 a year-to-year growth matrix:
@@ -169,7 +169,7 @@ years, what young:adult ratio will the population approach?
 
 _________________________________________________________________
 
-### Task 2: Computer Graphics — Repeating a Frame Transform
+### Task 2: Repeating a Frame Transform
 
 An animation repeats the same transform on a shape's corner point
 every frame:
@@ -198,7 +198,7 @@ _________________________________________________________________
 
 `x₃ = (______, ______)`
 
-### Task 3: Compound Growth — Two Linked Funds
+### Task 3: Two Linked Funds
 
 Two investment funds grow together, year to year, under matrix:
 
@@ -261,7 +261,7 @@ notice, and which eigenvalue explains it?
 
 _________________________________________________________________
 
-### Task 5: A Subscription Service — Two Months Ahead
+### Task 5: Two Months Ahead
 
 A subscription service tracks users switching between Free (`F`) and
 Premium (`P`) tiers, month to month, under a transition matrix:

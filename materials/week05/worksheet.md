@@ -126,11 +126,11 @@ Needs pivoting? ___________________ Why? __________________________
 
 ## Part C: More Practice (about 25 minutes)
 
-Each task below is a different real-world system. None of them are
-the café. Factor once, then reuse `L` and `U` for every extra
-right-hand side, exactly as in Parts A and B.
+Each task below is a different real-world system. Factor once, then
+reuse `L` and `U` for every extra right-hand side, exactly as in
+Parts A and B.
 
-### Task 1: Structural Engineering — Truss Load Distribution
+### Task 1: Truss Load Distribution
 
 A two-bar support bracket holds up a shelf. Force balance and moment
 balance at the two supports give a fixed system relating the two
@@ -168,7 +168,7 @@ _____ (x1) + _____ = ______   →   x1 = ______ (F1)
 **Answer:** `F1` = ______ kN, `F2` = ______ kN
 
 **Step 3: Reuse for Load Case 2 (bookshelf + occupancy load).**
-Totals: 760 kN, 700 kN. Reuse the same `L` and `U` — do not
+Totals: 760 kN, 700 kN. Reuse the same `L` and `U`; do not
 refactor.
 
 ```
@@ -180,7 +180,7 @@ _____ (x1) + _____ = ______   →   x1 = ______ (F1)
 
 **Answer:** `F1` = ______ kN, `F2` = ______ kN
 
-### Task 2: Chemical Mixing — Reactor Batches
+### Task 2: Reactor Batches
 
 A chemical plant blends two raw inputs, Reactant X and Reactant Y,
 into two output compounds, Compound P and Compound Q. The reactor's
@@ -244,7 +244,7 @@ batch, no matter how the target amounts change?
 
 _________________________________________________________________
 
-### Task 3: Network Flow — Rush-Hour Traffic
+### Task 3: Rush-Hour Traffic
 
 At a small road network, two junctions produce flow-balance
 equations relating two unknown road flows, `f1` and `f2`
@@ -304,7 +304,7 @@ _____ (x1) + _____ = ______   →   x1 = ______ (f1)
 
 **Answer:** `f1` = ______ veh/min, `f2` = ______ veh/min
 
-### Task 4: Electrical Circuit — Two-Loop Resistor Network
+### Task 4: Two-Loop Resistor Network
 
 A circuit has two current loops sharing one resistor. Kirchhoff's
 Voltage Law gives one equation per loop, relating the loop currents
@@ -365,7 +365,7 @@ _____ (x1) + _____ = ______   →   x1 = ______ (I1)
 
 **Answer:** `I1` = ______ mA, `I2` = ______ mA
 
-### Task 5: Manufacturing Cost — Monthly Production Runs
+### Task 5: Monthly Production Runs
 
 A factory manufactures two products that share two resources, labor
 and raw material. The resource-usage grid per production run is

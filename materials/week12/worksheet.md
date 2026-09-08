@@ -111,7 +111,7 @@ The dot product, length, and angle formulas from Parts A and B are
 not just for comparing recipes. The five problems below use the
 exact same tools in five different real-world settings.
 
-### Problem 1: Physics — Work Done by a Force
+### Problem 1: Work Done by a Force
 
 A warehouse worker pushes a crate across the floor. Her push is
 described by force vector `F = (3, 4)` (in newtons), and the crate
@@ -134,13 +134,13 @@ direction of motion?
 
 _________________________________________________________________
 
-### Problem 2: Computer Graphics — Surface Lighting
+### Problem 2: Surface Lighting
 
 A flat surface in a 3D game has outward-facing normal vector
 `n = (0, 0, 1)`. A light source sits in the direction
 `L = (0, 3, 4)` from that surface point (all in world units). A
 renderer decides how bright to draw the surface by computing the
-angle between `n` and `L` — the closer that angle is to 0°, the
+angle between `n` and `L`. The closer that angle is to 0°, the
 brighter the surface.
 
 ```
@@ -160,7 +160,7 @@ shadow? Explain using your `cos(angle)` value.
 
 _________________________________________________________________
 
-### Problem 3: Navigation — Crossing Ship Headings
+### Problem 3: Crossing Ship Headings
 
 Two ships report velocity vectors in (east, north) knots: Ship A,
 `vA = (8, 6)`, and Ship B, `vB = (6, -8)`. A collision-avoidance
@@ -184,7 +184,7 @@ these two ships in a crossing situation?
 
 _________________________________________________________________
 
-### Problem 4: Signal Processing — Orthogonal Codes
+### Problem 4: Orthogonal Codes
 
 A communications engineer wants to send two signals over the same
 channel at the same time, using two 4-sample code vectors:
@@ -205,7 +205,7 @@ instead, what problem would that create?
 
 _________________________________________________________________
 
-### Problem 5: Sports Analytics — Comparing Playing Styles
+### Problem 5: Comparing Playing Styles
 
 A basketball analytics team tracks each player as a vector of
 (points per game, assists per game, rebounds per game). A team's

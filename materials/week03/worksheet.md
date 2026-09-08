@@ -107,9 +107,9 @@ Linear transformation? ___________ Reason: ___________________________
 
 ## Part C: More Practice (about 25 minutes)
 
-Five more transformations, none of them the café's logo. Same two
-skills: build a matrix from where it sends the standard basis
-vectors, and check whether a rule is linear at all.
+Five more transformations, in five new settings. Same two skills:
+build a matrix from where it sends the standard basis vectors, and
+check whether a rule is linear at all.
 
 ### Task 1: Resizing a toolbar icon
 
