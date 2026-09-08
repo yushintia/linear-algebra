@@ -122,3 +122,155 @@ that tell you about trusting it?
 _________________________________________________________________
 
 _________________________________________________________________
+
+---
+
+## Part C: More Practice (about 25 minutes)
+
+Least-squares fitting works the same way no matter what the data
+represents. Each problem below gives you a small, clean dataset —
+build the normal equations, solve, and interpret the fit.
+
+### Problem 1: Scientific Measurement — Plant Growth
+
+A biology student measures a seedling's height (cm) once a day for
+five days.
+
+| Day (`x`) | Height in cm (`y`) |
+|---|---|
+| 1 | 4 |
+| 2 | 4 |
+| 3 | 7 |
+| 4 | 8 |
+| 5 | 12 |
+
+```
+Σx = _____     Σy = _____     Σx² = _____     Σxy = _____
+
+Normal equations:  ___ b + ___ m = ___
+                    ___ b + ___ m = ___
+
+b = ______        m = ______
+
+Best-fit line: height = _____ + _____ · day
+```
+
+**Question:** Using your best-fit line, predict the seedling's
+height on day 6. Is this interpolation or extrapolation?
+
+_________________________________________________________________
+
+### Problem 2: Sports Statistics — Points Scored per Game
+
+A basketball player's points scored over five games:
+
+| Game (`x`) | Points (`y`) |
+|---|---|
+| 1 | 11 |
+| 2 | 11 |
+| 3 | 14 |
+| 4 | 15 |
+| 5 | 19 |
+
+```
+Σx = _____     Σy = _____     Σx² = _____     Σxy = _____
+
+Normal equations:  ___ b + ___ m = ___
+                    ___ b + ___ m = ___
+
+b = ______        m = ______
+
+Best-fit line: points = _____ + _____ · game
+```
+
+**Question:** Compute the residual for Game 3. What does a residual
+of (close to) zero tell you about that particular game?
+
+_________________________________________________________________
+
+### Problem 3: Economics — Quarterly Price Index
+
+A commodity's price index over five quarters:
+
+| Quarter (`x`) | Price index (`y`) |
+|---|---|
+| 1 | 106 |
+| 2 | 110 |
+| 3 | 113 |
+| 4 | 120 |
+| 5 | 126 |
+
+```
+Σx = _____     Σy = _____     Σx² = _____     Σxy = _____
+
+Normal equations:  ___ b + ___ m = ___
+                    ___ b + ___ m = ___
+
+b = ______        m = ______
+
+Best-fit line: price index = _____ + _____ · quarter
+```
+
+**Question:** What does the slope `m` represent in plain economic
+terms (units: price-index points per quarter)?
+
+_________________________________________________________________
+
+### Problem 4: Physics — Velocity of a Rolling Cart
+
+A cart rolls down a ramp. Its velocity (m/s) is measured once per
+second:
+
+| Time in s (`x`) | Velocity in m/s (`y`) |
+|---|---|
+| 1 | 4 |
+| 2 | 9 |
+| 3 | 11 |
+| 4 | 15 |
+| 5 | 16 |
+
+```
+Σx = _____     Σy = _____     Σx² = _____     Σxy = _____
+
+Normal equations:  ___ b + ___ m = ___
+                    ___ b + ___ m = ___
+
+b = ______        m = ______
+
+Best-fit line: velocity = _____ + _____ · time
+```
+
+**Question:** In physics, the slope of a velocity-vs-time line is
+acceleration. What acceleration (in m/s²) does this fit suggest?
+
+_________________________________________________________________
+
+### Problem 5: Engineering — Force Sensor Calibration
+
+An engineer calibrates a force sensor by applying known reference
+forces and recording the sensor's output voltage:
+
+| Reference force in N (`x`) | Output in mV (`y`) |
+|---|---|
+| 1 | 6 |
+| 2 | 7 |
+| 3 | 15 |
+| 4 | 15 |
+| 5 | 22 |
+
+```
+Σx = _____     Σy = _____     Σx² = _____     Σxy = _____
+
+Normal equations:  ___ b + ___ m = ___
+                    ___ b + ___ m = ___
+
+b = ______        m = ______
+
+Best-fit calibration line: voltage = _____ + _____ · force
+```
+
+**Question:** Using your calibration line, if a future reading comes
+back as `voltage = 13 mV`, roughly what force does that correspond
+to? (Solve `13 = b + m · force` for `force`.)
+
+_________________________________________________________________

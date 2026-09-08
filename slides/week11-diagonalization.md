@@ -14,7 +14,7 @@ footer: 'Department of Intelligent Computing'
 <span class="subtitle">Linear Algebra (501976-001)</span>
 
 <div class="meta">
-Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · 정보 610
+Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · Room 610
 </div>
 
 <!--
@@ -160,7 +160,7 @@ quickly.
 
 ---
 
-<!-- NEW: Key Words for 차시 1 (Simplification Rule 2) -->
+<!-- NEW: Key Words for Session 1 (Simplification Rule 2) -->
 
 # Key Words Today
 
@@ -174,14 +174,7 @@ quickly.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 1
-<div class="driving-q">Short break. 차시 2 starts with: who first proved this shortcut exists?</div>
-
----
-
-<!-- NEW: Key Words for 차시 2 -->
+<!-- NEW: Key Words for Session 2 -->
 
 # Key Words Today
 
@@ -619,14 +612,7 @@ You have about 15 minutes.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 2
-<div class="driving-q">Short break. 차시 3: back to the café, predicting many weeks ahead.</div>
-
----
-
-<!-- NEW: Key Words for 차시 3 -->
+<!-- NEW: Key Words for Session 3 -->
 
 # Key Words Today
 

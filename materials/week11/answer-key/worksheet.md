@@ -77,3 +77,101 @@ P = [ 1   1 ]     D = [ 5  0 ]     P⁻¹ = [ 2/3   1/3 ]
 since it is larger than `2`. As `n` grows, the `(1, 1)` direction
 (matching `λ₁ = 5`) increasingly dominates, and the café's two group
 counts trend toward growing in that same, equal ratio.
+
+### Part C
+
+**Task 1 (wildlife population):**
+
+```
+P = [ 1   1 ]     D = [ 4  0 ]     P⁻¹ = [ 1/2   1/2 ]
+    [ 1  -1 ]         [ 0  2 ]           [ 1/2  -1/2 ]
+```
+
+(`det(P) = -2`.)
+
+`P⁻¹ x₀ = P⁻¹(30, 10) = (1/2·30+1/2·10, 1/2·30-1/2·10) = (20, 10)`.
+
+`D³(20, 10) = (4³·20, 2³·10) = (1280, 80)`.
+
+`P(1280, 80) = (1280+80, 1280-80) = (1360, 1200)`.
+
+`x₃ = (1360, 1200)`.
+
+`λ₁ = 4` is dominant. After many more years, the population
+approaches the `(1, 1)` direction, an equal **1:1** young:adult ratio.
+
+**Task 2 (computer graphics):**
+
+```
+P = [ 2  0 ]     D = [ 4  0 ]     P⁻¹ = [ 1/2    0 ]
+    [ 1  1 ]         [ 0  2 ]           [-1/2    1 ]
+```
+
+(`det(P) = 2`.)
+
+`P⁻¹ x₀ = P⁻¹(2, 3) = (1/2·2+0·3, -1/2·2+1·3) = (1, 2)`.
+
+`D³(1, 2) = (4³·1, 2³·2) = (64, 16)`.
+
+`P(64, 16) = (2·64+0·16, 1·64+1·16) = (128, 80)`.
+
+`x₃ = (128, 80)`.
+
+**Task 3 (compound growth):**
+
+```
+P = [ 1   1 ]     D = [ 7  0 ]     P⁻¹ = [ 1/2   1/2 ]
+    [ 1  -1 ]         [ 0  3 ]           [ 1/2  -1/2 ]
+```
+
+(`det(P) = -2`.)
+
+`P⁻¹ x₀ = P⁻¹(600, 200) = (1/2·600+1/2·200, 1/2·600-1/2·200) = (400, 200)`.
+
+`D²(400, 200) = (7²·400, 3²·200) = (19600, 1800)`.
+
+`P(19600, 1800) = (19600+1800, 19600-1800) = (21400, 17800)`.
+
+`x₂ = (21400, 17800)`.
+
+**Task 4 (simplified spread model):**
+
+```
+P = [ 1   1 ]     D = [ 1   0  ]     P⁻¹ = [ 1/2   1/2 ]
+    [ 1  -1 ]         [ 0  0.8 ]           [ 1/2  -1/2 ]
+```
+
+(`det(P) = -2`.)
+
+`P⁻¹ x₀ = P⁻¹(900, 100) = (1/2·900+1/2·100, 1/2·900-1/2·100) = (500, 400)`.
+
+`D²(500, 400) = (1²·500, 0.8²·400) = (500, 256)`.
+
+`P(500, 256) = (500+256, 500-256) = (756, 244)`.
+
+`x₂ = (756, 244)`.
+
+Sum: `756 + 244 = 1000`, exactly the starting total (`900 + 100`).
+The `λ = 1` eigenvalue leaves the `(1, 1)` "total" direction
+unchanged, so the two counts redistribute but their sum is conserved.
+
+**Task 5 (subscription service):**
+
+```
+P = [ 1   1 ]     D = [ 1   0  ]     P⁻¹ = [ 1/3   1/3 ]
+    [ 2  -1 ]         [ 0  0.4 ]           [ 2/3  -1/3 ]
+```
+
+(`det(P) = -3`.)
+
+`P⁻¹ x₀ = P⁻¹(900, 300) = (1/3·900+1/3·300, 2/3·900-1/3·300) = (400, 500)`.
+
+`D²(400, 500) = (1²·400, 0.4²·500) = (400, 80)`.
+
+`P(400, 80) = (400+80, 2·400-80) = (480, 720)`.
+
+`x₂ = (480, 720)`.
+
+The `(1, 2)` eigenvector for `λ = 1` says the steady-state split
+favors **Premium**, roughly twice as many users as Free, in the
+long run.

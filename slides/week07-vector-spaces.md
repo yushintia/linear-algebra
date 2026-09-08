@@ -14,7 +14,7 @@ footer: 'Department of Intelligent Computing'
 <span class="subtitle">Linear Algebra (501976-001)</span>
 
 <div class="meta">
-Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · 정보 610
+Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · Room 610
 </div>
 
 <!--
@@ -146,7 +146,7 @@ a whole solution space, not just find one answer.
 
 ---
 
-<!-- NEW: Key Words for 차시 1 -->
+<!-- NEW: Key Words for Session 1 -->
 
 # Key Words Today
 
@@ -173,7 +173,7 @@ a whole solution space, not just find one answer.
 
 ---
 
-<!-- NEW: preview hook, ends 차시 1 -->
+<!-- NEW: preview hook, ends Session 1 -->
 
 # Coming Up: Worksheet Part A
 
@@ -186,14 +186,7 @@ You also describe a small solution space directly, in pairs.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 1
-<div class="driving-q">Short break. 차시 2 starts with: who first described spaces this way, and why?</div>
-
----
-
-<!-- NEW: Key Words for 차시 2 -->
+<!-- NEW: Key Words for Session 2 -->
 
 # Key Words Today
 
@@ -630,14 +623,7 @@ which rule failed for any "no" answer. -->
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 2
-<div class="driving-q">Short break. 차시 3: check your Worksheet A answer, then Quiz 1.</div>
-
----
-
-<!-- NEW: Key Words for 차시 3 -->
+<!-- NEW: Key Words for Session 3 -->
 
 # Key Words Today
 

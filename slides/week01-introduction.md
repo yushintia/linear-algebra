@@ -14,7 +14,7 @@ footer: 'Department of Intelligent Computing'
 <span class="subtitle">Linear Algebra (501976-001)</span>
 
 <div class="meta">
-Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · 정보 610
+Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · Room 610
 </div>
 
 <!--
@@ -205,13 +205,6 @@ times fast instead of slow.
 
 This is the last new mechanical tool before the semester turns to
 measuring and approximating, in Weeks 12-14.
-
----
-
-<!-- _class: section -->
-
-# End of 차시 1
-<div class="driving-q">Short break. Next: the course contract - what's covered, how you're graded, and what's expected of you.</div>
 
 ---
 
@@ -453,13 +446,6 @@ You will talk in this class, not just listen.
 </div>
 
 Six dates, spread across fifteen weeks. Mark them now.
-
----
-
-<!-- _class: section -->
-
-# End of 차시 2
-<div class="driving-q">Short break. Next: grading, assignments, and policy.</div>
 
 ---
 

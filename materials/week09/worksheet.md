@@ -109,3 +109,127 @@ Independent or dependent? ___________ Why: ___________________
 **Set 3:** `{(1, 1, 0), (0, 1, 1), (1, 2, 1)}`
 
 Independent or dependent? ___________ Why: ___________________
+
+---
+
+## Part C: More Practice (about 25 minutes)
+
+These problems use the same independence, span, basis, and dimension
+ideas as Parts A and B, applied to different real-world settings.
+
+### Task 1: Robotics — Degrees of Freedom
+
+A robot arm's end effector is tested along three motion directions
+(in cm per step, `x, y, z` coordinates):
+
+```
+d1 = (1, 0, 1)
+d2 = (0, 1, 1)
+d3 = (1, 1, 2)
+```
+
+Set up `c1*d1 + c2*d2 + c3*d3 = (0, 0, 0)` and find a nonzero
+solution.
+
+`c1 = ______`  `c2 = ______`  `c3 = ______`
+
+Is `{d1, d2, d3}` independent or dependent? ___________________
+
+State a basis for `span{d1, d2, d3}`, and its dimension. This
+dimension is the arm's true degrees of freedom at this instant, even
+though three directions were tested.
+
+Basis: ________________________  Dimension: ______
+
+### Task 2: Color Mixing — an RGB Basis
+
+A stage-light rig mixes light from three spotlights, each an
+`(R, G, B)` vector:
+
+```
+p1 = (1, 0, 0)   pure red
+p2 = (0, 1, 0)   pure green
+p3 = (2, 1, 0)   an "amber" spot, secretly wired from red and green
+```
+
+Show that `p3` is a linear combination of `p1` and `p2`:
+
+`p3 = ______ * p1 + ______ * p2`
+
+State a basis for `span{p1, p2, p3}`, and its dimension:
+
+Basis: ________________________  Dimension: ______
+
+**Question:** Can this rig ever project a blue-tinted light, like
+`(0, 0, 1)`? Why or why not, in terms of span?
+
+_________________________________________________________________
+
+### Task 3: Audio — Does a Third Waveform Add Anything?
+
+A synthesizer builds a 3-sample waveform snapshot `(s1, s2, s3)` by
+combining two basic waveforms:
+
+```
+w1 = (1, 0, -1)
+w2 = (0, 1, 0)
+```
+
+An engineer proposes adding a third waveform, `w3 = (2, 3, -2)`, to
+reach new sounds. Write `w3` as a combination of `w1` and `w2`, if
+possible:
+
+`w3 = ______ * w1 + ______ * w2`
+
+Does adding `w3` let the synthesizer reach any sound it could not
+already reach with just `{w1, w2}`? ___________________
+
+State the dimension of `span{w1, w2, w3}`: ______
+
+### Task 4: Physics — a Basis for Forces in a Plane
+
+Three forces act on a bracket, each an `(x, y)` vector in newtons:
+
+```
+f1 = (3, 4)
+f2 = (6, 8)
+f3 = (1, 0)
+```
+
+**Part (a):** Is `f2` a redundant vector? Why? ___________________
+
+**Part (b):** Is `{f1, f3}` independent? (Neither should be a scalar
+multiple of the other.) ___________________
+
+**Part (c):** Since `{f1, f3}` is independent and lives in the
+2-dimensional plane `R²`, state a basis for `span{f1, f2, f3}` and its
+dimension:
+
+Basis: ________________________  Dimension: ______
+
+### Task 5: Economics — a Resource Rule's Solution Space
+
+A factory's sustainability rule requires labor `L`, material `M`, and
+energy `E` per unit produced to satisfy:
+
+```
+L - 2M + E = 0
+```
+
+Solve for `L` in terms of `M` and `E`:
+
+`L = ___________________________`
+
+Write the general solution as a linear combination of two vectors:
+
+`(L, M, E) = M( _____ , _____ , _____ ) + E( _____ , _____ , _____ )`
+
+State a basis and dimension for this solution space:
+
+Basis: ________________________  Dimension: ______
+
+The rule is a 1×3 matrix, `A = [1  -2  1]`. State `rank(A)` and
+`nullity(A)`, and check the rank-nullity theorem:
+
+`rank(A) = ______`  `nullity(A) = ______`
+Check: `______ + ______ = ______ = n` (______ unknowns)

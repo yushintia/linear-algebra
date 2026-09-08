@@ -14,7 +14,7 @@ footer: 'Department of Intelligent Computing'
 <span class="subtitle">Linear Algebra (501976-001)</span>
 
 <div class="meta">
-Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · 정보 610
+Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · Room 610
 </div>
 
 <!--
@@ -132,7 +132,7 @@ robotics interviews.
 
 ---
 
-<!-- Key Words for 차시 1 -->
+<!-- Key Words for Session 1 -->
 
 # Key Words Today
 
@@ -283,14 +283,7 @@ Passing the origin test is necessary, but not enough by itself -
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 1
-<div class="driving-q">Short break. 차시 2 starts by treating a matrix as a machine.</div>
-
----
-
-<!-- Key Words for 차시 2 -->
+<!-- Key Words for Session 2 -->
 
 # Key Words Today
 
@@ -551,14 +544,7 @@ partner and check you agree.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 2
-<div class="driving-q">Short break. 차시 3: the same matrix idea, in a logo and in a recipe.</div>
-
----
-
-<!-- Key Words for 차시 3 -->
+<!-- Key Words for Session 3 -->
 
 # Key Words Today
 

@@ -69,8 +69,8 @@ L = [ 1    0 ]        U = [ 2   1  ]
 Check: multiplying `L` by `U` rebuilds `A` exactly. This factoring
 never needs to be redone, no matter how many days follow.
 
-**Step 2 — Monday's receipts.** Latte totaled 800 원, Mocha totaled
-900 원.
+**Step 2 — Monday's receipts.** Latte totaled 800 won, Mocha totaled
+900 won.
 
 Forward substitution, solve `Ly = b`:
 
@@ -89,8 +89,8 @@ Back substitution, solve `Ux = y`:
 Monday: `m = 300`, `s = 200`. (This matches the Week 1 answer key,
 since it is the exact same recipe.)
 
-**Step 3 — Tuesday's receipts changed.** Latte totaled 700 원, Mocha
-totaled 1100 원. The recipe grid `A` is unchanged, so `L` and `U` are
+**Step 3 — Tuesday's receipts changed.** Latte totaled 700 won, Mocha
+totaled 1100 won. The recipe grid `A` is unchanged, so `L` and `U` are
 reused, with no re-factoring:
 
 ```
@@ -102,8 +102,7 @@ y1 = 700
 
 Tuesday: `m = 200`, `s = 300`.
 
-**Step 4 — Wednesday's receipts changed again.** Latte totaled 900
-원, Mocha totaled 1200 원. Reuse `L` and `U` a third time:
+**Step 4 — Wednesday's receipts changed again.** Latte totaled 900 won, Mocha totaled 1200 won. Reuse `L` and `U` a third time:
 
 ```
 y1 = 900
@@ -159,7 +158,7 @@ them are reusing one, constantly, underneath.
 Try these on your own before checking the answers at the end.
 
 1. Factor `B = [4, 2; 2, 5]` (row 1: `4, 2`; row 2: `2, 5`) into `L` and `U`.
-2. Using the Café's `L` and `U` from Section 2, Friday's receipts are: Latte 1200 원, Mocha 1800 원. Find `m` and `s`.
+2. Using the Café's `L` and `U` from Section 2, Friday's receipts are: Latte 1200 won, Mocha 1800 won. Find `m` and `s`.
 3. True or false: if a system's left side changes, you can still reuse the old `L` and `U`. Explain in one sentence.
 4. Does the grid `[0, 1; 1, 2]` need pivoting before elimination? Why or why not?
 5. A 3-by-3 grid is factored into `L` and `U`. How many multipliers does `L` store below its diagonal?

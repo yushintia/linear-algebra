@@ -14,7 +14,7 @@ footer: 'Department of Intelligent Computing'
 <span class="subtitle">Linear Algebra (501976-001)</span>
 
 <div class="meta">
-Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · 정보 610
+Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · Room 610
 </div>
 
 <!--
@@ -168,7 +168,7 @@ every scale.
 
 ---
 
-<!-- Key Words for 차시 1 -->
+<!-- Key Words for Session 1 -->
 
 # Key Words Today
 
@@ -194,7 +194,7 @@ every scale.
 
 ---
 
-<!-- preview hook, ends 차시 1 -->
+<!-- preview hook, ends Session 1 -->
 
 # Coming Up: Where This Idea Came From
 
@@ -205,14 +205,7 @@ computers existed?
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 1
-<div class="driving-q">Short break. 차시 2 starts with the history behind today's tool.</div>
-
----
-
-<!-- Key Words for 차시 2 -->
+<!-- Key Words for Session 2 -->
 
 # Key Words Today
 
@@ -470,14 +463,7 @@ You have about 15 minutes.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 2
-<div class="driving-q">Short break. 차시 3: the same idea, for a bigger recipe.</div>
-
----
-
-<!-- Key Words for 차시 3 -->
+<!-- Key Words for Session 3 -->
 
 # Key Words Today
 

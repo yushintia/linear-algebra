@@ -14,7 +14,7 @@ footer: 'Department of Intelligent Computing'
 <span class="subtitle">Linear Algebra (501976-001)</span>
 
 <div class="meta">
-Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · 정보 610
+Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · Room 610
 </div>
 
 <!--
@@ -131,7 +131,7 @@ Compact notation stays short. Full equations do not.
 
 ---
 
-<!-- Key Words for 차시 1 -->
+<!-- Key Words for Session 1 -->
 
 # Key Words Today
 
@@ -167,14 +167,7 @@ matrix, and one equation: `Ax = b`.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 1
-<div class="driving-q">Short break. 차시 2 starts with: who invented this compact notation?</div>
-
----
-
-<!-- Key Words for 차시 2 -->
+<!-- Key Words for Session 2 -->
 
 # Key Words Today
 
@@ -392,7 +385,7 @@ The café's `A` happens to be $3 \times 3$. That will not always be true.
 <div class="thread">The café is one example. The method works on any word problem.</div>
 
 A fruit stand sells apples and bananas. Two apples and one banana
-cost 2400 원. One apple and three bananas cost 2700 원.
+cost 2400 won. One apple and three bananas cost 2700 won.
 
 $$
 A = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix} \qquad x = \begin{bmatrix} a \\ b \end{bmatrix} \qquad b = \begin{bmatrix} 2400 \\ 2700 \end{bmatrix}
@@ -575,14 +568,7 @@ You have about 15 minutes.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 2
-<div class="driving-q">Short break. 차시 3: two ways to read the same multiplication.</div>
-
----
-
-<!-- Key Words for 차시 3 -->
+<!-- Key Words for Session 3 -->
 
 # Key Words Today
 

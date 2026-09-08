@@ -59,3 +59,63 @@ somewhere on the diagonal (or, more precisely, subtracting `1` from
 the diagonal makes the matrix singular, determinant zero). Matrix 2's
 diagonal entries are `2` and `3`, so subtracting `1` never makes it
 singular; `λ = 1` is not one of its eigenvalues.
+
+### Part C
+
+**Task 1 (vibration analysis):**
+
+```
+det(K - λI) = (5-λ)(2-λ) - (-2)(-2) = 0
+λ² - 7λ + 10 - 4 = 0
+λ² - 7λ + 6 = 0
+(λ - 6)(λ - 1) = 0
+```
+
+**Answer: `λ = 6` and `λ = 1`.** For `λ = 6`:
+`(K - 6I)v = 0` gives `[-1 -2][v] = 0`, so `v1 = -2v2`. Pick `v2 = 1`,
+`v1 = -2`. Eigenvector: `(-2, 1)`.
+
+Check: `K(-2,1) = (5·-2 + -2·1, -2·-2 + 2·1) = (-12, 6) = 6·(-2, 1)`. ✓
+
+**Task 2 (population growth):** `G` is triangular, so
+`det(G - λI) = (3-λ)(2-λ) = 0`, giving `λ = 3` and `λ = 2`. Dominant:
+`λ = 3`. `(G - 3I)v = 0` gives `[0 1][v]=0`, so `v2 = 0`, `v1` free.
+Eigenvector: `(1, 0)`. Since this eigenvector points entirely along
+the first coordinate, the first species' population comes to
+dominate the total the longer the rule runs.
+
+**Task 3 (link network):**
+
+```
+det(N - λI) = (0-λ)(0-λ) - (1)(1) = λ² - 1 = 0
+```
+
+`λ = 1` and `λ = -1`. For `λ = 1`: `(N - I)v = 0` gives
+`[-1 1][v] = 0`, so `v1 = v2`. Eigenvector: `(1, 1)`.
+
+Check: `N(1,1) = (1, 1) = 1·(1, 1)`. ✓ Since `(1, 1)` is a fixed point
+of `N` (eigenvalue 1), an equal starting split of importance stays
+*exactly* equal, forever, no matter how many times the link-following
+rule repeats.
+
+**Task 4 (mechanical stability):** `S` is triangular, so
+`det(S - λI) = (-1-λ)(-3-λ) = 0`, giving `λ = -1` and `λ = -3`. Both
+eigenvalues are negative, so **yes, the system is stable** — small
+errors shrink toward zero over time.
+
+**Task 5 (weather model):**
+
+```
+det(W - λI) = (0.8-λ)(0.5-λ) - (0.5)(0.2) = 0
+λ² - 1.3λ + 0.4 - 0.1 = 0
+λ² - 1.3λ + 0.3 = 0
+(λ - 1)(λ - 0.3) = 0
+```
+
+`λ = 1` and `λ = 0.3`. For `λ = 1`: `(W - I)v = 0` gives
+`-0.2v1 + 0.5v2 = 0`, so `v1 = 2.5v2`. Pick `v2 = 2`, `v1 = 5`.
+Eigenvector: `(5, 2)`.
+
+Check: `W(5,2) = (0.8·5 + 0.5·2, 0.2·5 + 0.5·2) = (5, 2) = 1·(5, 2)`. ✓
+
+Long-run ratio of sunny to rainy days: **5 : 2**.

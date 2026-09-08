@@ -1,6 +1,6 @@
 # Outline: Linear Algebra (501976-001)
 
-DEU 2026-2, Tue 1-3교시 (3x50 min), 정보 610, 2nd-year, 지능형컴퓨팅학과.
+DEU 2026-2, Tue periods 1-3 (3x50 min), Room 610, 2nd-year.
 Professor: Yushintia Pramitarini. No formal prerequisite listed. Texts:
 Lay, Lay & McDonald; Hefferon; Cherney, Denton, Thomas & Waldron.
 

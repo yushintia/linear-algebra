@@ -14,7 +14,7 @@ footer: 'Department of Intelligent Computing'
 <span class="subtitle">Linear Algebra (501976-001)</span>
 
 <div class="meta">
-Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · 정보 610
+Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · Room 610
 </div>
 
 <!--
@@ -151,7 +151,7 @@ transformations efficiently" is a common technical interview question.
 
 ---
 
-<!-- NEW: Key Words for 차시 1 -->
+<!-- NEW: Key Words for Session 1 -->
 
 # Key Words Today
 
@@ -178,7 +178,7 @@ transformations efficiently" is a common technical interview question.
 
 ---
 
-<!-- NEW: preview hook, ends 차시 1 -->
+<!-- NEW: preview hook, ends Session 1 -->
 
 # Coming Up: Worksheet Part A
 
@@ -192,14 +192,7 @@ once.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 1
-<div class="driving-q">Short break. 차시 2: how two changes become one.</div>
-
----
-
-<!-- NEW: Key Words for 차시 2 -->
+<!-- NEW: Key Words for Session 2 -->
 
 # Key Words Today
 
@@ -650,14 +643,7 @@ hand while your partner computes `BA`. Compare - they should differ.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 2
-<div class="driving-q">Short break. 차시 3: undoing a change, exactly.</div>
-
----
-
-<!-- NEW: Key Words for 차시 3 -->
+<!-- NEW: Key Words for Session 3 -->
 
 # Key Words Today
 

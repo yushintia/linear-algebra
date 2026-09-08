@@ -126,3 +126,171 @@ _________________________________________________________________
 which direction will the café's numbers mostly follow?
 
 _________________________________________________________________
+
+---
+
+## Part C: More Practice (about 25 minutes)
+
+These problems use this week's `A = PDP⁻¹` shortcut in different
+real-world settings. Each matrix's eigenvalues and eigenvectors are
+given, so you can go straight to building `P`, `D`, and `P⁻¹`.
+
+### Task 1: Wildlife Population — Projecting Years Ahead
+
+A wildlife biologist tracks young (`Y`) and adult (`A`) rabbits using
+a year-to-year growth matrix:
+
+```
+G = [ 3  1 ]
+    [ 1  3 ]
+```
+
+`G` has eigenvalues `λ₁ = 4` and `λ₂ = 2`, with eigenvectors `(1, 1)`
+and `(1, -1)`.
+
+Build `P`, `D`, and find `P⁻¹`:
+
+```
+P = [        ]     D = [        ]     P⁻¹ = [        ]
+    [        ]         [        ]           [        ]
+```
+
+Starting counts are `x₀ = (30, 10)` (young, adult). Using
+`xₙ = P Dⁿ P⁻¹ x₀`, predict `x₃` (three years ahead).
+
+_________________________________________________________________
+
+_________________________________________________________________
+
+`x₃ = (______, ______)`
+
+**Question:** Which eigenvalue is dominant here? After many more
+years, what young:adult ratio will the population approach?
+
+_________________________________________________________________
+
+### Task 2: Computer Graphics — Repeating a Frame Transform
+
+An animation repeats the same transform on a shape's corner point
+every frame:
+
+```
+T = [ 4  0 ]
+    [ 1  2 ]
+```
+
+`T` has eigenvalues `λ₁ = 4` and `λ₂ = 2`, with eigenvectors `(2, 1)`
+and `(0, 1)`.
+
+Build `P`, `D`, and find `P⁻¹`:
+
+```
+P = [        ]     D = [        ]     P⁻¹ = [        ]
+    [        ]         [        ]           [        ]
+```
+
+A corner point starts at `x₀ = (2, 3)`. Using `xₙ = P Dⁿ P⁻¹ x₀`,
+predict where the point is after 3 frames, `x₃`.
+
+_________________________________________________________________
+
+_________________________________________________________________
+
+`x₃ = (______, ______)`
+
+### Task 3: Compound Growth — Two Linked Funds
+
+Two investment funds grow together, year to year, under matrix:
+
+```
+C = [ 5  2 ]
+    [ 2  5 ]
+```
+
+`C` has eigenvalues `λ₁ = 7` and `λ₂ = 3`, with eigenvectors `(1, 1)`
+and `(1, -1)`.
+
+Build `P`, `D`, and find `P⁻¹`:
+
+```
+P = [        ]     D = [        ]     P⁻¹ = [        ]
+    [        ]         [        ]           [        ]
+```
+
+Starting balances are `x₀ = (600, 200)`. Using `xₙ = P Dⁿ P⁻¹ x₀`,
+predict the balances after 2 years, `x₂`.
+
+_________________________________________________________________
+
+_________________________________________________________________
+
+`x₂ = (______, ______)`
+
+### Task 4: A Simplified Two-Group Spread Model
+
+A simplified (linear, not the full nonlinear disease model) two-group
+spread model tracks susceptible (`S`) and infected (`I`) counts, week
+to week, under matrix:
+
+```
+E = [ 0.9  0.1 ]
+    [ 0.1  0.9 ]
+```
+
+`E` has eigenvalues `λ₁ = 1` and `λ₂ = 0.8`, with eigenvectors
+`(1, 1)` and `(1, -1)`.
+
+Build `P`, `D`, and find `P⁻¹`:
+
+```
+P = [        ]     D = [        ]     P⁻¹ = [        ]
+    [        ]         [        ]           [        ]
+```
+
+Starting counts are `x₀ = (900, 100)`. Using `xₙ = P Dⁿ P⁻¹ x₀`,
+predict `x₂` (two weeks ahead).
+
+_________________________________________________________________
+
+_________________________________________________________________
+
+`x₂ = (______, ______)`
+
+**Question:** Add the two numbers in your `x₂` together. What do you
+notice, and which eigenvalue explains it?
+
+_________________________________________________________________
+
+### Task 5: A Subscription Service — Two Months Ahead
+
+A subscription service tracks users switching between Free (`F`) and
+Premium (`P`) tiers, month to month, under a transition matrix:
+
+```
+M = [ 0.6  0.2 ]
+    [ 0.4  0.8 ]
+```
+
+`M` has eigenvalues `λ₁ = 1` and `λ₂ = 0.4`, with eigenvectors
+`(1, 2)` and `(1, -1)`.
+
+Build `P`, `D`, and find `P⁻¹`:
+
+```
+P = [        ]     D = [        ]     P⁻¹ = [        ]
+    [        ]         [        ]           [        ]
+```
+
+Starting counts are `x₀ = (900, 300)` (Free, Premium). Using
+`xₙ = P Dⁿ P⁻¹ x₀`, predict `x₂` (two months ahead).
+
+_________________________________________________________________
+
+_________________________________________________________________
+
+`x₂ = (______, ______)`
+
+**Question:** Which tier does the `λ = 1` eigenvector, `(1, 2)`, say
+will eventually hold more users?
+
+_________________________________________________________________

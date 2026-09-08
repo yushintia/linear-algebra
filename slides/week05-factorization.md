@@ -14,7 +14,7 @@ footer: 'Department of Intelligent Computing'
 <span class="subtitle">Linear Algebra (501976-001)</span>
 
 <div class="meta">
-Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · 정보 610
+Yushintia Pramitarini, Ph.D · Dept. of Intelligent Computing · Tue [1-3] · Room 610
 </div>
 
 <!--
@@ -151,7 +151,7 @@ restarting, is a common systems-design interview question.
 
 ---
 
-<!-- Key Words for 차시 1 -->
+<!-- Key Words for Session 1 -->
 
 # Key Words Today
 
@@ -187,14 +187,7 @@ Then you reuse it to solve two different days, fast.
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 1
-<div class="driving-q">Short break. 차시 2 starts with: who first reused a solved grid, and why?</div>
-
----
-
-<!-- Key Words for 차시 2 -->
+<!-- Key Words for Session 2 -->
 
 # Key Words Today
 
@@ -595,7 +588,7 @@ never needs to be redone.
 
 # Demo, Step by Step: Factoring the Café's Recipe (4/5)
 
-**Monday's receipts:** Latte totaled 800 원, Mocha totaled 900 원.
+**Monday's receipts:** Latte totaled 800 won, Mocha totaled 900 won.
 
 Forward substitution, solve $Ly = b$:
 
@@ -621,8 +614,8 @@ Monday: $m = 300$, $s = 200$. Matches Week 1's answer, exactly.
 
 # Demo, Step by Step: Factoring the Café's Recipe (5/5)
 
-**Tuesday's receipts changed:** Latte totaled 700 원, Mocha totaled
-1100 원.
+**Tuesday's receipts changed:** Latte totaled 700 won, Mocha totaled
+1100 won.
 
 The recipe grid $A$ is the same. Reuse $L$ and $U$, no re-factoring:
 
@@ -672,14 +665,7 @@ Before computing, guess what the multiplier will be for $A = \begin{bmatrix} 10 
 
 ---
 
-<!-- _class: section -->
-
-# End of 차시 2
-<div class="driving-q">Short break. 차시 3: reuse your factoring for two more days.</div>
-
----
-
-<!-- Key Words for 차시 3 -->
+<!-- Key Words for Session 3 -->
 
 # Key Words Today
 
@@ -731,7 +717,7 @@ $L = I$.
 
 <div class="thread">The running Café example, one more time, reused.</div>
 
-Wednesday's receipts: Latte totaled 900 원, Mocha totaled 1200 원. No
+Wednesday's receipts: Latte totaled 900 won, Mocha totaled 1200 won. No
 new elimination needed. Reuse the same $L$ and $U$ from before:
 
 $$
@@ -752,8 +738,8 @@ fast solves.
 
 <div class="thread">The following Monday: still the same recipe grid, still no re-factoring.</div>
 
-The following Monday's receipts: Latte totaled 750 원, Mocha totaled
-1050 원. Reuse the same $L$ and $U$:
+The following Monday's receipts: Latte totaled 750 won, Mocha totaled
+1050 won. Reuse the same $L$ and $U$:
 
 $$
 \begin{aligned}
@@ -833,7 +819,7 @@ $b$ too, every time.
 
 1. True or false: once you know $L$ and $U$, you can reuse them for any new right-hand side.
 2. A third day arrives with new receipts. What two steps solve it?
-3. Thursday's receipts: Latte totaled 1000 원, Mocha totaled 1500 원. Find $m$ and $s$.
+3. Thursday's receipts: Latte totaled 1000 won, Mocha totaled 1500 won. Find $m$ and $s$.
 
 ---
 

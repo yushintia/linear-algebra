@@ -32,7 +32,7 @@ This is the full version of the in-class demo. Read it slowly, one
 step at a time.
 
 **The story.** The Campus Café's Friday prices for a Latte and a
-Mocha are 800원 and 900원, written as a price vector:
+Mocha are 800 won and 900 won, written as a price vector:
 
 ```
 p = [ 800 ]
@@ -86,7 +86,7 @@ D × p = [ 720 ]         S × (720, 855) = [ 720 ]
         [ 855 ]                          [ 927 ]
 ```
 
-Both routes land on the same weekend prices: Latte 720원, Mocha 927원.
+Both routes land on the same weekend prices: Latte 720 won, Mocha 927 won.
 `M` replaces two full passes with one.
 
 **Step 5 — Order matters.** Multiplying `D × S` instead (surcharge
