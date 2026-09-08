@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -199,10 +200,12 @@ changing its core rule.
 > A **linear transformation** `T` takes a vector in and gives a vector
 > out. For any vectors `u`, `v` and any number `c`, it must satisfy:
 >
-> ```
-> T(u + v) = T(u) + T(v)
-> T(cu)    = c · T(u)
-> ```
+> $$
+> \begin{aligned}
+> T(u + v) &= T(u) + T(v) \\
+> T(cu) &= c \cdot T(u)
+> \end{aligned}
+> $$
 
 - Every linear transformation of this kind can be written as `T(x) = Ax`, for one fixed matrix `A`
 - That matrix `A` is the transformation matrix
@@ -215,8 +218,8 @@ changing its core rule.
 
 To confirm a rule `T` is a linear transformation, check both parts:
 
-- **Additivity:** does `T(u + v) = T(u) + T(v)`, for any `u`, `v`?
-- **Scaling:** does `T(cu) = c · T(u)`, for any number `c`?
+- **Additivity:** does $T(u + v) = T(u) + T(v)$, for any `u`, `v`?
+- **Scaling:** does $T(cu) = c \cdot T(u)$, for any number `c`?
 
 Fail either part, and the rule is not a linear transformation - no
 matter how simple it looks.
@@ -230,17 +233,21 @@ matter how simple it looks.
 Rule: `T(x, y) = (2x, x + y)`. Check additivity with `u = (1, 2)`,
 `v = (3, 1)`:
 
-```
-T(u) + T(v) = (2, 3) + (6, 4) = (8, 7)
-T(u + v)    = T(4, 3) = (8, 7)
-```
+$$
+\begin{aligned}
+T(u) + T(v) &= (2, 3) + (6, 4) = (8, 7) \\
+T(u + v) &= T(4, 3) = (8, 7)
+\end{aligned}
+$$
 
 Check scaling with `c = 3`:
 
-```
-3 · T(u) = 3 · (2, 3) = (6, 9)
-T(3u)    = T(3, 6) = (6, 9)
-```
+$$
+\begin{aligned}
+3 \cdot T(u) &= 3 \cdot (2, 3) = (6, 9) \\
+T(3u) &= T(3, 6) = (6, 9)
+\end{aligned}
+$$
 
 Both parts match. This rule is a linear transformation.
 
@@ -333,12 +340,11 @@ This is what separates a matrix from a guess: consistency, not luck.
 
 <div class="thread">One mechanic runs every example this week.</div>
 
-For any 2x2 matrix and any input vector:
+For any $2 \times 2$ matrix and any input vector:
 
-```
-[ a  b ]   [ x ]   [ a·x + b·y ]
-[ c  d ] × [ y ] = [ c·x + d·y ]
-```
+$$
+\begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} a \cdot x + b \cdot y \\ c \cdot x + d \cdot y \end{bmatrix}
+$$
 
 Each output number comes from one row of the matrix, matched term by
 term with the input vector.
@@ -347,12 +353,11 @@ term with the input vector.
 
 # Matrix Times Vector: A Worked Example
 
-Applying `[ 2 1 ; 3 0 ]` to `(4, 1)`:
+Applying $\begin{bmatrix} 2 & 1 \\ 3 & 0 \end{bmatrix}$ to `(4, 1)`:
 
-```
-[ 2  1 ]   [ 4 ]   [ 9  ]
-[ 3  0 ] × [ 1 ] = [ 12 ]
-```
+$$
+\begin{bmatrix} 2 & 1 \\ 3 & 0 \end{bmatrix} \begin{bmatrix} 4 \\ 1 \end{bmatrix} = \begin{bmatrix} 9 \\ 12 \end{bmatrix}
+$$
 
 Row 1 gives `2(4) + 1(1) = 9`. Row 2 gives `3(4) + 0(1) = 12`. Same
 rule, every time.
@@ -367,17 +372,18 @@ Rule: "Double the x-coordinate. Triple the y-coordinate."
 
 Feed in the two standard basis vectors, one at a time:
 
-```
-T(1, 0) = (2, 0)
-T(0, 1) = (0, 3)
-```
+$$
+\begin{aligned}
+T(1, 0) &= (2, 0) \\
+T(0, 1) &= (0, 3)
+\end{aligned}
+$$
 
 Each result becomes one column of the matrix:
 
-```
-    [ 2  0 ]
-A = [ 0  3 ]
-```
+$$
+A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}
+$$
 
 The first column is always where `(1, 0)` lands. The second column is
 always where `(0, 1)` lands.
@@ -390,15 +396,16 @@ always where `(0, 1)` lands.
 
 Rule: "Halve the x-coordinate. Double the y-coordinate."
 
-```
-T(1, 0) = (0.5, 0)
-T(0, 1) = (0,   2)
-```
+$$
+\begin{aligned}
+T(1, 0) &= (0.5, 0) \\
+T(0, 1) &= (0, 2)
+\end{aligned}
+$$
 
-```
-    [ 0.5  0 ]
-A = [  0   2 ]
-```
+$$
+A = \begin{bmatrix} 0.5 & 0 \\ 0 & 2 \end{bmatrix}
+$$
 
 Each factor scales its own axis independently - nothing forces both
 coordinates to change by the same amount.
@@ -413,17 +420,18 @@ Rule: "Turn every point a quarter turn, counter-clockwise."
 
 Feed in the two standard basis vectors:
 
-```
-T(1, 0) = (0, 1)
-T(0, 1) = (-1, 0)
-```
+$$
+\begin{aligned}
+T(1, 0) &= (0, 1) \\
+T(0, 1) &= (-1, 0)
+\end{aligned}
+$$
 
 Each result becomes one column:
 
-```
-    [ 0  -1 ]
-A = [ 1   0 ]
-```
+$$
+A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}
+$$
 
 Reflection and shear, on the next slide, are built the exact same way:
 test the two basis vectors, then read off the columns.
@@ -438,17 +446,18 @@ Rule: "Flip every point over the x-axis."
 
 Feed in the two standard basis vectors:
 
-```
-T(1, 0) = (1,  0)
-T(0, 1) = (0, -1)
-```
+$$
+\begin{aligned}
+T(1, 0) &= (1, 0) \\
+T(0, 1) &= (0, -1)
+\end{aligned}
+$$
 
 Each result becomes one column:
 
-```
-    [ 1   0 ]
-A = [ 0  -1 ]
-```
+$$
+A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
+$$
 
 ---
 
@@ -460,17 +469,18 @@ Rule: "Slide each point sideways, more the higher up it is."
 
 Feed in the two standard basis vectors:
 
-```
-T(1, 0) = (1, 0)
-T(0, 1) = (1, 1)
-```
+$$
+\begin{aligned}
+T(1, 0) &= (1, 0) \\
+T(0, 1) &= (1, 1)
+\end{aligned}
+$$
 
 Each result becomes one column:
 
-```
-    [ 1  1 ]
-A = [ 0  1 ]
-```
+$$
+A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}
+$$
 
 ---
 
@@ -478,10 +488,10 @@ A = [ 0  1 ]
 
 | Transformation | Rule tested | Matrix |
 |---|---|---|
-| Scaling | double x, triple y | `[ 2 0 ; 0 3 ]` |
-| Rotation | quarter turn | `[ 0 -1 ; 1 0 ]` |
-| Reflection | flip over x-axis | `[ 1 0 ; 0 -1 ]` |
-| Shear | tilt the top | `[ 1 1 ; 0 1 ]` |
+| Scaling | double x, triple y | $\begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$ |
+| Rotation | quarter turn | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ |
+| Reflection | flip over x-axis | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
+| Shear | tilt the top | $\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ |
 
 Four different rules, one identical method: test the two basis
 vectors, read off the columns.
@@ -494,14 +504,14 @@ vectors, read off the columns.
 
 | Transformation | Matrix row |
 |---|---|
-| **Scaling** — stretches x by 2, y by 3 | `[ 2  0 ]` |
-| | `[ 0  3 ]` |
-| **Rotation** — quarter turn, counter-clockwise | `[ 0 -1 ]` |
-| | `[ 1  0 ]` |
-| **Reflection** — flips over the x-axis | `[ 1  0 ]` |
-| | `[ 0 -1 ]` |
-| **Shear** — tilts the top sideways | `[ 1  1 ]` |
-| | `[ 0  1 ]` |
+| **Scaling** — stretches x by 2, y by 3 | $\begin{bmatrix} 2 & 0 \end{bmatrix}$ |
+| | $\begin{bmatrix} 0 & 3 \end{bmatrix}$ |
+| **Rotation** — quarter turn, counter-clockwise | $\begin{bmatrix} 0 & -1 \end{bmatrix}$ |
+| | $\begin{bmatrix} 1 & 0 \end{bmatrix}$ |
+| **Reflection** — flips over the x-axis | $\begin{bmatrix} 1 & 0 \end{bmatrix}$ |
+| | $\begin{bmatrix} 0 & -1 \end{bmatrix}$ |
+| **Shear** — tilts the top sideways | $\begin{bmatrix} 1 & 1 \end{bmatrix}$ |
+| | $\begin{bmatrix} 0 & 1 \end{bmatrix}$ |
 
 ---
 
@@ -521,7 +531,7 @@ table is nothing but four applications of this one rule.
 
 <div class="why">Pair up. Open <a href="materials/week03/worksheet.html">Worksheet Part A</a>.</div>
 
-Given a plain-English rule, build the 2x2 matrix that carries it out.
+Given a plain-English rule, build the $2 \times 2$ matrix that carries it out.
 
 Then apply your matrix to two sample points by hand.
 
@@ -565,14 +575,16 @@ partner and check you agree.
 
 <div class="thread">One square shows what a matrix does to the whole plane.</div>
 
-Apply the shear matrix `[ 1 1 ; 0 1 ]` to the unit square's corners:
+Apply the shear matrix $\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ to the unit square's corners:
 
-```
-(0, 0) -> (0, 0)
-(1, 0) -> (1, 0)
-(0, 1) -> (1, 1)
-(1, 1) -> (2, 1)
-```
+$$
+\begin{aligned}
+(0, 0) &\to (0, 0) \\
+(1, 0) &\to (1, 0) \\
+(0, 1) &\to (1, 1) \\
+(1, 1) &\to (2, 1)
+\end{aligned}
+$$
 
 The square tilts into a slanted parallelogram. Every linear
 transformation does this: it turns the unit square into some
@@ -584,15 +596,17 @@ parallelogram, and stretches the rest of the plane to match.
 
 <div class="thread">Same square, the rotation matrix this time.</div>
 
-Apply the rotation matrix `[ 0 -1 ; 1 0 ]` to the unit square's
+Apply the rotation matrix $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ to the unit square's
 corners:
 
-```
-(0, 0) -> (0, 0)
-(1, 0) -> (0, 1)
-(0, 1) -> (-1, 0)
-(1, 1) -> (-1, 1)
-```
+$$
+\begin{aligned}
+(0, 0) &\to (0, 0) \\
+(1, 0) &\to (0, 1) \\
+(0, 1) &\to (-1, 0) \\
+(1, 1) &\to (-1, 1)
+\end{aligned}
+$$
 
 The square turns a quarter turn in place. Its shape and area do not
 change - only its orientation does.
@@ -603,15 +617,17 @@ change - only its orientation does.
 
 <div class="thread">Same square, the reflection matrix this time.</div>
 
-Apply the reflection matrix `[ 1 0 ; 0 -1 ]` to the unit square's
+Apply the reflection matrix $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ to the unit square's
 corners:
 
-```
-(0, 0) -> (0,  0)
-(1, 0) -> (1,  0)
-(0, 1) -> (0, -1)
-(1, 1) -> (1, -1)
-```
+$$
+\begin{aligned}
+(0, 0) &\to (0, 0) \\
+(1, 0) &\to (1, 0) \\
+(0, 1) &\to (0, -1) \\
+(1, 1) &\to (1, -1)
+\end{aligned}
+$$
 
 The square flips below the x-axis, like a mirror image of itself.
 
@@ -624,12 +640,11 @@ The square flips below the x-axis, like a mirror image of itself.
 Some rules leave every vector exactly where it started. Its matrix
 has columns `(1, 0)` and `(0, 1)`:
 
-```
-    [ 1  0 ]
-I = [ 0  1 ]
-```
+$$
+I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+$$
 
-Check: `I(3, 5) = (1·3 + 0·5, 0·3 + 1·5) = (3, 5)`. The identity
+Check: $I(3, 5) = (1 \cdot 3 + 0 \cdot 5, 0 \cdot 3 + 1 \cdot 5) = (3, 5)$. The identity
 matrix is a linear transformation too, just a very boring one.
 
 ---
@@ -639,13 +654,12 @@ matrix is a linear transformation too, just a very boring one.
 <div class="thread">The same matrix idea, outside the café and the logo.</div>
 
 A scanned page's top edge tilts right by 0.3 units for every unit of
-height. The shear matrix `[ 1 -0.3 ; 0 1 ]` pushes it back straight.
+height. The shear matrix $\begin{bmatrix} 1 & -0.3 \\ 0 & 1 \end{bmatrix}$ pushes it back straight.
 Apply it to a tilted corner at `(0.3, 1)`:
 
-```
-[ 1  -0.3 ]   [ 0.3 ]   [ 0 ]
-[ 0   1   ] × [ 1   ] = [ 1 ]
-```
+$$
+\begin{bmatrix} 1 & -0.3 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 0.3 \\ 1 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+$$
 
 The corner lands exactly on `(0, 1)` - straight up, no tilt. Photo and
 document scanning apps use exactly this kind of matrix.
@@ -662,10 +676,9 @@ The café's logo is a small triangle: `A = (1, 0)`, `B = (0, 1)`,
 `C = (1, 1)`. A banner needs it exactly twice as big. Apply the
 scaling matrix to corner A:
 
-```
-[ 2  0 ]   [ 1 ]   [ 2 ]
-[ 0  2 ] × [ 0 ] = [ 0 ]    (corner A)
-```
+$$
+\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 2 \\ 0 \end{bmatrix} \quad \text{(corner A)}
+$$
 
 The same matrix moves B to `(0, 2)`, and C to `(2, 2)`. One matrix
 resizes the whole shape.
@@ -681,10 +694,9 @@ resizes the whole shape.
 Rotate the café's logo a quarter turn, for a vertical banner. Apply
 the rotation matrix to corner A:
 
-```
-[ 0  -1 ]   [ 1 ]   [ 0 ]
-[ 1   0 ] × [ 0 ] = [ 1 ]    (corner A)
-```
+$$
+\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} \quad \text{(corner A)}
+$$
 
 The same matrix moves B to `(-1, 0)`, and C to `(-1, 1)`. Same
 process, different matrix, different result.
@@ -698,10 +710,9 @@ process, different matrix, different result.
 For a display case where the logo shows through the glass backward,
 apply the reflection matrix to corner A:
 
-```
-[ 1   0 ]   [ 1 ]   [ 1 ]
-[ 0  -1 ] × [ 0 ] = [ 0 ]    (corner A)
-```
+$$
+\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \quad \text{(corner A)}
+$$
 
 The same matrix moves B to `(0, -1)`, and C to `(1, -1)`. Corner A
 does not move at all here - it already sits on the axis of reflection.
@@ -715,10 +726,9 @@ does not move at all here - it already sits on the axis of reflection.
 For a banner that needs a tilted, italic-style logo, apply the shear
 matrix to corner A:
 
-```
-[ 1  1 ]   [ 1 ]   [ 1 ]
-[ 0  1 ] × [ 0 ] = [ 0 ]    (corner A)
-```
+$$
+\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \quad \text{(corner A)}
+$$
 
 The same matrix moves B to `(1, 1)`, and C to `(2, 1)` - the exact
 numbers from the earlier unit square demo, since the logo's corners
@@ -735,16 +745,15 @@ are the unit square's corners.
 One Regular cup needs 2 units milk, 1 unit syrup. One Large cup needs
 3 units milk, 2 units syrup:
 
-```
-    [ 2  3 ]
-A = [ 1  2 ]
-```
+$$
+A = \begin{bmatrix} 2 & 3 \\ 1 & 2 \end{bmatrix}
+$$
 
 An order of 5 Regular and 3 Large cups is the input vector `x = (5, 3)`:
 
-```
-Ax = (2·5 + 3·3, 1·5 + 2·3) = (19, 11)
-```
+$$
+Ax = (2 \cdot 5 + 3 \cdot 3, 1 \cdot 5 + 2 \cdot 3) = (19, 11)
+$$
 
 The café needs 19 units of milk and 11 units of syrup. Any order goes
 through the same matrix, the same way, every time.
@@ -758,16 +767,18 @@ through the same matrix, the same way, every time.
 Order 1: 5 Regular, 3 Large. Order 2: 2 Regular, 4 Large. Combined
 order: 7 Regular, 7 Large.
 
-```
-A(5, 3) = (19, 11)                    (previous slide)
-A(2, 4) = (2·2+3·4, 1·2+2·4) = (16, 10)
-```
+$$
+\begin{aligned}
+A(5, 3) &= (19, 11) \quad \text{(previous slide)} \\
+A(2, 4) &= (2 \cdot 2 + 3 \cdot 4, 1 \cdot 2 + 2 \cdot 4) = (16, 10)
+\end{aligned}
+$$
 
 Add the two results: `(19+16, 11+10) = (35, 21)`.
 
-```
-A(7, 7) = (2·7+3·7, 1·7+2·7) = (35, 21)
-```
+$$
+A(7, 7) = (2 \cdot 7 + 3 \cdot 7, 1 \cdot 7 + 2 \cdot 7) = (35, 21)
+$$
 
 Same answer, either way. This is the additivity rule from this week's
 definition, proven on a real recipe.
@@ -776,16 +787,24 @@ definition, proven on a real recipe.
 
 # Case Study: Scaling the Recipe Order
 
-<div class="thread">Now check the recipe matrix's scaling rule, `T(cu) = c · T(u)`.</div>
+<style scoped>
+.thread p { margin: 0; }
+</style>
+
+<div class="thread">
+
+Now check the recipe matrix's scaling rule, $T(cu) = c \cdot T(u)$.
+
+</div>
 
 Double the earlier order of 5 Regular, 3 Large to 10 Regular, 6 Large:
 
-```
-A(10, 6) = (2·10+3·6, 1·10+2·6) = (38, 22)
-```
+$$
+A(10, 6) = (2 \cdot 10 + 3 \cdot 6, 1 \cdot 10 + 2 \cdot 6) = (38, 22)
+$$
 
-Compare to doubling the original result directly: `2 · (19, 11) =
-(38, 22)`. Same answer, either way - the scaling rule holds here too.
+Compare to doubling the original result directly: $2 \cdot (19, 11) =
+(38, 22)$. Same answer, either way - the scaling rule holds here too.
 
 ---
 
@@ -833,9 +852,9 @@ with your partner before checking the answer.
 
 Rule: `T(x, y) = (x + 1, y)`. Test the origin directly:
 
-```
+$$
 T(0, 0) = (0 + 1, 0) = (1, 0)
-```
+$$
 
 `(1, 0)` is not `(0, 0)`. The origin moved, so this rule fails the
 linearity test on its very first check - no need to test anything else.
@@ -849,10 +868,9 @@ linearity test on its very first check - no need to test anything else.
 Rule: `T(1, 0) = (3, 1)`, `T(0, 1) = (2, 5)`. The correct matrix reads
 each result as a **column**:
 
-```
-Correct: A = [ 3  2 ]      Wrong: A' = [ 3  1 ]
-             [ 1  5 ]                  [ 2  5 ]
-```
+$$
+\text{Correct: } A = \begin{bmatrix} 3 & 2 \\ 1 & 5 \end{bmatrix} \qquad \text{Wrong: } A' = \begin{bmatrix} 3 & 1 \\ 2 & 5 \end{bmatrix}
+$$
 
 Applying both to `(1, 1)`: `A(1,1) = (5, 6)`, but `A'(1,1) = (4, 7)`.
 The mixup gives a different, wrong answer.
@@ -864,35 +882,35 @@ The mixup gives a different, wrong answer.
 # Check Yourself
 
 1. A transformation doubles the x-coordinate and leaves y unchanged.
-   Write its 2x2 matrix.
+   Write its $2 \times 2$ matrix.
 2. Is "shift every point 1 unit to the right" a linear transformation?
    Why or why not?
-3. The matrix `[ 0 1 ; 1 0 ]` swaps a vector's two coordinates. What
+3. The matrix $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ swaps a vector's two coordinates. What
    is the image of `(3, 7)`?
 
 ---
 
 # Answers
 
-1. **`[ 2 0 ; 0 1 ]`**, meaning `[ 2  0 ]` on top, `[ 0  1 ]` below.
+1. $\begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}$, meaning $\begin{bmatrix} 2 & 0 \end{bmatrix}$ on top, $\begin{bmatrix} 0 & 1 \end{bmatrix}$ below.
 2. **No.** It does not send the origin to itself: `(0, 0)` moves to
    `(1, 0)`. A shift is not a linear transformation.
-3. **`(7, 3)`.** Row 1 gives `0·3 + 1·7 = 7`; row 2 gives
-   `1·3 + 0·7 = 3`.
+3. **`(7, 3)`.** Row 1 gives $0 \cdot 3 + 1 \cdot 7 = 7$; row 2 gives
+   $1 \cdot 3 + 0 \cdot 7 = 3$.
 
 ---
 
 # Check Yourself: Round 2
 
-4. Build the 2x2 matrix for "reflect every point over the x-axis."
-5. Apply the shear matrix `[ 1 1 ; 0 1 ]` to the point `(2, 3)`. What
+4. Build the $2 \times 2$ matrix for "reflect every point over the x-axis."
+5. Apply the shear matrix $\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ to the point `(2, 3)`. What
    is the image?
 
 ---
 
 # Answers: Round 2
 
-4. **`[ 1 0 ; 0 -1 ]`.** `T(1,0) = (1,0)` is column 1; `T(0,1) =
+4. $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$. `T(1,0) = (1,0)` is column 1; `T(0,1) =
    (0,-1)` is column 2.
 5. **`(5, 3)`.** Row 1 gives `1(2) + 1(3) = 5`; row 2 gives
    `0(2) + 1(3) = 3`.

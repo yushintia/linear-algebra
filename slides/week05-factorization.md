@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -159,7 +160,7 @@ restarting, is a common systems-design interview question.
 - **Factor:** break one grid of numbers into two simpler grids
 - **Triangular matrix:** a grid with zeros on one whole side of the diagonal
 - **Reuse:** solving a new problem using work already done, not starting over
-- **Right-hand side:** the known totals on the equations' right side, called `b`
+- **Right-hand side:** the known totals on the equations' right side, called $b$
 
 ---
 
@@ -201,8 +202,8 @@ Then you reuse it to solve two different days, fast.
 
 - **L (lower triangular):** the grid that stores the elimination multipliers
 - **U (upper triangular):** the simplified grid elimination leaves behind
-- **Forward substitution:** solving the `L` grid, top to bottom
-- **Back substitution:** solving the `U` grid, bottom to top
+- **Forward substitution:** solving the $L$ grid, top to bottom
+- **Back substitution:** solving the $U$ grid, bottom to top
 - **Pivoting:** swapping two rows when the simple method gets stuck
 
 ---
@@ -243,13 +244,13 @@ again, never went away.
 
 <div class="thread">Now the exact, formal definition.</div>
 
-> Given a square grid of numbers `A`, an **LU factorization** writes
-> `A = LU`. `L` is lower triangular with 1s on its diagonal, and `U`
+> Given a square grid of numbers $A$, an **LU factorization** writes
+> $A = LU$. $L$ is lower triangular with 1s on its diagonal, and $U$
 > is upper triangular.
 
-- `L` stores the multipliers used while simplifying `A`
-- `U` is the simplified grid that elimination leaves behind
-- Once found, `A = LU` solves `Ax = b` for **any** `b`, using two easy triangular solves
+- $L$ stores the multipliers used while simplifying $A$
+- $U$ is the simplified grid that elimination leaves behind
+- Once found, $A = LU$ solves $Ax = b$ for **any** $b$, using two easy triangular solves
 
 ---
 
@@ -261,13 +262,12 @@ again, never went away.
 
 Two triangular grids, side by side:
 
-```
-L = [ 1    0 ]        U = [ 2   1  ]
-    [ 0.5  1 ]            [ 0  2.5 ]
-```
+$$
+L = \begin{bmatrix} 1 & 0 \\ 0.5 & 1 \end{bmatrix} \qquad U = \begin{bmatrix} 2 & 1 \\ 0 & 2.5 \end{bmatrix}
+$$
 
-- `L` has zeros above the diagonal
-- `U` has zeros below the diagonal
+- $L$ has zeros above the diagonal
+- $U$ has zeros below the diagonal
 - Each row of a triangular system has only one new unknown to find
 
 A triangular system needs no more elimination. Read the answer off,
@@ -279,17 +279,17 @@ one row at a time.
 
 <div class="thread">You already know how to simplify a grid. LU factoring just saves the steps.</div>
 
-While simplifying `A`, one row is scaled and added to another. That
+While simplifying $A$, one row is scaled and added to another. That
 scaling number is called a **multiplier**.
 
-```
-Row 2 = Row 2 − 0.5 × Row 1
-```
+$$
+\text{Row}_2 = \text{Row}_2 - 0.5 \times \text{Row}_1
+$$
 
-- Save the multiplier (`0.5`) into `L`
-- Save the simplified row into `U`
+- Save the multiplier (`0.5`) into $L$
+- Save the simplified row into $U$
 
-`A = LU` is a record of elimination, not a new calculation.
+$A = LU$ is a record of elimination, not a new calculation.
 
 ---
 
@@ -298,9 +298,9 @@ Row 2 = Row 2 − 0.5 × Row 1
 <div class="thread">A small bookkeeping choice, worth explaining once.</div>
 
 Each multiplier records what was *done to* a row, not the row's new
-content. `U` holds the simplified rows; `L` holds the history of how
-elimination got there. Keeping them separate is what makes `A = LU`
-reusable at all - `U` alone would lose the recipe for rebuilding `A`.
+content. $U$ holds the simplified rows; $L$ holds the history of how
+elimination got there. Keeping them separate is what makes $A = LU$
+reusable at all - $U$ alone would lose the recipe for rebuilding $A$.
 
 ---
 
@@ -318,7 +318,7 @@ reusable at all - `U` alone would lose the recipe for rebuilding `A`.
 <div class="stage"><div class="h">Answer</div><div class="s">x, for this b</div></div>
 </div>
 
-Only the last two steps repeat for a new `b`. Factoring never
+Only the last two steps repeat for a new $b$. Factoring never
 repeats. This split is the entire reason LU factorization exists.
 
 ---
@@ -327,7 +327,7 @@ repeats. This split is the entire reason LU factorization exists.
 
 | Term | Meaning | Café example |
 |---|---|---|
-| One-time cost | factoring `A` into `L` and `U` | done Monday, once |
+| One-time cost | factoring $A$ into $L$ and $U$ | done Monday, once |
 | Repeat cost | forward and back substitution | redone every new day |
 
 Everything expensive happens once. Everything repeated is cheap.
@@ -383,18 +383,22 @@ which is exactly why reuse matters most at large sizes.
 A lower triangular system solves top to bottom. Each row adds only
 one new unknown:
 
-```
-y1 = 6
-2(y1) + y2 = 10   →   y2 = -2
-```
+$$
+\begin{aligned}
+y_1 &= 6 \\
+2y_1 + y_2 = 10 &\;\Rightarrow\; y_2 = -2
+\end{aligned}
+$$
 
 An upper triangular system solves bottom to top, the same idea in
 reverse:
 
-```
-3(x2) = -6      →   x2 = -2
-x1 + x2 = 4      →   x1 = 6
-```
+$$
+\begin{aligned}
+3x_2 = -6 &\;\Rightarrow\; x_2 = -2 \\
+x_1 + x_2 = 4 &\;\Rightarrow\; x_1 = 6
+\end{aligned}
+$$
 
 No elimination needed here. Just read each unknown off, one row at a
 time.
@@ -407,19 +411,23 @@ time.
 
 Lower triangular, top to bottom:
 
-```
-y1 = 4
-2(y1) + y2 = 10          →  y2 = 2
-y1 - y2 + y3 = 5          →  y3 = 3
-```
+$$
+\begin{aligned}
+y_1 &= 4 \\
+2y_1 + y_2 = 10 &\;\Rightarrow\; y_2 = 2 \\
+y_1 - y_2 + y_3 = 5 &\;\Rightarrow\; y_3 = 3
+\end{aligned}
+$$
 
 Upper triangular, bottom to top:
 
-```
-2(x3) = 6                 →  x3 = 3
-x2 + x3 = 5               →  x2 = 2
-2(x1) + x2 - x3 = 1       →  x1 = 1
-```
+$$
+\begin{aligned}
+2x_3 = 6 &\;\Rightarrow\; x_3 = 3 \\
+x_2 + x_3 = 5 &\;\Rightarrow\; x_2 = 2 \\
+2x_1 + x_2 - x_3 = 1 &\;\Rightarrow\; x_1 = 1
+\end{aligned}
+$$
 
 Bigger grid, same rule: read off one new unknown per row.
 
@@ -429,15 +437,17 @@ Bigger grid, same rule: read off one new unknown per row.
 
 <div class="thread">The rule behind every forward-substitution example so far.</div>
 
-For a lower triangular system `Ly = c`:
+For a lower triangular system $Ly = c$:
 
-```
-y1 = c1 / l11
-y2 = (c2 - l21·y1) / l22
-y3 = (c3 - l31·y1 - l32·y2) / l33
-```
+$$
+\begin{aligned}
+y_1 &= \frac{c_1}{l_{11}} \\
+y_2 &= \frac{c_2 - l_{21}\cdot y_1}{l_{22}} \\
+y_3 &= \frac{c_3 - l_{31}\cdot y_1 - l_{32}\cdot y_2}{l_{33}}
+\end{aligned}
+$$
 
-Each `y` only needs the ones already found - never one that comes
+Each $y$ only needs the ones already found - never one that comes
 later.
 
 ---
@@ -446,13 +456,15 @@ later.
 
 <div class="thread">The mirror-image rule, read from the bottom up.</div>
 
-For an upper triangular system `Ux = y`:
+For an upper triangular system $Ux = y$:
 
-```
-x3 = y3 / u33
-x2 = (y2 - u23·x3) / u22
-x1 = (y1 - u12·x2 - u13·x3) / u11
-```
+$$
+\begin{aligned}
+x_3 &= \frac{y_3}{u_{33}} \\
+x_2 &= \frac{y_2 - u_{23}\cdot x_3}{u_{22}} \\
+x_1 &= \frac{y_1 - u_{12}\cdot x_2 - u_{13}\cdot x_3}{u_{11}}
+\end{aligned}
+$$
 
 Same idea as forward substitution, just started from the last row
 instead of the first.
@@ -463,8 +475,8 @@ instead of the first.
 
 | Step | Solves | Direction |
 |---|---|---|
-| Forward substitution | `Ly = b` | top to bottom |
-| Back substitution | `Ux = y` | bottom to top |
+| Forward substitution | $Ly = b$ | top to bottom |
+| Back substitution | $Ux = y$ | bottom to top |
 
 Two short solves, always in this order, replace one long elimination.
 
@@ -474,34 +486,30 @@ Two short solves, always in this order, replace one long elimination.
 
 <div class="thread">One more generic example, before the full café walkthrough.</div>
 
-```
-A = [ 4  2 ]
-    [ 2  3 ]
-```
+$$
+A = \begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix}
+$$
 
-Multiplier: `2 / 4 = 0.5`. Row 2 becomes `Row 2 - 0.5 × Row 1`:
+Multiplier: $2 / 4 = 0.5$. Row 2 becomes $\text{Row}_2 - 0.5 \times \text{Row}_1$:
 
-```
-L = [ 1    0 ]        U = [ 4  2 ]
-    [ 0.5  1 ]            [ 0  2 ]
-```
+$$
+L = \begin{bmatrix} 1 & 0 \\ 0.5 & 1 \end{bmatrix} \qquad U = \begin{bmatrix} 4 & 2 \\ 0 & 2 \end{bmatrix}
+$$
 
 Same method as the triangular examples: find the multiplier, save it
-into `L`, save the simplified row into `U`.
+into $L$, save the simplified row into $U$.
 
 ---
 
-# What if A Is 3×3? The Same Idea, Bigger
+# What if A Is $3\times 3$? The Same Idea, Bigger
 
 <div class="thread">The café's grid is 2×2. Larger grids follow the identical pattern.</div>
 
-```
-    [ 1     0    0 ]        [ u11  u12  u13 ]
-L = [ l21   1    0 ]    U = [  0   u22  u23 ]
-    [ l31  l32   1 ]        [  0    0   u33 ]
-```
+$$
+L = \begin{bmatrix} 1 & 0 & 0 \\ l_{21} & 1 & 0 \\ l_{31} & l_{32} & 1 \end{bmatrix} \qquad U = \begin{bmatrix} u_{11} & u_{12} & u_{13} \\ 0 & u_{22} & u_{23} \\ 0 & 0 & u_{33} \end{bmatrix}
+$$
 
-`L` still has 1s on the diagonal and multipliers below it. `U` is
+$L$ still has 1s on the diagonal and multipliers below it. $U$ is
 still upper triangular. Only the number of multipliers grows.
 
 ---
@@ -512,11 +520,11 @@ still upper triangular. Only the number of multipliers grows.
 
 | Grid size | Multipliers needed |
 |---|---|
-| 2×2 | 1 |
-| 3×3 | 3 |
-| n×n | n(n-1)/2 |
+| $2\times 2$ | 1 |
+| $3\times 3$ | 3 |
+| $n\times n$ | $n(n-1)/2$ |
 
-The café's 2×2 recipe needed exactly one multiplier - the smallest
+The café's $2\times 2$ recipe needed exactly one multiplier - the smallest
 nontrivial case.
 
 ---
@@ -525,20 +533,21 @@ nontrivial case.
 
 <div class="thread">The same Latte and Mocha recipe from Week 1. Let's factor it once.</div>
 
-One unit milk costs `m`. One unit syrup costs `s`. The recipe never
+One unit milk costs $m$. One unit syrup costs $s$. The recipe never
 changes:
 
-```
-2m + s = (Latte total)
-m + 3s = (Mocha total)
-```
+$$
+\begin{aligned}
+2m + s &= (\text{Latte total}) \\
+m + 3s &= (\text{Mocha total})
+\end{aligned}
+$$
 
 As a grid of numbers, the left side is:
 
-```
-A = [ 2  1 ]
-    [ 1  3 ]
-```
+$$
+A = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}
+$$
 
 ---
 
@@ -547,42 +556,39 @@ A = [ 2  1 ]
 **Find the multiplier.** To zero out the `1` in row 2, scale row 1 by
 `0.5` and subtract:
 
-```
-Row 2 = Row 2 − 0.5 × Row 1
-      = [1, 3] − 0.5×[2, 1] = [0, 2.5]
-```
+$$
+\begin{aligned}
+\text{Row}_2 &= \text{Row}_2 - 0.5 \times \text{Row}_1 \\
+&= [1, 3] - 0.5\times[2, 1] = [0, 2.5]
+\end{aligned}
+$$
 
-Save `0.5` into `L`. The result becomes row 2 of `U`.
+Save `0.5` into $L$. The result becomes row 2 of $U$.
 
 ---
 
 # Demo, Step by Step: Factoring the Café's Recipe (3/5)
 
-**Write `L` and `U`.**
+**Write $L$ and $U$.**
 
-```
-L = [ 1    0 ]        U = [ 2   1  ]
-    [ 0.5  1 ]            [ 0  2.5 ]
-```
+$$
+L = \begin{bmatrix} 1 & 0 \\ 0.5 & 1 \end{bmatrix} \qquad U = \begin{bmatrix} 2 & 1 \\ 0 & 2.5 \end{bmatrix}
+$$
 
-Check: multiplying `L` by `U` rebuilds the original recipe grid `A`.
+Check: multiplying $L$ by $U$ rebuilds the original recipe grid $A$.
 This factoring is done, once, forever.
 
 ---
 
-# Case Study: Verifying L × U = A
+# Case Study: Verifying $L \times U = A$
 
 <div class="thread">The previous slide promised a check. Here it is, worked out.</div>
 
-```
-L × U = [ 1    0 ] × [ 2  1  ]  = [ 1(2)+0(0)     1(1)+0(2.5)   ]
-        [ 0.5  1 ]   [ 0  2.5 ]    [ 0.5(2)+1(0)   0.5(1)+1(2.5) ]
+$$
+L \times U = \begin{bmatrix} 1 & 0 \\ 0.5 & 1 \end{bmatrix} \times \begin{bmatrix} 2 & 1 \\ 0 & 2.5 \end{bmatrix} = \begin{bmatrix} 1(2)+0(0) & 1(1)+0(2.5) \\ 0.5(2)+1(0) & 0.5(1)+1(2.5) \end{bmatrix} = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}
+$$
 
-      = [ 2  1 ]
-        [ 1  3 ]
-```
-
-Exactly the original recipe grid `A`. The factoring is correct, and
+Exactly the original recipe grid $A$. The factoring is correct, and
 never needs to be redone.
 
 ---
@@ -591,21 +597,25 @@ never needs to be redone.
 
 **Monday's receipts:** Latte totaled 800 원, Mocha totaled 900 원.
 
-Forward substitution, solve `Ly = b`:
+Forward substitution, solve $Ly = b$:
 
-```
-y1 = 800
-0.5(800) + y2 = 900   →   y2 = 500
-```
+$$
+\begin{aligned}
+y_1 &= 800 \\
+0.5(800) + y_2 = 900 &\;\Rightarrow\; y_2 = 500
+\end{aligned}
+$$
 
-Back substitution, solve `Ux = y`:
+Back substitution, solve $Ux = y$:
 
-```
-2.5(x2) = 500          →   x2 = 200 (s)
-2(x1) + 200 = 800       →   x1 = 300 (m)
-```
+$$
+\begin{aligned}
+2.5x_2 = 500 &\;\Rightarrow\; x_2 = 200 \;(s) \\
+2x_1 + 200 = 800 &\;\Rightarrow\; x_1 = 300 \;(m)
+\end{aligned}
+$$
 
-Monday: `m = 300`, `s = 200`. Matches Week 1's answer, exactly.
+Monday: $m = 300$, $s = 200$. Matches Week 1's answer, exactly.
 
 ---
 
@@ -614,16 +624,18 @@ Monday: `m = 300`, `s = 200`. Matches Week 1's answer, exactly.
 **Tuesday's receipts changed:** Latte totaled 700 원, Mocha totaled
 1100 원.
 
-The recipe grid `A` is the same. Reuse `L` and `U`, no re-factoring:
+The recipe grid $A$ is the same. Reuse $L$ and $U$, no re-factoring:
 
-```
-y1 = 700
-0.5(700) + y2 = 1100   →   y2 = 750
-2.5(x2) = 750           →   x2 = 300 (s)
-2(x1) + 300 = 700        →   x1 = 200 (m)
-```
+$$
+\begin{aligned}
+y_1 &= 700 \\
+0.5(700) + y_2 = 1100 &\;\Rightarrow\; y_2 = 750 \\
+2.5x_2 = 750 &\;\Rightarrow\; x_2 = 300 \;(s) \\
+2x_1 + 300 = 700 &\;\Rightarrow\; x_1 = 200 \;(m)
+\end{aligned}
+$$
 
-Tuesday: `m = 200`, `s = 300`. Two quick solves, no fresh elimination.
+Tuesday: $m = 200$, $s = 300$. Two quick solves, no fresh elimination.
 
 ---
 
@@ -647,8 +659,8 @@ You have about 15 minutes.
 
 <div class="why">Same pairs, two minutes.</div>
 
-Factor `A = [ 6 2 ; 3 4 ]` by hand: find the one multiplier, then
-write `L` and `U`. Compare with your partner.
+Factor $A = \begin{bmatrix} 6 & 2 \\ 3 & 4 \end{bmatrix}$ by hand: find the one multiplier, then
+write $L$ and $U$. Compare with your partner.
 
 ---
 
@@ -656,8 +668,7 @@ write `L` and `U`. Compare with your partner.
 
 <div class="why">Same pairs, two minutes.</div>
 
-Before computing, guess what the multiplier will be for `A = [ 10 2 ;
-5 6 ]`. Then compute it and check your guess.
+Before computing, guess what the multiplier will be for $A = \begin{bmatrix} 10 & 2 \\ 5 & 6 \end{bmatrix}$. Then compute it and check your guess.
 
 ---
 
@@ -689,7 +700,7 @@ The Café's recipe grid never needed a row swap. Some grids do.
 If elimination would divide by zero, swap two rows first, then
 factor. This swap is called **pivoting**.
 
-Pivoting happens before `L` and `U` are built, not after. Once
+Pivoting happens before $L$ and $U$ are built, not after. Once
 pivoted, the same forward-and-back-substitution shortcut still works.
 
 ---
@@ -698,21 +709,19 @@ pivoted, the same forward-and-back-substitution shortcut still works.
 
 <div class="thread">Seeing the zero-pivot problem, and the fix, on real numbers.</div>
 
-```
-A = [ 0  1 ]
-    [ 1  1 ]
-```
+$$
+A = \begin{bmatrix} 0 & 1 \\ 1 & 1 \end{bmatrix}
+$$
 
 The top-left entry is `0` - eliminating would divide by zero. Swap
 the two rows first:
 
-```
-A' = [ 1  1 ]
-     [ 0  1 ]
-```
+$$
+A' = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}
+$$
 
-`A'` is already upper triangular: no elimination needed at all, and
-`L = I`.
+$A'$ is already upper triangular: no elimination needed at all, and
+$L = I$.
 
 ---
 
@@ -723,16 +732,18 @@ A' = [ 1  1 ]
 <div class="thread">The running Café example, one more time, reused.</div>
 
 Wednesday's receipts: Latte totaled 900 원, Mocha totaled 1200 원. No
-new elimination needed. Reuse the same `L` and `U` from before:
+new elimination needed. Reuse the same $L$ and $U$ from before:
 
-```
-y1 = 900
-0.5(900) + y2 = 1200   →   y2 = 750
-2.5(x2) = 750            →   x2 = 300 (s)
-2(x1) + 300 = 900         →   x1 = 300 (m)
-```
+$$
+\begin{aligned}
+y_1 &= 900 \\
+0.5(900) + y_2 = 1200 &\;\Rightarrow\; y_2 = 750 \\
+2.5x_2 = 750 &\;\Rightarrow\; x_2 = 300 \;(s) \\
+2x_1 + 300 = 900 &\;\Rightarrow\; x_1 = 300 \;(m)
+\end{aligned}
+$$
 
-Wednesday: `m = 300`, `s = 300`. Three days, one factoring, three
+Wednesday: $m = 300$, $s = 300$. Three days, one factoring, three
 fast solves.
 
 ---
@@ -742,16 +753,18 @@ fast solves.
 <div class="thread">The following Monday: still the same recipe grid, still no re-factoring.</div>
 
 The following Monday's receipts: Latte totaled 750 원, Mocha totaled
-1050 원. Reuse the same `L` and `U`:
+1050 원. Reuse the same $L$ and $U$:
 
-```
-y1 = 750
-0.5(750) + y2 = 1050   →   y2 = 675
-2.5(x2) = 675            →   x2 = 270 (s)
-2(x1) + 270 = 750         →   x1 = 240 (m)
-```
+$$
+\begin{aligned}
+y_1 &= 750 \\
+0.5(750) + y_2 = 1050 &\;\Rightarrow\; y_2 = 675 \\
+2.5x_2 = 675 &\;\Rightarrow\; x_2 = 270 \;(s) \\
+2x_1 + 270 = 750 &\;\Rightarrow\; x_1 = 240 \;(m)
+\end{aligned}
+$$
 
-Monday: `m = 240`, `s = 270`. A new week, the same factoring, still
+Monday: $m = 240$, $s = 270$. A new week, the same factoring, still
 just two quick solves.
 
 ---
@@ -772,8 +785,8 @@ You have about 15 minutes.
 
 # Common Mistakes
 
-- **Re-factoring every time:** once `L` and `U` are found, never redo elimination for a new `b`
-- **Solving out of order:** always solve `Ly = b` first, then `Ux = y`, never the reverse
+- **Re-factoring every time:** once $L$ and $U$ are found, never redo elimination for a new $b$
+- **Solving out of order:** always solve $Ly = b$ first, then $Ux = y$, never the reverse
 - **Skipping the pivot check:** some grids need one row swap first, or the simple method breaks
 
 ---
@@ -782,25 +795,25 @@ You have about 15 minutes.
 
 <div class="thread">Seeing the wasted work, not just being told about it.</div>
 
-Tuesday's receipts changed, so a rushed student re-eliminates `A`
-from scratch: multiplier `0.5`, row 2 becomes `[0, 2.5]` - the exact
-same `L` and `U` as Monday. All of that work reproduces numbers
+Tuesday's receipts changed, so a rushed student re-eliminates $A$
+from scratch: multiplier `0.5`, row 2 becomes $[0, 2.5]$ - the exact
+same $L$ and $U$ as Monday. All of that work reproduces numbers
 already saved. Reuse them instead.
 
 ---
 
-# Common Mistake, Worked: Solving Ux = y Before Ly = b
+# Common Mistake, Worked: Solving $Ux = y$ Before $Ly = b$
 
 <div class="thread">Skipping forward substitution breaks the method.</div>
 
-Trying to solve `Ux = b` directly, skipping `Ly = b` first:
+Trying to solve $Ux = b$ directly, skipping $Ly = b$ first:
 
-```
-2.5(x2) = 0      →  x2 = 0   (using b's second entry, not y's)
-```
+$$
+2.5x_2 = 0 \;\Rightarrow\; x_2 = 0 \quad (\text{using } b\text{'s second entry, not } y\text{'s})
+$$
 
-This is not Monday's answer, `x2 = 200`. `U` only solves correctly
-against `y`, the output of forward substitution - never against `b`
+This is not Monday's answer, $x_2 = 200$. $U$ only solves correctly
+against $y$, the output of forward substitution - never against $b$
 directly.
 
 ---
@@ -809,43 +822,43 @@ directly.
 
 <div class="thread">A swap in `A` must carry over to `b`, or the answer comes out wrong.</div>
 
-Swap rows 1 and 2 of `A` to avoid a zero pivot, but forget to swap the
-matching entries of `b`. The factored `L` and `U` now solve a
+Swap rows 1 and 2 of $A$ to avoid a zero pivot, but forget to swap the
+matching entries of $b$. The factored $L$ and $U$ now solve a
 different system than the one asked - the row swap must apply to
-`b` too, every time.
+$b$ too, every time.
 
 ---
 
 # Check Yourself
 
-1. True or false: once you know `L` and `U`, you can reuse them for any new right-hand side.
+1. True or false: once you know $L$ and $U$, you can reuse them for any new right-hand side.
 2. A third day arrives with new receipts. What two steps solve it?
-3. Thursday's receipts: Latte totaled 1000 원, Mocha totaled 1500 원. Find `m` and `s`.
+3. Thursday's receipts: Latte totaled 1000 원, Mocha totaled 1500 원. Find $m$ and $s$.
 
 ---
 
 # Answers
 
-1. **True.** `L` and `U` depend only on the recipe grid, never on the day's receipts.
-2. **Forward substitution** (`Ly = b`), then **back substitution** (`Ux = y`).
-3. `m = 300`, `s = 400`. (`y1 = 1000`, `y2 = 1500 − 500 = 1000`, `x2 = 400`, `x1 = (1000 − 400)/2 = 300`.)
+1. **True.** $L$ and $U$ depend only on the recipe grid, never on the day's receipts.
+2. **Forward substitution** ($Ly = b$), then **back substitution** ($Ux = y$).
+3. $m = 300$, $s = 400$. ($y_1 = 1000$, $y_2 = 1500 - 500 = 1000$, $x_2 = 400$, $x_1 = (1000 - 400)/2 = 300$.)
 
 ---
 
 # Check Yourself: Round 2
 
-4. Why does `L` always have 1s on its diagonal, by convention?
-5. If a 3×3 grid needs 3 multipliers to factor, how many would a
-   4×4 grid need?
+4. Why does $L$ always have 1s on its diagonal, by convention?
+5. If a $3\times 3$ grid needs 3 multipliers to factor, how many would a
+   $4\times 4$ grid need?
 
 ---
 
 # Answers: Round 2
 
-4. **So `A = LU` has a unique answer.** Without fixing `L`'s diagonal
-   to 1s, many different `L, U` pairs could multiply back to the same
-   `A`.
-5. **6.** Following `n(n-1)/2`: `4 × 3 / 2 = 6`.
+4. **So $A = LU$ has a unique answer.** Without fixing $L$'s diagonal
+   to 1s, many different $L, U$ pairs could multiply back to the same
+   $A$.
+5. **6.** Following $n(n-1)/2$: $4 \times 3 / 2 = 6$.
 
 ---
 
@@ -890,7 +903,7 @@ and is unique.
 
 # Summary
 
-- LU factorization writes a grid `A` as `L` times `U`, two triangular pieces
+- LU factorization writes a grid $A$ as $L$ times $U$, two triangular pieces
 - Factor once; then forward and back substitution solve any new right-hand side, fast
 - Reuse beats restarting, in the Café, in engineering, and in every large simulation
 - **Reading:** Lay, Lay & McDonald, 6th ed., Chapter 2.5

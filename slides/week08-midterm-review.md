@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -83,9 +84,9 @@ You should now be able to:
 
 You should now be able to:
 
-- Write any linear system as a vector, a matrix, and `Ax = b`
+- Write any linear system as a vector, a matrix, and $Ax = b$
 - Multiply a matrix by a vector, by hand
-- Verify a candidate solution by computing `Ax` and comparing it to `b`
+- Verify a candidate solution by computing $Ax$ and comparing it to $b$
 
 ---
 
@@ -119,9 +120,9 @@ You should now be able to:
 
 You should now be able to:
 
-- Factor a matrix `A` into a lower triangular `L` and an upper triangular `U`
+- Factor a matrix $A$ into a lower triangular $L$ and an upper triangular $U$
 - Solve a triangular system quickly, top to bottom or bottom to top
-- Reuse one `LU` factorization to solve many systems sharing the same left side
+- Reuse one $LU$ factorization to solve many systems sharing the same left side
 
 ---
 
@@ -145,7 +146,7 @@ You should now be able to:
 
 - Check whether a set forms a vector space, or a subspace
 - Find the span of a small set of vectors
-- Describe the whole solution set of `Ax = 0` as a null space
+- Describe the whole solution set of $Ax = 0$ as a null space
 
 ---
 
@@ -167,13 +168,13 @@ You should now be able to:
 <div class="thread">The café's three rules, one more time.</div>
 
 After elimination, two of the café's rules stay independent. The
-third becomes `0 = 0`. What does that tell you about the solutions?
+third becomes $0 = 0$. What does that tell you about the solutions?
 
 ---
 
 # Answer 1
 
-**Infinitely many solutions.** `0 = 0` is always true, so one rule
+**Infinitely many solutions.** $0 = 0$ is always true, so one rule
 added no new information. One unknown stays free.
 
 ---
@@ -182,16 +183,15 @@ added no new information. One unknown stays free.
 
 # Question 2 (Week 2)
 
-Write `3x - y = 5`, `2x + 4y = 6` as `Ax = b`. What are `A` and `b`?
+Write $3x - y = 5$, $2x + 4y = 6$ as $Ax = b$. What are $A$ and $b$?
 
 ---
 
 # Answer 2
 
-```
-A = [  3  -1 ]     b = [ 5 ]
-    [  2   4 ]         [ 6 ]
-```
+$$
+A = \begin{bmatrix} 3 & -1 \\ 2 & 4 \end{bmatrix} \qquad b = \begin{bmatrix} 5 \\ 6 \end{bmatrix}
+$$
 
 ---
 
@@ -206,12 +206,11 @@ A rule triples the x-coordinate and flips the sign of y. Write its
 
 # Answer 3
 
-```
-    [ 3   0 ]
-A = [ 0  -1 ]
-```
+$$
+A = \begin{bmatrix} 3 & 0 \\ 0 & -1 \end{bmatrix}
+$$
 
-`T(1,0) = (3,0)` is column 1. `T(0,1) = (0,-1)` is column 2.
+$T(1,0) = (3,0)$ is column 1. $T(0,1) = (0,-1)$ is column 2.
 
 ---
 
@@ -219,16 +218,15 @@ A = [ 0  -1 ]
 
 # Question 4 (Week 4)
 
-Multiply `A = [[1,2],[3,1]]` and `B = [[2,0],[1,1]]`. Find `AB`.
+Multiply $A = \begin{bmatrix}1 & 2\\ 3 & 1\end{bmatrix}$ and $B = \begin{bmatrix}2 & 0\\ 1 & 1\end{bmatrix}$. Find $AB$.
 
 ---
 
 # Answer 4
 
-```
-AB = [ 1(2)+2(1)   1(0)+2(1) ]   [ 4  2 ]
-     [ 3(2)+1(1)   3(0)+1(1) ] = [ 7  1 ]
-```
+$$
+AB = \begin{bmatrix} 1(2)+2(1) & 1(0)+2(1) \\ 3(2)+1(1) & 3(0)+1(1) \end{bmatrix} = \begin{bmatrix} 4 & 2 \\ 7 & 1 \end{bmatrix}
+$$
 
 ---
 
@@ -236,17 +234,16 @@ AB = [ 1(2)+2(1)   1(0)+2(1) ]   [ 4  2 ]
 
 # Question 5 (Week 4)
 
-Recall Week 4's register glitch, `G = [[2,0],[0,2]]`. Find `G⁻¹`, and
+Recall Week 4's register glitch, $G = \begin{bmatrix}2 & 0\\ 0 & 2\end{bmatrix}$. Find $G^{-1}$, and
 say what it does.
 
 ---
 
 # Answer 5
 
-```
-G⁻¹ = [ 0.5   0  ]
-      [  0   0.5 ]
-```
+$$
+G^{-1} = \begin{bmatrix} 0.5 & 0 \\ 0 & 0.5 \end{bmatrix}
+$$
 
 It undoes the doubling exactly, restoring the original prices.
 
@@ -256,22 +253,21 @@ It undoes the doubling exactly, restoring the original prices.
 
 # Question 6 (Week 5)
 
-`A = [[2,1],[1,3]]` factors as `L = [[1,0],[0.5,1]]`,
-`U = [[2,1],[0,2.5]]`. To solve `Ax = b` for `b = [800, 900]`, which
+$A = \begin{bmatrix}2 & 1\\ 1 & 3\end{bmatrix}$ factors as $L = \begin{bmatrix}1 & 0\\ 0.5 & 1\end{bmatrix}$,
+$U = \begin{bmatrix}2 & 1\\ 0 & 2.5\end{bmatrix}$. To solve $Ax = b$ for $b = \begin{bmatrix}800\\ 900\end{bmatrix}$, which
 two steps do you take, in order?
 
 ---
 
 # Answer 6
 
-First solve `Ly = b` by forward substitution:
+First solve $Ly = b$ by forward substitution:
 
-```
-y = [ 800 ]
-    [ 500 ]
-```
+$$
+y = \begin{bmatrix} 800 \\ 500 \end{bmatrix}
+$$
 
-Then solve `Ux = y` by back substitution: `s = 200`, `m = 300`. Same
+Then solve $Ux = y$ by back substitution: $s = 200$, $m = 300$. Same
 answer as Week 1's Latte and Mocha worksheet.
 
 ---
@@ -280,15 +276,15 @@ answer as Week 1's Latte and Mocha worksheet.
 
 # Question 7 (Week 6)
 
-Compute the determinant of `[[4,1],[2,3]]`.
+Compute the determinant of $\begin{bmatrix}4 & 1\\ 2 & 3\end{bmatrix}$.
 
 ---
 
 # Answer 7
 
-```
-det = 4(3) - 1(2) = 10
-```
+$$
+\det = 4(3) - 1(2) = 10
+$$
 
 ---
 
@@ -313,14 +309,14 @@ Row reduction tells you which.
 
 # Question 9 (Week 7)
 
-Does the set of all `(x, y, z)` with `x + y + z = 0` form a subspace
-of R³? Why?
+Does the set of all $(x, y, z)$ with $x + y + z = 0$ form a subspace
+of $\mathbb{R}^3$? Why?
 
 ---
 
 # Answer 9
 
-**Yes.** It contains `(0, 0, 0)`. Adding or scaling any point that
+**Yes.** It contains $(0, 0, 0)$. Adding or scaling any point that
 sums to zero still sums to zero.
 
 ---
@@ -329,19 +325,19 @@ sums to zero still sums to zero.
 
 # Question 10 (Week 7)
 
-The café's cheaper-drink rule is `2e + 4m - 2s = 0`, which gives
-`e = -2m + s`. Write the full solution set as a span of two vectors.
+The café's cheaper-drink rule is $2e + 4m - 2s = 0$, which gives
+$e = -2m + s$. Write the full solution set as a span of two vectors.
 
 ---
 
 # Answer 10
 
-```
+$$
 (e, m, s) = m(-2, 1, 0) + s(1, 0, 1)
-```
+$$
 
-This is the span of two vectors: the null space of the rule. Any `m`
-and `s` gives one working recipe ratio.
+This is the span of two vectors: the null space of the rule. Any $m$
+and $s$ gives one working recipe ratio.
 
 ---
 
@@ -357,17 +353,17 @@ and `s` gives one working recipe ratio.
 
 # Question 11 (Week 1)
 
-Solve by elimination: `2x + y = 7`, `x - y = 2`.
+Solve by elimination: $2x + y = 7$, $x - y = 2$.
 
 ---
 
 # Answer 11
 
-Add the two equations: `3x = 9`, so `x = 3`. Then `y = x - 2 = 1`.
+Add the two equations: $3x = 9$, so $x = 3$. Then $y = x - 2 = 1$.
 
-```
-x = 3, y = 1
-```
+$$
+x = 3, \quad y = 1
+$$
 
 ---
 
@@ -375,17 +371,17 @@ x = 3, y = 1
 
 # Question 12 (Week 2)
 
-`A = [[1,2],[3,1]]`, `x = (2,1)`. Compute `Ax`. Does it match `b = (4,7)`?
+$A = \begin{bmatrix}1 & 2\\ 3 & 1\end{bmatrix}$, $x = (2,1)$. Compute $Ax$. Does it match $b = (4,7)$?
 
 ---
 
 # Answer 12
 
-```
+$$
 Ax = ( 1(2)+2(1), 3(2)+1(1) ) = (4, 7)
-```
+$$
 
-Yes, `Ax` matches `b` exactly.
+Yes, $Ax$ matches $b$ exactly.
 
 ---
 
@@ -393,14 +389,14 @@ Yes, `Ax` matches `b` exactly.
 
 # Question 13 (Week 3)
 
-Matrix `A = [[0,-1],[1,0]]`. What transformation does it represent?
+Matrix $A = \begin{bmatrix}0 & -1\\ 1 & 0\end{bmatrix}$. What transformation does it represent?
 
 ---
 
 # Answer 13
 
-**A 90-degree counter-clockwise rotation.** `T(1,0) = (0,1)` is column
-1, `T(0,1) = (-1,0)` is column 2, both quarter-turns from the original
+**A 90-degree counter-clockwise rotation.** $T(1,0) = (0,1)$ is column
+1, $T(0,1) = (-1,0)$ is column 2, both quarter-turns from the original
 axes.
 
 ---
@@ -409,18 +405,17 @@ axes.
 
 # Question 14 (Week 4)
 
-`A = [[1,1],[0,1]]`, `B = [[1,0],[1,1]]`. Compute `AB` and `BA`. Are they equal?
+$A = \begin{bmatrix}1 & 1\\ 0 & 1\end{bmatrix}$, $B = \begin{bmatrix}1 & 0\\ 1 & 1\end{bmatrix}$. Compute $AB$ and $BA$. Are they equal?
 
 ---
 
 # Answer 14
 
-```
-AB = [ 2  1 ]        BA = [ 1  1 ]
-     [ 1  1 ]              [ 1  2 ]
-```
+$$
+AB = \begin{bmatrix} 2 & 1 \\ 1 & 1 \end{bmatrix} \qquad BA = \begin{bmatrix} 1 & 1 \\ 1 & 2 \end{bmatrix}
+$$
 
-**No.** `AB ≠ BA`. Matrix multiplication does not commute in general.
+**No.** $AB \neq BA$. Matrix multiplication does not commute in general.
 
 ---
 
@@ -428,16 +423,15 @@ AB = [ 2  1 ]        BA = [ 1  1 ]
 
 # Question 15 (Week 4)
 
-`A = [[2,0],[0,2]]`, `b = (10, 20)`. Use `A⁻¹` to solve `Ax = b`.
+$A = \begin{bmatrix}2 & 0\\ 0 & 2\end{bmatrix}$, $b = (10, 20)$. Use $A^{-1}$ to solve $Ax = b$.
 
 ---
 
 # Answer 15
 
-```
-A⁻¹ = [ 0.5   0  ]        x = A⁻¹b = (5, 10)
-      [  0   0.5 ]
-```
+$$
+A^{-1} = \begin{bmatrix} 0.5 & 0 \\ 0 & 0.5 \end{bmatrix} \qquad x = A^{-1}b = (5, 10)
+$$
 
 ---
 
@@ -445,18 +439,17 @@ A⁻¹ = [ 0.5   0  ]        x = A⁻¹b = (5, 10)
 
 # Question 16 (Week 5)
 
-Factor `A = [[4,2],[2,3]]` into `L` and `U`.
+Factor $A = \begin{bmatrix}4 & 2\\ 2 & 3\end{bmatrix}$ into $L$ and $U$.
 
 ---
 
 # Answer 16
 
-```
-L = [  1   0 ]        U = [ 4  2 ]
-    [ 0.5  1 ]            [ 0  2 ]
-```
+$$
+L = \begin{bmatrix} 1 & 0 \\ 0.5 & 1 \end{bmatrix} \qquad U = \begin{bmatrix} 4 & 2 \\ 0 & 2 \end{bmatrix}
+$$
 
-Check: `L` times `U` reproduces `A` exactly.
+Check: $L$ times $U$ reproduces $A$ exactly.
 
 ---
 
@@ -464,17 +457,16 @@ Check: `L` times `U` reproduces `A` exactly.
 
 # Question 17 (Week 6)
 
-Compute the determinant of `A = [[1,2,0],[0,1,3],[2,0,1]]` by cofactor
+Compute the determinant of $A = \begin{bmatrix}1 & 2 & 0\\ 0 & 1 & 3\\ 2 & 0 & 1\end{bmatrix}$ by cofactor
 expansion along row 1.
 
 ---
 
 # Answer 17
 
-```
-det = 1*det([1,3;0,1]) - 2*det([0,3;2,1]) + 0
-    = 1(1) - 2(-6) + 0 = 13
-```
+$$
+\det = 1\cdot\det\begin{bmatrix}1 & 3\\ 0 & 1\end{bmatrix} - 2\cdot\det\begin{bmatrix}0 & 3\\ 2 & 1\end{bmatrix} + 0 = 1(1) - 2(-6) + 0 = 13
+$$
 
 ---
 
@@ -482,7 +474,7 @@ det = 1*det([1,3;0,1]) - 2*det([0,3;2,1]) + 0
 
 # Question 18 (Week 6)
 
-`det([[3,1],[2,4]]) = 10`. Without recomputing, what is `det([[2,4],[3,1]])`?
+$\det\begin{bmatrix}3 & 1\\ 2 & 4\end{bmatrix} = 10$. Without recomputing, what is $\det\begin{bmatrix}2 & 4\\ 3 & 1\end{bmatrix}$?
 
 ---
 
@@ -503,7 +495,7 @@ Is the set of all polynomials of **degree exactly 2** a vector space?
 
 # Answer 19
 
-**No.** `(x² + x) + (-x² + 1) = x + 1`, degree 1, which leaves the
+**No.** $(x^2 + x) + (-x^2 + 1) = x + 1$, degree 1, which leaves the
 set. It fails closure under addition.
 
 ---
@@ -512,14 +504,14 @@ set. It fails closure under addition.
 
 # Question 20 (Week 7)
 
-What is the span of `{(1, 2), (2, 4)}`?
+What is the span of $\{(1, 2), (2, 4)\}$?
 
 ---
 
 # Answer 20
 
-**The line `{(a, 2a)}`.** `(2,4) = 2*(1,2)` is redundant; the span is
-just the line through `(1, 2)`.
+**The line $\{(a, 2a)\}$.** $(2,4) = 2\times(1,2)$ is redundant; the span is
+just the line through $(1, 2)$.
 
 ---
 
@@ -527,14 +519,14 @@ just the line through `(1, 2)`.
 
 # Question 21 (Week 1)
 
-Solve `x + y = 3`, `2x + 2y = 10`. What happens?
+Solve $x + y = 3$, $2x + 2y = 10$. What happens?
 
 ---
 
 # Answer 21
 
-Doubling the first equation gives `2x + 2y = 6`, contradicting
-`2x + 2y = 10`. This reduces to `0 = 4`, false. **No solution.**
+Doubling the first equation gives $2x + 2y = 6$, contradicting
+$2x + 2y = 10$. This reduces to $0 = 4$, false. **No solution.**
 
 ---
 
@@ -542,14 +534,14 @@ Doubling the first equation gives `2x + 2y = 6`, contradicting
 
 # Question 22 (Week 3)
 
-Is `T(x, y) = (x + 1, y)` a linear transformation?
+Is $T(x, y) = (x + 1, y)$ a linear transformation?
 
 ---
 
 # Answer 22
 
 **No.** Every linear transformation must send the zero vector to the
-zero vector, but `T(0, 0) = (1, 0) ≠ (0, 0)`.
+zero vector, but $T(0, 0) = (1, 0) \neq (0, 0)$.
 
 ---
 

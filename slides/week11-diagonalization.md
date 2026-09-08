@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -197,10 +198,12 @@ quickly.
 
 <div class="thread">Before diagonalizing anything, we reuse last week's exact method.</div>
 
-```
-det(A - λI) = 0      solve for every eigenvalue λ
-(A - λI)v = 0         solve for that eigenvalue's eigenvector v
-```
+$$
+\begin{aligned}
+\det(A - \lambda I) &= 0 &&\text{solve for every eigenvalue } \lambda \\
+(A - \lambda I)v &= 0 &&\text{solve for that eigenvalue's eigenvector } v
+\end{aligned}
+$$
 
 - Every eigenvalue needs its own pass through this second step
 - This week does not repeat that search; it reuses the answers directly
@@ -246,11 +249,11 @@ Nearly 200 years later, the same shortcut ranks the entire web.
 > A **diagonal matrix** has nonzero numbers only on its main diagonal;
 > every other entry is zero.
 >
-> A square matrix `A` is **diagonalizable** if it can be written as
-> `A = PDP⁻¹`, where `D` is diagonal and `P` is built from `A`'s
+> A square matrix $A$ is **diagonalizable** if it can be written as
+> $A = PDP^{-1}$, where $D$ is diagonal and $P$ is built from $A$'s
 > eigenvectors.
 
-- `D` holds `A`'s eigenvalues, in the same order as `P`'s columns
+- $D$ holds $A$'s eigenvalues, in the same order as $P$'s columns
 - Not every matrix is diagonalizable; this week teaches how to tell
 
 ---
@@ -264,13 +267,12 @@ Nearly 200 years later, the same shortcut ranks the entire web.
 Multiplying two diagonal matrices only multiplies matching diagonal
 entries. Nothing else ever mixes in:
 
-```
-D = [ 2  0 ]     D² = [ 4   0 ]     D³ = [ 8    0 ]
-    [ 0  5 ]          [ 0  25 ]          [ 0  125 ]
-```
+$$
+D = \begin{bmatrix} 2 & 0 \\ 0 & 5 \end{bmatrix} \qquad D^2 = \begin{bmatrix} 4 & 0 \\ 0 & 25 \end{bmatrix} \qquad D^3 = \begin{bmatrix} 8 & 0 \\ 0 & 125 \end{bmatrix}
+$$
 
-For any diagonal matrix, `Dⁿ` just raises each diagonal entry to the
-power `n`. No cross terms, ever.
+For any diagonal matrix, $D^n$ just raises each diagonal entry to the
+power $n$. No cross terms, ever.
 
 ---
 
@@ -278,55 +280,71 @@ power `n`. No cross terms, ever.
 
 <div class="thread">If a diagonal matrix is this easy, the goal is clear: get every matrix to look diagonal.</div>
 
-Take a matrix `A`'s eigenvectors, and place them side by side as the
-columns of a new matrix `P`:
+Take a matrix $A$'s eigenvectors, and place them side by side as the
+columns of a new matrix $P$:
 
-```
-eigenvector for λ₁, then eigenvector for λ₂, ... side by side
+eigenvector for $\lambda_1$, then eigenvector for $\lambda_2$, ... side by side
 
-P = [ v₁  v₂  ...  vₙ ]
-```
+$$
+P = \begin{bmatrix} v_1 & v_2 & \cdots & v_n \end{bmatrix}
+$$
 
-Put the matching eigenvalues on the diagonal of `D`, in that same
-column order. `P` and `D` are now a matched pair.
+Put the matching eigenvalues on the diagonal of $D$, in that same
+column order. $P$ and $D$ are now a matched pair.
 
 ---
 
-# The Diagonalization Formula: A = PDP⁻¹
+# The Diagonalization Formula: $A = PDP^{-1}$
 
 <div class="thread">P and D combine to rebuild A itself.</div>
+
+<style scoped>
+.layer .h p { margin: 0; }
+</style>
 
 <div class="stack">
 <div class="layer view"><div class="h">P</div><div class="s">A's eigenvectors, as columns</div></div>
 <div class="layer logical"><div class="h">D</div><div class="s">A's eigenvalues, on the diagonal</div></div>
-<div class="layer physical"><div class="h">P⁻¹</div><div class="s">undoes P, switches back to A's own directions</div></div>
+<div class="layer physical"><div class="h">
+
+$P^{-1}$
+
+</div><div class="s">undoes P, switches back to A's own directions</div></div>
 </div>
 
-```
-A = P · D · P⁻¹
-```
+$$
+A = P \cdot D \cdot P^{-1}
+$$
 
-Applying `P⁻¹`, then `D`, then `P`, has the exact same effect as
-applying `A` once.
+Applying $P^{-1}$, then $D$, then $P$, has the exact same effect as
+applying $A$ once.
 
 ---
 
-# Why This Makes Powers Fast: Aⁿ = PDⁿP⁻¹
+# Why This Makes Powers Fast: $A^n = PD^nP^{-1}$
 
-<div class="thread">Multiply `A` by itself, and the middle `P⁻¹P` pair cancels every time.</div>
+<style scoped>
+.thread p { margin: 0; }
+</style>
 
-```
-A² = (PDP⁻¹)(PDP⁻¹) = PD(P⁻¹P)DP⁻¹ = PD·I·DP⁻¹ = PD²P⁻¹
-```
+<div class="thread">
 
-The same cancelling happens for any power `n`:
+Multiply $A$ by itself, and the middle $P^{-1}P$ pair cancels every time.
 
-```
-Aⁿ = PDⁿP⁻¹
-```
+</div>
 
-Instead of multiplying full matrices `n` times, we only raise a few
-plain numbers to the power `n`. That is the whole shortcut.
+$$
+A^2 = (PDP^{-1})(PDP^{-1}) = PD(P^{-1}P)DP^{-1} = PD \cdot I \cdot DP^{-1} = PD^2P^{-1}
+$$
+
+The same cancelling happens for any power $n$:
+
+$$
+A^n = PD^nP^{-1}
+$$
+
+Instead of multiplying full matrices $n$ times, we only raise a few
+plain numbers to the power $n$. That is the whole shortcut.
 
 ---
 
@@ -340,7 +358,7 @@ plain numbers to the power `n`. That is the whole shortcut.
 <div class="stage"><div class="h">Diagonalized</div><div class="s">Build P and D once, then raise two plain numbers to the power n</div></div>
 </div>
 
-The diagonalized path does its hard work only once. Growing `n`
+The diagonalized path does its hard work only once. Growing $n$
 larger costs almost nothing extra.
 
 ---
@@ -349,15 +367,14 @@ larger costs almost nothing extra.
 
 <div class="thread">The shortcut needs one more condition, checked first.</div>
 
-`A` is diagonalizable only if it has a full set of linearly
+$A$ is diagonalizable only if it has a full set of linearly
 independent eigenvectors, one genuinely new direction per row.
 
-```
-A = [ 2  1 ]
-    [ 0  2 ]
-```
+$$
+A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}
+$$
 
-This matrix has only one eigenvalue, `2`, repeated. But it has only
+This matrix has only one eigenvalue, $2$, repeated. But it has only
 **one** independent eigenvector direction, not two. It cannot be
 diagonalized.
 
@@ -372,7 +389,7 @@ diagonalized.
 | A repeated eigenvalue, with too few independent eigenvectors | No |
 
 Always count independent eigenvectors first. Skipping this check is
-the fastest way to build a wrong `P`.
+the fastest way to build a wrong $P$.
 
 ---
 
@@ -390,12 +407,11 @@ the fastest way to build a wrong `P`.
 
 <div class="thread">A repeated eigenvalue is a warning sign, not always a dead end.</div>
 
-```
-A = [ 3  0 ]
-    [ 0  3 ]
-```
+$$
+A = \begin{bmatrix} 3 & 0 \\ 0 & 3 \end{bmatrix}
+$$
 
-Eigenvalue `3` has algebraic multiplicity 2. Every nonzero vector here
+Eigenvalue $3$ has algebraic multiplicity 2. Every nonzero vector here
 is already an eigenvector, so its geometric multiplicity is also 2.
 The two multiplicities match: this matrix is diagonalizable (it is
 already diagonal).
@@ -404,14 +420,38 @@ already diagonal).
 
 # Diagonalizing a Matrix: The Checklist
 
-<div class="thread">Five steps turn any diagonalizable matrix into fast powers.</div>
+<style scoped>
+.thread p, .card .h p, .card .d p { margin: 0; }
+</style>
+
+<div class="thread">
+
+Five steps turn any diagonalizable matrix into fast powers.
+
+</div>
 
 <div class="cardlist">
-<div class="card"><div class="h">Find Eigenvalues</div><div class="d">Find every eigenvalue of <code>A</code></div></div>
+<div class="card"><div class="h">Find Eigenvalues</div><div class="d">
+
+Find every eigenvalue of $A$
+
+</div></div>
 <div class="card"><div class="h">Find Eigenvectors</div><div class="d">Find one eigenvector for each eigenvalue</div></div>
 <div class="card"><div class="h">Check Independence</div><div class="d">Check there are enough independent eigenvectors</div></div>
-<div class="card"><div class="h">Build P and D</div><div class="d">Build <code>P</code> from the eigenvectors, <code>D</code> from the eigenvalues, in matching order</div></div>
-<div class="card"><div class="h">Compute P⁻¹</div><div class="d">Compute <code>P⁻¹</code>; now <code>A = PDP⁻¹</code>, and <code>Aⁿ = PDⁿP⁻¹</code> for any <code>n</code></div></div>
+<div class="card"><div class="h">Build P and D</div><div class="d">
+
+Build $P$ from the eigenvectors, $D$ from the eigenvalues, in matching order
+
+</div></div>
+<div class="card"><div class="h">
+
+Compute $P^{-1}$
+
+</div><div class="d">
+
+Compute $P^{-1}$; now $A = PDP^{-1}$, and $A^n = PD^nP^{-1}$ for any $n$
+
+</div></div>
 </div>
 
 ---
@@ -422,16 +462,15 @@ already diagonal).
 
 Take:
 
-```
-A = [ 5  4 ]
-    [ 1  2 ]
-```
+$$
+A = \begin{bmatrix} 5 & 4 \\ 1 & 2 \end{bmatrix}
+$$
 
 Set up the characteristic equation:
 
-```
-det(A - λI) = (5-λ)(2-λ) - 4(1) = λ² - 7λ + 6 = 0
-```
+$$
+\det(A - \lambda I) = (5-\lambda)(2-\lambda) - 4(1) = \lambda^2 - 7\lambda + 6 = 0
+$$
 
 ---
 
@@ -439,42 +478,43 @@ det(A - λI) = (5-λ)(2-λ) - 4(1) = λ² - 7λ + 6 = 0
 
 Solve the characteristic equation:
 
-```
-λ² - 7λ + 6 = 0
-(λ - 6)(λ - 1) = 0
-```
+$$
+\begin{aligned}
+\lambda^2 - 7\lambda + 6 &= 0 \\
+(\lambda - 6)(\lambda - 1) &= 0
+\end{aligned}
+$$
 
-Two eigenvalues: `λ = 6` and `λ = 1`. Different from each other, so
+Two eigenvalues: $\lambda = 6$ and $\lambda = 1$. Different from each other, so
 this matrix is guaranteed diagonalizable, no multiplicity check needed.
 
 ---
 
 # Worked Example: Diagonalizing From Scratch (3/4)
 
-Find each eigenvector. For `λ = 6`, solve `(A - 6I)v = 0`:
+Find each eigenvector. For $\lambda = 6$, solve $(A - 6I)v = 0$:
 
-```
--v1 + 4v2 = 0   ->   eigenvector (4, 1)
-```
+$$
+-v_1 + 4v_2 = 0 \;\Rightarrow\; \text{eigenvector } (4, 1)
+$$
 
-For `λ = 1`, solve `(A - 1I)v = 0`:
+For $\lambda = 1$, solve $(A - 1I)v = 0$:
 
-```
-4v1 + 4v2 = 0   ->   eigenvector (1, -1)
-```
+$$
+4v_1 + 4v_2 = 0 \;\Rightarrow\; \text{eigenvector } (1, -1)
+$$
 
 ---
 
 # Worked Example: Diagonalizing From Scratch (4/4)
 
-Build `P` and `D` from these results:
+Build $P$ and $D$ from these results:
 
-```
-P = [ 4   1 ]     D = [ 6  0 ]
-    [ 1  -1 ]         [ 0  1 ]
-```
+$$
+P = \begin{bmatrix} 4 & 1 \\ 1 & -1 \end{bmatrix} \qquad D = \begin{bmatrix} 6 & 0 \\ 0 & 1 \end{bmatrix}
+$$
 
-`A = PDP⁻¹`, so `Aⁿ = PDⁿP⁻¹` only ever needs `6ⁿ` and `1ⁿ`, never a
+$A = PDP^{-1}$, so $A^n = PD^nP^{-1}$ only ever needs $6^n$ and $1^n$, never a
 repeated full matrix multiplication.
 
 ---
@@ -492,14 +532,16 @@ A mismatch does not fix a wrong answer, but it always catches one.
 
 # Checking the Worked Example
 
-Apply the sanity check to `A = [[5,4],[1,2]]`:
+Apply the sanity check to $A = \begin{bmatrix} 5&4\\1&2 \end{bmatrix}$:
 
-```
-trace(A) = 5 + 2 = 7        eigenvalues sum: 6 + 1 = 7   ✓
-det(A)   = 5(2) - 4(1) = 6  eigenvalues product: 6(1) = 6 ✓
-```
+$$
+\begin{aligned}
+\text{trace}(A) &= 5 + 2 = 7 && \text{eigenvalues sum: } 6 + 1 = 7 \;\checkmark \\
+\det(A) &= 5(2) - 4(1) = 6 && \text{eigenvalues product: } 6(1) = 6 \;\checkmark
+\end{aligned}
+$$
 
-Both match. The eigenvalues found are consistent with `A` itself.
+Both match. The eigenvalues found are consistent with $A$ itself.
 
 ---
 
@@ -507,9 +549,9 @@ Both match. The eigenvalues found are consistent with `A` itself.
 
 <div class="thread">The word "similar" is not casual here. It has one exact meaning.</div>
 
-Two matrices `A` and `B` are **similar** if `B = P⁻¹AP` for some
-invertible `P`. Diagonalization is a special case: `A` is similar to
-the diagonal matrix `D`.
+Two matrices $A$ and $B$ are **similar** if $B = P^{-1}AP$ for some
+invertible $P$. Diagonalization is a special case: $A$ is similar to
+the diagonal matrix $D$.
 
 Similar matrices describe the same transformation, measured from two
 different sets of directions.
@@ -520,20 +562,28 @@ different sets of directions.
 
 <div class="thread">This is exactly why diagonalizing never changes A's own eigenvalues.</div>
 
-If `B = P⁻¹AP`, then `A` and `B` always have the same eigenvalues.
-`D`'s diagonal entries are literally `A`'s own eigenvalues, unchanged,
+If $B = P^{-1}AP$, then $A$ and $B$ always have the same eigenvalues.
+$D$'s diagonal entries are literally $A$'s own eigenvalues, unchanged,
 only rearranged into a simpler shape.
 
 ---
 
 # Beyond Powers: Other Functions of a Matrix
 
-<div class="thread">The same shortcut works for more than just Aⁿ.</div>
+<style scoped>
+.thread p { margin: 0; }
+</style>
 
-Once `A = PDP⁻¹`, other functions of `A` become just as easy:
+<div class="thread">
 
-- **Matrix square root:** `√A = P√D P⁻¹`, take the square root of each diagonal entry
-- **Matrix exponential:** `e^A = Pe^D P⁻¹`, used to solve systems of differential equations
+The same shortcut works for more than just $A^n$.
+
+</div>
+
+Once $A = PDP^{-1}$, other functions of $A$ become just as easy:
+
+- **Matrix square root:** $\sqrt{A} = P\sqrt{D}\,P^{-1}$, take the square root of each diagonal entry
+- **Matrix exponential:** $e^A = Pe^D P^{-1}$, used to solve systems of differential equations
 
 Anything applied to a diagonal matrix applies entry by entry.
 
@@ -544,7 +594,7 @@ Anything applied to a diagonal matrix applies entry by entry.
 <div class="thread">By hand today; by computer everywhere else.</div>
 
 Software libraries, like NumPy's `eig` or MATLAB's `eig`, compute
-eigenvalues, eigenvectors, `P`, and `D` directly, for matrices far too
+eigenvalues, eigenvectors, $P$, and $D$ directly, for matrices far too
 large to diagonalize by hand.
 
 The by-hand method you just learned is exactly what these libraries
@@ -561,7 +611,7 @@ automate at scale.
 You get a small matrix, its eigenvalues, and its eigenvectors already
 found.
 
-Build `P` and `D`, then check that `A = PDP⁻¹` really holds.
+Build $P$ and $D$, then check that $A = PDP^{-1}$ really holds.
 
 You have about 15 minutes.
 
@@ -594,16 +644,15 @@ You have about 15 minutes.
 
 <div class="thread">Back to the café. Let's make the many-week prediction fast, for real.</div>
 
-The café tracks two groups each week: Classic-drink fans (`c`) and
-Vanilla-drink fans (`v`). Word of mouth grows both groups this way:
+The café tracks two groups each week: Classic-drink fans ($c$) and
+Vanilla-drink fans ($v$). Word of mouth grows both groups this way:
 
-```
-A = [ 2  1 ]
-    [ 1  2 ]
-```
+$$
+A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}
+$$
 
-Using last week's method on this matrix gives eigenvalues `3` and
-`1`, with eigenvectors `(1, 1)` and `(1, -1)`.
+Using last week's method on this matrix gives eigenvalues $3$ and
+$1$, with eigenvectors $(1, 1)$ and $(1, -1)$.
 
 <!-- notes: The Campus Café is invented; its numbers are picked to come
 out even. Remind students the story is fictional, the method is the
@@ -613,66 +662,65 @@ real, general one they will use on any diagonalizable matrix. -->
 
 # Case Study: The Café's Loyalty Program (2/5)
 
-**Build P, D, and P⁻¹.** Place the eigenvectors as columns of `P`,
-the eigenvalues on the diagonal of `D`, in matching order:
+**Build $P$, $D$, and $P^{-1}$.** Place the eigenvectors as columns of $P$,
+the eigenvalues on the diagonal of $D$, in matching order:
 
-```
-P = [ 1   1 ]     D = [ 3  0 ]     P⁻¹ = [ 1/2   1/2 ]
-    [ 1  -1 ]         [ 0  1 ]           [ 1/2  -1/2 ]
-```
+$$
+P = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \qquad D = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix} \qquad P^{-1} = \begin{bmatrix} 1/2 & 1/2 \\ 1/2 & -1/2 \end{bmatrix}
+$$
 
-This week, this replaces `A` for every future calculation.
+This week, this replaces $A$ for every future calculation.
 
 ---
 
 # Case Study: The Café's Loyalty Program (3/5)
 
-**Predict week 6, the fast way.** Start at `c₀ = 30`, `v₀ = 10`.
+**Predict week 6, the fast way.** Start at $c_0 = 30$, $v_0 = 10$.
 Diagonalization gives a direct formula:
 
-```
-xₙ = P Dⁿ P⁻¹ x₀
-```
+$$
+x_n = P D^n P^{-1} x_0
+$$
 
-`Dⁿ` only needs `3ⁿ` and `1ⁿ`. For `n = 6`: `3⁶ = 729`, `1⁶ = 1`.
+$D^n$ only needs $3^n$ and $1^n$. For $n = 6$: $3^6 = 729$, $1^6 = 1$.
 Working through the formula gives:
 
-```
-x₆ = (14590, 14570)
-```
+$$
+x_6 = (14590, 14570)
+$$
 
-One power of `3`, not six rounds of matrix multiplication.
+One power of $3$, not six rounds of matrix multiplication.
 
 ---
 
 # Case Study: The Café's Loyalty Program (4/5)
 
-**Which eigenvalue wins in the long run?** Compare how `3ⁿ` and `1ⁿ`
+**Which eigenvalue wins in the long run?** Compare how $3^n$ and $1^n$
 grow, week by week:
 
-```
-3ⁿ:  3, 9, 27, 81, 243, 729, ...   keeps growing
-1ⁿ:  1, 1,  1,  1,   1,   1, ...   never changes
-```
+$$
+\begin{aligned}
+3^n &: 3, 9, 27, 81, 243, 729, \ldots \quad \text{keeps growing} \\
+1^n &: 1, 1, 1, 1, 1, 1, \ldots \quad \text{never changes}
+\end{aligned}
+$$
 
-`3` is the **dominant eigenvalue**: the larger `n` gets, the more it
-controls the answer. The `1` direction barely matters after a few
+$3$ is the **dominant eigenvalue**: the larger $n$ gets, the more it
+controls the answer. The $1$ direction barely matters after a few
 weeks.
 
 ---
 
 # Case Study: The Café's Loyalty Program (5/5)
 
-**Check, the slow way.** Multiplying `A` by itself six times, one
-round at a time, lands on the same answer: `(14590, 14570)`.
+**Check, the slow way.** Multiplying $A$ by itself six times, one
+round at a time, lands on the same answer: $(14590, 14570)$.
 
 Both ways agree. But the slow way took six full matrix
-multiplications. The fast way took one power of `3`.
+multiplications. The fast way took one power of $3$.
 
-```
-Week 20, the fast way: just 3²⁰ ≈ 3.49 billion, one calculation
+Week 20, the fast way: just $3^{20} \approx 3.49$ billion, one calculation
 Week 20, the slow way: twenty full rounds of matrix multiplication
-```
 
 No staff member wants to do the slow way twenty times.
 
@@ -682,10 +730,10 @@ No staff member wants to do the slow way twenty times.
 
 <div class="thread">Does the shortcut still work if the café starts with different numbers?</div>
 
-Suppose the café instead starts at `c0 = 50`, `v0 = 50`, exactly the
-`(1, -1)` eigenvector direction. Since that eigenvalue is `1`, that
+Suppose the café instead starts at $c_0 = 50$, $v_0 = 50$, exactly the
+$(1, -1)$ eigenvector direction. Since that eigenvalue is $1$, that
 component never grows: both groups stay locked at 50, no matter how
-large `n` gets. Starting exactly on a non-dominant eigenvector is the
+large $n$ gets. Starting exactly on a non-dominant eigenvector is the
 only way to avoid the dominant eigenvalue taking over.
 
 ---
@@ -694,10 +742,10 @@ only way to avoid the dominant eigenvalue taking over.
 
 <div class="thread">One line captures the whole point of a dominant eigenvalue.</div>
 
-For almost any starting point, as `n` grows, `xₙ` points closer and
-closer to the direction of the dominant eigenvector, `(1, 1)` here.
+For almost any starting point, as $n$ grows, $x_n$ points closer and
+closer to the direction of the dominant eigenvector, $(1, 1)$ here.
 The ratio of classic-fans to vanilla-fans settles near 1:1, no matter
-the starting mix, except for the special `(1, -1)` case above.
+the starting mix, except for the special $(1, -1)$ case above.
 
 ---
 
@@ -708,7 +756,7 @@ the starting mix, except for the special `(1, -1)` case above.
 <div class="why">Same pairs. Open <a href="materials/week11/worksheet.html">Worksheet Part B</a>.</div>
 
 Diagonalize a new matrix from scratch: find eigenvalues, eigenvectors,
-then `P`, `D`, and `P⁻¹`.
+then $P$, $D$, and $P^{-1}$.
 
 Use it to predict a value several rounds ahead, the fast way.
 
@@ -721,8 +769,8 @@ You have about 15 minutes.
 # Common Mistakes
 
 - **Assuming every matrix is diagonalizable:** always count independent eigenvectors first; a repeated eigenvalue is a warning sign, not an automatic stop
-- **Mismatching P and D's column order:** each column of `P` must line up with its own eigenvalue in `D`, in the same position
-- **Multiplying `A` by itself anyway:** once `P`, `D`, and `P⁻¹` exist, use `PDⁿP⁻¹`; recomputing by hand defeats the entire point
+- **Mismatching P and D's column order:** each column of $P$ must line up with its own eigenvalue in $D$, in the same position
+- **Multiplying $A$ by itself anyway:** once $P$, $D$, and $P^{-1}$ exist, use $PD^nP^{-1}$; recomputing by hand defeats the entire point
 
 ---
 
@@ -730,15 +778,15 @@ You have about 15 minutes.
 
 # Check Yourself
 
-1. Why is `Dⁿ` so much easier to compute than `Aⁿ` directly?
-2. A 2×2 matrix has one repeated eigenvalue, and only one independent eigenvector direction. Is it diagonalizable?
+1. Why is $D^n$ so much easier to compute than $A^n$ directly?
+2. A $2 \times 2$ matrix has one repeated eigenvalue, and only one independent eigenvector direction. Is it diagonalizable?
 
 ---
 
 # Answers
 
-1. **Because `D` is diagonal.** Multiplying diagonal matrices never creates cross terms, so each entry just raises to the power `n` on its own.
-2. **No.** Diagonalizing an `n × n` matrix needs `n` independent eigenvector directions. One direction is not enough for a 2×2 matrix.
+1. **Because $D$ is diagonal.** Multiplying diagonal matrices never creates cross terms, so each entry just raises to the power $n$ on its own.
+2. **No.** Diagonalizing an $n \times n$ matrix needs $n$ independent eigenvector directions. One direction is not enough for a $2 \times 2$ matrix.
 
 ---
 
@@ -784,7 +832,7 @@ way to measure both, exactly.
 # Summary
 
 - A diagonal matrix's power is trivial: just raise each diagonal entry, no cross terms
-- `A = PDP⁻¹` rewrites `A` using its own eigenvectors; then `Aⁿ = PDⁿP⁻¹` makes any power fast
+- $A = PDP^{-1}$ rewrites $A$ using its own eigenvectors; then $A^n = PD^nP^{-1}$ makes any power fast
 - Not every matrix is diagonalizable; it needs a full set of independent eigenvectors
 - **Reading:** Lay, Lay & McDonald, 6th ed., Chapter 5.3
 - **Handout:** [materials/week11/handout.md](materials/week11/handout.html), glossary and the full café walkthrough

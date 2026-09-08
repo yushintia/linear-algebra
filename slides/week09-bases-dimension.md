@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -203,7 +204,7 @@ You also find a basis for a space, using the café's own flavor mixes.
 
 <div class="thread">4 more words for this session.</div>
 
-- **Linear combination:** a sum of scaled vectors, like `2v + 3w`
+- **Linear combination:** a sum of scaled vectors, like $2v + 3w$
 - **Trivial combination:** every scalar in a combination is zero
 - **Spans (a space):** a set of vectors whose combinations reach every point in that space
 - **Exchange lemma:** the rule proving every basis of a space has the same count
@@ -265,14 +266,14 @@ could never change, no matter which basis you pick.
 
 <div class="thread">One test covers every case, small or large.</div>
 
-To test vectors `v1, v2, ..., vk`, solve:
+To test vectors $v_1, v_2, \ldots, v_k$, solve:
 
-```
-c1*v1 + c2*v2 + ... + ck*vk = 0
-```
+$$
+c_1 v_1 + c_2 v_2 + \cdots + c_k v_k = 0
+$$
 
-- If the **only** solution is `c1 = c2 = ... = ck = 0`, the set is independent
-- If some `ci` can be nonzero, the set is dependent. That equation shows how to rebuild the redundant vector
+- If the **only** solution is $c_1 = c_2 = \cdots = c_k = 0$, the set is independent
+- If some $c_i$ can be nonzero, the set is dependent. That equation shows how to rebuild the redundant vector
 
 ---
 
@@ -280,12 +281,15 @@ c1*v1 + c2*v2 + ... + ck*vk = 0
 
 <div class="thread">The smallest case first, before three vectors at once.</div>
 
-Test `{(1, 2), (3, 4)}`. Solve `c1(1,2) + c2(3,4) = (0,0)`:
+Test $\{(1, 2), (3, 4)\}$. Solve $c_1(1,2) + c_2(3,4) = (0,0)$:
 
-```
-c1 + 3c2 = 0
-2c1 + 4c2 = 0   ->   c1 = c2 = 0 only
-```
+$$
+\begin{aligned}
+c_1 + 3c_2 &= 0 \\
+2c_1 + 4c_2 &= 0
+\end{aligned}
+\;\Longrightarrow\; c_1 = c_2 = 0 \text{ only}
+$$
 
 Only the trivial solution works. **Independent.**
 
@@ -295,15 +299,19 @@ Only the trivial solution works. **Independent.**
 
 <div class="thread">Same test, a set that does not survive it.</div>
 
-Test `{(1, 2), (2, 4)}`. Solve `c1(1,2) + c2(2,4) = (0,0)`:
+Test $\{(1, 2), (2, 4)\}$. Solve $c_1(1,2) + c_2(2,4) = (0,0)$:
 
-```
-c1 + 2c2 = 0
-2c1 + 4c2 = 0   ->   same equation twice, c1 = -2c2
-```
+$$
+\begin{aligned}
+c_1 + 2c_2 &= 0 \\
+2c_1 + 4c_2 &= 0
+\end{aligned}
+$$
 
-Pick `c2 = 1`, `c1 = -2`: a nonzero solution exists. **Dependent.**
-`(2,4) = 2(1,2)`, exactly redundant.
+Same equation twice: $c_1 = -2c_2$.
+
+Pick $c_2 = 1$, $c_1 = -2$: a nonzero solution exists. **Dependent.**
+$(2,4) = 2(1,2)$, exactly redundant.
 
 ---
 
@@ -311,7 +319,7 @@ Pick `c2 = 1`, `c1 = -2`: a nonzero solution exists. **Dependent.**
 
 <div class="why">In pairs, 5 minutes, no worksheet needed yet.</div>
 
-Test `{(1, 0, 1), (0, 1, 1), (1, 1, 2)}` for independence. Set up the
+Test $\{(1, 0, 1), (0, 1, 1), (1, 1, 2)\}$ for independence. Set up the
 equation, then decide.
 
 ---
@@ -320,19 +328,21 @@ equation, then decide.
 
 <div class="thread">Back to the pain: are all three flavor mixes really new?</div>
 
-The three tested mixes, as ingredient-change vectors `(e, m, s)`:
+The three tested mixes, as ingredient-change vectors $(e, m, s)$:
 
-```
-v1 = (-2, 1, 0)
-v2 = (1, 0, 1)
-v3 = (-1, 1, 1)
-```
+$$
+\begin{aligned}
+v_1 &= (-2, 1, 0) \\
+v_2 &= (1, 0, 1) \\
+v_3 &= (-1, 1, 1)
+\end{aligned}
+$$
 
-Try `c1*v1 + c2*v2 + v3 = 0` with `c1 = 1`, `c2 = 1`:
+Try $c_1 v_1 + c_2 v_2 + v_3 = 0$ with $c_1 = 1$, $c_2 = 1$:
 
-```
-1(-2,1,0) + 1(1,0,1) + (-1,1,1)*(-1) = (0,0,0)
-```
+$$
+1(-2,1,0) + 1(1,0,1) + (-1,1,1)(-1) = (0,0,0)
+$$
 
 A nonzero combination reaches zero. The set is dependent.
 
@@ -343,13 +353,13 @@ A nonzero combination reaches zero. The set is dependent.
 Rearranging the last slide's equation gives the redundant vector
 directly:
 
-```
-v3 = v1 + v2
-```
+$$
+v_3 = v_1 + v_2
+$$
 
-Check it: `(-2,1,0) + (1,0,1) = (-1,1,1)`, which is exactly `v3`.
+Check it: $(-2,1,0) + (1,0,1) = (-1,1,1)$, which is exactly $v_3$.
 
-Mixing `v1` and `v2` already produces `v3`. The staff member's hunch
+Mixing $v_1$ and $v_2$ already produces $v_3$. The staff member's hunch
 was correct.
 
 ---
@@ -375,11 +385,11 @@ already have.
 
 Any set that includes the zero vector is automatically dependent:
 
-```
-c(0, 0, 0) = (0, 0, 0)   for any c, even c = 5
-```
+$$
+c(0, 0, 0) = (0, 0, 0) \quad \text{for any } c\text{, even } c = 5
+$$
 
-A nonzero `c` still reaches zero. The trivial solution is never the
+A nonzero $c$ still reaches zero. The trivial solution is never the
 only one, so no set containing the zero vector can be independent.
 
 ---
@@ -399,16 +409,16 @@ possible independent set, at the same time.
 
 ---
 
-# Basis, Worked Example: The Standard Basis of R³
+# Basis, Worked Example: The Standard Basis of $\mathbb{R}^3$
 
 <div class="thread">The simplest possible basis, for the simplest possible space.</div>
 
-```
-e1 = (1, 0, 0)      e2 = (0, 1, 0)      e3 = (0, 0, 1)
-```
+$$
+e_1 = (1, 0, 0) \qquad e_2 = (0, 1, 0) \qquad e_3 = (0, 0, 1)
+$$
 
 Independent: no combination of two reaches the third. Spanning: any
-`(a,b,c) = a*e1 + b*e2 + c*e3`. Both conditions hold, so `{e1,e2,e3}`
+$(a,b,c) = a e_1 + b e_2 + c e_3$. Both conditions hold, so $\{e_1, e_2, e_3\}$
 is a basis, called the **standard basis**.
 
 ---
@@ -417,9 +427,9 @@ is a basis, called the **standard basis**.
 
 <div class="thread">Independence alone is not enough.</div>
 
-`{(1, 0)}` is independent in R²: no nonzero scalar reaches `(0,0)`.
+$\{(1, 0)\}$ is independent in $\mathbb{R}^2$: no nonzero scalar reaches $(0,0)$.
 
-But it does not span R²; `(0, 1)` is not any multiple of `(1, 0)`. One
+But it does not span $\mathbb{R}^2$; $(0, 1)$ is not any multiple of $(1, 0)$. One
 independent vector is not a basis for a 2-dimensional space.
 
 ---
@@ -428,9 +438,9 @@ independent vector is not a basis for a 2-dimensional space.
 
 <div class="thread">Spanning alone is not enough either.</div>
 
-`{(1, 0), (0, 1), (1, 1)}` spans R²: every point is reachable.
+$\{(1, 0), (0, 1), (1, 1)\}$ spans $\mathbb{R}^2$: every point is reachable.
 
-But `(1,1) = (1,0) + (0,1)` is redundant, so the set is dependent. A
+But $(1,1) = (1,0) + (0,1)$ is redundant, so the set is dependent. A
 spanning set with a redundant vector is not yet a basis.
 
 ---
@@ -439,13 +449,13 @@ spanning set with a redundant vector is not yet a basis.
 
 <div class="thread">A spanning set that is not independent still hides a basis inside it.</div>
 
-To turn `{v1, v2, v3}` into a basis:
+To turn $\{v_1, v_2, v_3\}$ into a basis:
 
-1. Keep `v1` and `v2`. They are independent of each other
-2. Drop `v3`, since `v3 = v1 + v2` adds no new direction
-3. Check `{v1, v2}` still spans every combination `v3` could reach
+1. Keep $v_1$ and $v_2$. They are independent of each other
+2. Drop $v_3$, since $v_3 = v_1 + v_2$ adds no new direction
+3. Check $\{v_1, v_2\}$ still spans every combination $v_3$ could reach
 
-`{v1, v2}` is a basis for the café's flavor-adjustment space.
+$\{v_1, v_2\}$ is a basis for the café's flavor-adjustment space.
 
 ---
 
@@ -464,9 +474,9 @@ span.
 
 <div class="thread">One space, many valid bases.</div>
 
-`{v1, v2}` is one valid basis for the café's flavor-adjustment plane.
+$\{v_1, v_2\}$ is one valid basis for the café's flavor-adjustment plane.
 It is not the only one: any two independent vectors already inside
-that plane work equally well, including `{v1, v3}` or `{v2, v3}`.
+that plane work equally well, including $\{v_1, v_3\}$ or $\{v_2, v_3\}$.
 
 There is no single "correct" basis, only correct **counts**: this
 plane always needs exactly 2 vectors, no matter which basis you pick.
@@ -481,25 +491,25 @@ plane always needs exactly 2 vectors, no matter which basis you pick.
 
 Every flavor mix that passes the taste rule has the form:
 
-```
-m*v1 + s*v2 = m(-2, 1, 0) + s(1, 0, 1)
-```
+$$
+m v_1 + s v_2 = m(-2, 1, 0) + s(1, 0, 1)
+$$
 
-for any numbers `m` and `s`. This is exactly last week's null space,
+for any numbers $m$ and $s$. This is exactly last week's null space,
 now written using a basis of just two vectors.
 
 ---
 
 # Case Study: Verifying Two Is Enough (2/2)
 
-Any "new" flavor mix a staff member tests is just `m` and `s`
-plugged into that formula. Even `v3` fits it:
+Any "new" flavor mix a staff member tests is just $m$ and $s$
+plugged into that formula. Even $v_3$ fits it:
 
-```
-v3 = (-1, 1, 1) = 1*v1 + 1*v2
-```
+$$
+v_3 = (-1, 1, 1) = 1 \cdot v_1 + 1 \cdot v_2
+$$
 
-The reference card needs only **2** mixes, `v1` and `v2`. Every valid
+The reference card needs only **2** mixes, $v_1$ and $v_2$. Every valid
 flavor mix, past or future, is some combination of those two.
 
 <!-- notes: Point out this directly answers the owner's question from the pain slide: 2 mixes, not 3, and no future test can ever need a 3rd independent one. -->
@@ -510,22 +520,24 @@ flavor mix, past or future, is some combination of those two.
 
 <div class="thread">A new season, a new test. Does the reference card need to grow?</div>
 
-A staff member proposes a fourth mix, `v4 = (0, 1, 1)`. Test it
-against the existing basis `{v1, v2}`:
+A staff member proposes a fourth mix, $v_4 = (0, 1, 1)$. Test it
+against the existing basis $\{v_1, v_2\}$:
 
-```
-c1(-2,1,0) + c2(1,0,1) = (0,1,1)
--2c1 + c2 = 0     c1 = 1     c2 = 1
-```
+$$
+\begin{aligned}
+c_1(-2,1,0) + c_2(1,0,1) &= (0,1,1) \\
+-2c_1 + c_2 = 0 \qquad c_1 &= 1 \qquad c_2 = 1
+\end{aligned}
+$$
 
-`c1 = 1`, `c2 = 1` solves all three equations exactly.
+$c_1 = 1$, $c_2 = 1$ solves all three equations exactly.
 
 ---
 
 # Case Study: A Fourth Flavor Mix Arrives (2/2)
 
-`v4 = v1 + v2`, so the "new" mix was already reachable from the
-2-mix card. The reference card still only needs `{v1, v2}`.
+$v_4 = v_1 + v_2$, so the "new" mix was already reachable from the
+2-mix card. The reference card still only needs $\{v_1, v_2\}$.
 
 No matter how many new mixes staff test, none can ever need a 3rd
 independent card entry, because the whole space only has dimension 2.
@@ -562,8 +574,8 @@ You have about 15 minutes.
 
 - **Nullity:** the dimension of a matrix's null space
 - **Rank-nullity theorem:** rank plus nullity always equals the number of unknowns
-- **Coordinate space:** the space of all lists of n numbers, written Rⁿ
-- **Ambient space:** the full space a subspace sits inside, like R³ for the café
+- **Coordinate space:** the space of all lists of n numbers, written $\mathbb{R}^n$
+- **Ambient space:** the full space a subspace sits inside, like $\mathbb{R}^3$ for the café
 
 ---
 
@@ -575,10 +587,10 @@ You have about 15 minutes.
 > vectors in any basis for it.
 >
 > Every basis for the same space has the same count. Dimension is
-> written `dim(V)`.
+> written $\dim(V)$.
 
-- The café's full ingredient space, all `(e, m, s)`, has dimension 3
-- The café's flavor-adjustment plane, `span{v1, v2}`, has dimension 2
+- The café's full ingredient space, all $(e, m, s)$, has dimension 3
+- The café's flavor-adjustment plane, $\text{span}\{v_1, v_2\}$, has dimension 2
 
 ---
 
@@ -588,11 +600,11 @@ You have about 15 minutes.
 
 | Space | Dimension |
 |---|---|
-| Rⁿ | n |
-| All m×n matrices | m*n |
-| Polynomials of degree ≤ n | n+1 |
+| $\mathbb{R}^n$ | $n$ |
+| All $m \times n$ matrices | $mn$ |
+| Polynomials of degree $\le n$ | $n+1$ |
 
-`Rⁿ`'s standard basis, `{e1, ..., en}`, has exactly `n` vectors, one
+$\mathbb{R}^n$'s standard basis, $\{e_1, \ldots, e_n\}$, has exactly $n$ vectors, one
 per coordinate.
 
 ---
@@ -602,13 +614,15 @@ per coordinate.
 <div class="thread">Why "the" dimension is a safe, single number to trust.</div>
 
 The flavor-adjustment plane also has other valid bases, for example
-`{v1, v3}` or `{v2, v3}`.
+$\{v_1, v_3\}$ or $\{v_2, v_3\}$.
 
-```
-{v1, v2}   -> 2 vectors
-{v1, v3}   -> 2 vectors
-{v2, v3}   -> 2 vectors
-```
+$$
+\begin{aligned}
+\{v_1, v_2\} &\to 2 \text{ vectors} \\
+\{v_1, v_3\} &\to 2 \text{ vectors} \\
+\{v_2, v_3\} &\to 2 \text{ vectors}
+\end{aligned}
+$$
 
 Steinitz's exchange lemma guarantees this: pick any basis you like,
 you always count exactly 2. Dimension never depends on the choice.
@@ -619,10 +633,10 @@ you always count exactly 2. Dimension never depends on the choice.
 
 <div class="thread">Week 7 named the column space. This week measures it.</div>
 
-> The **rank** of a matrix `A` is the dimension of its column space:
-> how many independent directions `Ax` can actually reach.
+> The **rank** of a matrix $A$ is the dimension of its column space:
+> how many independent directions $Ax$ can actually reach.
 
-- A small rank means many columns of `A` are redundant, combinations of the others
+- A small rank means many columns of $A$ are redundant, combinations of the others
 - Rank never exceeds the number of rows or the number of columns, whichever is smaller
 
 ---
@@ -631,15 +645,15 @@ you always count exactly 2. Dimension never depends on the choice.
 
 <div class="thread">The fastest way to find rank in practice.</div>
 
-Row-reduce `A = [[1,2,3],[2,4,6],[1,1,1]]`:
+Row-reduce $A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 1 & 1 \end{bmatrix}$:
 
-```
-[ 1  2  3 ]        [ 1  2  3 ]
-[ 2  4  6 ]   ->    [ 0  0  0 ]
-[ 1  1  1 ]        [ 0  0  -2 ]
-```
+$$
+\begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 1 & 1 \end{bmatrix}
+\;\to\;
+\begin{bmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \\ 0 & 0 & -2 \end{bmatrix}
+$$
 
-Two nonzero rows survive. `rank(A) = 2`.
+Two nonzero rows survive. $\text{rank}(A) = 2$.
 
 ---
 
@@ -657,18 +671,20 @@ Two nonzero rows survive. `rank(A) = 2`.
 
 <div class="thread">One theorem ties this week's two counts together.</div>
 
-For any matrix `A` with `n` columns (n unknowns):
+For any matrix $A$ with $n$ columns ($n$ unknowns):
 
-```
-rank(A) + nullity(A) = n
-```
+$$
+\text{rank}(A) + \text{nullity}(A) = n
+$$
 
-The café's one taste rule is a 1×3 matrix, `A = [2  4  -2]`:
+The café's one taste rule is a $1 \times 3$ matrix, $A = \begin{bmatrix} 2 & 4 & -2 \end{bmatrix}$:
 
-```
-rank(A) = 1        nullity(A) = 2        n = 3
-1 + 2 = 3   ✓
-```
+$$
+\begin{aligned}
+\text{rank}(A) &= 1, \quad \text{nullity}(A) = 2, \quad n = 3 \\
+1 + 2 &= 3 \quad \checkmark
+\end{aligned}
+$$
 
 Every ingredient direction is accounted for: 1 constrained, 2 free.
 
@@ -678,13 +694,15 @@ Every ingredient direction is accounted for: 1 constrained, 2 free.
 
 <div class="thread">Same theorem, a matrix with more columns than rows.</div>
 
-For a 2×4 matrix with `rank(A) = 2`:
+For a $2 \times 4$ matrix with $\text{rank}(A) = 2$:
 
-```
-rank(A) + nullity(A) = n
-2 + nullity(A) = 4
-nullity(A) = 2
-```
+$$
+\begin{aligned}
+\text{rank}(A) + \text{nullity}(A) &= n \\
+2 + \text{nullity}(A) &= 4 \\
+\text{nullity}(A) &= 2
+\end{aligned}
+$$
 
 Two constrained directions, two free directions, four unknowns total.
 
@@ -727,42 +745,42 @@ You have about 15 minutes.
 
 # Check Yourself
 
-1. Is the set `{(1, 0), (0, 1), (1, 1)}` linearly independent? Why or why not?
-2. A 2×4 matrix has rank 2. What is its nullity?
+1. Is the set $\{(1, 0), (0, 1), (1, 1)\}$ linearly independent? Why or why not?
+2. A $2 \times 4$ matrix has rank 2. What is its nullity?
 
 ---
 
 # Answers
 
-1. **No.** `(1, 1) = (1, 0) + (0, 1)`, a nonzero combination reaching a repeat. The set is dependent.
-2. **Nullity = 2.** By rank-nullity, `rank + nullity = n = 4`, so `2 + nullity = 4`.
+1. **No.** $(1, 1) = (1, 0) + (0, 1)$, a nonzero combination reaching a repeat. The set is dependent.
+2. **Nullity = 2.** By rank-nullity, $\text{rank} + \text{nullity} = n = 4$, so $2 + \text{nullity} = 4$.
 
 ---
 
 # Check Yourself: Round 2
 
-1. What is the dimension of the space of all 2×2 matrices?
-2. A 3x3 matrix has determinant `0`. Is it full rank?
+1. What is the dimension of the space of all $2 \times 2$ matrices?
+2. A 3x3 matrix has determinant $0$. Is it full rank?
 
 ---
 
 # Answers
 
-1. **4.** A basis is `{[[1,0],[0,0]], [[0,1],[0,0]], [[0,0],[1,0]], [[0,0],[0,1]]}`, four independent matrices.
+1. **4.** A basis is $\left\{ \begin{bmatrix} 1&0\\0&0 \end{bmatrix}, \begin{bmatrix} 0&1\\0&0 \end{bmatrix}, \begin{bmatrix} 0&0\\1&0 \end{bmatrix}, \begin{bmatrix} 0&0\\0&1 \end{bmatrix} \right\}$, four independent matrices.
 2. **No.** A zero determinant means the matrix is rank deficient, not full rank.
 
 ---
 
 # Check Yourself: Round 3
 
-1. `{v1, v2}` is a basis for a plane. Is `{v1, v2, v1+v2}` also a basis for the same plane?
+1. $\{v_1, v_2\}$ is a basis for a plane. Is $\{v_1, v_2, v_1+v_2\}$ also a basis for the same plane?
 2. What is the rank of the zero matrix?
 
 ---
 
 # Answers
 
-1. **No.** `v1+v2` is redundant, so the set is dependent; it is still a spanning set, but not a basis.
+1. **No.** $v_1+v_2$ is redundant, so the set is dependent; it is still a spanning set, but not a basis.
 2. **0.** Every row and column is already zero, so no independent direction exists at all.
 
 ---

@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -244,18 +245,18 @@ never stopped mattering.
 
 <div class="thread">Now the exact, formal definition.</div>
 
-> The **dot product** of two vectors u = (u₁, u₂, ..., uₙ) and
-> v = (v₁, v₂, ..., vₙ) is one number:
+> The **dot product** of two vectors $u = (u_1, u_2, \ldots, u_n)$ and
+> $v = (v_1, v_2, \ldots, v_n)$ is one number:
 >
-> ```
-> u · v = u₁v₁ + u₂v₂ + ... + uₙvₙ
-> ```
+> $$
+> u \cdot v = u_1 v_1 + u_2 v_2 + \ldots + u_n v_n
+> $$
 >
-> The **length**, or **norm**, of a vector u is
+> The **length**, or **norm**, of a vector $u$ is
 >
-> ```
-> ||u|| = √(u · u)
-> ```
+> $$
+> \|u\| = \sqrt{u \cdot u}
+> $$
 
 - The dot product turns two vectors into a single number
 - A vector's length is never negative, and is zero only for the zero vector
@@ -268,12 +269,12 @@ never stopped mattering.
 
 <div class="thread">One rule: multiply matching positions, then add.</div>
 
-For u = (1, 2) and v = (3, 4), multiply matching entries, then add
+For $u = (1, 2)$ and $v = (3, 4)$, multiply matching entries, then add
 the results:
 
-```
-u · v = (1)(3) + (2)(4) = 3 + 8 = 11
-```
+$$
+u \cdot v = (1)(3) + (2)(4) = 3 + 8 = 11
+$$
 
 The same rule works for any number of entries: multiply each matching
 pair, then add every result together.
@@ -284,11 +285,11 @@ pair, then add every result together.
 
 <div class="thread">The same rule, one more entry.</div>
 
-For u = (1, 2, 2) and v = (3, 0, 4):
+For $u = (1, 2, 2)$ and $v = (3, 0, 4)$:
 
-```
-u · v = (1)(3) + (2)(0) + (2)(4) = 3 + 0 + 8 = 11
-```
+$$
+u \cdot v = (1)(3) + (2)(0) + (2)(4) = 3 + 0 + 8 = 11
+$$
 
 Nothing changes except the entry count. The dot product works exactly
 the same way in 3, 10, or 100 dimensions.
@@ -300,10 +301,10 @@ the same way in 3, 10, or 100 dimensions.
 <div class="thread">One check before computing, same spirit as Week 2's matrix sizes.</div>
 
 The dot product only makes sense between two vectors with the same
-number of entries. `u · v` for a 2-entry `u` and a 3-entry `v` is
+number of entries. $u \cdot v$ for a 2-entry $u$ and a 3-entry $v$ is
 undefined, not zero.
 
-Always count entries first, the same habit Week 2 taught for `Ax`.
+Always count entries first, the same habit Week 2 taught for $Ax$.
 
 ---
 
@@ -313,15 +314,15 @@ Always count entries first, the same habit Week 2 taught for `Ax`.
 
 The dot product does not care about order:
 
-```
-u · v = v · u
-```
+$$
+u \cdot v = v \cdot u
+$$
 
 It also spreads across addition, the same way multiplication does:
 
-```
-u · (v + w) = u · v + u · w
-```
+$$
+u \cdot (v + w) = u \cdot v + u \cdot w
+$$
 
 These two rules let you simplify a dot product before computing it,
 the same way you would with ordinary numbers.
@@ -332,11 +333,11 @@ the same way you would with ordinary numbers.
 
 <div class="thread">Length is the dot product of a vector with itself, then a square root.</div>
 
-For u = (3, 4):
+For $u = (3, 4)$:
 
-```
-||u|| = √(u · u) = √(3² + 4²) = √(9 + 16) = √25 = 5
-```
+$$
+\|u\| = \sqrt{u \cdot u} = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5
+$$
 
 This is the Pythagorean theorem, applied to a vector instead of a
 triangle. The same formula works in any number of dimensions.
@@ -347,12 +348,14 @@ triangle. The same formula works in any number of dimensions.
 
 <div class="thread">Distance reuses length: it is the length of the difference.</div>
 
-For u = (1, 2) and v = (4, 6), first subtract, then find the length:
+For $u = (1, 2)$ and $v = (4, 6)$, first subtract, then find the length:
 
-```
-u - v = (1 - 4, 2 - 6) = (-3, -4)
-||u - v|| = √((-3)² + (-4)²) = √25 = 5
-```
+$$
+\begin{aligned}
+u - v &= (1 - 4, 2 - 6) = (-3, -4) \\
+\|u - v\| &= \sqrt{(-3)^2 + (-4)^2} = \sqrt{25} = 5
+\end{aligned}
+$$
 
 The **distance** between two vectors is the length of one minus the
 other, no matter how many entries they have.
@@ -363,14 +366,14 @@ other, no matter how many entries they have.
 
 <div class="thread">One rule guarantees the angle formula, coming up next, always makes sense.</div>
 
-For any two vectors `u` and `v`:
+For any two vectors $u$ and $v$:
 
-```
-|u · v| ≤ ||u|| · ||v||
-```
+$$
+|u \cdot v| \le \|u\| \cdot \|v\|
+$$
 
 The dot product can never outgrow the product of the two lengths.
-This is exactly what keeps `cos(angle)`, computed later this week,
+This is exactly what keeps $\cos(\text{angle})$, computed later this week,
 between -1 and 1.
 
 ---
@@ -379,11 +382,11 @@ between -1 and 1.
 
 <div class="thread">A second guarantee, from the same idea as Cauchy-Schwarz.</div>
 
-For any two vectors `u` and `v`:
+For any two vectors $u$ and $v$:
 
-```
-||u + v|| ≤ ||u|| + ||v||
-```
+$$
+\|u + v\| \le \|u\| + \|v\|
+$$
 
 Combining two vectors never produces something longer than their
 lengths added separately. The direct path is never longer than a
@@ -431,17 +434,19 @@ a square root; the dot product alone gives length squared. -->
 
 <div class="thread">The dot product and both lengths together give the exact angle.</div>
 
-```
-cos(angle) = (u · v) / (||u|| · ||v||)
-```
+$$
+\cos(\text{angle}) = \frac{u \cdot v}{\|u\| \cdot \|v\|}
+$$
 
-For u = (3, 4) and v = (4, 3):
+For $u = (3, 4)$ and $v = (4, 3)$:
 
-```
-u · v = 12 + 12 = 24
-||u|| = 5, ||v|| = 5
-cos(angle) = 24 / 25 = 0.96
-```
+$$
+\begin{aligned}
+u \cdot v &= 12 + 12 = 24 \\
+\|u\| &= 5, \quad \|v\| = 5 \\
+\cos(\text{angle}) &= 24 / 25 = 0.96
+\end{aligned}
+$$
 
 A calculator's inverse-cosine button turns 0.96 into about 16°: these
 two vectors point in nearly the same direction.
@@ -452,7 +457,7 @@ two vectors point in nearly the same direction.
 
 <div class="thread">A few landmark values are worth memorizing.</div>
 
-| cos(angle) | Angle | Meaning |
+| $\cos(\text{angle})$ | Angle | Meaning |
 |---|---|---|
 | 1 | 0° | Same direction exactly |
 | 0.5 | 60° | Somewhat similar |
@@ -468,13 +473,13 @@ related." This is exactly how recommendation engines rank matches.
 
 <div class="thread">Same formula, a name you will see again outside this class.</div>
 
-Data science and machine learning call `cos(angle)` **cosine
+Data science and machine learning call $\cos(\text{angle})$ **cosine
 similarity**. It compares two items, customers, or documents by
 direction alone, ignoring their raw size.
 
-```
-cosine similarity = (u · v) / (||u|| ||v||)
-```
+$$
+\text{cosine similarity} = \frac{u \cdot v}{\|u\| \|v\|}
+$$
 
 Exactly today's angle formula, under its industry name.
 
@@ -485,13 +490,13 @@ Exactly today's angle formula, under its industry name.
 <div class="thread">One special angle needs no calculator at all: exactly 90°.</div>
 
 Two vectors are **orthogonal** exactly when their dot product is
-zero. For u = (3, 4) and v = (4, -3):
+zero. For $u = (3, 4)$ and $v = (4, -3)$:
 
-```
-u · v = (3)(4) + (4)(-3) = 12 - 12 = 0
-```
+$$
+u \cdot v = (3)(4) + (4)(-3) = 12 - 12 = 0
+$$
 
-The dot product is zero, so u and v meet at a right angle. This test
+The dot product is zero, so $u$ and $v$ meet at a right angle. This test
 works in any number of dimensions, even where you cannot draw a
 picture.
 
@@ -501,12 +506,12 @@ picture.
 
 <div class="thread">One edge case surprises most students the first time.</div>
 
-The all-zero vector, `0 = (0, 0, ..., 0)`, has a dot product of zero
+The all-zero vector, $0 = (0, 0, \ldots, 0)$, has a dot product of zero
 with every other vector:
 
-```
-u · 0 = u₁(0) + u₂(0) + ... + uₙ(0) = 0
-```
+$$
+u \cdot 0 = u_1(0) + u_2(0) + \ldots + u_n(0) = 0
+$$
 
 So the zero vector counts as orthogonal to every vector, including
 itself. It has no direction to disagree with.
@@ -518,11 +523,11 @@ itself. It has no direction to disagree with.
 <div class="thread">Comparing pure direction means removing size first.</div>
 
 To **normalize** a vector, divide it by its own length. For
-u = (3, 4), with length 5:
+$u = (3, 4)$, with length 5:
 
-```
-unit vector = (3/5, 4/5) = (0.6, 0.8)
-```
+$$
+\text{unit vector} = (3/5, 4/5) = (0.6, 0.8)
+$$
 
 The result always has length 1. Normalizing keeps the direction, and
 throws away only the size.
@@ -533,14 +538,16 @@ throws away only the size.
 
 <div class="thread">Same rule, one more entry, same as the earlier dot-product example.</div>
 
-For `u = (1, 2, 2)`, first find the length:
+For $u = (1, 2, 2)$, first find the length:
 
-```
-||u|| = √(1 + 4 + 4) = √9 = 3
-unit vector = (1/3, 2/3, 2/3)
-```
+$$
+\begin{aligned}
+\|u\| &= \sqrt{1 + 4 + 4} = \sqrt{9} = 3 \\
+\text{unit vector} &= (1/3, 2/3, 2/3)
+\end{aligned}
+$$
 
-Check: `(1/3)² + (2/3)² + (2/3)² = 1/9 + 4/9 + 4/9 = 9/9 = 1`. Length 1,
+Check: $(1/3)^2 + (2/3)^2 + (2/3)^2 = 1/9 + 4/9 + 4/9 = 9/9 = 1$. Length 1,
 confirmed.
 
 ---
@@ -549,9 +556,9 @@ confirmed.
 
 <div class="thread">The simplest orthonormal set of all, hiding in plain sight.</div>
 
-```
-e1 = (1, 0, 0)     e2 = (0, 1, 0)     e3 = (0, 0, 1)
-```
+$$
+e_1 = (1, 0, 0) \qquad e_2 = (0, 1, 0) \qquad e_3 = (0, 0, 1)
+$$
 
 Every pair has dot product 0, and every vector already has length 1.
 These three vectors are the orthonormal set you have used since
@@ -563,13 +570,13 @@ Week 2, without ever naming it.
 
 <div class="thread">The two ideas combine: orthogonal, and length 1, at once.</div>
 
-Vectors (3, 4) and (4, -3) are orthogonal. Normalize both:
+Vectors $(3, 4)$ and $(4, -3)$ are orthogonal. Normalize both:
 
-```
-(0.6, 0.8)  and  (0.8, -0.6)
-```
+$$
+(0.6, 0.8) \quad \text{and} \quad (0.8, -0.6)
+$$
 
-Check: `(0.6)(0.8) + (0.8)(-0.6) = 0.48 - 0.48 = 0`. Still orthogonal,
+Check: $(0.6)(0.8) + (0.8)(-0.6) = 0.48 - 0.48 = 0$. Still orthogonal,
 and both now have length 1. This is an **orthonormal set**.
 
 ---
@@ -592,11 +599,11 @@ simple.
 
 <div class="thread">Euclid's own theorem, back from the Origin slide, in vector form.</div>
 
-When `u` and `v` are orthogonal:
+When $u$ and $v$ are orthogonal:
 
-```
-||u + v||² = ||u||² + ||v||²
-```
+$$
+\|u + v\|^2 = \|u\|^2 + \|v\|^2
+$$
 
 This is exactly the Pythagorean theorem: two perpendicular legs
 combine into a hypotenuse, but written for vectors of any length,
@@ -608,13 +615,13 @@ not just triangle sides.
 
 <div class="thread">The same test, one dimension harder.</div>
 
-For u = (1, 2, -1) and v = (3, 1, 5):
+For $u = (1, 2, -1)$ and $v = (3, 1, 5)$:
 
-```
-u · v = (1)(3) + (2)(1) + (-1)(5) = 3 + 2 - 5 = 0
-```
+$$
+u \cdot v = (1)(3) + (2)(1) + (-1)(5) = 3 + 2 - 5 = 0
+$$
 
-The dot product is zero, so `u` and `v` are orthogonal, even though no
+The dot product is zero, so $u$ and $v$ are orthogonal, even though no
 picture can show a clean right angle in three dimensions on paper.
 
 ---
@@ -639,14 +646,16 @@ things.
 
 <div class="thread">A concrete pair shows why the three tools rarely agree.</div>
 
-For u = (10, 0) and v = (11, 1):
+For $u = (10, 0)$ and $v = (11, 1)$:
 
-```
-||u|| = 10             length of u alone
-||v|| = √122 ≈ 11.05    length of v alone
-||u - v|| = √2 ≈ 1.41   distance between them, small
-cos(angle) ≈ 0.995      angle ≈ 6°, nearly identical direction
-```
+$$
+\begin{aligned}
+\|u\| &= 10 & &\text{length of } u \text{ alone} \\
+\|v\| &= \sqrt{122} \approx 11.05 & &\text{length of } v \text{ alone} \\
+\|u - v\| &= \sqrt{2} \approx 1.41 & &\text{distance between them, small} \\
+\cos(\text{angle}) &\approx 0.995 & &\text{angle} \approx 6°\text{, nearly identical direction}
+\end{aligned}
+$$
 
 Both length and distance differ; the angle shows what raw numbers
 hide: these two vectors point almost exactly the same way.
@@ -661,15 +670,17 @@ hide: these two vectors point almost exactly the same way.
 
 Recall Week 1's two drinks, written as (milk, syrup) vectors:
 
-```
-Latte = (2, 1)      Mocha = (1, 3)
-```
+$$
+\text{Latte} = (2, 1) \qquad \text{Mocha} = (1, 3)
+$$
 
-```
-Latte · Mocha = (2)(1) + (1)(3) = 2 + 3 = 5
-||Latte|| = √(4 + 1) = √5
-||Mocha|| = √(1 + 9) = √10
-```
+$$
+\begin{aligned}
+\text{Latte} \cdot \text{Mocha} &= (2)(1) + (1)(3) = 2 + 3 = 5 \\
+\|\text{Latte}\| &= \sqrt{4 + 1} = \sqrt{5} \\
+\|\text{Mocha}\| &= \sqrt{1 + 9} = \sqrt{10}
+\end{aligned}
+$$
 
 ---
 
@@ -677,10 +688,12 @@ Latte · Mocha = (2)(1) + (1)(3) = 2 + 3 = 5
 
 Put the dot product and both lengths into the angle formula:
 
-```
-cos(angle) = 5 / (√5 · √10) = 5 / √50 = 1 / √2 ≈ 0.707
-angle ≈ 45°
-```
+$$
+\begin{aligned}
+\cos(\text{angle}) &= \frac{5}{\sqrt{5} \cdot \sqrt{10}} = \frac{5}{\sqrt{50}} = \frac{1}{\sqrt{2}} \approx 0.707 \\
+\text{angle} &\approx 45°
+\end{aligned}
+$$
 
 The Latte and Mocha lean 45° apart: partly similar, partly different,
 neither identical nor opposite. Now staff have an exact number, not a
@@ -695,14 +708,16 @@ answer to "how similar are these two drinks," with no extra tasting. -->
 
 <div class="thread">The menu keeps growing. The same method scales without new tasting.</div>
 
-A new Americano recipe is `(3, 0)`, in (milk, syrup):
+A new Americano recipe is $(3, 0)$, in (milk, syrup):
 
-```
-Latte · Americano = (2)(3) + (1)(0) = 6
-||Latte|| = √5   ||Americano|| = √9 = 3
-cos(angle) = 6 / (√5 · 3) = 6 / (3√5) ≈ 0.894
-angle ≈ 27°
-```
+$$
+\begin{aligned}
+\text{Latte} \cdot \text{Americano} &= (2)(3) + (1)(0) = 6 \\
+\|\text{Latte}\| &= \sqrt{5} \qquad \|\text{Americano}\| = \sqrt{9} = 3 \\
+\cos(\text{angle}) &= \frac{6}{\sqrt{5} \cdot 3} = \frac{6}{3\sqrt{5}} \approx 0.894 \\
+\text{angle} &\approx 27°
+\end{aligned}
+$$
 
 The Latte and Americano lean closer together, 27°, than the Latte and
 Mocha did, 45°.
@@ -742,7 +757,7 @@ You have about 15 minutes.
 <div class="why">Same pairs. Quick pencil check, no new worksheet.</div>
 
 Pick any fourth (milk, syrup) pair of your own. Compute its angle
-against the Latte, `(2, 1)`. Decide whether it belongs closer to the
+against the Latte, $(2, 1)$. Decide whether it belongs closer to the
 Latte or the Mocha on the similarity ranking.
 
 You have about 5 minutes.
@@ -775,31 +790,31 @@ You have about 5 minutes.
 
 # Check Yourself
 
-1. Find the length of u = (6, 8).
-2. Are v = (1, 2) and w = (2, -1) orthogonal? Show the dot product.
-3. Normalize u = (0, 5) into a unit vector.
+1. Find the length of $u = (6, 8)$.
+2. Are $v = (1, 2)$ and $w = (2, -1)$ orthogonal? Show the dot product.
+3. Normalize $u = (0, 5)$ into a unit vector.
 
 ---
 
 # Answers
 
-1. `||u|| = √(36 + 64) = √100 = 10`.
-2. `v · w = (1)(2) + (2)(-1) = 2 - 2 = 0`. **Yes, orthogonal.**
-3. Length of u is `5`, so the unit vector is `(0/5, 5/5) = (0, 1)`.
+1. $\|u\| = \sqrt{36 + 64} = \sqrt{100} = 10$.
+2. $v \cdot w = (1)(2) + (2)(-1) = 2 - 2 = 0$. **Yes, orthogonal.**
+3. Length of $u$ is $5$, so the unit vector is $(0/5, 5/5) = (0, 1)$.
 
 ---
 
 # Check Yourself: Round 2
 
-1. Compute the distance between u = (1, 1) and v = (4, 5).
-2. `u · v = -6`, `||u|| = 2`, `||v|| = 3`. Find `cos(angle)`. Is the angle more or less than 90°?
+1. Compute the distance between $u = (1, 1)$ and $v = (4, 5)$.
+2. $u \cdot v = -6$, $\|u\| = 2$, $\|v\| = 3$. Find $\cos(\text{angle})$. Is the angle more or less than 90°?
 
 ---
 
 # Answers: Round 2
 
-1. `u - v = (-3, -4)`, so `||u - v|| = √(9+16) = √25 = 5`.
-2. `cos(angle) = -6 / (2·3) = -1`. **More than 90°** (in fact exactly 180°, since `cos(angle) = -1` means opposite directions).
+1. $u - v = (-3, -4)$, so $\|u - v\| = \sqrt{9+16} = \sqrt{25} = 5$.
+2. $\cos(\text{angle}) = -6 / (2\cdot 3) = -1$. **More than 90°** (in fact exactly 180°, since $\cos(\text{angle}) = -1$ means opposite directions).
 
 ---
 
@@ -843,7 +858,7 @@ it, building directly on this week's length and angle.
 # Summary
 
 - The dot product turns two vectors into one number; length is the square root of a vector dotted with itself
-- The angle formula, `cos(angle) = (u · v) / (||u|| · ||v||)`, measures how similar two vectors' directions are
+- The angle formula, $\cos(\text{angle}) = \dfrac{u \cdot v}{\|u\| \cdot \|v\|}$, measures how similar two vectors' directions are
 - Two vectors are orthogonal exactly when their dot product is zero; normalizing gives a unit vector for pure direction
 - **Reading:** Lay, Lay & McDonald, 6th ed., Chapter 6
 - **Handout:** [materials/week12/handout.md](materials/week12/handout.html), glossary and the full café walkthrough

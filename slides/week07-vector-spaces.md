@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -198,10 +199,10 @@ You also describe a small solution space directly, in pairs.
 
 <div class="thread">4 more words for this session.</div>
 
-- **Linear combination:** a sum of scaled vectors, like `2v + 3w`
+- **Linear combination:** a sum of scaled vectors, like $2v + 3w$
 - **Span:** every vector reachable by linear combinations of a set
-- **Null space:** every solution to `Ax = 0`, gathered into one set
-- **Column space:** every output `Ax` can reach, as `x` varies
+- **Null space:** every solution to $Ax = 0$, gathered into one set
+- **Column space:** every output $Ax$ can reach, as $x$ varies
 
 ---
 
@@ -241,15 +242,15 @@ today.
 
 <div class="thread">Now the exact, formal definition.</div>
 
-> A **vector space** is a set `V`, with addition and scalar
-> multiplication, where adding any two elements of `V`, or scaling any
-> element of `V`, always gives another element of `V`.
+> A **vector space** is a set $V$, with addition and scalar
+> multiplication, where adding any two elements of $V$, or scaling any
+> element of $V$, always gives another element of $V$.
 >
 > Eight more rules make the arithmetic behave the way you expect: a
 > zero element exists, every element has an opposite, and order or
 > grouping never changes the result.
 
-- Together, every rule means: you can never add or scale your way out of `V`
+- Together, every rule means: you can never add or scale your way out of $V$
 
 ---
 
@@ -275,9 +276,9 @@ Most sets fail on closure first. Check that rule first, always.
 
 | Set | Vector space? | Why |
 |---|---|---|
-| All pairs `(x, y)` of real numbers | Yes | Adding or scaling any pair gives another pair |
-| All pairs `(x, y)` with `x ≥ 0` | No | Scaling `(1, 0)` by `-1` leaves the set |
-| All 2×2 matrices | Yes | Adding or scaling any matrix gives another 2×2 matrix |
+| All pairs $(x, y)$ of real numbers | Yes | Adding or scaling any pair gives another pair |
+| All pairs $(x, y)$ with $x \geq 0$ | No | Scaling $(1, 0)$ by `-1` leaves the set |
+| All $2\times 2$ matrices | Yes | Adding or scaling any matrix gives another $2\times 2$ matrix |
 | Points on a line not through zero | No | No zero element sits on that line |
 
 ---
@@ -286,13 +287,15 @@ Most sets fail on closure first. Check that rule first, always.
 
 <div class="thread">The failing row from the last table, worked out in full.</div>
 
-Take the set of all `(x, y)` with `x ≥ 0`. Test closure under scaling:
+Take the set of all $(x, y)$ with $x \geq 0$. Test closure under scaling:
 
-```
-(1, 0) is in the set (x = 1 ≥ 0)
--1 * (1, 0) = (-1, 0)
--1 < 0, so (-1, 0) is NOT in the set
-```
+$$
+\begin{aligned}
+&(1, 0) \text{ is in the set } (x = 1 \geq 0) \\
+&-1 \times (1, 0) = (-1, 0) \\
+&-1 < 0, \text{ so } (-1, 0) \text{ is NOT in the set}
+\end{aligned}
+$$
 
 One scaled element already leaves the set. Closure fails, so the set
 cannot be a vector space. No other rule needs checking.
@@ -303,14 +306,16 @@ cannot be a vector space. No other rule needs checking.
 
 <div class="thread">A quick, separate check, before testing anything harder.</div>
 
-Take the set of points on the line `y = 2x + 1`.
+Take the set of points on the line $y = 2x + 1$.
 
-```
-Does (0, 0) satisfy y = 2x + 1?
-2(0) + 1 = 1, not 0
-```
+$$
+\begin{aligned}
+&\text{Does } (0, 0) \text{ satisfy } y = 2x + 1? \\
+&2(0) + 1 = 1, \text{ not } 0
+\end{aligned}
+$$
 
-`(0, 0)` is not on this line. No zero element exists in the set, so it
+$(0, 0)$ is not on this line. No zero element exists in the set, so it
 fails immediately, before checking closure at all.
 
 ---
@@ -319,16 +324,18 @@ fails immediately, before checking closure at all.
 
 <div class="thread">One more rule, checked directly on a small set.</div>
 
-Take the set of all `(x, y)` with `x ≥ 0` and `y ≥ 0`. It has a zero
-element, `(0, 0)`, so check inverses directly:
+Take the set of all $(x, y)$ with $x \geq 0$ and $y \geq 0$. It has a zero
+element, $(0, 0)$, so check inverses directly:
 
-```
-(1, 0) is in the set
-Its opposite is (-1, 0)
--1 < 0, so (-1, 0) is NOT in the set
-```
+$$
+\begin{aligned}
+&(1, 0) \text{ is in the set} \\
+&\text{Its opposite is } (-1, 0) \\
+&-1 < 0, \text{ so } (-1, 0) \text{ is NOT in the set}
+\end{aligned}
+$$
 
-`(1, 0)` has no additive inverse inside the set. Even a set that
+$(1, 0)$ has no additive inverse inside the set. Even a set that
 passes the zero-element check can still fail on inverses.
 
 ---
@@ -350,12 +357,12 @@ nothing alike.
 
 <div class="thread">A fourth example, less obviously "list of numbers."</div>
 
-The set of all continuous functions on `[0, 1]` is also a vector
+The set of all continuous functions on $[0, 1]$ is also a vector
 space:
 
-- **Add** two functions: `(f + g)(x) = f(x) + g(x)`
-- **Scale** a function: `(3f)(x) = 3 * f(x)`
-- A zero function, `f(x) = 0` for every `x`, exists
+- **Add** two functions: $(f + g)(x) = f(x) + g(x)$
+- **Scale** a function: $(3f)(x) = 3 \times f(x)$
+- A zero function, $f(x) = 0$ for every $x$, exists
 
 Same ten rules, applied to functions instead of number lists. Later
 courses build entire theories, like Fourier series, on this fact.
@@ -381,13 +388,15 @@ If all three hold, every other rule holds automatically.
 
 <div class="thread">Run the three-part test on a concrete set.</div>
 
-Is the set of all `(x, y, z)` with `x = y` a subspace of R³?
+Is the set of all $(x, y, z)$ with $x = y$ a subspace of $\mathbb{R}^3$?
 
-```
-1. Zero element: (0, 0, 0) has x = y = 0.        Pass
-2. Closed under addition: (a,a,c) + (b,b,d) = (a+b, a+b, c+d).   Pass
-3. Closed under scaling: k(a,a,c) = (ka, ka, kc).                Pass
-```
+$$
+\begin{aligned}
+1.\ &\text{Zero element: } (0, 0, 0) \text{ has } x = y = 0. \quad \text{Pass} \\
+2.\ &\text{Closed under addition: } (a,a,c) + (b,b,d) = (a+b, a+b, c+d). \quad \text{Pass} \\
+3.\ &\text{Closed under scaling: } k(a,a,c) = (ka, ka, kc). \quad \text{Pass}
+\end{aligned}
+$$
 
 All three hold. It is a subspace, a plane through the origin.
 
@@ -397,11 +406,11 @@ All three hold. It is a subspace, a plane through the origin.
 
 <div class="thread">One failing check is enough to rule a set out.</div>
 
-Is the set of all `(x, y, z)` with `x = y + 1` a subspace of R³?
+Is the set of all $(x, y, z)$ with $x = y + 1$ a subspace of $\mathbb{R}^3$?
 
-```
-1. Zero element: does (0, 0, 0) satisfy 0 = 0 + 1?   No
-```
+$$
+1.\ \text{Zero element: does } (0, 0, 0) \text{ satisfy } 0 = 0 + 1? \quad \text{No}
+$$
 
 The very first check already fails. No need to test addition or
 scaling; this set cannot be a subspace.
@@ -412,8 +421,8 @@ scaling; this set cannot be a subspace.
 
 <div class="why">In pairs, 5 minutes, no worksheet needed yet.</div>
 
-Test whether the set of all `(x, y)` with `xy = 0` is a subspace of
-R². Use all three parts of the test before deciding.
+Test whether the set of all $(x, y)$ with $xy = 0$ is a subspace of
+$\mathbb{R}^2$. Use all three parts of the test before deciding.
 
 ---
 
@@ -424,10 +433,12 @@ R². Use all three parts of the test before deciding.
 The **span** of a set of vectors is every linear combination of them,
 every sum of scaled copies.
 
-```
-span{(1, 0)} = every point (a, 0), a any number   -> a line
-span{(1, 0), (0, 1)} = every point (a, b)          -> the whole plane
-```
+$$
+\begin{aligned}
+\text{span}\{(1, 0)\} &= \text{every point } (a, 0),\ a \text{ any number} \;\Rightarrow\; \text{a line} \\
+\text{span}\{(1, 0), (0, 1)\} &= \text{every point } (a, b) \;\Rightarrow\; \text{the whole plane}
+\end{aligned}
+$$
 
 A span is always a subspace, no matter which vectors you start from.
 
@@ -437,12 +448,12 @@ A span is always a subspace, no matter which vectors you start from.
 
 <div class="thread">Two vectors in R³. What shape does their span form?</div>
 
-```
-span{(1, 0, 0), (0, 1, 0)} = every point (a, b, 0)
-```
+$$
+\text{span}\{(1, 0, 0), (0, 1, 0)\} = \text{every point } (a, b, 0)
+$$
 
-Every combination `a(1,0,0) + b(0,1,0)` has a zero third entry. The
-span is the entire xy-plane, sitting inside R³.
+Every combination $a(1,0,0) + b(0,1,0)$ has a zero third entry. The
+span is the entire xy-plane, sitting inside $\mathbb{R}^3$.
 
 ---
 
@@ -450,21 +461,21 @@ span is the entire xy-plane, sitting inside R³.
 
 <div class="thread">More starting vectors do not always mean a bigger space.</div>
 
-```
-span{(1,0,0), (0,1,0), (1,1,0)}
-```
+$$
+\text{span}\{(1,0,0), (0,1,0), (1,1,0)\}
+$$
 
-The third vector, `(1,1,0)`, is already reachable: `1(1,0,0) +
-1(0,1,0) = (1,1,0)`. Adding it changes nothing; the span is still the
+The third vector, $(1,1,0)$, is already reachable: $1(1,0,0) +
+1(0,1,0) = (1,1,0)$. Adding it changes nothing; the span is still the
 same xy-plane as the last slide.
 
 ---
 
-# The Null Space: All Solutions to `Ax = 0`
+# The Null Space: All Solutions to $Ax = 0$
 
 <div class="thread">This is exactly last week's open question, answered.</div>
 
-The **null space** of a matrix `A` is every solution to `Ax = 0`,
+The **null space** of a matrix $A$ is every solution to $Ax = 0$,
 collected into one set. It is always a subspace.
 
 Last week, the determinant only told us whether that set held one
@@ -477,13 +488,13 @@ directly.
 
 <div class="thread">Before the café example, the general recipe, on a plain matrix.</div>
 
-For `A = [1  2  3]`, solve `Ax = 0`:
+For $A = \begin{bmatrix}1 & 2 & 3\end{bmatrix}$, solve $Ax = 0$:
 
-```
-x + 2y + 3z = 0   ->   x = -2y - 3z
-```
+$$
+x + 2y + 3z = 0 \;\Rightarrow\; x = -2y - 3z
+$$
 
-Every solution has the form `(x,y,z) = y(-2,1,0) + z(-3,0,1)`. The
+Every solution has the form $(x,y,z) = y(-2,1,0) + z(-3,0,1)$. The
 null space is the span of those two vectors.
 
 ---
@@ -494,31 +505,31 @@ null space is the span of those two vectors.
 
 <div class="thread">Back to the pain: describing every working recipe, not just one.</div>
 
-Suppose the cheaper drink keeps only one rule, linking espresso `e`,
-milk `m`, and syrup `s`:
+Suppose the cheaper drink keeps only one rule, linking espresso $e$,
+milk $m$, and syrup $s$:
 
-```
+$$
 2e + 4m - 2s = 0
-```
+$$
 
-One equation, three unknowns. Solve for `e`:
+One equation, three unknowns. Solve for $e$:
 
-```
+$$
 e = -2m + s
-```
+$$
 
 ---
 
 # Case Study: Every Recipe at Once
 
-Every solution has this form, for any `m` and `s`:
+Every solution has this form, for any $m$ and $s$:
 
-```
+$$
 (e, m, s) = m(-2, 1, 0) + s(1, 0, 1)
-```
+$$
 
 This is a span of two vectors: the null space of the café's rule.
-Any `m` and `s` you pick gives one valid recipe ratio. Together, they
+Any $m$ and $s$ you pick gives one valid recipe ratio. Together, they
 describe every working recipe at once, not just the ones staff
 happened to try.
 
@@ -533,27 +544,29 @@ now gets a description of the whole space, not a growing list. -->
 
 Run the three-part subspace test on the café's solution set:
 
-```
-1. Zero element: (e,m,s) = (0,0,0) works, since m=0, s=0.   Pass
-2. Closed under addition: two working recipes, added, still satisfy 2e+4m-2s=0.   Pass
-3. Closed under scaling: any scaled recipe still satisfies the rule.             Pass
-```
+$$
+\begin{aligned}
+1.\ &\text{Zero element: } (e,m,s) = (0,0,0) \text{ works, since } m=0, s=0. \quad \text{Pass} \\
+2.\ &\text{Closed under addition: two working recipes, added, still satisfy } 2e+4m-2s=0. \quad \text{Pass} \\
+3.\ &\text{Closed under scaling: any scaled recipe still satisfies the rule.} \quad \text{Pass}
+\end{aligned}
+$$
 
 Confirmed: the café's whole solution set is a genuine subspace, not
 just a convenient list.
 
 ---
 
-# The Column Space: What `Ax` Can Reach
+# The Column Space: What $Ax$ Can Reach
 
 <div class="thread">One more space, this time about outputs, not inputs.</div>
 
-The **column space** of `A` is every output `Ax` can produce, as `x`
-varies. It answers: which totals `b` even have a solution?
+The **column space** of $A$ is every output $Ax$ can produce, as $x$
+varies. It answers: which totals $b$ even have a solution?
 
-```
-Ax = b has a solution   <=>   b is inside the column space of A
-```
+$$
+Ax = b \text{ has a solution} \iff b \text{ is inside the column space of } A
+$$
 
 Null space describes inputs that reach zero. Column space describes
 which outputs are reachable at all.
@@ -564,14 +577,14 @@ which outputs are reachable at all.
 
 <div class="thread">The column space is just each column, spanned.</div>
 
-For `A = [[1,2],[3,6]]`, the column space is:
+For $A = \begin{bmatrix}1 & 2\\ 3 & 6\end{bmatrix}$, the column space is:
 
-```
-span{(1,3), (2,6)}
-```
+$$
+\text{span}\{(1,3), (2,6)\}
+$$
 
-`(2,6) = 2*(1,3)`, so the second column adds nothing new. The column
-space is only the line through `(1,3)`, not the whole plane.
+$(2,6) = 2\times(1,3)$, so the second column adds nothing new. The column
+space is only the line through $(1,3)$, not the whole plane.
 
 ---
 
@@ -581,9 +594,9 @@ space is only the line through `(1,3)`, not the whole plane.
 
 For the café's 3x3 recipe matrix from Week 2, the column space is the
 span of its three columns. Since the recipe matrix has a nonzero
-determinant (Week 6), those columns span all of R³.
+determinant (Week 6), those columns span all of $\mathbb{R}^3$.
 
-Any total `b` is reachable. Every possible espresso/milk/syrup total
+Any total $b$ is reachable. Every possible espresso/milk/syrup total
 has some matching recipe.
 
 ---
@@ -592,12 +605,12 @@ has some matching recipe.
 
 <div class="thread">Column space uses columns. The rows have their own space too.</div>
 
-The **row space** of `A` is the span of its rows, instead of its
+The **row space** of $A$ is the span of its rows, instead of its
 columns. For the café's system, each row space vector represents one
 combined version of the three original rules.
 
 Null space, column space, and row space: three different subspaces,
-all built from the same matrix `A`.
+all built from the same matrix $A$.
 
 ---
 
@@ -630,7 +643,7 @@ which rule failed for any "no" answer. -->
 
 <div class="thread">3 words for the last part of this week.</div>
 
-- **Homogeneous system:** a system where every equation equals zero, like `Ax = 0`
+- **Homogeneous system:** a system where every equation equals zero, like $Ax = 0$
 - **Particular solution:** one specific answer to a system
 - **General solution:** every answer, written as a particular solution plus the null space
 
@@ -640,11 +653,11 @@ which rule failed for any "no" answer. -->
 
 <div class="thread">One method also covers systems that are not equal to zero.</div>
 
-For `Ax = b`, every solution has this form:
+For $Ax = b$, every solution has this form:
 
-```
-x = (one particular solution) + (any null space vector)
-```
+$$
+x = (\text{one particular solution}) + (\text{any null space vector})
+$$
 
 Find one working recipe, then add the whole null space to it. That
 describes every solution at once, which is exactly this week's
@@ -656,12 +669,12 @@ driving question.
 
 <div class="thread">The same method, when the rule no longer equals zero.</div>
 
-Suppose the rule is now `2e + 4m - 2s = 6`, not `0`. One particular
-solution is `(e,m,s) = (3,0,0)`. Every solution is:
+Suppose the rule is now $2e + 4m - 2s = 6$, not `0`. One particular
+solution is $(e,m,s) = (3,0,0)$. Every solution is:
 
-```
+$$
 (e,m,s) = (3,0,0) + m(-2,1,0) + s(1,0,1)
-```
+$$
 
 The particular solution shifts the whole answer; the null space still
 describes every direction it can move in.
@@ -672,11 +685,11 @@ describes every direction it can move in.
 
 | Space | Built from | Answers |
 |---|---|---|
-| Null space | Solutions to `Ax = 0` | Which inputs reach zero? |
-| Column space | `A`'s columns, spanned | Which outputs are reachable? |
-| Row space | `A`'s rows, spanned | Which combined rules exist? |
+| Null space | Solutions to $Ax = 0$ | Which inputs reach zero? |
+| Column space | $A$'s columns, spanned | Which outputs are reachable? |
+| Row space | $A$'s rows, spanned | Which combined rules exist? |
 
-Three different subspaces, one shared matrix `A`.
+Three different subspaces, one shared matrix $A$.
 
 ---
 
@@ -717,43 +730,43 @@ You have about 15 minutes.
 
 # Check Yourself
 
-1. Does the set of all `(x, y)` with `y = 2x` form a subspace of R²? Why or why not?
-2. What is the span of the single vector `(2, 0)`?
+1. Does the set of all $(x, y)$ with $y = 2x$ form a subspace of $\mathbb{R}^2$? Why or why not?
+2. What is the span of the single vector $(2, 0)$?
 
 ---
 
 # Answers
 
-1. **Yes.** It contains `(0, 0)`, and adding or scaling any point on that line stays on the line.
-2. **The x-axis.** Every scalar multiple of `(2, 0)` is a point `(a, 0)`.
+1. **Yes.** It contains $(0, 0)$, and adding or scaling any point on that line stays on the line.
+2. **The x-axis.** Every scalar multiple of $(2, 0)$ is a point $(a, 0)$.
 
 ---
 
 # Check Yourself: Round 2
 
-1. Is the set of all 2×2 matrices with determinant `0` a subspace of all 2×2 matrices?
-2. What is the null space of `A = [2  0]`?
+1. Is the set of all $2\times 2$ matrices with determinant `0` a subspace of all $2\times 2$ matrices?
+2. What is the null space of $A = \begin{bmatrix}2 & 0\end{bmatrix}$?
 
 ---
 
 # Answers
 
-1. **No.** `[[1,0],[0,0]]` and `[[0,0],[0,1]]` both have determinant `0`, but their sum, the identity matrix, has determinant `1`. Not closed under addition.
-2. **The y-axis.** `2x = 0` forces `x = 0`; `y` is free, so the null space is `{(0, y)}`.
+1. **No.** $\begin{bmatrix}1 & 0\\ 0 & 0\end{bmatrix}$ and $\begin{bmatrix}0 & 0\\ 0 & 1\end{bmatrix}$ both have determinant `0`, but their sum, the identity matrix, has determinant `1`. Not closed under addition.
+2. **The y-axis.** $2x = 0$ forces $x = 0$; $y$ is free, so the null space is $\{(0, y)\}$.
 
 ---
 
 # Check Yourself: Round 3
 
 1. Give one vector whose span is a line through the origin at a 45-degree angle.
-2. Why is `{(1,0), (2,0), (0,1)}` a spanning set for R², even though it has 3 vectors for a 2-dimensional space?
+2. Why is $\{(1,0), (2,0), (0,1)\}$ a spanning set for $\mathbb{R}^2$, even though it has 3 vectors for a 2-dimensional space?
 
 ---
 
 # Answers
 
-1. **`(1, 1)`.** `span{(1,1)}` is every point `(a, a)`, a line at 45 degrees.
-2. **A spanning set can have redundant vectors.** `(2,0)` is already `2*(1,0)`; dropping it still spans all of R².
+1. **$(1, 1)$.** $\text{span}\{(1,1)\}$ is every point $(a, a)$, a line at 45 degrees.
+2. **A spanning set can have redundant vectors.** $(2,0)$ is already $2\times(1,0)$; dropping it still spans all of $\mathbb{R}^2$.
 
 ---
 

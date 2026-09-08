@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -251,10 +252,10 @@ same rule Cayley wrote down.
 > **Matrix multiplication** combines matrix `A` and matrix `B` into one
 > matrix `AB`, applying `A`'s change, then `B`'s change, in one step.
 >
-> The **inverse** of a square matrix `A`, written `A⁻¹`, is the matrix
+> The **inverse** of a square matrix `A`, written $A^{-1}$, is the matrix
 > that undoes `A` exactly.
 
-- Applying `A` then `A⁻¹` (or `A⁻¹` then `A`) changes nothing
+- Applying `A` then $A^{-1}$ (or $A^{-1}$ then `A`) changes nothing
 - Not every matrix has an inverse; this week teaches how to tell
 
 ---
@@ -272,13 +273,13 @@ Multiply matching entries, then add.
 
 # Multiplying Two Matrices: A Worked Example
 
-```
-A = [ 1  2 ]      B = [ 5  6 ]
-    [ 3  4 ]          [ 7  8 ]
+$$
+A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \qquad B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}
+$$
 
-AB = [ 1×5+2×7   1×6+2×8 ]   [ 19  22 ]
-     [ 3×5+4×7   3×6+4×8 ] = [ 43  50 ]
-```
+$$
+AB = \begin{bmatrix} 1 \times 5 + 2 \times 7 & 1 \times 6 + 2 \times 8 \\ 3 \times 5 + 4 \times 7 & 3 \times 6 + 4 \times 8 \end{bmatrix} = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}
+$$
 
 Row 1 of `A` meets column 1 of `B` for the top-left entry, and so on.
 
@@ -288,13 +289,15 @@ Row 1 of `A` meets column 1 of `B` for the top-left entry, and so on.
 
 <div class="thread">One rule decides if two matrices can even be multiplied.</div>
 
-A matrix's size is rows × columns. To multiply `A` times `B`, the
+A matrix's size is rows $\times$ columns. To multiply `A` times `B`, the
 number of columns in `A` must equal the number of rows in `B`.
 
-```
-A is 2 × 3, B is 3 × 2  →  AB is 2 × 2, this works
-A is 2 × 3, B is 2 × 2  →  cannot multiply, 3 ≠ 2
-```
+$$
+\begin{aligned}
+A \text{ is } 2 \times 3, \ B \text{ is } 3 \times 2 &\to AB \text{ is } 2 \times 2 \text{, this works} \\
+A \text{ is } 2 \times 3, \ B \text{ is } 2 \times 2 &\to \text{cannot multiply, } 3 \neq 2
+\end{aligned}
+$$
 
 Always check sizes first. A mismatch means the multiplication does not
 exist at all.
@@ -307,13 +310,15 @@ exist at all.
 
 A vector is really a matrix with one column. Multiplying `A` by a
 column vector `x` follows the exact same row-by-column rule as
-multiplying two matrices - `x` just happens to be `n × 1` instead of
-`n × k`.
+multiplying two matrices - `x` just happens to be $n \times 1$ instead of
+$n \times k$.
 
-```
-A is m x n, x is n x 1  →  Ax is m x 1, one column
-A is m x n, B is n x k  →  AB is m x k, k columns
-```
+$$
+\begin{aligned}
+A \text{ is } m \times n, \ x \text{ is } n \times 1 &\to Ax \text{ is } m \times 1 \text{, one column} \\
+A \text{ is } m \times n, \ B \text{ is } n \times k &\to AB \text{ is } m \times k \text{, } k \text{ columns}
+\end{aligned}
+$$
 
 ---
 
@@ -321,13 +326,13 @@ A is m x n, B is n x k  →  AB is m x k, k columns
 
 <div class="thread">Numbers let you swap order freely. Matrices do not.</div>
 
-```
-A = [ 1  2 ]      B = [ 1  0 ]
-    [ 0  1 ]          [ 3  1 ]
+$$
+A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix} \qquad B = \begin{bmatrix} 1 & 0 \\ 3 & 1 \end{bmatrix}
+$$
 
-AB = [ 7  2 ]     BA = [ 1  2 ]
-     [ 3  1 ]          [ 3  7 ]
-```
+$$
+AB = \begin{bmatrix} 7 & 2 \\ 3 & 1 \end{bmatrix} \qquad BA = \begin{bmatrix} 1 & 2 \\ 3 & 7 \end{bmatrix}
+$$
 
 `AB` and `BA` are different matrices. For matrices, order changes the
 answer. Always multiply in the order the problem gives you. This is
@@ -339,15 +344,15 @@ why software applies a fixed, documented order for every change.
 
 <div class="thread">One example could be a fluke. Here is a second, different pair.</div>
 
-```
-A = [ 2  1 ]      B = [ 1  3 ]
-    [ 0  1 ]          [ 2  0 ]
+$$
+A = \begin{bmatrix} 2 & 1 \\ 0 & 1 \end{bmatrix} \qquad B = \begin{bmatrix} 1 & 3 \\ 2 & 0 \end{bmatrix}
+$$
 
-AB = [ 4  6 ]     BA = [ 2  4 ]
-     [ 2  0 ]          [ 4  2 ]
-```
+$$
+AB = \begin{bmatrix} 4 & 6 \\ 2 & 0 \end{bmatrix} \qquad BA = \begin{bmatrix} 2 & 4 \\ 4 & 2 \end{bmatrix}
+$$
 
-Different matrices again. `AB ≠ BA` is the rule, not the exception.
+Different matrices again. $AB \neq BA$ is the rule, not the exception.
 
 ---
 
@@ -355,17 +360,18 @@ Different matrices again. `AB ≠ BA` is the rule, not the exception.
 
 <div class="thread">One property numbers and matrices do share.</div>
 
-```
+$$
 A(B + C) = AB + AC
-```
+$$
 
-For `A = [ 1 1 ; 0 1 ]`, `B = [ 1 0 ; 0 0 ]`, `C = [ 0 0 ; 0 1 ]`:
+For $A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$, $B = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$, $C = \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}$:
 
-```
-A(B + C) = A × I = [ 1  1 ]
-AB + AC  = [ 1 0 ; 0 0 ] + [ 0 1 ; 0 1 ] = [ 1  1 ]
-                                            [ 0  1 ]
-```
+$$
+\begin{aligned}
+A(B + C) &= A \times I = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} \\
+AB + AC &= \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} + \begin{bmatrix} 0 & 1 \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}
+\end{aligned}
+$$
 
 Both sides match. Distributing over addition still works, even
 though swapping order does not.
@@ -376,12 +382,12 @@ though swapping order does not.
 
 <div class="thread">One more property, before moving to the inverse.</div>
 
-```
+$$
 (AB)C = A(BC)
-```
+$$
 
 Grouping does not matter, only left-to-right order does. This is why
-the café can compute `M = S × D` once, store just `M`, and never
+the café can compute $M = S \times D$ once, store just `M`, and never
 worry about which pair was multiplied first.
 
 ---
@@ -390,16 +396,15 @@ worry about which pair was multiplied first.
 
 <div class="thread">One special matrix changes nothing at all.</div>
 
-```
-I = [ 1  0 ]
-    [ 0  1 ]
-```
+$$
+I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+$$
 
 Multiplying any matrix by `I` leaves it unchanged:
 
-```
-AI = A       IA = A
-```
+$$
+AI = A \qquad IA = A
+$$
 
 `I` plays the same role `1` plays in ordinary multiplication. Every
 square matrix has its own identity matrix, always 1s down the
@@ -409,32 +414,37 @@ diagonal.
 
 # The Identity Matrix for Any Size
 
-<div class="thread">The 2×2 identity is just the smallest example.</div>
+<style scoped>
+.thread p { margin: 0; }
+</style>
 
-```
-    [ 1  0  0 ]
-I = [ 0  1  0 ]
-    [ 0  0  1 ]
-```
+<div class="thread">
+
+The $2 \times 2$ identity is just the smallest example.
+
+</div>
+
+$$
+I = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+$$
 
 Every square matrix, of any size, has its own identity: 1s down the
 diagonal, 0s everywhere else. The pattern never changes.
 
 ---
 
-# Powers of a Matrix: A² Means A × A
+# Powers of a Matrix: $A^2$ Means $A \times A$
 
 <div class="thread">Applying the same change twice, written compactly.</div>
 
-For the shear matrix `A = [ 1 1 ; 0 1 ]`:
+For the shear matrix $A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$:
 
-```
-A² = A × A = [ 1  2 ]
-             [ 0  1 ]
-```
+$$
+A^2 = A \times A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}
+$$
 
-`A²` shears twice as far as `A` alone. Just like ordinary numbers,
-`A³ = A × A × A`, and so on.
+$A^2$ shears twice as far as `A` alone. Just like ordinary numbers,
+$A^3 = A \times A \times A$, and so on.
 
 ---
 
@@ -442,11 +452,11 @@ A² = A × A = [ 1  2 ]
 
 <div class="thread">Now the tool this week has been missing: how to reverse a matrix.</div>
 
-> A square matrix `A` has an **inverse** `A⁻¹` when
+> A square matrix `A` has an **inverse** $A^{-1}$ when
 
-```
-A × A⁻¹ = I       A⁻¹ × A = I
-```
+$$
+A \times A^{-1} = I \qquad A^{-1} \times A = I
+$$
 
 - Only a square matrix, same number of rows and columns, can have an inverse
 - Not every square matrix has one; a matrix with no inverse is called **singular**
@@ -457,32 +467,39 @@ A × A⁻¹ = I       A⁻¹ × A = I
 
 <div class="thread">Two matrices worth knowing by sight.</div>
 
-- `I` is its own inverse: `I × I = I`
+- `I` is its own inverse: $I \times I = I$
 - A matrix of all zeros is always singular: anything times an all-zero matrix gives all zeros, and can never reach `I`
 
 ---
 
-# Finding a 2×2 Inverse
+# Finding a $2 \times 2$ Inverse
 
-<div class="thread">A short formula finds the inverse of any 2×2 matrix.</div>
+<style scoped>
+.thread p { margin: 0; }
+</style>
 
-```
-For A = [ a  b ]      A⁻¹ = 1/(ad-bc) × [  d  -b ]
-        [ c  d ]                        [ -c   a ]
-```
+<div class="thread">
+
+A short formula finds the inverse of any $2 \times 2$ matrix.
+
+</div>
+
+$$
+\text{For } A = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \qquad A^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
+$$
 
 This only works when `ad - bc` is not zero. Week 6 gives this number a
 full name and method: the **determinant**.
 
-```
-A = [ 3  2 ]      ad-bc = 3×1 - 2×1 = 1
-    [ 1  1 ]
+$$
+A = \begin{bmatrix} 3 & 2 \\ 1 & 1 \end{bmatrix} \qquad ad-bc = 3 \times 1 - 2 \times 1 = 1
+$$
 
-A⁻¹ = [  1  -2 ]
-      [ -1   3 ]
-```
+$$
+A^{-1} = \begin{bmatrix} 1 & -2 \\ -1 & 3 \end{bmatrix}
+$$
 
-Check by multiplying `A × A⁻¹`. The result is `I`.
+Check by multiplying $A \times A^{-1}$. The result is `I`.
 
 ---
 
@@ -490,32 +507,28 @@ Check by multiplying `A × A⁻¹`. The result is `I`.
 
 <div class="thread">The previous slide said "check." Here is the check, in full.</div>
 
-```
-A × A⁻¹ = [ 3  2 ] × [  1  -2 ]  = [ 3(1)+2(-1)   3(-2)+2(3) ]
-          [ 1  1 ]   [ -1   3 ]    [ 1(1)+1(-1)   1(-2)+1(3) ]
-
-        = [ 1  0 ]
-          [ 0  1 ]
-```
+$$
+A \times A^{-1} = \begin{bmatrix} 3 & 2 \\ 1 & 1 \end{bmatrix} \times \begin{bmatrix} 1 & -2 \\ -1 & 3 \end{bmatrix} = \begin{bmatrix} 3(1)+2(-1) & 3(-2)+2(3) \\ 1(1)+1(-1) & 1(-2)+1(3) \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+$$
 
 Every entry lands exactly where `I` needs it. This is the whole point
 of an inverse: multiply it in, and everything cancels back to `I`.
 
 ---
 
-# A Second 2×2 Inverse Example
+# A Second $2 \times 2$ Inverse Example
 
 <div class="thread">One example could be a fluke. Try the formula on a new matrix.</div>
 
-```
-A = [ 4  3 ]      ad-bc = 4×2 - 3×3 = -1
-    [ 3  2 ]
+$$
+A = \begin{bmatrix} 4 & 3 \\ 3 & 2 \end{bmatrix} \qquad ad-bc = 4 \times 2 - 3 \times 3 = -1
+$$
 
-A⁻¹ = 1/(-1) × [  2  -3 ]  =  [ -2   3 ]
-               [ -3   4 ]     [  3  -4 ]
-```
+$$
+A^{-1} = \frac{1}{-1} \begin{bmatrix} 2 & -3 \\ -3 & 4 \end{bmatrix} = \begin{bmatrix} -2 & 3 \\ 3 & -4 \end{bmatrix}
+$$
 
-Check: `A × A⁻¹ = I` (confirm this yourself, the same way as the
+Check: $A \times A^{-1} = I$ (confirm this yourself, the same way as the
 previous slide).
 
 ---
@@ -528,24 +541,21 @@ previous slide).
 
 Friday prices, Latte and Mocha, as a price vector:
 
-```
-p = [ 800 ]
-    [ 900 ]
-```
+$$
+p = \begin{bmatrix} 800 \\ 900 \end{bmatrix}
+$$
 
 Weekend discount `D` (10% off Latte, 5% off Mocha):
 
-```
-D = [ 0.90   0   ]
-    [  0    0.95 ]
-```
+$$
+D = \begin{bmatrix} 0.90 & 0 \\ 0 & 0.95 \end{bmatrix}
+$$
 
 Delivery surcharge `S` (adds 10% of the Latte price onto Mocha):
 
-```
-S = [ 1.00   0 ]
-    [ 0.10   1 ]
-```
+$$
+S = \begin{bmatrix} 1.00 & 0 \\ 0.10 & 1 \end{bmatrix}
+$$
 
 ---
 
@@ -555,17 +565,15 @@ S = [ 1.00   0 ]
 
 Multiply `S` and `D` to get one combined matrix `M`:
 
-```
-M = S × D = [ 0.90    0   ]
-            [ 0.09   0.95 ]
-```
+$$
+M = S \times D = \begin{bmatrix} 0.90 & 0 \\ 0.09 & 0.95 \end{bmatrix}
+$$
 
 Apply `M` to Friday's prices, in one step:
 
-```
-M × p = [ 720 ]
-        [ 927 ]
-```
+$$
+M \times p = \begin{bmatrix} 720 \\ 927 \end{bmatrix}
+$$
 
 Same answer as applying `D`, then `S`, separately. One multiplication
 now replaces two full passes over every order.
@@ -576,10 +584,9 @@ now replaces two full passes over every order.
 
 <div class="thread">The café's rule is discount first, then surcharge. Swap it, and the price changes.</div>
 
-```
-S × D = [ 0.90    0   ]      D × S = [ 0.90    0    ]
-        [ 0.09   0.95 ]              [ 0.095  0.95 ]
-```
+$$
+S \times D = \begin{bmatrix} 0.90 & 0 \\ 0.09 & 0.95 \end{bmatrix} \qquad D \times S = \begin{bmatrix} 0.90 & 0 \\ 0.095 & 0.95 \end{bmatrix}
+$$
 
 The two combined matrices are not the same. Applying the surcharge
 first, then the discount, gives a slightly different final price.
@@ -596,10 +603,9 @@ order must match business order.
 Saturday's base prices rose slightly: `p = [850, 950]`. Reuse the same
 combined matrix `M`, no re-multiplying `S` and `D`:
 
-```
-M × p = [ 0.90 × 850            ]   [ 765 ]
-        [ 0.09 × 850 + 0.95 × 950 ] = [ 979 ]
-```
+$$
+M \times p = \begin{bmatrix} 0.90 \times 850 \\ 0.09 \times 850 + 0.95 \times 950 \end{bmatrix} = \begin{bmatrix} 765 \\ 979 \end{bmatrix}
+$$
 
 One stored matrix, applied to any day's prices, instantly.
 
@@ -609,13 +615,12 @@ One stored matrix, applied to any day's prices, instantly.
 
 <div class="thread">Combining and reversing, together, on the same matrix.</div>
 
-Friday's discounted prices were `[720, 927]`. Find `M⁻¹` and apply it
+Friday's discounted prices were `[720, 927]`. Find $M^{-1}$ and apply it
 to recover the original prices before any change:
 
-```
-M⁻¹ ≈ [ 1.111   0    ]     M⁻¹ × [ 720 ] = [ 800 ]
-      [ -0.105  1.053 ]          [ 927 ]   [ 900 ]
-```
+$$
+M^{-1} \approx \begin{bmatrix} 1.111 & 0 \\ -0.105 & 1.053 \end{bmatrix} \qquad M^{-1} \times \begin{bmatrix} 720 \\ 927 \end{bmatrix} = \begin{bmatrix} 800 \\ 900 \end{bmatrix}
+$$
 
 Friday's original prices, `[800, 900]`, come back exactly.
 
@@ -640,7 +645,7 @@ You have about 15 minutes.
 
 <div class="why">Same pairs, two minutes.</div>
 
-Write down any 2×2 matrix `A` and any 2×2 matrix `B`. Compute `AB` by
+Write down any $2 \times 2$ matrix `A` and any $2 \times 2$ matrix `B`. Compute `AB` by
 hand while your partner computes `BA`. Compare - they should differ.
 
 ---
@@ -670,17 +675,15 @@ hand while your partner computes `BA`. Compare - they should differ.
 
 The register glitch doubled every Saturday price by mistake:
 
-```
-G = [ 2  0 ]      Saturday's wrong prices, G × p = [ 1600 ]
-    [ 0  2 ]                                        [ 1800 ]
-```
+$$
+G = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix} \qquad \text{Saturday's wrong prices, } G \times p = \begin{bmatrix} 1600 \\ 1800 \end{bmatrix}
+$$
 
-Find `G⁻¹` and apply it to undo the glitch exactly:
+Find $G^{-1}$ and apply it to undo the glitch exactly:
 
-```
-G⁻¹ = [ 0.5   0  ]     G⁻¹ × (G × p) = [ 800 ]
-      [  0   0.5 ]                     [ 900 ]
-```
+$$
+G^{-1} = \begin{bmatrix} 0.5 & 0 \\ 0 & 0.5 \end{bmatrix} \qquad G^{-1} \times (G \times p) = \begin{bmatrix} 800 \\ 900 \end{bmatrix}
+$$
 
 Friday's correct prices are back, exactly, with no re-typing.
 
@@ -692,17 +695,15 @@ Friday's correct prices are back, exactly, with no re-typing.
 
 This time, the register undercharged every Sunday price by half:
 
-```
-H = [ 0.5   0  ]      Sunday's wrong prices, H × p = [ 400 ]
-    [  0   0.5 ]                                       [ 450 ]
-```
+$$
+H = \begin{bmatrix} 0.5 & 0 \\ 0 & 0.5 \end{bmatrix} \qquad \text{Sunday's wrong prices, } H \times p = \begin{bmatrix} 400 \\ 450 \end{bmatrix}
+$$
 
-Find `H⁻¹` and undo it:
+Find $H^{-1}$ and undo it:
 
-```
-H⁻¹ = [ 2  0 ]      H⁻¹ × (H × p) = [ 800 ]
-      [ 0  2 ]                       [ 900 ]
-```
+$$
+H^{-1} = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix} \qquad H^{-1} \times (H \times p) = \begin{bmatrix} 800 \\ 900 \end{bmatrix}
+$$
 
 Same method, different glitch, the same exact recovery.
 
@@ -714,17 +715,15 @@ Same method, different glitch, the same exact recovery.
 
 Week 1's Latte and Mocha system, as a matrix equation:
 
-```
-A = [ 2  1 ]      x = [ m ]     b = [ 800 ]
-    [ 1  3 ]          [ s ]         [ 900 ]
-```
+$$
+A = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix} \qquad x = \begin{bmatrix} m \\ s \end{bmatrix} \qquad b = \begin{bmatrix} 800 \\ 900 \end{bmatrix}
+$$
 
-Instead of row reduction, multiply both sides by `A⁻¹`:
+Instead of row reduction, multiply both sides by $A^{-1}$:
 
-```
-x = A⁻¹ b = [ 300 ]
-            [ 200 ]
-```
+$$
+x = A^{-1} b = \begin{bmatrix} 300 \\ 200 \end{bmatrix}
+$$
 
 Same answer Week 1 found by hand: `m = 300`, `s = 200`.
 
@@ -734,12 +733,11 @@ Same answer Week 1 found by hand: `m = 300`, `s = 200`.
 
 <div class="thread">One warning before you trust the inverse formula.</div>
 
-```
-A = [ 2  4 ]      ad - bc = 2×2 - 4×1 = 0
-    [ 1  2 ]
-```
+$$
+A = \begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix} \qquad ad - bc = 2 \times 2 - 4 \times 1 = 0
+$$
 
-`ad - bc = 0`, so `A⁻¹` does not exist. `A` is **singular**.
+$ad - bc = 0$, so $A^{-1}$ does not exist. `A` is **singular**.
 
 - This matches Week 1's "no unique solution" case: a singular matrix's system has none, or infinitely many, solutions
 - Week 6's determinant gives an exact test for this, for any size matrix
@@ -761,11 +759,19 @@ Two new operations, one for each half of this week's question.
 
 # Common Mistakes
 
+<style scoped>
+.card .d p { margin: 0; }
+</style>
+
 <div class="cardlist">
 <div class="card"><div class="h">Assuming AB = BA</div><div class="d">matrix order changes the answer; check the café's discount and surcharge example again</div></div>
 <div class="card"><div class="h">Multiplying entry-by-entry</div><div class="d">matrix multiplication is row-by-column, not lining up matching spots</div></div>
 <div class="card"><div class="h">Ignoring a size mismatch</div><div class="d">columns of the first matrix must match rows of the second; always check first</div></div>
-<div class="card"><div class="h">Assuming every matrix has an inverse</div><div class="d">always check `ad - bc ≠ 0` before trusting `A⁻¹`</div></div>
+<div class="card"><div class="h">Assuming every matrix has an inverse</div><div class="d">
+
+always check $ad - bc \neq 0$ before trusting $A^{-1}$
+
+</div></div>
 </div>
 
 ---
@@ -774,13 +780,13 @@ Two new operations, one for each half of this week's question.
 
 <div class="thread">Seeing the failure numerically, one more time.</div>
 
-```
-A = [ 1  2 ]      B = [ 0  1 ]
-    [ 0  1 ]          [ 1  0 ]
+$$
+A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix} \qquad B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
+$$
 
-AB = [ 2  1 ]     BA = [ 0  1 ]
-     [ 1  0 ]          [ 1  2 ]
-```
+$$
+AB = \begin{bmatrix} 2 & 1 \\ 1 & 0 \end{bmatrix} \qquad BA = \begin{bmatrix} 0 & 1 \\ 1 & 2 \end{bmatrix}
+$$
 
 Every entry differs except one. Never assume `AB = BA` without
 checking - here, it simply is not true.
@@ -791,13 +797,12 @@ checking - here, it simply is not true.
 
 <div class="thread">The formula does not warn you. You have to check first.</div>
 
-```
-A = [ 2  4 ]      ad - bc = 2×2 - 4×1 = 0
-    [ 1  2 ]
-```
+$$
+A = \begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix} \qquad ad - bc = 2 \times 2 - 4 \times 1 = 0
+$$
 
-Plugging into `1/(ad-bc)` divides by zero - the formula breaks
-silently if you do not check `ad - bc ≠ 0` first. `A` is singular; no
+Plugging into $\frac{1}{ad-bc}$ divides by zero - the formula breaks
+silently if you do not check $ad - bc \neq 0$ first. `A` is singular; no
 inverse exists to find.
 
 ---
@@ -828,15 +833,15 @@ Worksheet Part B matrices? Then compute both and check your guess.
 
 # Check Yourself
 
-1. `A` is 2×3 and `B` is 3×4. What size is `AB`?
-2. For `A = [[2,0],[0,3]]` and `B = [[1,1],[0,1]]`, is `AB` equal to `BA`?
+1. `A` is $2 \times 3$ and `B` is $3 \times 4$. What size is `AB`?
+2. For $A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$ and $B = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$, is `AB` equal to `BA`?
 
 ---
 
 # Answers
 
-1. `AB` is 2×4. Its size is rows of `A` by columns of `B`.
-2. **No.** `AB = [[2,2],[0,3]]`, but `BA = [[2,3],[0,3]]`. The top-right entry differs, so order matters here too.
+1. `AB` is $2 \times 4$. Its size is rows of `A` by columns of `B`.
+2. **No.** $AB = \begin{bmatrix} 2 & 2 \\ 0 & 3 \end{bmatrix}$, but $BA = \begin{bmatrix} 2 & 3 \\ 0 & 3 \end{bmatrix}$. The top-right entry differs, so order matters here too.
 
 ---
 

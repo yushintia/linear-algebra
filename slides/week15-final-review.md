@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -69,7 +70,7 @@ consolidated before the final exam.
 <div class="thread">The semester's first move: turn a real problem into math, then solve it.</div>
 
 - **Week 1:** row operations, swap, scale, add, solve any linear system exactly, by hand
-- **Week 2:** the same system compacts into one form, `Ax = b`, ready for a computer
+- **Week 2:** the same system compacts into one form, $Ax = b$, ready for a computer
 - Café link: three ingredient rules became one system, then one matrix equation
 
 ---
@@ -88,8 +89,8 @@ consolidated before the final exam.
 
 <div class="thread">Solving the same system's left side, over and over, wastes work.</div>
 
-- **Week 5:** `LU` factorization splits `A` into two triangular pieces, just once
-- Forward substitution, then back substitution, reuse that split for any new `b`
+- **Week 5:** $LU$ factorization splits $A$ into two triangular pieces, just once
+- Forward substitution, then back substitution, reuse that split for any new $b$
 - Café link: one factorization solved many days of different receipts, instantly
 
 ---
@@ -108,8 +109,8 @@ consolidated before the final exam.
 
 <div class="thread">Some directions a matrix only stretches. Finding them pays off again and again.</div>
 
-- **Week 10:** eigenvalues and eigenvectors solve `Av = λv`, the stretch-only directions
-- **Week 11:** `A = PDP⁻¹` reuses those directions to make repeated transformations fast
+- **Week 10:** eigenvalues and eigenvectors solve $Av = \lambda v$, the stretch-only directions
+- **Week 11:** $A = PDP^{-1}$ reuses those directions to make repeated transformations fast
 - Café link: the loyalty-program blend settled toward one dominant eigenvalue direction
 
 ---
@@ -141,14 +142,14 @@ consolidated before the final exam.
 
 <div class="thread">The two outcomes a system can reach besides "exactly one answer."</div>
 
-After elimination, a café system reaches `0 = 5`. What does that tell
+After elimination, a café system reaches $0 = 5$. What does that tell
 you about the solutions?
 
 ---
 
 # Answer 1
 
-**No solution.** `0 = 5` is never true, so the equations contradict
+**No solution.** $0 = 5$ is never true, so the equations contradict
 each other. No values can satisfy all of them together.
 
 ---
@@ -157,16 +158,15 @@ each other. No values can satisfy all of them together.
 
 # Question 2 (Week 2)
 
-Write `2x + 3y = 7`, `4x - y = 1` as `Ax = b`. What are `A` and `b`?
+Write $2x + 3y = 7$, $4x - y = 1$ as $Ax = b$. What are $A$ and $b$?
 
 ---
 
 # Answer 2
 
-```
-A = [  2   3 ]     b = [ 7 ]
-    [  4  -1 ]         [ 1 ]
-```
+$$
+A = \begin{bmatrix} 2 & 3 \\ 4 & -1 \end{bmatrix} \qquad b = \begin{bmatrix} 7 \\ 1 \end{bmatrix}
+$$
 
 ---
 
@@ -174,20 +174,21 @@ A = [  2   3 ]     b = [ 7 ]
 
 # Question 3 (Week 4)
 
-Find the inverse of `A = [[3,1],[2,1]]`.
+Find the inverse of $A = \begin{bmatrix} 3 & 1 \\ 2 & 1 \end{bmatrix}$.
 
 ---
 
 # Answer 3
 
-```
+$$
 ad - bc = 3(1) - 1(2) = 1
+$$
 
-A⁻¹ = [  1  -1 ]
-      [ -2   3 ]
-```
+$$
+A^{-1} = \begin{bmatrix} 1 & -1 \\ -2 & 3 \end{bmatrix}
+$$
 
-Check: `A · A⁻¹` gives the identity matrix, `[[1,0],[0,1]]`.
+Check: $A \cdot A^{-1}$ gives the identity matrix, $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$.
 
 ---
 
@@ -195,26 +196,30 @@ Check: `A · A⁻¹` gives the identity matrix, `[[1,0],[0,1]]`.
 
 # Question 4 (Week 5)
 
-`A = [[4,2],[2,3]]` factors as `L = [[1,0],[0.5,1]]`,
-`U = [[4,2],[0,2]]`. Solve `Ax = b` for `b = [10, 9]`.
+$A = \begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix}$ factors as $L = \begin{bmatrix} 1 & 0 \\ 0.5 & 1 \end{bmatrix}$,
+$U = \begin{bmatrix} 4 & 2 \\ 0 & 2 \end{bmatrix}$. Solve $Ax = b$ for $b = \begin{bmatrix} 10 \\ 9 \end{bmatrix}$.
 
 ---
 
 # Answer 4
 
-Forward substitution, `Ly = b`:
+Forward substitution, $Ly = b$:
 
-```
-y1 = 10
-0.5(10) + y2 = 9   ->   y2 = 4
-```
+$$
+\begin{aligned}
+y_1 &= 10 \\
+0.5(10) + y_2 &= 9 \;\to\; y_2 = 4
+\end{aligned}
+$$
 
-Back substitution, `Ux = y`:
+Back substitution, $Ux = y$:
 
-```
-2·x2 = 4          ->   x2 = 2
-4·x1 + 2(2) = 10  ->   x1 = 1.5
-```
+$$
+\begin{aligned}
+2 \cdot x_2 &= 4 \;\to\; x_2 = 2 \\
+4 \cdot x_1 + 2(2) &= 10 \;\to\; x_1 = 1.5
+\end{aligned}
+$$
 
 ---
 
@@ -222,7 +227,7 @@ Back substitution, `Ux = y`:
 
 # Question 5 (Week 6)
 
-Compute the determinant of `A = [[1,0,2],[0,3,1],[1,1,1]]`.
+Compute the determinant of $A = \begin{bmatrix} 1 & 0 & 2 \\ 0 & 3 & 1 \\ 1 & 1 & 1 \end{bmatrix}$.
 
 ---
 
@@ -230,11 +235,13 @@ Compute the determinant of `A = [[1,0,2],[0,3,1],[1,1,1]]`.
 
 Cofactor expansion along row 1:
 
-```
-det = 1·det[[3,1],[1,1]] - 0 + 2·det[[0,3],[1,1]]
-    = 1(3-1) - 0 + 2(0-3)
-    = 2 - 6 = -4
-```
+$$
+\begin{aligned}
+\det &= 1 \cdot \det\begin{bmatrix} 3 & 1 \\ 1 & 1 \end{bmatrix} - 0 + 2 \cdot \det\begin{bmatrix} 0 & 3 \\ 1 & 1 \end{bmatrix} \\
+&= 1(3-1) - 0 + 2(0-3) \\
+&= 2 - 6 = -4
+\end{aligned}
+$$
 
 Nonzero, so a system with this matrix has exactly one solution.
 
@@ -244,8 +251,8 @@ Nonzero, so a system with this matrix has exactly one solution.
 
 # Question 6 (Week 7)
 
-The café's rule matrix `A` has a null space of dimension 2. What does
-that tell you about solutions to `Ax = 0`?
+The café's rule matrix $A$ has a null space of dimension 2. What does
+that tell you about solutions to $Ax = 0$?
 
 ---
 
@@ -261,20 +268,20 @@ solutions, not just one.
 
 # Question 7 (Week 9)
 
-Are `v1 = (1,2,0)`, `v2 = (0,1,1)`, `v3 = (1,4,2)` linearly
+Are $v_1 = (1,2,0)$, $v_2 = (0,1,1)$, $v_3 = (1,4,2)$ linearly
 independent?
 
 ---
 
 # Answer 7
 
-**No.** Try `v1 + 2v2`:
+**No.** Try $v_1 + 2v_2$:
 
-```
-(1,2,0) + 2(0,1,1) = (1,4,2) = v3
-```
+$$
+(1,2,0) + 2(0,1,1) = (1,4,2) = v_3
+$$
 
-`v3` is just `v1 + 2v2`, redundant. The set is dependent; only 2 of
+$v_3$ is just $v_1 + 2v_2$, redundant. The set is dependent; only 2 of
 the 3 vectors are truly independent.
 
 ---
@@ -283,18 +290,18 @@ the 3 vectors are truly independent.
 
 # Question 8 (Week 9)
 
-A 3×5 matrix has rank 3. What is its nullity?
+A $3 \times 5$ matrix has rank 3. What is its nullity?
 
 ---
 
 # Answer 8
 
-**Nullity = 2.** By rank-nullity, `rank + nullity = n`, the number of
+**Nullity = 2.** By rank-nullity, $\text{rank} + \text{nullity} = n$, the number of
 columns:
 
-```
-3 + nullity = 5   ->   nullity = 2
-```
+$$
+3 + \text{nullity} = 5 \;\to\; \text{nullity} = 2
+$$
 
 ---
 
@@ -302,19 +309,21 @@ columns:
 
 # Question 9 (Week 10)
 
-Find the eigenvalues of `A = [[4,2],[1,3]]`.
+Find the eigenvalues of $A = \begin{bmatrix} 4 & 2 \\ 1 & 3 \end{bmatrix}$.
 
 ---
 
 # Answer 9
 
-```
-det(A - λI) = (4-λ)(3-λ) - 2(1)
-            = λ² - 7λ + 10 = 0
-            = (λ - 5)(λ - 2) = 0
-```
+$$
+\begin{aligned}
+\det(A - \lambda I) &= (4-\lambda)(3-\lambda) - 2(1) \\
+&= \lambda^2 - 7\lambda + 10 = 0 \\
+&= (\lambda - 5)(\lambda - 2) = 0
+\end{aligned}
+$$
 
-Eigenvalues: `λ = 5` and `λ = 2`.
+Eigenvalues: $\lambda = 5$ and $\lambda = 2$.
 
 ---
 
@@ -322,21 +331,20 @@ Eigenvalues: `λ = 5` and `λ = 2`.
 
 # Question 10 (Week 10)
 
-Find the eigenvector for `λ = 5`, from Question 9's matrix.
+Find the eigenvector for $\lambda = 5$, from Question 9's matrix.
 
 ---
 
 # Answer 10
 
-Solve `(A - 5I)v = 0`:
+Solve $(A - 5I)v = 0$:
 
-```
-[ -1   2 ] [v1]   [0]
-[  1  -2 ] [v2] = [0]
-```
+$$
+\begin{bmatrix} -1 & 2 \\ 1 & -2 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+$$
 
-Both rows give `v1 = 2v2`. Eigenvector: `(2, 1)`. Check:
-`A(2,1) = (10,5) = 5(2,1)`. ✓
+Both rows give $v_1 = 2v_2$. Eigenvector: $(2, 1)$. Check:
+$A(2,1) = (10,5) = 5(2,1)$. ✓
 
 ---
 
@@ -344,7 +352,7 @@ Both rows give `v1 = 2v2`. Eigenvector: `(2, 1)`. Check:
 
 # Question 11 (Week 11)
 
-Question 9's matrix has two different eigenvalues, `5` and `2`. Is it
+Question 9's matrix has two different eigenvalues, $5$ and $2$. Is it
 diagonalizable? Why?
 
 ---
@@ -353,7 +361,7 @@ diagonalizable? Why?
 
 **Yes.** Distinct eigenvalues always give independent eigenvectors.
 Two independent eigenvectors are exactly enough to diagonalize any
-2×2 matrix.
+$2 \times 2$ matrix.
 
 ---
 
@@ -361,15 +369,15 @@ Two independent eigenvectors are exactly enough to diagonalize any
 
 # Question 12 (Week 12)
 
-Are `u = (3, -2)` and `v = (4, 6)` orthogonal? Show the dot product.
+Are $u = (3, -2)$ and $v = (4, 6)$ orthogonal? Show the dot product.
 
 ---
 
 # Answer 12
 
-```
-u · v = 3(4) + (-2)(6) = 12 - 12 = 0
-```
+$$
+u \cdot v = 3(4) + (-2)(6) = 12 - 12 = 0
+$$
 
 **Yes, orthogonal.** A dot product of zero always means a right
 angle, in any number of dimensions.
@@ -380,18 +388,17 @@ angle, in any number of dimensions.
 
 # Question 13 (Week 13)
 
-Project `y = (5, 3)` onto the line spanned by `u = (1, 0)`.
+Project $y = (5, 3)$ onto the line spanned by $u = (1, 0)$.
 
 ---
 
 # Answer 13
 
-```
-proj_u(y) = ((y·u)/(u·u)) u
-          = (5/1)(1, 0) = (5, 0)
-```
+$$
+\text{proj}_u(y) = \frac{y \cdot u}{u \cdot u}\, u = \frac{5}{1}(1, 0) = (5, 0)
+$$
 
-The closest point on that line to `(5, 3)` is `(5, 0)`.
+The closest point on that line to $(5, 3)$ is $(5, 0)$.
 
 ---
 
@@ -400,14 +407,14 @@ The closest point on that line to `(5, 3)` is `(5, 0)`.
 # Question 14 (Week 14)
 
 A café survey collects 8 noisy taste ratings, but a line has only 2
-unknowns. Why is there no exact solution to `Ax = b`?
+unknowns. Why is there no exact solution to $Ax = b$?
 
 ---
 
 # Answer 14
 
 **More equations than unknowns.** With 8 data points and only 2
-unknowns, `b` almost never lands exactly in the column space of `A`.
+unknowns, $b$ almost never lands exactly in the column space of $A$.
 Least squares finds the closest fit instead.
 
 ---
@@ -417,47 +424,49 @@ Least squares finds the closest fit instead.
 
 # Question 15 (Week 9: Bases, Dimension)
 
-Vectors `v1 = (1,2,3)`, `v2 = (2,4,6)`, `v3 = (1,0,1)` span a
+Vectors $v_1 = (1,2,3)$, $v_2 = (2,4,6)$, $v_3 = (1,0,1)$ span a
 subspace. Find a basis, and its dimension.
 
 ---
 
 # Answer 15
 
-`v2 = 2v1`, so `v2` is redundant. `v1` and `v3` are not parallel, so
+$v_2 = 2v_1$, so $v_2$ is redundant. $v_1$ and $v_3$ are not parallel, so
 they are independent.
 
-**Basis:** `{v1, v3}`. **Dimension = 2.**
+**Basis:** $\{v_1, v_3\}$. **Dimension = 2.**
 
 ---
 
 # Question 16 (Week 10: Eigenvalues)
 
-Find the eigenvalues of `A = [[0,1],[-2,-3]]`.
+Find the eigenvalues of $A = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix}$.
 
 ---
 
 # Answer 16
 
-```
-det(A - λI) = λ(λ+3) - (1)(-2) = λ² + 3λ + 2 = 0
-            = (λ + 1)(λ + 2) = 0
-```
+$$
+\begin{aligned}
+\det(A - \lambda I) &= \lambda(\lambda+3) - (1)(-2) = \lambda^2 + 3\lambda + 2 = 0 \\
+&= (\lambda + 1)(\lambda + 2) = 0
+\end{aligned}
+$$
 
-Eigenvalues: `λ = -1` and `λ = -2`.
+Eigenvalues: $\lambda = -1$ and $\lambda = -2$.
 
 ---
 
 # Question 17 (Week 11: Diagonalization)
 
-A 3×3 matrix has eigenvalues `2, 2, 5`, with only one independent
-eigenvector for `λ = 2`. Is it diagonalizable?
+A $3 \times 3$ matrix has eigenvalues $2, 2, 5$, with only one independent
+eigenvector for $\lambda = 2$. Is it diagonalizable?
 
 ---
 
 # Answer 17
 
-**No.** Eigenvalue `2` has algebraic multiplicity 2, but geometric
+**No.** Eigenvalue $2$ has algebraic multiplicity 2, but geometric
 multiplicity only 1 (one independent eigenvector). The two
 multiplicities must match for every eigenvalue; here they do not.
 
@@ -465,57 +474,59 @@ multiplicities must match for every eigenvalue; here they do not.
 
 # Question 18 (Week 12: Orthogonality)
 
-Find the angle between `u = (1, 0)` and `v = (1, 1)`.
+Find the angle between $u = (1, 0)$ and $v = (1, 1)$.
 
 ---
 
 # Answer 18
 
-```
-cos(angle) = (u·v)/(||u|| ||v||) = 1 / (1 · √2) = 1/√2 ≈ 0.707
-```
+$$
+\cos(\text{angle}) = \frac{u \cdot v}{\|u\| \|v\|} = \frac{1}{1 \cdot \sqrt{2}} = \frac{1}{\sqrt{2}} \approx 0.707
+$$
 
-`angle ≈ 45°`.
+$\text{angle} \approx 45°$.
 
 ---
 
 # Question 19 (Week 13: Projections)
 
-Project `y = (2, 3, 4)` onto the subspace spanned by the orthogonal
-vectors `u1 = (1,0,0)` and `u2 = (0,1,0)`.
+Project $y = (2, 3, 4)$ onto the subspace spanned by the orthogonal
+vectors $u_1 = (1,0,0)$ and $u_2 = (0,1,0)$.
 
 ---
 
 # Answer 19
 
-```
-proj_W(y) = 2u1 + 3u2 = (2, 3, 0)
-z = y - proj_W(y) = (0, 0, 4)
-```
+$$
+\begin{aligned}
+\text{proj}_W(y) &= 2u_1 + 3u_2 = (2, 3, 0) \\
+z &= y - \text{proj}_W(y) = (0, 0, 4)
+\end{aligned}
+$$
 
-The closest point in `W` is `(2, 3, 0)`; the leftover, `(0,0,4)`, is
-exactly what the plane spanned by `u1, u2` cannot reach.
+The closest point in $W$ is $(2, 3, 0)$; the leftover, $(0,0,4)$, is
+exactly what the plane spanned by $u_1, u_2$ cannot reach.
 
 ---
 
 # Question 20 (Week 14: Least Squares)
 
-A least-squares fit gives `R² = 0.60`. What fraction of the data's
+A least-squares fit gives $R^2 = 0.60$. What fraction of the data's
 variation is left unexplained?
 
 ---
 
 # Answer 20
 
-**40%.** `R²` is the explained fraction, so the unexplained fraction
-is `1 - 0.60 = 0.40`.
+**40%.** $R^2$ is the explained fraction, so the unexplained fraction
+is $1 - 0.60 = 0.40$.
 
 ---
 
 # Question 21 (Synthesis: Weeks 10-11)
 
-A 2×2 matrix has trace 7 and determinant 6. Find its eigenvalues
-without expanding `det(A - λI)` from scratch.
+A $2 \times 2$ matrix has trace 7 and determinant 6. Find its eigenvalues
+without expanding $\det(A - \lambda I)$ from scratch.
 
 ---
 
@@ -523,26 +534,29 @@ without expanding `det(A - λI)` from scratch.
 
 Eigenvalues sum to the trace and multiply to the determinant:
 
-```
-λ1 + λ2 = 7        λ1 · λ2 = 6
-λ² - 7λ + 6 = 0    (λ-6)(λ-1) = 0
-```
+$$
+\lambda_1 + \lambda_2 = 7 \qquad \lambda_1 \cdot \lambda_2 = 6
+$$
 
-Eigenvalues: `λ = 6` and `λ = 1`.
+$$
+\lambda^2 - 7\lambda + 6 = 0 \qquad (\lambda-6)(\lambda-1) = 0
+$$
+
+Eigenvalues: $\lambda = 6$ and $\lambda = 1$.
 
 ---
 
 # Question 22 (Synthesis: Weeks 12-13)
 
-`u = (3,4)` and `v = (4,-3)` are orthogonal and together span all of
-`R²`. Project `y = (10, 5)` onto their span. What should you get, and
+$u = (3,4)$ and $v = (4,-3)$ are orthogonal and together span all of
+$\mathbb{R}^2$. Project $y = (10, 5)$ onto their span. What should you get, and
 why?
 
 ---
 
 # Answer 22
 
-**`proj = (10, 5) = y` itself.** When an orthogonal set spans the
+**$\text{proj} = (10, 5) = y$ itself.** When an orthogonal set spans the
 entire space, projecting onto it changes nothing: every vector is
 already inside that "subspace," which is the whole space.
 
@@ -556,8 +570,8 @@ In one sentence, how does projection connect to least squares?
 
 # Answer 23
 
-Least squares finds `x̂` so that `Ax̂` is exactly the **projection**
-of `b` onto the column space of `A`: the same closest-point idea from
+Least squares finds $\hat{x}$ so that $A\hat{x}$ is exactly the **projection**
+of $b$ onto the column space of $A$: the same closest-point idea from
 Week 13, applied to a system with no exact solution.
 
 ---
@@ -566,13 +580,32 @@ Week 13, applied to a system with no exact solution.
 
 # What to Focus On Next
 
+<style scoped>
+.thread p, .s p, .d p { margin: 0 !important; }
+.limits { padding: 10px 22px !important; }
+.cardlist { gap: 10px !important; margin-top: 6px !important; }
+.cardlist .card { padding: 10px 22px !important; }
+</style>
+
 <div class="limits">
 
 <div class="cardlist">
-<div class="card"><div class="h">Weeks 1-2</div><div class="d">rewrite one messy system as `Ax = b`, then solve it by row reduction, no notes</div></div>
-<div class="card"><div class="h">Weeks 3-5</div><div class="d">build a transformation matrix, invert it, then factor it into `LU`, all from scratch</div></div>
+<div class="card"><div class="h">Weeks 1-2</div><div class="d">
+
+rewrite one messy system as $Ax = b$, then solve it by row reduction, no notes
+
+</div></div>
+<div class="card"><div class="h">Weeks 3-5</div><div class="d">
+
+build a transformation matrix, invert it, then factor it into $LU$, all from scratch
+
+</div></div>
 <div class="card"><div class="h">Weeks 6-7, 9</div><div class="d">compute one determinant, describe a null space, then find a basis and its dimension</div></div>
-<div class="card"><div class="h">Weeks 10-11</div><div class="d">find eigenvalues and eigenvectors, then diagonalize, then check `A = PDP⁻¹` by hand</div></div>
+<div class="card"><div class="h">Weeks 10-11</div><div class="d">
+
+find eigenvalues and eigenvectors, then diagonalize, then check $A = PDP^{-1}$ by hand
+
+</div></div>
 <div class="card"><div class="h">Weeks 12-14</div><div class="d">compute an angle, project a vector, then set up one least-squares fit end-to-end</div></div>
 </div>
 

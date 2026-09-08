@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -278,18 +279,17 @@ every time.
 
 For a matrix
 
-```
-[ a  b ]
-[ c  d ]
-```
+$$
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}
+$$
 
 the determinant is
 
-```
-det = ad - bc
-```
+$$
+\det = ad - bc
+$$
 
-Example: for `[[3, 2], [1, 4]]`, `det = 3(4) - 2(1) = 10`.
+Example: for $\begin{bmatrix} 3 & 2 \\ 1 & 4 \end{bmatrix}$, $\det = 3(4) - 2(1) = 10$.
 
 ---
 
@@ -301,12 +301,13 @@ Treat a matrix's two rows (or columns) as two vectors drawn from the
 origin. The determinant's size equals the area of the parallelogram
 they form.
 
-```
-A = [ 3  0 ]     rows (3,0) and (0,4)
-    [ 0  4 ]     form a 3x4 rectangle
+$$
+A = \begin{bmatrix} 3 & 0 \\ 0 & 4 \end{bmatrix} \quad \text{rows } (3,0) \text{ and } (0,4) \text{ form a } 3\times 4 \text{ rectangle}
+$$
 
-det(A) = 3(4) - 0(0) = 12    <-  matches the rectangle's area
-```
+$$
+\det(A) = 3(4) - 0(0) = 12 \quad \text{(matches the rectangle's area)}
+$$
 
 ---
 
@@ -338,11 +339,11 @@ longer.
 
 <div class="thread">Same fact, three different words for it.</div>
 
-For a square matrix `A`, these three statements always agree:
+For a square matrix $A$, these three statements always agree:
 
-- `det(A)` is nonzero
-- `A` is **invertible** (Week 4's word for "has an inverse")
-- `Ax = b` has exactly one solution, for any `b`
+- $\det(A)$ is nonzero
+- $A$ is **invertible** (Week 4's word for "has an inverse")
+- $Ax = b$ has exactly one solution, for any $b$
 
 If any one of the three holds, all three hold. If any one fails, all
 three fail.
@@ -365,15 +366,14 @@ elimination is still faster in practice.
 
 <div class="thread">The formula behind last slide's claim, written out.</div>
 
-For `Ax = b` with `A = [[a,b],[c,d]]`, replace one column of `A` with
-`b` at a time:
+For $Ax = b$ with $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, replace one column of $A$ with
+$b$ at a time:
 
-```
-x = det([ b  b ]) / det(A)      y = det([ a  b ]) / det(A)
-        ([ d  d ])                       ([ c  d ])
-```
+$$
+x = \frac{\det\begin{bmatrix} b & b \\ d & d \end{bmatrix}}{\det(A)} \qquad y = \frac{\det\begin{bmatrix} a & b \\ c & d \end{bmatrix}}{\det(A)}
+$$
 
-Each unknown is its own determinant, divided by `det(A)`.
+Each unknown is its own determinant, divided by $\det(A)$.
 
 ---
 
@@ -381,16 +381,15 @@ Each unknown is its own determinant, divided by `det(A)`.
 
 <div class="thread">The Latte and Mocha prices from Week 1's worksheet. This time, check first.</div>
 
-Latte: `2m + s = 800`. Mocha: `m + 3s = 900`. As a matrix:
+Latte: $2m + s = 800$. Mocha: $m + 3s = 900$. As a matrix:
 
-```
-[ 2  1 ]
-[ 1  3 ]
-```
+$$
+\begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}
+$$
 
-```
-det = 2(3) - 1(1) = 5
-```
+$$
+\det = 2(3) - 1(1) = 5
+$$
 
 `5` is nonzero. One exact price for milk and syrup exists, before we
 even solve for it.
@@ -403,12 +402,13 @@ even solve for it.
 
 Swap the Latte and Mocha rows from the last slide:
 
-```
-[ 1  3 ]
-[ 2  1 ]
+$$
+\begin{bmatrix} 1 & 3 \\ 2 & 1 \end{bmatrix}
+$$
 
-det = 1(1) - 3(2) = -5
-```
+$$
+\det = 1(1) - 3(2) = -5
+$$
 
 Same numbers, one row swap, and the sign flips: `5` becomes `-5`. The
 size, `5`, stays the same either way.
@@ -421,15 +421,16 @@ size, `5`, stays the same either way.
 
 Double the Latte row only:
 
-```
-[ 4  2 ]
-[ 1  3 ]
+$$
+\begin{bmatrix} 4 & 2 \\ 1 & 3 \end{bmatrix}
+$$
 
-det = 4(3) - 2(1) = 10
-```
+$$
+\det = 4(3) - 2(1) = 10
+$$
 
 Doubling one row exactly doubles the determinant: `5` becomes `10`.
-Scale a row by `k`, and the determinant scales by `k` too.
+Scale a row by $k$, and the determinant scales by $k$ too.
 
 ---
 
@@ -439,12 +440,13 @@ Scale a row by `k`, and the determinant scales by `k` too.
 
 Add 2 times the Mocha row to the Latte row:
 
-```
-[ 4  7 ]     (row1 + 2*row2)
-[ 1  3 ]
+$$
+\begin{bmatrix} 4 & 7 \\ 1 & 3 \end{bmatrix} \quad (\text{row}_1 + 2\cdot\text{row}_2)
+$$
 
-det = 4(3) - 7(1) = 5
-```
+$$
+\det = 4(3) - 7(1) = 5
+$$
 
 Still `5`, unchanged. This is exactly the row operation elimination
 uses, which is why row-reducing a matrix never changes its
@@ -493,11 +495,11 @@ You have about 15 minutes.
 
 For a 3x3 matrix, expand along the top row:
 
-```
-det = a11*C11 - a12*C12 + a13*C13
-```
+$$
+\det = a_{11}C_{11} - a_{12}C_{12} + a_{13}C_{13}
+$$
 
-Each `C` is the determinant of the 2x2 minor left after removing that
+Each $C$ is the determinant of the 2x2 minor left after removing that
 entry's row and column. Signs alternate: plus, minus, plus.
 
 ---
@@ -506,13 +508,11 @@ entry's row and column. Signs alternate: plus, minus, plus.
 
 <div class="thread">The plus/minus checkerboard, laid out fully for 3x3.</div>
 
-```
-[ +  -  + ]
-[ -  +  - ]
-[ +  -  + ]
-```
+$$
+\begin{bmatrix} + & - & + \\ - & + & - \\ + & - & + \end{bmatrix}
+$$
 
-The sign for entry `(row, column)` is `+` when `row + column` is even,
+The sign for entry $(\text{row}, \text{column})$ is `+` when `row + column` is even,
 `-` when it is odd. This checkerboard extends to any size matrix.
 
 ---
@@ -524,13 +524,13 @@ The sign for entry `(row, column)` is `+` when `row + column` is even,
 Copy the first two columns to the right of the matrix, then sum three
 down-right diagonals and subtract three down-left diagonals:
 
-```
-[ a  b  c | a  b ]
-[ d  e  f | d  e ]
-[ g  h  i | g  h ]
+$$
+\left[\begin{array}{ccc|cc} a & b & c & a & b \\ d & e & f & d & e \\ g & h & i & g & h \end{array}\right]
+$$
 
-det = (aei + bfg + cdh) - (ceg + afh + bdi)
-```
+$$
+\det = (aei + bfg + cdh) - (ceg + afh + bdi)
+$$
 
 Faster to write for 3x3, but it does **not** generalize to 4x4 or
 larger. Cofactor expansion always does.
@@ -543,14 +543,12 @@ larger. Cofactor expansion always does.
 
 Expand the café's recipe matrix along row 2 instead of row 1:
 
-```
-[ 1   1   1 ]
-[ 1   1  -1 ]
-[ 1  -1   0 ]
-```
+$$
+\begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & -1 \\ 1 & -1 & 0 \end{bmatrix}
+$$
 
 Row 2's signs are `-, +, -` (checkerboard). The expansion still
-produces `det = -4`, the same answer as expanding along row 1.
+produces $\det = -4$, the same answer as expanding along row 1.
 
 ---
 
@@ -574,14 +572,12 @@ For an upper or lower **triangular** matrix, one entry above or below
 the diagonal does not matter. The determinant is just the product of
 the diagonal entries:
 
-```
-[ 2  1  4 ]
-[ 0  3  5 ]   ->   det = 2 * 3 * 1 = 6
-[ 0  0  1 ]
-```
+$$
+\begin{bmatrix} 2 & 1 & 4 \\ 0 & 3 & 5 \\ 0 & 0 & 1 \end{bmatrix} \;\Rightarrow\; \det = 2 \times 3 \times 1 = 6
+$$
 
-No cofactor expansion needed. This is why Week 5's `LU` factorization
-gives a fast way to compute a determinant, too: `det(A) = det(L) * det(U)`.
+No cofactor expansion needed. This is why Week 5's $LU$ factorization
+gives a fast way to compute a determinant, too: $\det(A) = \det(L) \times \det(U)$.
 
 ---
 
@@ -592,7 +588,7 @@ gives a fast way to compute a determinant, too: `det(A) = det(L) * det(U)`.
 For each pair below, decide the second determinant using only a
 property from this session, not full recomputation:
 
-1. `det([[2,1],[1,3]]) = 5`. What is `det([[1,3],[2,1]])`?
+1. $\det\begin{bmatrix}2 & 1\\ 1 & 3\end{bmatrix} = 5$. What is $\det\begin{bmatrix}1 & 3\\ 2 & 1\end{bmatrix}$?
 2. A 3x3 triangular matrix has diagonal entries `2, -1, 4`. What is its determinant?
 
 You have about 5 minutes.
@@ -605,11 +601,9 @@ You have about 5 minutes.
 
 The espresso-milk-syrup system from Week 1, as a matrix:
 
-```
-[ 1   1   1 ]
-[ 1   1  -1 ]
-[ 1  -1   0 ]
-```
+$$
+\begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & -1 \\ 1 & -1 & 0 \end{bmatrix}
+$$
 
 Expand along the top row. Three 2x2 minors appear, one per entry.
 
@@ -619,11 +613,13 @@ Expand along the top row. Three 2x2 minors appear, one per entry.
 
 **Find each minor.** Cross out row 1 and one column at a time:
 
-```
-minor for entry (1,1): [ 1 -1 ; -1  0 ]  ->  det = (1)(0) - (-1)(-1) = -1
-minor for entry (1,2): [ 1 -1 ;  1  0 ]  ->  det = (1)(0) - (-1)(1)  =  1
-minor for entry (1,3): [ 1  1 ;  1 -1 ]  ->  det = (1)(-1) - (1)(1) = -2
-```
+$$
+\begin{aligned}
+\text{minor for entry } (1,1): \begin{bmatrix} 1 & -1 \\ -1 & 0 \end{bmatrix} &\;\Rightarrow\; \det = (1)(0) - (-1)(-1) = -1 \\
+\text{minor for entry } (1,2): \begin{bmatrix} 1 & -1 \\ 1 & 0 \end{bmatrix} &\;\Rightarrow\; \det = (1)(0) - (-1)(1) = 1 \\
+\text{minor for entry } (1,3): \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} &\;\Rightarrow\; \det = (1)(-1) - (1)(1) = -2
+\end{aligned}
+$$
 
 ---
 
@@ -631,20 +627,22 @@ minor for entry (1,3): [ 1  1 ;  1 -1 ]  ->  det = (1)(-1) - (1)(1) = -2
 
 **Apply the sign pattern and sum.** Signs alternate plus, minus, plus:
 
-```
-det = (+1)(-1) - (1)(1) + (1)(-2)
-det = -1 - 1 - 2
-det = -4
-```
+$$
+\begin{aligned}
+\det &= (+1)(-1) - (1)(1) + (1)(-2) \\
+\det &= -1 - 1 - 2 \\
+\det &= -4
+\end{aligned}
+$$
 
 ---
 
 # Demo, Step by Step: The Café's Recipe (4/4)
 
-**Read the result.** `det = -4`, which is nonzero.
+**Read the result.** $\det = -4$, which is nonzero.
 
 This confirms what Week 1 found by full elimination: the recipe has
-exactly one exact answer, `e = 1`, `m = 1`, `s = 2`.
+exactly one exact answer, $e = 1$, $m = 1$, $s = 2$.
 
 The determinant told us this was coming, before we solved anything.
 
@@ -658,11 +656,9 @@ Start from the same recipe matrix. Add `-1` times row 1 to row 2, and
 `-1` times row 1 to row 3 (no swap, no scaling, so the determinant is
 unchanged):
 
-```
-[ 1   1   1 ]        [ 1   1   1 ]
-[ 1   1  -1 ]   ->    [ 0   0  -2 ]
-[ 1  -1   0 ]        [ 0  -2  -1 ]
-```
+$$
+\begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & -1 \\ 1 & -1 & 0 \end{bmatrix} \;\Rightarrow\; \begin{bmatrix} 1 & 1 & 1 \\ 0 & 0 & -2 \\ 0 & -2 & -1 \end{bmatrix}
+$$
 
 ---
 
@@ -672,11 +668,9 @@ The matrix is not yet triangular: row 2 and row 3 both have a nonzero
 entry off the diagonal in an awkward spot. Swap rows 2 and 3 to fix
 this (one swap, so the sign flips):
 
-```
-[ 1   1   1 ]
-[ 0  -2  -1 ]     one row swap -> sign flips
-[ 0   0  -2 ]
-```
+$$
+\begin{bmatrix} 1 & 1 & 1 \\ 0 & -2 & -1 \\ 0 & 0 & -2 \end{bmatrix} \quad (\text{one row swap} \Rightarrow \text{sign flips})
+$$
 
 ---
 
@@ -685,12 +679,14 @@ this (one swap, so the sign flips):
 Now the matrix is triangular. Multiply the diagonal, then flip the
 sign once, for the one row swap used:
 
-```
-diagonal product = 1 * (-2) * (-2) = 4
-one row swap  ->  det = -4
-```
+$$
+\begin{aligned}
+\text{diagonal product} &= 1 \times (-2) \times (-2) = 4 \\
+\text{one row swap} &\;\Rightarrow\; \det = -4
+\end{aligned}
+$$
 
-Same answer as cofactor expansion: `det = -4`. Row reduction and
+Same answer as cofactor expansion: $\det = -4$. Row reduction and
 cofactor expansion always agree, on any matrix.
 
 ---
@@ -701,11 +697,9 @@ cofactor expansion always agree, on any matrix.
 
 The Mega Cup's matrix has a doubled row:
 
-```
-[ 1   1   1 ]
-[ 2   2   2 ]
-[ 1  -1   0 ]
-```
+$$
+\begin{bmatrix} 1 & 1 & 1 \\ 2 & 2 & 2 \\ 1 & -1 & 0 \end{bmatrix}
+$$
 
 Row 2 is exactly row 1, scaled by 2. By the duplicate-row rule, its
 determinant is exactly `0`, no calculation needed.
@@ -769,21 +763,21 @@ You have about 15 minutes.
 
 # Check Yourself
 
-1. Compute the determinant of `[[3, 2], [1, 4]]`
+1. Compute the determinant of $\begin{bmatrix}3 & 2\\ 1 & 4\end{bmatrix}$
 2. A 3x3 system's matrix has determinant `0`. What does this tell you? What does it *not* tell you?
 
 ---
 
 # Answers
 
-1. `det = 3(4) - 2(1) = 10`
+1. $\det = 3(4) - 2(1) = 10$
 2. **Tells you:** the system does not have exactly one solution. **Does not tell you:** whether it has none, or infinitely many; that needs more work to find out.
 
 ---
 
 # Check Yourself: Properties
 
-1. `det([[5,2],[3,1]]) = -1`. Without recomputing, what is `det([[3,1],[5,2]])`?
+1. $\det\begin{bmatrix}5 & 2\\ 3 & 1\end{bmatrix} = -1$. Without recomputing, what is $\det\begin{bmatrix}3 & 1\\ 5 & 2\end{bmatrix}$?
 2. A row of a 3x3 matrix is scaled by `-2`. Its determinant was `6`. What is it now?
 
 ---
@@ -791,20 +785,20 @@ You have about 15 minutes.
 # Answers
 
 1. **`1`.** Swapping the two rows flips the sign of `-1`.
-2. **`-12`.** Scaling one row by `k` scales the whole determinant by `k`, and `6 * (-2) = -12`.
+2. **`-12`.** Scaling one row by $k$ scales the whole determinant by $k$, and $6 \times (-2) = -12$.
 
 ---
 
 # Check Yourself: Triangular Shortcut
 
-1. A lower triangular matrix has diagonal entries `3, 0, 5`. What is its determinant, and what does that tell you about solving `Ax = b`?
-2. Is `det(A) = det(A)` after adding 3 times row 1 to row 3? Why or why not?
+1. A lower triangular matrix has diagonal entries `3, 0, 5`. What is its determinant, and what does that tell you about solving $Ax = b$?
+2. Is $\det(A) = \det(A)$ after adding 3 times row 1 to row 3? Why or why not?
 
 ---
 
 # Answers
 
-1. **`det = 3 * 0 * 5 = 0`.** The matrix is singular; `Ax = b` does not have exactly one solution.
+1. **$\det = 3 \times 0 \times 5 = 0$.** The matrix is singular; $Ax = b$ does not have exactly one solution.
 2. **Yes, unchanged.** Adding a multiple of one row to another never changes a determinant; this is the row operation elimination relies on.
 
 ---
@@ -848,7 +842,7 @@ Spaces**, addresses this.
 # Summary
 
 - A determinant is one number from a square matrix. It flags whether a system has exactly one exact answer
-- 2x2: `det = ad - bc`. 3x3: cofactor expansion, built from 2x2 minors, with alternating signs
+- 2x2: $\det = ad - bc$. 3x3: cofactor expansion, built from 2x2 minors, with alternating signs
 - A zero determinant rules out a unique answer. It does not say whether the system has none or infinitely many
 - **Reading:** Lay, Lay & McDonald, 6th ed., Chapter 3
 - **Handout:** [materials/week06/handout.md](materials/week06/handout.html), glossary and the full café determinant walkthrough

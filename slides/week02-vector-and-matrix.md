@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -139,7 +140,7 @@ Compact notation stays short. Full equations do not.
 - **Vector:** an ordered list of numbers, written as a column
 - **Matrix:** a rectangular grid of numbers, arranged in rows and columns
 - **Entry (component):** one single number inside a vector or matrix
-- **Dimensions:** the size of a matrix, written as rows × columns
+- **Dimensions:** the size of a matrix, written as rows $\times$ columns
 
 ---
 
@@ -230,7 +231,7 @@ unknowns.
 > A **matrix** is a rectangular grid of numbers, arranged in rows and
 > columns.
 
-- A matrix's **dimensions** are rows × columns, e.g. a 3×3 matrix has 3 rows, 3 columns
+- A matrix's **dimensions** are rows $\times$ columns, e.g. a $3 \times 3$ matrix has 3 rows, 3 columns
 - Bold capital letters name matrices, like `A`. Bold lowercase letters name vectors, like `x`
 - A vector of all zeros is the **zero vector**; it still counts as a valid vector
 
@@ -244,11 +245,9 @@ unknowns.
 
 Multiply every entry by the same number.
 
-```
-    [1]      [3]
-3 * [2]  =   [6]
-    [4]      [12]
-```
+$$
+3 \begin{bmatrix} 1 \\ 2 \\ 4 \end{bmatrix} = \begin{bmatrix} 3 \\ 6 \\ 12 \end{bmatrix}
+$$
 
 ---
 
@@ -256,11 +255,9 @@ Multiply every entry by the same number.
 
 Add matching entries together.
 
-```
-[1]   [5]   [6]
-[2] + [0] = [2]
-[4]   [1]   [5]
-```
+$$
+\begin{bmatrix} 1 \\ 2 \\ 4 \end{bmatrix} + \begin{bmatrix} 5 \\ 0 \\ 1 \end{bmatrix} = \begin{bmatrix} 6 \\ 2 \\ 5 \end{bmatrix}
+$$
 
 ---
 
@@ -268,11 +265,9 @@ Add matching entries together.
 
 <div class="thread">Subtraction is nothing new: scale by -1, then add.</div>
 
-```
-[5]   [1]   [4]
-[0] - [2] = [-2]
-[1]   [4]   [-3]
-```
+$$
+\begin{bmatrix} 5 \\ 0 \\ 1 \end{bmatrix} - \begin{bmatrix} 1 \\ 2 \\ 4 \end{bmatrix} = \begin{bmatrix} 4 \\ -2 \\ -3 \end{bmatrix}
+$$
 
 Subtracting two vectors compares them, entry by entry - useful later
 for checking how far a candidate answer is from the right one.
@@ -285,11 +280,9 @@ for checking how far a candidate answer is from the right one.
 
 Week 1's three unknowns become one vector, `x`:
 
-```
-    [ e ]
-x = [ m ]
-    [ s ]
-```
+$$
+x = \begin{bmatrix} e \\ m \\ s \end{bmatrix}
+$$
 
 Same espresso, milk, and syrup amounts. One object, not three.
 
@@ -299,11 +292,9 @@ Same espresso, milk, and syrup amounts. One object, not three.
 
 Each row of matrix `A` holds one rule's coefficients, in order:
 
-```
-    [ 1  1  1 ]
-A = [ 1  1 -1 ]
-    [ 1 -1  0 ]
-```
+$$
+A = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & -1 \\ 1 & -1 & 0 \end{bmatrix}
+$$
 
 - Row 1: total liquid rule
 - Row 2: syrup rule
@@ -315,11 +306,9 @@ A = [ 1  1 -1 ]
 
 `b` holds each rule's known total, in the same row order as `A`:
 
-```
-    [ 4 ]
-b = [ 0 ]
-    [ 0 ]
-```
+$$
+b = \begin{bmatrix} 4 \\ 0 \\ 0 \end{bmatrix}
+$$
 
 Row 1 of `A` pairs with row 1 of `b`, and so on.
 
@@ -329,11 +318,9 @@ Row 1 of `A` pairs with row 1 of `b`, and so on.
 
 <div class="thread">Put the three pieces together.</div>
 
-```
-[ 1  1  1 ][ e ]   [ 4 ]
-[ 1  1 -1 ][ m ] = [ 0 ]
-[ 1 -1  0 ][ s ]   [ 0 ]
-```
+$$
+\begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & -1 \\ 1 & -1 & 0 \end{bmatrix} \begin{bmatrix} e \\ m \\ s \end{bmatrix} = \begin{bmatrix} 4 \\ 0 \\ 0 \end{bmatrix}
+$$
 
 Same three café rules as Week 1. One compact line, ready for a
 computer. A program only needs the three numbers `A`, `x`, `b`, not
@@ -346,7 +333,7 @@ the original sentences.
 | Object | What it holds | Café's version |
 |---|---|---|
 | `x` | The unknowns | `[e, m, s]` |
-| `A` | The known coefficients | the 3×3 rule grid |
+| `A` | The known coefficients | the $3 \times 3$ rule grid |
 | `b` | The known totals | `[4, 0, 0]` |
 
 `Ax = b` ties all three together, in one line.
@@ -357,11 +344,9 @@ the original sentences.
 
 <div class="thread">Before we check numbers, here is the general rule.</div>
 
-```
-[ a  b  c ][ x ]   [ ax + by + cz ]
-[ d  e  f ][ y ] = [ dx + ey + fz ]
-[ g  h  i ][ z ]   [ gx + hy + iz ]
-```
+$$
+\begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} ax + by + cz \\ dx + ey + fz \\ gx + hy + iz \end{bmatrix}
+$$
 
 Multiply each row's entries by the vector's entries, in order. Then
 add.
@@ -374,11 +359,9 @@ add.
 
 In the café's matrix, each **column** belongs to one ingredient:
 
-```
-    [ 1  1  1 ]
-A = [ 1  1 -1 ]
-    [ 1 -1  0 ]
-```
+$$
+A = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & -1 \\ 1 & -1 & 0 \end{bmatrix}
+$$
 
 Column 1 is espresso's coefficients across all three rules; column 2
 is milk's; column 3 is syrup's. Row view reads rules. Column view
@@ -388,7 +371,15 @@ reads ingredients.
 
 # Not Every Matrix Is Square
 
-<div class="thread">The café's `A` happens to be 3×3. That will not always be true.</div>
+<style scoped>
+.thread p { margin: 0; }
+</style>
+
+<div class="thread">
+
+The café's `A` happens to be $3 \times 3$. That will not always be true.
+
+</div>
 
 - The café's system has 3 rules and 3 unknowns: a **square** matrix, same number of rows and columns
 - Other systems have more rules than unknowns, or fewer
@@ -403,10 +394,9 @@ reads ingredients.
 A fruit stand sells apples and bananas. Two apples and one banana
 cost 2400 원. One apple and three bananas cost 2700 원.
 
-```
-A = [ 2  1 ]      x = [ a ]      b = [ 2400 ]
-    [ 1  3 ]          [ b ]          [ 2700 ]
-```
+$$
+A = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix} \qquad x = \begin{bmatrix} a \\ b \end{bmatrix} \qquad b = \begin{bmatrix} 2400 \\ 2700 \end{bmatrix}
+$$
 
 Same three steps every time: name the unknowns, read off each rule's
 coefficients into a row of `A`, and read off each rule's total into `b`.
@@ -420,12 +410,9 @@ coefficients into a row of `A`, and read off each rule's total into `b`.
 Add a fourth unknown, `v`, for vanilla syrup. The unknown vector grows
 from three entries to four:
 
-```
-    [ e ]
-x = [ m ]
-    [ s ]
-    [ v ]
-```
+$$
+x = \begin{bmatrix} e \\ m \\ s \\ v \end{bmatrix}
+$$
 
 Same idea as this week's three-ingredient vector. One more entry, no
 new rule needed to write it down.
@@ -438,12 +425,9 @@ The café adds one new rule for vanilla syrup, alongside its original
 three. Each row still holds one rule's coefficients, now with four
 entries:
 
-```
-    [ 1  1  1  1 ]
-A = [ 1  1 -1  0 ]
-    [ 1 -1  0  0 ]
-    [ 0  0  1 -1 ]
-```
+$$
+A = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & -1 & 0 \\ 1 & -1 & 0 & 0 \\ 0 & 0 & 1 & -1 \end{bmatrix}
+$$
 
 Rows 1-3 are the original three rules, extended with a zero for
 vanilla where it does not appear. Row 4 is the new vanilla rule: the
@@ -455,12 +439,9 @@ syrup amount is one unit more than the vanilla amount.
 
 `b` grows to four entries too, one total per rule, in the same order:
 
-```
-    [ 5 ]
-b = [ 0 ]
-    [ 0 ]
-    [ 1 ]
-```
+$$
+b = \begin{bmatrix} 5 \\ 0 \\ 0 \\ 1 \end{bmatrix}
+$$
 
 The total liquid rule's target grows from 4 to 5, to make room for
 the new ingredient. The other totals stay as before.
@@ -472,12 +453,14 @@ the new ingredient. The other totals stay as before.
 <div class="thread">Verify a candidate answer, the same skill from this week's outcomes - just at a bigger size.</div>
 
 Candidate answer: `e = 1, m = 1, s = 2, v = 1`. Multiply each row of
-the 4×4 `A` by `x`, and compare to `b`:
+the $4 \times 4$ `A` by `x`, and compare to `b`:
 
-```
-Row 1: 1+1+2+1 = 5      Row 2: 1+1-2   = 0
-Row 3: 1-1       = 0      Row 4: 2-1     = 1
-```
+$$
+\begin{aligned}
+\text{Row 1: } 1+1+2+1 &= 5 & \text{Row 2: } 1+1-2 &= 0 \\
+\text{Row 3: } 1-1 &= 0 & \text{Row 4: } 2-1 &= 1
+\end{aligned}
+$$
 
 All four rows match `b` exactly. Four unknowns, one compact equation,
 verified the same way as three - this is Week 1's cliffhanger, closed.
@@ -492,9 +475,9 @@ verified the same way as three - this is Week 1's cliffhanger, closed.
 
 Multiply row 1 of `A` by `x`, then compare to row 1 of `b`:
 
-```
-Row 1: 1(1) + 1(1) + 1(2) = 4
-```
+$$
+\text{Row 1: } 1(1) + 1(1) + 1(2) = 4
+$$
 
 `b`'s first entry is also `4`. Row 1 checks out.
 
@@ -504,9 +487,9 @@ Row 1: 1(1) + 1(1) + 1(2) = 4
 
 Multiply row 2 of `A` by `x`:
 
-```
-Row 2: 1(1) + 1(1) - 1(2) = 0
-```
+$$
+\text{Row 2: } 1(1) + 1(1) - 1(2) = 0
+$$
 
 `b`'s second entry is `0`. Row 2 checks out.
 
@@ -516,9 +499,9 @@ Row 2: 1(1) + 1(1) - 1(2) = 0
 
 Multiply row 3 of `A` by `x`:
 
-```
-Row 3: 1(1) - 1(1) + 0(2) = 0
-```
+$$
+\text{Row 3: } 1(1) - 1(1) + 0(2) = 0
+$$
 
 `b`'s third entry is `0`. Row 3 checks out.
 
@@ -528,11 +511,9 @@ Row 3: 1(1) - 1(1) + 0(2) = 0
 
 All three rows match. Stack the results back into one vector:
 
-```
-Ax = [ 4 ]      b = [ 4 ]
-     [ 0 ]          [ 0 ]
-     [ 0 ]          [ 0 ]
-```
+$$
+Ax = \begin{bmatrix} 4 \\ 0 \\ 0 \end{bmatrix} \qquad b = \begin{bmatrix} 4 \\ 0 \\ 0 \end{bmatrix}
+$$
 
 `Ax` equals `b` exactly. One multiplication replaced three separate
 checks.
@@ -547,15 +528,15 @@ checks.
 
 Try `e = 1, m = 2, s = 1` instead. Multiply row 1 of `A` by this `x`:
 
-```
-Row 1: 1(1) + 1(2) + 1(1) = 4
-```
+$$
+\text{Row 1: } 1(1) + 1(2) + 1(1) = 4
+$$
 
 Row 1 still matches `b`'s first entry, 4. But check row 3:
 
-```
-Row 3: 1(1) - 1(2) + 0(1) = -1
-```
+$$
+\text{Row 3: } 1(1) - 1(2) + 0(1) = -1
+$$
 
 `b`'s third entry is `0`, not `-1`. Row 3 fails. This candidate is not
 a solution - one failing row is enough to reject it.
@@ -568,11 +549,9 @@ a solution - one failing row is enough to reject it.
 
 Multiply the café's matrix `A` by the zero vector:
 
-```
-[ 1  1  1 ]   [ 0 ]   [ 0 ]
-[ 1  1 -1 ] × [ 0 ] = [ 0 ]
-[ 1 -1  0 ]   [ 0 ]   [ 0 ]
-```
+$$
+\begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & -1 \\ 1 & -1 & 0 \end{bmatrix} \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+$$
 
 Any matrix times the zero vector gives the zero vector. This is why
 `x = 0` is never an interesting candidate solution unless `b` is also
@@ -623,11 +602,9 @@ You have about 15 minutes.
 - **Row view:** each row of `A` times `x` gives one rule's answer, what we just did
 - **Column view:** `Ax` is also a mix of `A`'s columns, scaled by `x`'s entries
 
-```
-      [1]        [ 1]        [ 1]
-Ax =  e[1]   +   m[ 1]   +   s[-1]
-      [1]        [-1]        [ 0]
-```
+$$
+Ax = e\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} + m\begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix} + s\begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}
+$$
 
 Same answer either way. Column view returns in Week 3.
 
@@ -639,11 +616,9 @@ Same answer either way. Column view returns in Week 3.
 
 Using `e = 1, m = 1, s = 2`, scale each column of `A` and add:
 
-```
-    [1]        [ 1]        [ 1]     [ 4]
-1 × [1]   +  1 [ 1]   +  2 [-1]  =  [ 0]
-    [1]        [-1]        [ 0]     [ 0]
-```
+$$
+1 \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} + 1 \begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix} + 2 \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix} = \begin{bmatrix} 4 \\ 0 \\ 0 \end{bmatrix}
+$$
 
 Same result as multiplying row by row. Row view and column view are
 two roads to the same `Ax`.
@@ -657,9 +632,9 @@ two roads to the same `Ax`.
 A matrix with `m` rows and `n` columns can multiply a vector with
 exactly `n` entries. The result has `m` entries.
 
-```
-A is 2 x 3      x has 3 entries      Ax has 2 entries
-```
+$$
+A \text{ is } 2 \times 3 \qquad x \text{ has 3 entries} \qquad Ax \text{ has 2 entries}
+$$
 
 If the vector's entry count does not match `A`'s column count, the
 product is undefined.
@@ -670,11 +645,11 @@ product is undefined.
 
 <div class="thread">See the size rule fail, on purpose, so you recognize it later.</div>
 
-`A` is 2×3. Try to multiply it by a vector with only 2 entries:
+`A` is $2 \times 3$. Try to multiply it by a vector with only 2 entries:
 
-```
-A is 2 x 3      x has 2 entries      undefined
-```
+$$
+A \text{ is } 2 \times 3 \qquad x \text{ has 2 entries} \qquad \text{undefined}
+$$
 
 `A` has 3 columns, but `x` has only 2 entries - they do not match, so
 `Ax` does not exist. Adding a third entry to `x` fixes it.
@@ -699,7 +674,7 @@ You have about 15 minutes.
 
 <div class="why">Same pairs, no worksheet needed. Two minutes.</div>
 
-Write down any 2×2 matrix and any 2-entry vector of your own. Swap
+Write down any $2 \times 2$ matrix and any 2-entry vector of your own. Swap
 with your partner and compute their `Ax`, while they compute yours.
 
 Compare answers. If you disagree, find the row that does not match.
@@ -732,7 +707,7 @@ Same multiplication, same answer, two ways to picture it.
 
 <div class="thread">Seeing the mistake fail numerically sticks better than a rule alone.</div>
 
-`A` is 2×3, `x` has 3 entries. `Ax` is defined and gives a 2-entry
+`A` is $2 \times 3$, `x` has 3 entries. `Ax` is defined and gives a 2-entry
 result. Now try it backwards, `xA`: a 3-entry vector does not have 2
 entries to match against `A`'s 2 rows. `xA` is not even defined here.
 
@@ -744,10 +719,12 @@ Always check which side the matrix sits on before multiplying.
 
 A row of `[1, -1, 0]` times `x = (1, 1, 2)` is easy to rush:
 
-```
-Wrong: 1 + 1 + 0 = 2
-Right: 1(1) + (-1)(1) + 0(2) = 0
-```
+$$
+\begin{aligned}
+\text{Wrong: } & 1 + 1 + 0 = 2 \\
+\text{Right: } & 1(1) + (-1)(1) + 0(2) = 0
+\end{aligned}
+$$
 
 The minus sign belongs to the matrix entry, not the vector entry.
 Carry every sign from `A` into the product, term by term.
@@ -767,19 +744,18 @@ notice it.
 
 # Check Yourself
 
-1. Write `2x + 3y = 5`, `x - y = 4` as `Ax = b`. What are `A` and `b`?
-2. `A` is 2×3. Can it multiply a vector with 3 entries? What size is the answer?
+1. Write $2x + 3y = 5$, $x - y = 4$ as `Ax = b`. What are `A` and `b`?
+2. `A` is $2 \times 3$. Can it multiply a vector with 3 entries? What size is the answer?
 
 ---
 
 # Answers
 
-```
-1. A = [  2   3 ]     b = [ 5 ]
-       [  1  -1 ]         [ 4 ]
-```
+$$
+1. \quad A = \begin{bmatrix} 2 & 3 \\ 1 & -1 \end{bmatrix} \qquad b = \begin{bmatrix} 5 \\ 4 \end{bmatrix}
+$$
 
-2. **Yes.** A 2×3 matrix times a 3-entry vector gives a 2-entry
+2. **Yes.** A $2 \times 3$ matrix times a 3-entry vector gives a 2-entry
    vector, one entry per row of `A`.
 
 ---
@@ -787,7 +763,7 @@ notice it.
 # Check Yourself: Round 2
 
 3. The café adds a fourth ingredient, vanilla syrup, with `A` now
-   4×4. Candidate answer `e=1, m=1, s=2, v=1`. Does row 4,
+   $4 \times 4$. Candidate answer `e=1, m=1, s=2, v=1`. Does row 4,
    `[0, 0, 1, -1]`, check out against `b`'s fourth entry, `1`?
 4. Is `x = 0` ever a valid solution to `Ax = b`? When?
 

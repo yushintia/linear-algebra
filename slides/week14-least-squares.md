@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -207,8 +208,8 @@ today's café example.
 <div class="thread">4 more words for this session.</div>
 
 - **Overdetermined system:** more equations (data points) than unknowns, usually with no exact solution
-- **Design matrix:** the matrix `A` built from the input data, one row per point
-- **Normal equations:** the system `AᵀAx̂ = Aᵀb`, solved to find the best fit
+- **Design matrix:** the matrix $A$ built from the input data, one row per point
+- **Normal equations:** the system $A^T A \hat{x} = A^T b$, solved to find the best fit
 - **Sum of squared residuals:** the total error a least-squares line minimizes
 
 ---
@@ -251,15 +252,15 @@ noisy data.
 
 <div class="thread">Now the exact, formal definition.</div>
 
-> For `Ax = b` with no exact solution, the **least-squares solution**
-> `x̂` makes `Ax̂` as close as possible to `b`. It minimizes the sum of
-> squared residuals, the squared length of `b - Ax̂`.
+> For $Ax = b$ with no exact solution, the **least-squares solution**
+> $\hat{x}$ makes $A\hat{x}$ as close as possible to $b$. It minimizes the sum of
+> squared residuals, the squared length of $b - A\hat{x}$.
 
-- `x̂` solves the **normal equations**:
+- $\hat{x}$ solves the **normal equations**:
 
-```
-AᵀAx̂ = Aᵀb
-```
+$$
+A^T A \hat{x} = A^T b
+$$
 
 - This is exactly last week's projection, applied to a system with no exact answer
 
@@ -274,10 +275,10 @@ AᵀAx̂ = Aᵀb
 Five data points give five equations, but a line has only two
 unknowns: slope and intercept. This is an **overdetermined system**.
 
-`b`, the column of five actual ratings, almost never sits exactly in
-the column space of `A`. No `x` makes `Ax` equal `b` exactly.
+$b$, the column of five actual ratings, almost never sits exactly in
+the column space of $A$. No $x$ makes $Ax$ equal $b$ exactly.
 
-We cannot solve `Ax = b` exactly. We can still ask for the closest
+We cannot solve $Ax = b$ exactly. We can still ask for the closest
 possible answer.
 
 ---
@@ -286,14 +287,14 @@ possible answer.
 
 <div class="thread">This week does not need a new tool. It reuses last week's, on a harder target.</div>
 
-Last week, projecting `b` onto a subspace gave the closest point `p`
-in that subspace. The leftover, `b - p`, was orthogonal to it.
+Last week, projecting $b$ onto a subspace gave the closest point $p$
+in that subspace. The leftover, $b - p$, was orthogonal to it.
 
-Here, the subspace is the column space of `A`. The closest reachable
-point is `p = Ax̂`, for the best `x̂` we can find.
+Here, the subspace is the column space of $A$. The closest reachable
+point is $p = A\hat{x}$, for the best $\hat{x}$ we can find.
 
-`b - Ax̂`, the leftover residual, must be orthogonal to every column
-of `A`.
+$b - A\hat{x}$, the leftover residual, must be orthogonal to every column
+of $A$.
 
 ---
 
@@ -301,17 +302,17 @@ of `A`.
 
 <div class="thread">One orthogonality condition, turned into a solvable system.</div>
 
-"Orthogonal to every column of `A`" means:
+"Orthogonal to every column of $A$" means:
 
-```
-Aᵀ(b - Ax̂) = 0
-```
+$$
+A^T(b - A\hat{x}) = 0
+$$
 
 Expand and rearrange:
 
-```
-AᵀAx̂ = Aᵀb
-```
+$$
+A^T A \hat{x} = A^T b
+$$
 
 This is the **normal equations**. Solve this smaller, always-solvable
 system instead of the original, unsolvable one.
@@ -322,9 +323,9 @@ system instead of the original, unsolvable one.
 
 <div class="thread">One reason this system is always solvable, unlike the original.</div>
 
-`AᵀA` is always a square matrix, `n × n` for `n` unknowns, no matter
-how many rows `A` itself has. As long as `A`'s columns are linearly
-independent, `AᵀA` is invertible, and the normal equations have
+$A^T A$ is always a square matrix, $n \times n$ for $n$ unknowns, no matter
+how many rows $A$ itself has. As long as $A$'s columns are linearly
+independent, $A^T A$ is invertible, and the normal equations have
 exactly one solution.
 
 ---
@@ -333,41 +334,37 @@ exactly one solution.
 
 <div class="thread">A tiny 3-point data set, walked through the matrix form directly.</div>
 
-Fit a line to `(1, 2)`, `(2, 3)`, `(3, 5)`:
+Fit a line to $(1, 2)$, $(2, 3)$, $(3, 5)$:
 
-```
-A = [ 1  1 ]        b = [ 2 ]
-    [ 1  2 ]            [ 3 ]
-    [ 1  3 ]            [ 5 ]
-```
+$$
+A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{bmatrix} \qquad b = \begin{bmatrix} 2 \\ 3 \\ 5 \end{bmatrix}
+$$
 
 ---
 
 # Worked Example: Normal Equations From Scratch (2/4)
 
-Compute `AᵀA` and `Aᵀb` directly, by matrix multiplication:
+Compute $A^T A$ and $A^T b$ directly, by matrix multiplication:
 
-```
-AᵀA = [ 3  6 ]        Aᵀb = [ 10 ]
-      [ 6  14]              [ 23 ]
-```
+$$
+A^T A = \begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix} \qquad A^T b = \begin{bmatrix} 10 \\ 23 \end{bmatrix}
+$$
 
-Same numbers Week 14's summation shortcut would give: `n=3`, `Σx=6`,
-`Σx²=14`, `Σy=10`, `Σxy=23`.
+Same numbers Week 14's summation shortcut would give: $n=3$, $\sum x=6$,
+$\sum x^2=14$, $\sum y=10$, $\sum xy=23$.
 
 ---
 
 # Worked Example: Normal Equations From Scratch (3/4)
 
-Solve `AᵀAx̂ = Aᵀb`:
+Solve $A^T A \hat{x} = A^T b$:
 
-```
-[ 3   6 ] [ b ]   [ 10 ]
-[ 6  14 ] [ m ] = [ 23 ]
-```
+$$
+\begin{bmatrix} 3 & 6 \\ 6 & 14 \end{bmatrix} \begin{bmatrix} b \\ m \end{bmatrix} = \begin{bmatrix} 10 \\ 23 \end{bmatrix}
+$$
 
-Row reduction gives `b = 0.333`, `m = 1.5`. Best-fit line:
-`y = 0.333 + 1.5x`.
+Row reduction gives $b = 0.333$, $m = 1.5$. Best-fit line:
+$y = 0.333 + 1.5x$.
 
 ---
 
@@ -375,11 +372,13 @@ Row reduction gives `b = 0.333`, `m = 1.5`. Best-fit line:
 
 Check the residuals:
 
-```
-x=1: predicted 1.833, actual 2, residual  0.167
-x=2: predicted 3.333, actual 3, residual -0.333
-x=3: predicted 4.833, actual 5, residual  0.167
-```
+$$
+\begin{aligned}
+x=1&: \text{ predicted } 1.833 \text{, actual } 2 \text{, residual } \phantom{-}0.167 \\
+x=2&: \text{ predicted } 3.333 \text{, actual } 3 \text{, residual } -0.333 \\
+x=3&: \text{ predicted } 4.833 \text{, actual } 5 \text{, residual } \phantom{-}0.167
+\end{aligned}
+$$
 
 No residual is zero, but this line minimizes their squared sum, over
 every possible line.
@@ -392,9 +391,9 @@ every possible line.
 
 Add up the worked example's residuals:
 
-```
-0.167 + (-0.333) + 0.167 = 0.001 ≈ 0
-```
+$$
+0.167 + (-0.333) + 0.167 = 0.001 \approx 0
+$$
 
 Whenever a fitted line includes an intercept (the column of 1s), the
 residuals always sum to (almost exactly) zero. Positive and negative
@@ -404,19 +403,24 @@ misses balance out, by construction of the normal equations.
 
 # Setting Up the Design Matrix for a Line
 
-<div class="thread">Now apply this to fitting `rating = b + m · syrup`.</div>
+<style scoped>
+.thread p, .s p, .d p { margin: 0; }
+</style>
 
-Unknowns: intercept `b`, slope `m`. Each data point `(xᵢ, yᵢ)` gives
-one row of the **design matrix** `A` and one entry of `b`:
+<div class="thread">
 
-```
-A = [ 1  x₁ ]        b = [ y₁ ]
-    [ 1  x₂ ]            [ y₂ ]
-    [ 1  x₃ ]            [ y₃ ]
-    [  ...  ]            [ ... ]
-```
+Now apply this to fitting $\text{rating} = b + m \cdot \text{syrup}$.
 
-The column of 1s picks out the intercept; the `x` column picks out
+</div>
+
+Unknowns: intercept $b$, slope $m$. Each data point $(x_i, y_i)$ gives
+one row of the **design matrix** $A$ and one entry of $b$:
+
+$$
+A = \begin{bmatrix} 1 & x_1 \\ 1 & x_2 \\ 1 & x_3 \\ \vdots & \vdots \end{bmatrix} \qquad b = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ \vdots \end{bmatrix}
+$$
+
+The column of 1s picks out the intercept; the $x$ column picks out
 the slope.
 
 ---
@@ -427,13 +431,15 @@ the slope.
 
 For a line, the normal equations reduce to:
 
-```
-n·b   + (Σx)·m = Σy
-(Σx)·b + (Σx²)·m = Σxy
-```
+$$
+\begin{aligned}
+n \cdot b + (\textstyle\sum x) \cdot m &= \sum y \\
+(\textstyle\sum x) \cdot b + (\textstyle\sum x^2) \cdot m &= \sum xy
+\end{aligned}
+$$
 
-`n` is the number of points, and each `Σ` sums over all data points.
-Solve this 2x2 system for `b` and `m`, exactly like Week 1's method.
+$n$ is the number of points, and each $\sum$ sums over all data points.
+Solve this 2x2 system for $b$ and $m$, exactly like Week 1's method.
 
 ---
 
@@ -454,16 +460,14 @@ than a line can satisfy exactly.
 
 <div class="thread">The method is not limited to straight lines.</div>
 
-Adding an `x²` column to the design matrix fits a parabola instead of
+Adding an $x^2$ column to the design matrix fits a parabola instead of
 a line, using the exact same normal equations:
 
-```
-A = [ 1  x1  x1² ]      fits  y = b + m·x + c·x²
-    [ 1  x2  x2² ]
-    [    ...     ]
-```
+$$
+A = \begin{bmatrix} 1 & x_1 & x_1^2 \\ 1 & x_2 & x_2^2 \\ & \vdots & \end{bmatrix} \quad \text{fits} \quad y = b + m \cdot x + c \cdot x^2
+$$
 
-Same formula, `AᵀAx̂ = Aᵀb`. Only the design matrix's columns change.
+Same formula, $A^T A \hat{x} = A^T b$. Only the design matrix's columns change.
 
 ---
 
@@ -481,7 +485,7 @@ Same formula, `AᵀAx̂ = Aᵀb`. Only the design matrix's columns change.
 | 4 | 4 | 5 |
 | 5 | 5 | 8 |
 
-`n = 5`. Sums: `Σx = 15`, `Σy = 26`, `Σx² = 55`, `Σxy = 89`.
+$n = 5$. Sums: $\sum x = 15$, $\sum y = 26$, $\sum x^2 = 55$, $\sum xy = 89$.
 
 ---
 
@@ -489,25 +493,23 @@ Same formula, `AᵀAx̂ = Aᵀb`. Only the design matrix's columns change.
 
 Plug the sums into the 2x2 system:
 
-```
-[ 5   15 ] [ b ]   [ 26 ]
-[ 15  55 ] [ m ] = [ 89 ]
-```
+$$
+\begin{bmatrix} 5 & 15 \\ 15 & 55 \end{bmatrix} \begin{bmatrix} b \\ m \end{bmatrix} = \begin{bmatrix} 26 \\ 89 \end{bmatrix}
+$$
 
-Solve for `b` and `m` (row reduction, same three moves as Week 1):
+Solve for $b$ and $m$ (row reduction, same three moves as Week 1):
 
-```
-b = 1.9
-m = 1.1
-```
+$$
+b = 1.9 \qquad m = 1.1
+$$
 
-Best-fit line: `rating = 1.9 + 1.1 · syrup`.
+Best-fit line: $\text{rating} = 1.9 + 1.1 \cdot \text{syrup}$.
 
 ---
 
 # Case Study: The Best Line and Its Leftover Error
 
-For each cup, the line predicts `1.9 + 1.1x`. The residual is the
+For each cup, the line predicts $1.9 + 1.1x$. The residual is the
 actual rating minus this prediction:
 
 | Cup | x | Actual y | Predicted | Residual |
@@ -527,11 +529,11 @@ line: no other choice makes the squared residuals add up to less.
 
 <div class="thread">The whole point of a best-fit line: predicting a rating nobody tasted yet.</div>
 
-Using `rating = 1.9 + 1.1 · syrup`, predict cup 6, at 3.5 syrup units:
+Using $\text{rating} = 1.9 + 1.1 \cdot \text{syrup}$, predict cup 6, at 3.5 syrup units:
 
-```
-rating = 1.9 + 1.1(3.5) = 1.9 + 3.85 = 5.75
-```
+$$
+\text{rating} = 1.9 + 1.1(3.5) = 1.9 + 3.85 = 5.75
+$$
 
 The café can now estimate any customer's rating, for any syrup amount
 within the tested range, without running a new taste test.
@@ -543,12 +545,14 @@ within the tested range, without running a new taste test.
 <div class="thread">Proving the fitted line actually beats a lazy guess.</div>
 
 Compare the fitted line's squared residuals to guessing the average
-rating, `5.2`, for every cup:
+rating, $5.2$, for every cup:
 
-```
-Fitted line's sum of squared residuals:   ≈ 2.70
-Flat average guess's sum of squared residuals: ≈ 12.80
-```
+$$
+\begin{aligned}
+\text{Fitted line's sum of squared residuals:} &\approx 2.70 \\
+\text{Flat average guess's sum of squared residuals:} &\approx 12.80
+\end{aligned}
+$$
 
 The least-squares line cuts the squared error by more than three
 quarters, compared to ignoring syrup amount entirely.
@@ -559,11 +563,11 @@ quarters, compared to ignoring syrup amount entirely.
 
 <div class="thread">One number, beyond residuals, that summarizes the whole fit.</div>
 
-```
-R² = 1 - (fitted line's squared error) / (flat-guess squared error)
-```
+$$
+R^2 = 1 - \frac{\text{fitted line's squared error}}{\text{flat-guess squared error}}
+$$
 
-`R²` ranges from 0 (no better than guessing the average) to 1 (a
+$R^2$ ranges from 0 (no better than guessing the average) to 1 (a
 perfect fit). It answers: "how much of the pattern does this line
 actually explain?"
 
@@ -573,9 +577,9 @@ actually explain?"
 
 Plug in the café's numbers from the last two slides:
 
-```
-R² = 1 - (2.70 / 12.80) ≈ 1 - 0.211 = 0.789
-```
+$$
+R^2 = 1 - (2.70 / 12.80) \approx 1 - 0.211 = 0.789
+$$
 
 About 79% of the variation in ratings is explained by syrup amount
 alone. The remaining 21% is noise, or other factors the line does not
@@ -587,7 +591,7 @@ capture.
 
 <div class="thread">A number is useful. A picture catches what a number can hide.</div>
 
-Plotting each residual against its `x` value should show no obvious
+Plotting each residual against its $x$ value should show no obvious
 pattern, just scattered noise above and below zero. A clear curve or
 trend in the residual plot is a sign the straight-line model itself is
 wrong, not just noisy.
@@ -601,13 +605,11 @@ wrong, not just noisy.
 If the café also tracked ice amount, the design matrix grows one more
 column:
 
-```
-A = [ 1  syrup1  ice1 ]      fits  rating = b + m1·syrup + m2·ice
-    [ 1  syrup2  ice2 ]
-    [       ...        ]
-```
+$$
+A = \begin{bmatrix} 1 & \text{syrup}_1 & \text{ice}_1 \\ 1 & \text{syrup}_2 & \text{ice}_2 \\ & \vdots & \end{bmatrix} \quad \text{fits} \quad \text{rating} = b + m_1 \cdot \text{syrup} + m_2 \cdot \text{ice}
+$$
 
-The exact same normal equations, `AᵀAx̂ = Aᵀb`, now solve for three
+The exact same normal equations, $A^T A \hat{x} = A^T b$, now solve for three
 unknowns instead of two.
 
 ---
@@ -617,7 +619,7 @@ unknowns instead of two.
 <div class="thread">One method, one formula, no matter how many inputs.</div>
 
 Adding inputs never changes the method: build a design matrix, form
-`AᵀA` and `Aᵀb`, solve. Only the size of the matrices grows. This is
+$A^T A$ and $A^T b$, solve. Only the size of the matrices grows. This is
 exactly how real-world sales, pricing, and forecasting models are
 built, often with dozens of input columns.
 
@@ -678,7 +680,7 @@ Always look at the data, not only the fitted line.
 
 <div class="thread">A single unusual customer, added to the café's data.</div>
 
-Add a sixth cup: 5 syrup units, but a rating of `1` (a customer who
+Add a sixth cup: 5 syrup units, but a rating of $1$ (a customer who
 disliked the drink for an unrelated reason). Refitting the line pulls
 the slope down noticeably, even though five of six points barely
 moved. One unusual point can outweigh several ordinary ones.
@@ -689,7 +691,7 @@ moved. One unusual point can outweigh several ordinary ones.
 
 <div class="thread">The exact formula scales down. Real datasets scale it back up.</div>
 
-For millions of data points and thousands of inputs, computing `AᵀA`
+For millions of data points and thousands of inputs, computing $A^T A$
 directly gets expensive. Machine learning training instead often uses
 an iterative shortcut, gradient descent, that reaches nearly the same
 best-fit answer without ever forming the full normal equations.
@@ -714,7 +716,7 @@ You have about 15 minutes.
 <div class="why">Same pairs. Quick pencil check, no new worksheet.</div>
 
 For your Worksheet Part A line, compare its sum of squared residuals
-to the flat-average guess. Compute `R²`.
+to the flat-average guess. Compute $R^2$.
 
 You have about 5 minutes.
 
@@ -722,7 +724,7 @@ You have about 5 minutes.
 
 # Common Mistakes
 
-- **Trying to solve `Ax = b` directly:** an overdetermined system usually has no exact solution; always move to the normal equations
+- **Trying to solve $Ax = b$ directly:** an overdetermined system usually has no exact solution; always move to the normal equations
 - **Forgetting the column of 1s:** without it, the fitted line is forced through the origin, which is rarely correct
 - **Trusting extrapolation like interpolation:** a best-fit line is least reliable far outside the data it was built from
 
@@ -741,21 +743,21 @@ You have about 5 minutes.
 
 # Check Yourself
 
-1. Why does a noisy data set usually have no exact solution to `Ax = b`?
-2. What does the least-squares solution `x̂` minimize?
+1. Why does a noisy data set usually have no exact solution to $Ax = b$?
+2. What does the least-squares solution $\hat{x}$ minimize?
 
 ---
 
 # Answers
 
-1. **More equations than unknowns, and real noise.** With more data points than unknowns, `b` almost never lands exactly in the column space of `A`.
-2. **The sum of squared residuals.** `x̂` makes `Ax̂` as close to `b` as possible, in this squared-length sense.
+1. **More equations than unknowns, and real noise.** With more data points than unknowns, $b$ almost never lands exactly in the column space of $A$.
+2. **The sum of squared residuals.** $\hat{x}$ makes $A\hat{x}$ as close to $b$ as possible, in this squared-length sense.
 
 ---
 
 # Check Yourself: Round 2
 
-1. A fitted line has `R² = 0.95`. What does that say about the fit?
+1. A fitted line has $R^2 = 0.95$. What does that say about the fit?
 2. Why do the residuals of a line fit with an intercept always sum to (about) zero?
 
 ---
@@ -763,7 +765,7 @@ You have about 5 minutes.
 # Answers: Round 2
 
 1. **A very strong fit.** About 95% of the variation in the data is explained by the line; only 5% is left as unexplained noise.
-2. **Because the normal equations require it.** The intercept's own equation, `n·b + (Σx)·m = Σy`, forces the positive and negative misses to balance out.
+2. **Because the normal equations require it.** The intercept's own equation, $n \cdot b + (\sum x) \cdot m = \sum y$, forces the positive and negative misses to balance out.
 
 ---
 
@@ -818,8 +820,8 @@ for the final exam, tying every method back to the Campus Café.
 
 # Summary
 
-- Noisy, overdetermined data usually has no exact solution to `Ax = b`
-- The least-squares solution `x̂` solves the normal equations `AᵀAx̂ = Aᵀb`, minimizing squared residuals
+- Noisy, overdetermined data usually has no exact solution to $Ax = b$
+- The least-squares solution $\hat{x}$ solves the normal equations $A^T A \hat{x} = A^T b$, minimizing squared residuals
 - For a line, the normal equations reduce to a 2x2 system for slope and intercept
 - **Reading:** Lay, Lay & McDonald, 6th ed., Chapter 6
 - **Handout:** [materials/week14/handout.md](materials/week14/handout.html), glossary and the full café walkthrough

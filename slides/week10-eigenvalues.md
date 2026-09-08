@@ -2,6 +2,7 @@
 marp: true
 theme: shintia
 paginate: true
+math: katex
 footer: 'Department of Intelligent Computing'
 ---
 
@@ -170,11 +171,23 @@ engineering interviews.
 
 # By the End of This Week, You Can
 
+<style scoped>
+.card .h p, .card .d p { margin: 0; }
+</style>
+
 <div class="cardlist">
 <div class="card"><div class="h">Characteristic Equation</div><div class="d">Find a matrix's eigenvalues using its characteristic equation</div></div>
 <div class="card"><div class="h">Find Eigenvectors</div><div class="d">Find the eigenvector that matches each eigenvalue</div></div>
 <div class="card"><div class="h">Eigenvector Direction</div><div class="d">Explain why an eigenvector's direction never rotates under its own matrix</div></div>
-<div class="card"><div class="h">Verify <code>Av = λv</code></div><div class="d">Check a guessed vector against <code>Av = λv</code>, by hand, in seconds</div></div>
+<div class="card"><div class="h">
+
+Verify $Av = \lambda v$
+
+</div><div class="d">
+
+Check a guessed vector against $Av = \lambda v$, by hand, in seconds
+
+</div></div>
 <div class="card"><div class="h">Eigenvectors in PageRank</div><div class="d">Connect eigenvectors to a real system, like PageRank's page ranking</div></div>
 </div>
 
@@ -253,18 +266,13 @@ own special directions, never went away.
 
 <div class="thread">Now the exact, formal definition.</div>
 
-> For a square matrix `A`, an **eigenvector** is a nonzero vector `v`
-> that satisfies
->
-> ```
-> Av = λv
-> ```
->
-> for some number `λ`. That matching number `λ` is the **eigenvalue**.
+> For a square matrix $A$, an **eigenvector** is a nonzero vector $v$
+> that satisfies $Av = \lambda v$ for some number $\lambda$. That matching
+> number $\lambda$ is the **eigenvalue**.
 
-- Multiplying `v` by `A` only stretches or shrinks it; it never rotates `v` off its own line
-- `v` must be nonzero; `v = 0` always solves the equation, but tells us nothing new
-- A negative `λ` still keeps the same line, just flips which way `v` points
+- Multiplying $v$ by $A$ only stretches or shrinks it; it never rotates $v$ off its own line
+- $v$ must be nonzero; $v = 0$ always solves the equation, but tells us nothing new
+- A negative $\lambda$ still keeps the same line, just flips which way $v$ points
 
 ---
 
@@ -274,11 +282,11 @@ own special directions, never went away.
 
 <div class="thread">Most starting directions get pushed off course. A few special ones do not.</div>
 
-| Start `v` | Result `Av` | What happened |
+| Start $v$ | Result $Av$ | What happened |
 |---|---|---|
-| `(1, 0)` | `(2, 1)` | Rotated onto a new line |
-| `(1, 1)` | `(3, 3)` | Same line, 3 times as long: eigenvalue 3 |
-| `(1, -1)` | `(1, -1)` | Same line, unchanged: eigenvalue 1 |
+| $(1, 0)$ | $(2, 1)$ | Rotated onto a new line |
+| $(1, 1)$ | $(3, 3)$ | Same line, 3 times as long: eigenvalue 3 |
+| $(1, -1)$ | $(1, -1)$ | Same line, unchanged: eigenvalue 1 |
 
 Only the last two rows are eigenvectors. The first row shows what
 "rotated" looks like, so the contrast is clear.
@@ -289,13 +297,13 @@ Only the last two rows are eigenvectors. The first row shows what
 
 <div class="thread">Before solving from scratch, a fast test for any guess.</div>
 
-For `A = [[2,1],[1,2]]`, is `v = (1,1)` an eigenvector?
+For $A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$, is $v = (1,1)$ an eigenvector?
 
-```
-Av = ( 2(1)+1(1), 1(1)+2(1) ) = (3, 3) = 3(1,1)
-```
+$$
+Av = \big(2(1)+1(1),\ 1(1)+2(1)\big) = (3, 3) = 3(1,1)
+$$
 
-`Av` is a scalar multiple of `v`. **Yes**, eigenvalue `3`. This check
+$Av$ is a scalar multiple of $v$. **Yes**, eigenvalue $3$. This check
 takes seconds, once you have a candidate to test.
 
 ---
@@ -304,8 +312,8 @@ takes seconds, once you have a candidate to test.
 
 <div class="why">In pairs, 5 minutes, no worksheet needed yet.</div>
 
-For `A = [[3,0],[0,-1]]`, check whether `(1,0)` and `(1,1)` are
-eigenvectors. Use `Av = λv` directly, no characteristic equation
+For $A = \begin{bmatrix} 3 & 0 \\ 0 & -1 \end{bmatrix}$, check whether $(1,0)$ and $(1,1)$ are
+eigenvectors. Use $Av = \lambda v$ directly, no characteristic equation
 needed.
 
 ---
@@ -316,18 +324,20 @@ needed.
 
 Start from the definition and move everything to one side:
 
-```
-Av = λv
-Av - λv = 0
-(A - λI)v = 0
-```
+$$
+\begin{aligned}
+Av &= \lambda v \\
+Av - \lambda v &= 0 \\
+(A - \lambda I)v &= 0
+\end{aligned}
+$$
 
-For a nonzero `v` to exist, `(A - λI)` cannot be invertible. Week 6
+For a nonzero $v$ to exist, $(A - \lambda I)$ cannot be invertible. Week 6
 showed exactly when that happens: its determinant must be zero.
 
-```
-det(A - λI) = 0
-```
+$$
+\det(A - \lambda I) = 0
+$$
 
 ---
 
@@ -335,11 +345,11 @@ det(A - λI) = 0
 
 <div class="thread">One more way to see why there is more than one eigenvalue, usually.</div>
 
-Expanding `det(A - λI)` for an `n x n` matrix always produces a
-polynomial in `λ`, of degree exactly `n`. This is the **characteristic
+Expanding $\det(A - \lambda I)$ for an $n \times n$ matrix always produces a
+polynomial in $\lambda$, of degree exactly $n$. This is the **characteristic
 polynomial**.
 
-- A degree-`n` polynomial has at most `n` roots
+- A degree-$n$ polynomial has at most $n$ roots
 - Each root is one eigenvalue; a 2x2 matrix has at most 2, a 3x3 at most 3
 
 ---
@@ -360,13 +370,12 @@ polynomial**.
 
 <div class="thread">The easiest possible case, no algebra required.</div>
 
-```
-D = [ 5   0 ]
-    [ 0  -2 ]
-```
+$$
+D = \begin{bmatrix} 5 & 0 \\ 0 & -2 \end{bmatrix}
+$$
 
-The eigenvalues are just the diagonal entries themselves: `λ = 5` and
-`λ = -2`. Each standard-basis vector, `(1,0)` and `(0,1)`, is already
+The eigenvalues are just the diagonal entries themselves: $\lambda = 5$ and
+$\lambda = -2$. Each standard-basis vector, $(1,0)$ and $(0,1)$, is already
 an eigenvector.
 
 ---
@@ -375,14 +384,12 @@ an eigenvector.
 
 <div class="thread">Week 6's shortcut returns: the diagonal still does the work.</div>
 
-```
-U = [ 3  4  1 ]
-    [ 0  2  5 ]
-    [ 0  0 -1 ]
-```
+$$
+U = \begin{bmatrix} 3 & 4 & 1 \\ 0 & 2 & 5 \\ 0 & 0 & -1 \end{bmatrix}
+$$
 
 For any triangular matrix, the eigenvalues are exactly its diagonal
-entries: `λ = 3, 2, -1`. No characteristic-equation expansion needed.
+entries: $\lambda = 3, 2, -1$. No characteristic-equation expansion needed.
 
 ---
 
@@ -390,7 +397,7 @@ entries: `λ = 3, 2, -1`. No characteristic-equation expansion needed.
 
 <div class="thread">What a negative eigenvalue actually does to a vector.</div>
 
-`Av = -2v` scales `v` by `-2`: twice as long, and pointing the
+$Av = -2v$ scales $v$ by $-2$: twice as long, and pointing the
 opposite way along the same line.
 
 The direction itself, ignoring which way it points, still never
@@ -405,9 +412,9 @@ perfectly valid eigenvalue.
 
 | Pattern | What it means |
 |---|---|
-| Any eigenvalue is `0` | `A` is singular; `det(A) = 0` |
-| Sum of all eigenvalues | Equals the **trace** of `A` (sum of diagonal entries) |
-| Product of all eigenvalues | Equals `det(A)` |
+| Any eigenvalue is $0$ | $A$ is singular; $\det(A) = 0$ |
+| Sum of all eigenvalues | Equals the **trace** of $A$ (sum of diagonal entries) |
+| Product of all eigenvalues | Equals $\det(A)$ |
 
 These hold for every square matrix, not only the café's example.
 
@@ -417,78 +424,80 @@ These hold for every square matrix, not only the café's example.
 
 <div class="thread">The exact rule behind the tilted mixes. Let's find its special directions.</div>
 
-Let `c` and `v` be the amounts of cherry and vanilla syrup fed in.
+Let $c$ and $v$ be the amounts of cherry and vanilla syrup fed in.
 The machine's blending rule is:
 
-```
-new c = 2c + v
-new v = c + 2v
-```
+$$
+\begin{aligned}
+\text{new } c &= 2c + v \\
+\text{new } v &= c + 2v
+\end{aligned}
+$$
 
-As one matrix `A`:
+As one matrix $A$:
 
-```
-A = [ 2  1 ]
-    [ 1  2 ]
-```
+$$
+A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}
+$$
 
 ---
 
 # Demo, Step by Step: The Café's Blend Machine (2/5)
 
-**Build the characteristic equation.** Subtract `λ` from `A`'s
+**Build the characteristic equation.** Subtract $\lambda$ from $A$'s
 diagonal, then take the determinant:
 
-```
-A - λI = [ 2-λ    1  ]
-         [  1    2-λ ]
+$$
+A - \lambda I = \begin{bmatrix} 2-\lambda & 1 \\ 1 & 2-\lambda \end{bmatrix}
+$$
 
-det(A - λI) = (2-λ)(2-λ) - (1)(1)
-```
+$$
+\det(A - \lambda I) = (2-\lambda)(2-\lambda) - (1)(1)
+$$
 
 ---
 
 # Demo, Step by Step: The Café's Blend Machine (3/5)
 
-**Expand and solve for `λ`.**
+**Expand and solve for $\lambda$.**
 
-```
-(2-λ)(2-λ) - 1 = 0
-λ² - 4λ + 3 = 0
-(λ - 1)(λ - 3) = 0
-```
+$$
+\begin{aligned}
+(2-\lambda)(2-\lambda) - 1 &= 0 \\
+\lambda^2 - 4\lambda + 3 &= 0 \\
+(\lambda - 1)(\lambda - 3) &= 0
+\end{aligned}
+$$
 
-Two eigenvalues: `λ = 1` and `λ = 3`. Every eigenvector search starts
+Two eigenvalues: $\lambda = 1$ and $\lambda = 3$. Every eigenvector search starts
 from one of these.
 
 ---
 
 # Demo, Step by Step: The Café's Blend Machine (4/5)
 
-**Find the eigenvector for `λ = 3`.** Solve `(A - 3I)v = 0`:
+**Find the eigenvector for $\lambda = 3$.** Solve $(A - 3I)v = 0$:
 
-```
-[ -1   1 ] [c]   [0]
-[  1  -1 ] [v] = [0]
-```
+$$
+\begin{bmatrix} -1 & 1 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} c \\ v \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+$$
 
-Both rows say the same thing: `c = v`. Pick `c = 1`, so `v = 1`.
-Eigenvector: `(1, 1)`, equal cherry and vanilla.
+Both rows say the same thing: $c = v$. Pick $c = 1$, so $v = 1$.
+Eigenvector: $(1, 1)$, equal cherry and vanilla.
 
 ---
 
 # Demo, Step by Step: The Café's Blend Machine (5/5)
 
-**Find the eigenvector for `λ = 1`.** Solve `(A - 1I)v = 0`:
+**Find the eigenvector for $\lambda = 1$.** Solve $(A - 1I)v = 0$:
 
-```
-[ 1  1 ] [c]   [0]
-[ 1  1 ] [v] = [0]
-```
+$$
+\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} \begin{bmatrix} c \\ v \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+$$
 
-Both rows say `c = -v`. Eigenvector: `(1, -1)`, equal amounts,
-opposite sign. **Check:** `A(1,1) = (3,3) = 3(1,1)`. `A(1,-1) =
-(1,-1) = 1(1,-1)`. Both hold.
+Both rows say $c = -v$. Eigenvector: $(1, -1)$, equal amounts,
+opposite sign. **Check:** $A(1,1) = (3,3) = 3(1,1)$. $A(1,-1) =
+(1,-1) = 1(1,-1)$. Both hold.
 
 <!-- notes: The café story is invented; the numbers are picked to
 factor evenly. Tell students this out loud: the method is the real,
@@ -500,15 +509,13 @@ general one they use on any square matrix, all semester. -->
 
 <div class="thread">The café's machine was 2x2. Here is the same method, one size up.</div>
 
-For a triangular-friendly example, `A = [[2,1,0],[0,3,0],[0,0,4]]`:
+For a triangular-friendly example, $A = \begin{bmatrix} 2&1&0 \\ 0&3&0 \\ 0&0&4 \end{bmatrix}$:
 
-```
-A - λI = [ 2-λ   1    0  ]
-         [  0   3-λ   0  ]
-         [  0    0   4-λ ]
-```
+$$
+A - \lambda I = \begin{bmatrix} 2-\lambda & 1 & 0 \\ 0 & 3-\lambda & 0 \\ 0 & 0 & 4-\lambda \end{bmatrix}
+$$
 
-`A` is already triangular, so `det(A - λI) = (2-λ)(3-λ)(4-λ)`.
+$A$ is already triangular, so $\det(A - \lambda I) = (2-\lambda)(3-\lambda)(4-\lambda)$.
 
 ---
 
@@ -516,11 +523,11 @@ A - λI = [ 2-λ   1    0  ]
 
 Set the product to zero:
 
-```
-(2-λ)(3-λ)(4-λ) = 0
-```
+$$
+(2-\lambda)(3-\lambda)(4-\lambda) = 0
+$$
 
-Three eigenvalues, one per factor: `λ = 2`, `λ = 3`, `λ = 4`. A
+Three eigenvalues, one per factor: $\lambda = 2$, $\lambda = 3$, $\lambda = 4$. A
 triangular matrix's eigenvalues really are just its diagonal, exactly
 as the earlier shortcut slide claimed.
 
@@ -528,15 +535,13 @@ as the earlier shortcut slide claimed.
 
 # 3x3 Eigenvalues, Worked (3/3)
 
-**Find the eigenvector for `λ = 2`.** Solve `(A - 2I)v = 0`:
+**Find the eigenvector for $\lambda = 2$.** Solve $(A - 2I)v = 0$:
 
-```
-[ 0  1  0 ] [x]   [0]
-[ 0  1  0 ] [y] = [0]
-[ 0  0  2 ] [z]   [0]
-```
+$$
+\begin{bmatrix} 0&1&0 \\ 0&1&0 \\ 0&0&2 \end{bmatrix} \begin{bmatrix} x\\y\\z \end{bmatrix} = \begin{bmatrix} 0\\0\\0 \end{bmatrix}
+$$
 
-Rows say `y = 0` and `z = 0`; `x` is free. Eigenvector: `(1, 0, 0)`.
+Rows say $y = 0$ and $z = 0$; $x$ is free. Eigenvector: $(1, 0, 0)$.
 Same method as 2x2, just one more row and column to track.
 
 ---
@@ -571,7 +576,7 @@ You have about 15 minutes.
 
 <div class="thread">3 words for the last part of this week.</div>
 
-- **Trivial solution:** the always-true but useless answer, `v = 0`
+- **Trivial solution:** the always-true but useless answer, $v = 0$
 - **Multiplicity:** how many times the same eigenvalue repeats as a root
 - **Dominant eigenvalue:** the eigenvalue with the largest size; its direction wins out under repeated use
 
@@ -601,18 +606,26 @@ over. Eventually the split of importance stops changing.
 
 # PageRank as a Matrix Equation
 
-<div class="thread">Turn "importance passes around the link pattern" into `Av = λv`.</div>
+<style scoped>
+.thread p { margin: 0; }
+</style>
 
-Build a matrix `M` where column `j` splits page `j`'s importance
-evenly across the pages it links to. The stable importance vector `r`
+<div class="thread">
+
+Turn "importance passes around the link pattern" into $Av = \lambda v$.
+
+</div>
+
+Build a matrix $M$ where column $j$ splits page $j$'s importance
+evenly across the pages it links to. The stable importance vector $r$
 satisfies:
 
-```
-Mr = r    =    Mr = 1*r
-```
+$$
+Mr = r \quad = \quad Mr = 1 \cdot r
+$$
 
-The stable ranking is exactly an eigenvector of `M`, with eigenvalue
-`1`.
+The stable ranking is exactly an eigenvector of $M$, with eigenvalue
+$1$.
 
 ---
 
@@ -620,30 +633,28 @@ The stable ranking is exactly an eigenvector of `M`, with eigenvalue
 
 <div class="thread">Two pages, A and B. Page A links only to B; page B links only to A.</div>
 
-```
-M = [ 0   1 ]
-    [ 1   0 ]
-```
+$$
+M = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
+$$
 
 Each page sends all of its importance to the other. Solve
-`det(M - λI) = 0`:
+$\det(M - \lambda I) = 0$:
 
-```
-(0-λ)(0-λ) - 1(1) = 0   ->   λ² - 1 = 0   ->   λ = 1 or λ = -1
-```
+$$
+(0-\lambda)(0-\lambda) - 1(1) = 0 \;\Rightarrow\; \lambda^2 - 1 = 0 \;\Rightarrow\; \lambda = 1 \text{ or } \lambda = -1
+$$
 
 ---
 
 # PageRank, Worked: A Tiny 2-Page Web (2/2)
 
-**Find the eigenvector for `λ = 1`.** Solve `(M - I)v = 0`:
+**Find the eigenvector for $\lambda = 1$.** Solve $(M - I)v = 0$:
 
-```
-[ -1   1 ] [a]   [0]
-[  1  -1 ] [b] = [0]
-```
+$$
+\begin{bmatrix} -1 & 1 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+$$
 
-Both rows say `a = b`. Eigenvector: `(1, 1)`, meaning **equal
+Both rows say $a = b$. Eigenvector: $(1, 1)$, meaning **equal
 importance**. With only two pages linking to each other, that is
 exactly the fair result.
 
@@ -653,11 +664,11 @@ exactly the fair result.
 
 <div class="thread">The same check from earlier, applied to the ranking itself.</div>
 
-```
-Mv = ( 0(1)+1(1), 1(1)+0(1) ) = (1, 1) = 1*(1, 1)
-```
+$$
+Mv = \big(0(1)+1(1),\ 1(1)+0(1)\big) = (1, 1) = 1 \cdot (1, 1)
+$$
 
-`Mv = v` holds exactly. Normalized, `(1,1)` means 50% importance to
+$Mv = v$ holds exactly. Normalized, $(1,1)$ means 50% importance to
 each page, the stable split Google's algorithm settles on.
 
 ---
@@ -666,8 +677,8 @@ each page, the stable split Google's algorithm settles on.
 
 <div class="thread">The café's machine gave two clean, different directions. That will not always happen.</div>
 
-For `E = [[3,1],[0,3]]`, the characteristic equation is
-`(3 - λ)² = 0`. It has only one root, `λ = 3`, but that root counts
+For $E = \begin{bmatrix} 3&1\\0&3 \end{bmatrix}$, the characteristic equation is
+$(3 - \lambda)^2 = 0$. It has only one root, $\lambda = 3$, but that root counts
 twice: its **multiplicity** is 2.
 
 - A repeated eigenvalue can still have just one independent eigenvector direction, not two
@@ -679,10 +690,10 @@ twice: its **multiplicity** is 2.
 
 <div class="thread">Two different counts, both called "multiplicity."</div>
 
-- **Algebraic multiplicity:** how many times a root repeats in the characteristic polynomial, `λ = 3` twice for `E` on the last slide
+- **Algebraic multiplicity:** how many times a root repeats in the characteristic polynomial, $\lambda = 3$ twice for $E$ on the last slide
 - **Geometric multiplicity:** how many independent eigenvectors that eigenvalue actually has
 
-For `E = [[3,1],[0,3]]`, algebraic multiplicity is 2, but geometric
+For $E = \begin{bmatrix} 3&1\\0&3 \end{bmatrix}$, algebraic multiplicity is 2, but geometric
 multiplicity is only 1: one repeated root, one direction.
 
 ---
@@ -691,14 +702,14 @@ multiplicity is only 1: one repeated root, one direction.
 
 <div class="thread">Back to the owner's original question: is there a mix this machine only scales?</div>
 
-- **Direction `(1, 1)`, eigenvalue 3:** equal cherry and vanilla. Every
+- **Direction $(1, 1)$, eigenvalue 3:** equal cherry and vanilla. Every
   run through the machine, this mix triples in strength
-- **Direction `(1, -1)`, eigenvalue 1:** equal amounts, opposite sign.
+- **Direction $(1, -1)$, eigenvalue 1:** equal amounts, opposite sign.
   Every run, this mix stays exactly the same size
 
 Both are the answer the owner asked for: mixes the machine only
 scales, never tilts sideways. Any other starting mix, like plain
-`(1, 0)`, drifts toward the `(1, 1)` direction the more times it runs.
+$(1, 0)$, drifts toward the $(1, 1)$ direction the more times it runs.
 
 ---
 
@@ -708,7 +719,7 @@ scales, never tilts sideways. Any other starting mix, like plain
 
 <div class="why">Same pairs. Open <a href="materials/week10/worksheet.html">Worksheet Part B</a>.</div>
 
-Check your Part A eigenvectors using `Av = λv`.
+Check your Part A eigenvectors using $Av = \lambda v$.
 
 Then find the eigenvalues of one 2x2 matrix on your own.
 
@@ -718,11 +729,39 @@ You have about 15 minutes.
 
 # Common Mistakes
 
+<style scoped>
+.card .h p, .card .d p { margin: 0; }
+</style>
+
 <div class="cardlist">
-<div class="card"><div class="h">Forgetting to check `v ≠ 0`</div><div class="d">`v = 0` always solves `Av = λv`; it is never a valid eigenvector</div></div>
-<div class="card"><div class="h">Subtracting `λ` from every entry</div><div class="d">`λ` only subtracts from the diagonal entries of `A`, not every entry</div></div>
-<div class="card"><div class="h">Stopping after finding `λ`</div><div class="d">finding eigenvalues is half the job; each one still needs its own eigenvector</div></div>
-<div class="card"><div class="h">Skipping the final check</div><div class="d">always confirm `Av = λv` for each pair before trusting the answer</div></div>
+<div class="card"><div class="h">
+
+Forgetting to check $v \neq 0$
+
+</div><div class="d">
+
+$v = 0$ always solves $Av = \lambda v$; it is never a valid eigenvector
+
+</div></div>
+<div class="card"><div class="h">
+
+Subtracting $\lambda$ from every entry
+
+</div><div class="d">
+
+$\lambda$ only subtracts from the diagonal entries of $A$, not every entry
+
+</div></div>
+<div class="card"><div class="h">
+
+Stopping after finding $\lambda$
+
+</div><div class="d">finding eigenvalues is half the job; each one still needs its own eigenvector</div></div>
+<div class="card"><div class="h">Skipping the final check</div><div class="d">
+
+always confirm $Av = \lambda v$ for each pair before trusting the answer
+
+</div></div>
 </div>
 
 ---
@@ -739,33 +778,33 @@ You have about 15 minutes.
 
 # Check Yourself
 
-1. Is `v = (2, 2)` an eigenvector of the café's matrix `A = [[2,1],[1,2]]`? Which eigenvalue?
-2. A matrix's characteristic equation is `λ² - 5λ + 6 = 0`. What are its eigenvalues?
-3. Why is `v = (0, 0)` never a valid eigenvector, even though it solves `Av = λv` for every `λ`?
+1. Is $v = (2, 2)$ an eigenvector of the café's matrix $A = \begin{bmatrix} 2&1\\1&2 \end{bmatrix}$? Which eigenvalue?
+2. A matrix's characteristic equation is $\lambda^2 - 5\lambda + 6 = 0$. What are its eigenvalues?
+3. Why is $v = (0, 0)$ never a valid eigenvector, even though it solves $Av = \lambda v$ for every $\lambda$?
 
 ---
 
 # Answers
 
-1. **Yes.** `(2, 2)` is `(1, 1)` scaled by 2, still on the same special
-   line. `A(2,2) = (6,6) = 3(2,2)`, so its eigenvalue is 3.
-2. **`λ = 2` and `λ = 3`.** The equation factors as `(λ - 2)(λ - 3) = 0`.
-3. **It carries no information.** `v = 0` solves the equation for
-   every possible `λ`, so it never points to a genuine special
+1. **Yes.** $(2, 2)$ is $(1, 1)$ scaled by 2, still on the same special
+   line. $A(2,2) = (6,6) = 3(2,2)$, so its eigenvalue is 3.
+2. **$\lambda = 2$ and $\lambda = 3$.** The equation factors as $(\lambda - 2)(\lambda - 3) = 0$.
+3. **It carries no information.** $v = 0$ solves the equation for
+   every possible $\lambda$, so it never points to a genuine special
    direction. It is the trivial solution, excluded by definition.
 
 ---
 
 # Check Yourself: Round 2
 
-1. `A = [[4,0,0],[0,-1,0],[0,0,2]]`. What are its eigenvalues, and why can you read them off directly?
-2. A 2x2 matrix has eigenvalues `2` and `5`. What is its trace? Its determinant?
+1. $A = \begin{bmatrix} 4&0&0\\0&-1&0\\0&0&2 \end{bmatrix}$. What are its eigenvalues, and why can you read them off directly?
+2. A 2x2 matrix has eigenvalues $2$ and $5$. What is its trace? Its determinant?
 
 ---
 
 # Answers
 
-1. **`λ = 4, -1, 2`.** `A` is diagonal, so its eigenvalues are exactly its diagonal entries.
+1. **$\lambda = 4, -1, 2$.** $A$ is diagonal, so its eigenvalues are exactly its diagonal entries.
 2. **Trace = 7, determinant = 10.** Eigenvalues always sum to the trace and multiply to the determinant.
 
 ---
@@ -773,14 +812,14 @@ You have about 15 minutes.
 # Check Yourself: Round 3
 
 1. A 3x3 matrix's characteristic polynomial has degree 3. At most how many eigenvalues can it have?
-2. In the 2-page PageRank example, why did the stable ranking come out as equal importance, `(1,1)`?
+2. In the 2-page PageRank example, why did the stable ranking come out as equal importance, $(1,1)$?
 
 ---
 
 # Answers
 
-1. **At most 3.** A degree-`n` characteristic polynomial has at most `n` roots.
-2. **Symmetry.** Each page links only to the other, so nothing favors either page; the eigenvector for `λ = 1` is `(1,1)`, equal shares.
+1. **At most 3.** A degree-$n$ characteristic polynomial has at most $n$ roots.
+2. **Symmetry.** Each page links only to the other, so nothing favors either page; the eigenvector for $\lambda = 1$ is $(1,1)$, equal shares.
 
 ---
 
@@ -788,10 +827,10 @@ You have about 15 minutes.
 
 | Step | Formula |
 |---|---|
-| Find eigenvalues | `det(A - λI) = 0` |
-| Find each eigenvector | `(A - λI)v = 0`, solve for `v` |
-| Sanity check | eigenvalues sum to trace, multiply to `det(A)` |
-| Final verification | confirm `Av = λv` directly |
+| Find eigenvalues | $\det(A - \lambda I) = 0$ |
+| Find each eigenvector | $(A - \lambda I)v = 0$, solve for $v$ |
+| Sanity check | eigenvalues sum to trace, multiply to $\det(A)$ |
+| Final verification | confirm $Av = \lambda v$ directly |
 
 Four steps, the same four steps, on any square matrix.
 
@@ -840,7 +879,7 @@ calculation.
 # Summary
 
 - An eigenvector is a direction a matrix only stretches; its eigenvalue says by how much
-- Solve `det(A - λI) = 0` for eigenvalues, then `(A - λI)v = 0` for each matching eigenvector
+- Solve $\det(A - \lambda I) = 0$ for eigenvalues, then $(A - \lambda I)v = 0$ for each matching eigenvector
 - A repeated eigenvalue has a multiplicity greater than 1, and may share just one eigenvector direction
 - Real systems, from search ranking to vibration analysis, hinge on finding these stable directions
 - **Reading:** Lay, Lay & McDonald, 6th ed., Chapter 5.1-5.2
